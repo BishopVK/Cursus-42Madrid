@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:38:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/08 15:08:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:26:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z))
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
 	else
 		return (0);
