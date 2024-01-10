@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:26:21 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 14:45:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:10:03 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 //#include <string.h>
 
 char	*ft_strchr(const char *s, int c)
