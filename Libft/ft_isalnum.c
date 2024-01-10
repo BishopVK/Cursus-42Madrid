@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:28:22 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/08 19:28:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:00:43 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalnum(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c >= 0 && c <= 9)
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= 0 && c <= 9))
 		return (1);
 	else
 		return (0);
