@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:50:57 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/09 10:18:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:04:12 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 
 void	*ft_memset(void *b, int c, size_t len)
 {
