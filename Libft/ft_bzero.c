@@ -6,12 +6,12 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:21:11 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/09 10:03:36 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:06:12 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include <stdio.h>
-#include <strings.h>*/
+#include <stdio.h>
+//#include <strings.h>
 
 void	ft_bzero(void *s, size_t n)
 {
