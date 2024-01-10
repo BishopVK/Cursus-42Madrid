@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:25:33 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 10:58:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:07:04 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 //#include <strings.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
