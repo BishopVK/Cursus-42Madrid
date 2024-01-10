@@ -6,16 +6,16 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 08:05:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 08:09:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:09:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <stdio.h>
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	unsigned int	srclength;
-	unsigned int	i;
+	size_t	srclength;
+	size_t	i;
 
 	srclength = 0;
 	while (src[srclength] != '\0')
