@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:18:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 11:29:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:07:44 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 //#include <strings.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
