@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:35:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/12 17:34:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:26:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
-int		ft_isacii(int c);
+int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *str);
 void	*ft_memset(void *b, int c, size_t len);
