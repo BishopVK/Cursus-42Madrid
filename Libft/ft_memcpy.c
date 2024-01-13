@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:25:33 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 21:07:04 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:44:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*dst_tmp;
 	unsigned char	*src_tmp;
 
+	if (dst == NULL && src == NULL)
+		return (NULL);
 	dst_tmp = (unsigned char *)dst;
 	src_tmp = (unsigned char *)src;
 	i = 0;
