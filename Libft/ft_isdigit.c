@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:10:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/08 18:22:27 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:39:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if (c >= 0 && c <= 9)
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);
