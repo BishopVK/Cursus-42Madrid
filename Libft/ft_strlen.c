@@ -6,15 +6,16 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:03:22 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/08 19:13:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/12 10:10:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <stdio.h>
+#include "libft.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (str[count])

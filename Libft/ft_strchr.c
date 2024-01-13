@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:26:21 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 21:10:03 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:41:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 //#include <string.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -21,13 +22,15 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
+	if (c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
 /*int	main(void)
 {
 	char	str[] = "En un lugar de la mancha";
-	char	character = 'a';
+	char	character = 'N';
 	char	*pos = ft_strchr(str, character);
 
 	printf("Cadena: %s\n", str);

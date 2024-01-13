@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 07:50:57 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/12 12:23:17 by danjimen         ###   ########.fr       */
+/*   Created: 2024/01/12 11:02:48 by danjimen          #+#    #+#             */
+/*   Updated: 2024/01/12 11:11:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include <stdio.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char	*str;
-	size_t			i;
+	size_t	i;
 
-	str = b;
 	i = 0;
-	while (i < len)
-		str[i++] = (unsigned char)c;
-	return (b);
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
 }
 
 /*int	main(void)
 {
-	char str[] = "Replicando la función memset";
-
-	printf("Inicial: %s\n", str);
-	ft_memset(str, '$', 4);
-	printf("Después: %s\n", str);
-	return (0);
+	char	str1[] = "abcdef";
+	char	str2[] = "abzdef";
+	printf("Función original: %i\n", ft_strncmp(str1, str2, 3));
+	printf("Función ft_strncmp: %i\n", ft_strncmp(str1, str2, 3));
 }*/
