@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:47:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/12 12:24:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/14 00:13:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 //#include <string.h>
 #include "libft.h"
 
-size_t	ft_strlen(const char *str);
-
 char	*ft_strrchr(const char *s, int c)
 {
 	int	len;
 
 	len = ft_strlen(s);
-	s += len -1;
-	while (len--)
+	s += len;
+	while (len >= 0)
 	{
 		if (*s == c)
 			return ((char *)s);
 		s--;
+		len--;
 	}
 	return (NULL);
 }
