@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 17:33:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/12 17:50:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:13:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-int	i;
+	int	i;
 	int	j;
 	int	k;
 
 	if (*needle == '\0')
 		return ((char *)haystack);
 	i = 0;
-	while (haystack[i] != '\0')
+	while (haystack[i] != '\0' && i < len)
 	{
 		j = 0;
 		k = i;
@@ -41,8 +41,17 @@ int	i;
 /*int	main(void)
 {
 	char	cadena[] = "Hola, Mundo!!";
-	char	subcadena[] = "";
+	char	subcadena[] = "undo";
+	char	*result;
 
-	printf("%s\n", ft_strnstr(cadena, subcadena, 5));
+	result = ft_strnstr(cadena, subcadena, 5);
+    if (result != NULL)
+    {
+        printf("%s\n", result);
+    }
+    else
+    {
+        printf("Subcadena no encontrada\n");
+    }
 	return (0);
 }*/
