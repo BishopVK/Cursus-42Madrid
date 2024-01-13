@@ -6,16 +6,17 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:26:21 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/14 00:40:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/14 00:54:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
-//#include <string.h>
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
+	c = (unsigned char)c;
 	while (*s)
 	{
 		if (*s == c)
