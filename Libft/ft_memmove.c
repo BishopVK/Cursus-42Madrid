@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:18:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/10 21:07:44 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:49:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	*dst_tmp;
 	unsigned char	*src_tmp;
 
+	if (dst == NULL && src == NULL)
+		return (NULL);
 	dst_tmp = (unsigned char *)dst;
 	src_tmp = (unsigned char *)src;
 	if (dst_tmp < src_tmp || dst_tmp >= (src_tmp + len))
