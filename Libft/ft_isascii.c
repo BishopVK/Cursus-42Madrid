@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:38:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/08 18:39:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/13 23:25:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isacii(int c)
+int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 		return (1);
