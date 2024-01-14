@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:35:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/14 01:23:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:05:09 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *nptr);
+char	*ft_strdup(const char *s);
 
 #endif
