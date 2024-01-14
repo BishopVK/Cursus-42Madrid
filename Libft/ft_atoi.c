@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:12:45 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/14 01:35:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:54:13 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,33 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	signo;
+	int	sign;
 	int	nb;
 
-	signo = 0;
-	nb = 0;
-	while (*nptr < 33)
+	sign = 1;
+	while (*nptr && (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r')))
 		nptr++;
-	while (*nptr == '-' || *nptr == '+')
+	if (*nptr == '-')
 	{
-		if (*nptr == '-')
-			signo++;
+		sign = -1;
 		nptr++;
 	}
+	else if (*nptr == '+')
+		nptr++;
+	nb = 0;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		nb = nb * 10 + (*nptr - '0');
 		nptr++;
 	}
-	if (signo == 1)
-		nb = -nb;
-	else
-		return (0);
-	return (nb);
+	return (nb * sign);
 }
 
 /*int	main(void)
 {
 	int	resultado;
 
-	resultado = ft_atoi("   ----+--21474ab83645");
+	resultado = ft_atoi("   -21474ab83645");
 	printf("Resultado = %d\n", resultado);
 	return (0);
 }*/
