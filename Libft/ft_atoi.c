@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 01:12:45 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/14 01:33:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/14 01:35:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
 	int	signo;
 	int	nb;
 
-	i = 0;
 	signo = 0;
 	nb = 0;
 	while (*nptr < 33)
