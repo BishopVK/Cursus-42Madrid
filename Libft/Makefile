@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/10 20:45:51 by danjimen          #+#    #+#              #
-#    Updated: 2024/01/14 19:05:40 by bishopvk         ###   ########.fr        #
+#    Updated: 2024/01/16 13:50:37 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,11 @@ SRC		=	ft_isalpha.c \
 			ft_memcmp.c \
 			ft_strnstr.c \
 			ft_atoi.c \
-			ft_strdup.c
+			ft_calloc.c \
+			ft_strdup.c \
+			ft_substr.c \
+			ft_strjoin.c \
+			ft_strtrim.c
 		
 OBJ		=	$(SRC:.c=.o)
 

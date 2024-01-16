@@ -6,11 +6,10 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 08:31:47 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/12 12:24:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:57:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 //#include <string.h>
 #include "libft.h"
 
@@ -36,7 +35,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 /*int	main(void)
 {
-	char			dst[20] = "Hola ";
+	char			dst[30] = "Hola ";
 	char			src[] = "mundo1234567890abcdefghi";
 	unsigned int	length;
 

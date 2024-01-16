@@ -6,7 +6,7 @@
 /*   By: bishopvk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:59:36 by bishopvk          #+#    #+#             */
-/*   Updated: 2024/01/14 19:04:33 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:41:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ char	*ft_strdup(const char *s)
 	char	*dest;
 	char	*principio;
 
-	if (s == NULL)
-		return (NULL);
 	dest = (char *)malloc(ft_strlen(s) + 1);
 	if (dest == NULL)
-		exit (EXIT_FAILURE);
+		return (NULL);
 	principio = dest;
 	while (*s != '\0')
 		*dest++ = *s++;
@@ -34,7 +32,8 @@ char	*ft_strdup(const char *s)
 /*int	main(void)
 {
 	char	*original = "Hello, World!";
-	char	*duplicate = ft_strdup(original);
+	//char	*duplicate = ft_strdup(original);
+	char	*duplicate = ft_strdup(((void *)0));
 
 	if (duplicate != NULL)
 	{
