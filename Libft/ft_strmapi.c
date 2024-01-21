@@ -12,11 +12,13 @@
 
 #include "libft.h"
 
-/*static char	my_function(unsigned int n, char c)
+/*static char	ft_toggle_case(unsigned int n, char c)
 {
 	(void)n;
 	if (c >= 'a' && c <= 'z')
 		return ((char)(c - 'a' + 'A'));
+	if (c >= 'A' && c <= 'Z')
+		return ((char)(c - 'A' + 'a'));
 	return (c);
 }*/
 
@@ -45,7 +47,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char const	*s = "abcdefghijklmnñopqrstuvwxyz,ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 	char	*result;
 
-	result = ft_strmapi(s, my_function);
+	result = ft_strmapi(s, ft_toggle_case);
 
 	if (result != NULL)
 	{
