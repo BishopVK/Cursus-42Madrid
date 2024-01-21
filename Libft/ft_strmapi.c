@@ -12,26 +12,26 @@
 
 #include "libft.h"
 
-static char	my_function(unsigned int n, char c)
+/*static char	my_function(unsigned int n, char c)
 {
 	(void)n;
 	if (c >= 'a' && c <= 'z')
-		return (char)(c - 'a' + 'A');
+		return ((char)(c - 'a' + 'A'));
 	return (c);
-}
+}*/
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (s == NULL || f == NULL)
-		return (NULL);
 	char			*result;
 	unsigned int	i;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
 	result = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
 	i = 0;
-	while (i < ft_strlen(s))
+	while (s[i])
 	{
 		result[i] = f(i, s[i]);
 		i++;
@@ -40,9 +40,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (result);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	char const	*s = "Hola, mundo!!";
+	char const	*s = "abcdefghijklmnñopqrstuvwxyz,ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 	char	*result;
 
 	result = ft_strmapi(s, my_function);
@@ -55,5 +55,4 @@ int	main(void)
 	else
 		printf("Fallo en la reserva de memoria\n");
 	return (0);
-}
-
+}*/
