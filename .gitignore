@@ -1,0 +1,9 @@
+# Ignorar archivos temporales
+*.tmp
+
+# Ignorar archivos de compilación
+*.o
+*.out
+
+# Ignorar directorios específicos
+/Libft/.vscode
