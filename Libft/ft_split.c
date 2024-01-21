@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:06:55 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/18 12:44:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/21 19:11:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,38 @@ static int	ft_count_elements(const char *s, char c)
 	return (count);
 }
 
-static char	**ft_copy_replace(const char *s, char c, char **split)
+static void	free_split(char **split, int count)
 {
-	int	i;
+	while (count > 0)
+	{
+		count--;
+		free(split[count]);
+	}
+}
+
+static char	**ft_copy_string(const char *s, char c, char **split, int *i)
+{
 	int	start;
 	int	count;
 
-	i = 0;
 	start = 0;
 	count = 0;
-	while (s[i])
+	while (s[*i])
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] == '\0')
+		while (s[*i] == c)
+			(*i)++;
+		if (s[*i] == '\0')
 			break ;
-		start = i;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		split[count] = (char *)malloc((i - start + 1) * sizeof(char));
+		start = *i;
+		while (s[*i] != c && s[*i] != '\0')
+			(*i)++;
+		split[count] = (char *)malloc((*i - start + 1) * sizeof(char));
 		if (!split[count])
+		{
+			free_split(split, count);
 			return (NULL);
-		ft_strlcpy(split[count], s + start, i - start + 1);
+		}
+		ft_strlcpy(split[count], s + start, *i - start + 1);
 		count++;
 	}
 	split[count] = NULL;
@@ -64,16 +74,18 @@ char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		count;
+	int		i;
 
 	count = ft_count_elements(s, c);
 	split = (char **)malloc((count + 1) * sizeof(char *));
 	if (!split)
+		return (NULL);
+	i = 0;
+	if (!ft_copy_string(s, c, split, &i))
 	{
 		free(split);
 		return (NULL);
 	}
-	ft_copy_replace(s, c, split);
-	split[count] = NULL;
 	return (split);
 }
 
