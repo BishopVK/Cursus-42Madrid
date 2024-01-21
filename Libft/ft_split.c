@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:06:55 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/21 19:11:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/21 19:20:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,29 @@ static void	free_split(char **split, int count)
 	}
 }
 
-static char	**ft_copy_string(const char *s, char c, char **split, int *i)
+static char	**ft_copy_string(const char *s, char c, char **split, int i)
 {
 	int	start;
 	int	count;
 
 	start = 0;
 	count = 0;
-	while (s[*i])
+	while (s[i])
 	{
-		while (s[*i] == c)
-			(*i)++;
-		if (s[*i] == '\0')
+		while (s[i] == c)
+			(i)++;
+		if (s[i] == '\0')
 			break ;
-		start = *i;
-		while (s[*i] != c && s[*i] != '\0')
-			(*i)++;
-		split[count] = (char *)malloc((*i - start + 1) * sizeof(char));
+		start = i;
+		while (s[i] != c && s[i] != '\0')
+			(i)++;
+		split[count] = (char *)malloc((i - start + 1) * sizeof(char));
 		if (!split[count])
 		{
 			free_split(split, count);
 			return (NULL);
 		}
-		ft_strlcpy(split[count], s + start, *i - start + 1);
+		ft_strlcpy(split[count], s + start, i - start + 1);
 		count++;
 	}
 	split[count] = NULL;
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 	if (!split)
 		return (NULL);
 	i = 0;
-	if (!ft_copy_string(s, c, split, &i))
+	if (!ft_copy_string(s, c, split, i))
 	{
 		free(split);
 		return (NULL);
