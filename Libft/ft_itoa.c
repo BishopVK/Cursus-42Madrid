@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:28:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/21 19:55:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/21 20:26:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ static char	*ft_special_nbrs(int n)
 	if (n == 0)
 	{
 		str = (char *)malloc(2 * sizeof(char));
+		if (!str)
+			return (NULL);
 		ft_strlcpy(str, "0", 2);
 		return (str);
 	}
 	if (n == -2147483648)
 	{
 		str = (char *)malloc(12 * sizeof(char));
+		if (!str)
+			return (NULL);
 		ft_strlcpy(str, "-2147483648", 12);
 		return (str);
 	}
