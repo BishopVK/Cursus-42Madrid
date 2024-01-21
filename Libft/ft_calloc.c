@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 08:46:55 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/15 16:54:41 by danjimen         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_calloc.c										:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: danjimen <danjimen@student.42madrid>	   +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/01/15 08:46:55 by danjimen		  #+#	#+#			 */
+/*   Updated: 2024/01/15 16:54:41 by danjimen		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include <stdlib.h>
@@ -48,7 +48,7 @@ void	*ft_calloc(size_t count, size_t size)
 	{
 		printf("La alocación de memoria ha ido correctamente.\n");
 		free(arr);
-    }
+	}
 	else
 		printf("La alocación de memoria ha fallado.\n");
  	return (0);

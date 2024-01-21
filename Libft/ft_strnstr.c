@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 17:33:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/14 00:31:59 by danjimen         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_strnstr.c									   :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: danjimen <danjimen@student.42madrid>	   +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/01/12 17:33:25 by danjimen		  #+#	#+#			 */
+/*   Updated: 2024/01/14 00:31:59 by danjimen		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include <string.h>
@@ -45,13 +45,13 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	char	*result;
 
 	result = ft_strnstr(cadena, subcadena, 13);
-    if (result != NULL)
-    {
-        printf("%s\n", result);
-    }
-    else
-    {
-        printf("Subcadena no encontrada\n");
-    }
+	if (result != NULL)
+	{
+		printf("%s\n", result);
+	}
+	else
+	{
+		printf("Subcadena no encontrada\n");
+	}
 	return (0);
 }*/
