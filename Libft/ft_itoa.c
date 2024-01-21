@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:28:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/21 11:44:05 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/01/21 12:05:57 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ static int  ft_num_len(int n)
 
 static char *ft_num_to_string(int n, int len, int negative)
 {
-    int     i;
     char    *str;
 
-    i = 0;
     str = (char *)malloc(len * sizeof(char));
     if (!str)
         return (NULL);
@@ -92,7 +90,7 @@ char    *ft_itoa(int n)
     return (str);
 }
 
-/* int  main(void)
+/*int  main(void)
 {
     // Test 1: Número positivo
     int num1 = 12345;
@@ -143,4 +141,4 @@ char    *ft_itoa(int n)
     free(str8);
     
     return 0;
-} */
+}*/
