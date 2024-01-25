@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   ft_calloc.c										:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: danjimen <danjimen@student.42madrid>	   +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/01/15 08:46:55 by danjimen		  #+#	#+#			 */
-/*   Updated: 2024/01/15 16:54:41 by danjimen		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 14:01:18 by danjimen          #+#    #+#             */
+/*   Updated: 2024/01/25 13:33:10 by danjimen         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
@@ -19,10 +19,13 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	total_size;
 	void	*ptr;
 
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
 	total_size = count * size;
 	ptr = malloc(total_size);
-	if (ptr != NULL)
-		ft_memset(ptr, 0, total_size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memset(ptr, 0, total_size);
 	return (ptr);
 }
 //Compilar con ft_strlcpy.c ft_strlen.c ft_memset.c
