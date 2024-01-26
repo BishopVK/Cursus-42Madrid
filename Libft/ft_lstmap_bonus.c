@@ -6,56 +6,36 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:00:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 15:18:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:16:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_del_node_content(void *content)
+/* static void	ft_del_node_content(void *content)
 {
 	if (content != NULL)
 		free(content);
-}
+} */
 
-static void	*ft_strlowcase(void *content)
+/* static void	*ft_strlowcase(void *content)
 {
+	char	*str;
+	int		size;
+
 	if (content != NULL)
 	{
-		while (*((char *)content))
+		str = (char *)content;
+		size = ft_strlen(str);
+		while (*str)
 		{
-			if (*((char *)content) >= 'A' && *((char *)content) <= 'Z')
-				*((char *)content) = *((char *)content) + 32;
-			content = (char *)content + 1;
+			if (*str >= 'A' && *str <= 'Z')
+				*str = *str + 32;
+			str++;
 		}
+		return (str - size);
 	}
-	return (content);
-}
-
-/* t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*my_list;
-	t_list	*new_node;
-
-	my_list = NULL;
-
-	if (lst != NULL && f != NULL && del != NULL)
-	{
-		while (lst != NULL)
-		{
-			printf("Content: %s\n", (char *)(lst->content));
-			new_node = ft_lstnew(f(lst->content));
-			ft_lstadd_back(&my_list, new_node);
-			my_list->content = f(lst->content);
-			printf("Content: %s\n", (char *)(new_node->content));
-			ft_lstclear(&lst, del);
-			lst = lst->next;
-		}
-	}
-	else
-		my_list = NULL;
-
-	return (my_list);
+	return (NULL);
 } */
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
@@ -77,14 +57,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstadd_back(&my_list, new_node);
 			lst = lst->next;
 		}
-		ft_lstclear(&my_list, del);
+		//ft_lstclear(&my_list, del);
 	}
 	else
 		my_list = NULL;
 	return (my_list);
 }
 //cc -Wall -Wextra -Werror -g3 -fsanitize=address ft_lstmap_bonus.c ft_lstadd_back_bonus.c ft_lstclear_bonus.c ft_lstnew_bonus.c ft_strdup.c ft_strlen.c
-int	main(void)
+/* int	main(void)
 {
 	// Crear algunos nodos de la lista para el ejemplo
 	t_list	*node1;
@@ -128,14 +108,14 @@ int	main(void)
 
 	//¿?
 	// Después de imprimir los contenidos de los nodos, liberar la nueva lista
-	/* free(node1->content);
-	free(node1);
-	free(node2->content);
-	free(node2);
-	free(node3->content);
-	free(node3); */
+	//free(node1->content);
+	//free(node1);
+	//free(node2->content);
+	//free(node2);
+	//free(node3->content);
+	//free(node3);
 	ft_lstclear(&my_list, ft_del_node_content);
 	ft_lstclear(&my_new_list, ft_del_node_content);
 
 	return (0);
-}
+} */
