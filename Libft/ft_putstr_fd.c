@@ -6,11 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:58:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:30:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:44:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -26,7 +30,8 @@ void	ft_putstr_fd(char *s, int fd)
 	int		fd;
 	char	*str = "Hola Mundo!!";
 
-	// Abre o crea un archivo llamado "ejemplo.txt" en modo de escritura (O_WRONLY)
+	// Abre o crea un archivo llamado "ejemplo.txt"
+	// en modo de escritura (O_WRONLY)
 	// y con la bandera O_CREAT que crea el archivo si no existe.
 	fd = open("ejemplo.txt", O_WRONLY | O_CREAT, 0644);
 	if (fd == -1)
