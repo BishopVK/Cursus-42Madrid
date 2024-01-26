@@ -6,12 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:07:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/23 14:07:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:53:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
-//#include <ctype.h>
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

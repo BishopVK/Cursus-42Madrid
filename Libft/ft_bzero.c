@@ -6,12 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:55:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/23 14:01:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:24:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-//#include <strings.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -29,7 +28,7 @@ void	ft_bzero(void *s, size_t n)
 	char	str[] = "En un lugar de la mancha";
 
 	printf("Antes: %s\n", str);
-	bzero(str, 10);
+	ft_bzero(str, 10);
 	printf("Después: %s\n", str);
 	return (0);
 }*/

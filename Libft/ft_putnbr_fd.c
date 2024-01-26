@@ -6,15 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 10:55:05 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/22 11:55:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:30:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {

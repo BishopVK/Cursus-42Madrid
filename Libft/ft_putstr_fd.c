@@ -6,15 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:58:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/22 09:07:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:30:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {

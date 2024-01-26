@@ -6,11 +6,10 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:06:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/23 14:06:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:31:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <string.h>
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)

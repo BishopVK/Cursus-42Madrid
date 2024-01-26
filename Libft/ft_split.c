@@ -6,12 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/23 14:05:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:30:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
 static int	ft_count_elements(const char *s, char c)
 {

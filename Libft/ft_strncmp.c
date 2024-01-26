@@ -6,12 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:06:38 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/23 14:06:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:50:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

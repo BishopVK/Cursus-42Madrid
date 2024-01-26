@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:52:35 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 15:02:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:15:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		}
 	}
 }
-
+//cc -Wall -Wextra -Werror ft_lstiter_bonus.c ft_strdup.c ft_strlen.c 
 /* int	main(void)
 {
 	// Crear algunos nodos de la lista para el ejemplo
 	t_list	*node1;
 	t_list	*node2;
 	t_list	*node3;
+	t_list *my_list;
 
 	// Crear manualmente los nodos
 	node3 = (t_list *)malloc(sizeof(t_list));
@@ -58,17 +59,25 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	node1->next = node2;
 
 	// Imprimir los contenidos de los nodos
-	printf("Node 1 content: %s\n", (char *)(node1->content));
-	printf("Node 2 content: %s\n", (char *)(node2->content));
-	printf("Node 3 content: %s\n", (char *)(node3->content));
+	printf("Antes de ft_lstiter:\n");
+	my_list = node1;
+	while (my_list != NULL)
+	{
+		printf("Nodo: %p. Content: %s\n", my_list, (char *)(my_list->content));
+		my_list = my_list->next;
+	}
 
 	// Pasa el puntero al primer nodo a ft_lstiter
 	ft_lstiter(node1, ft_strlowcase);
 
 	// Imprimir nuevamente los contenidos de los nodos
-	printf("Node 1 content: %s\n", (char *)(node1->content));
-	printf("Node 2 content: %s\n", (char *)(node2->content));
-	printf("Node 3 content: %s\n", (char *)(node3->content));
+	printf("Después de ft_lstiter:\n");
+	my_list = node1;
+	while (my_list != NULL)
+	{
+		printf("Nodo: %p. Content: %s\n", my_list, (char *)(my_list->content));
+		my_list = my_list->next;
+	}
 
 	// Después de imprimir los contenidos de los nodos, liberar los nodos
 	free(node1->content);

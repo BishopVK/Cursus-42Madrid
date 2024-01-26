@@ -6,12 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:52:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 10:03:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:26:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /* static void	ft_del_node_content(void *content)
 {

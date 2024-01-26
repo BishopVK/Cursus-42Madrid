@@ -1,21 +1,27 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   libft.h											:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: danjimen <danjimen@student.42madrid.com	+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/01/10 20:35:58 by danjimen		  #+#	#+#			 */
-/*   Updated: 2024/01/21 15:56:01 by bishopvk		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/26 08:59:20 by danjimen          #+#    #+#             */
+/*   Updated: 2024/01/26 08:59:24 by danjimen         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <ctype.h>
+# include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
+# include <stdint.h>
 # include <stdlib.h>
+# include <string.h>
+# include <strings.h>
+# include <unistd.h>
 
 typedef struct s_list
 {

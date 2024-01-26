@@ -1,18 +1,18 @@
 # **************************************************************************** #
-#																			  #
-#														 :::	  ::::::::	#
-#	Makefile										   :+:	  :+:	:+:	#
-#													 +:+ +:+		 +:+	  #
-#	By: danjimen <danjimen@student.42madrid.com	+#+  +:+	   +#+		 #
-#												 +#+#+#+#+#+   +#+			#
-#	Created: 2024/01/10 20:45:51 by danjimen		  #+#	#+#			  #
-#	Updated: 2024/01/21 15:56:22 by danjimen		 ###   ########.fr		#
-#																			  #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/26 08:59:31 by danjimen          #+#    #+#              #
+#    Updated: 2024/01/26 14:45:19 by danjimen         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 SRC			=	ft_isalpha.c \
 				ft_isdigit.c \
 				ft_isalnum.c \

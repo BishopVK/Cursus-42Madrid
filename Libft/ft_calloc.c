@@ -6,12 +6,10 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:01:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 13:33:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:19:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
