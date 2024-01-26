@@ -12,7 +12,7 @@
 
 NAME		=	libft.a
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_isalpha.c \
 				ft_isdigit.c \
 				ft_isalnum.c \
@@ -65,21 +65,28 @@ BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) libft.h
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\nCompilación Completa!!\n"
+	@norminette $(SRC) libft.h
+	@echo "\nNorminette Finalizada!!\n"
 
 bonus: $(BONUS_OBJ) libft.h
-	ar rc $(NAME) $(BONUS_OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(BONUS_OBJ)
+	@ranlib $(NAME)
+	@echo "\nCompilación Completa!!\n"
+	@norminette $(BONUS_SRC) libft.h
+	@echo "\nNorminette Finalizada!!\n"
 
-%.o: %.c
+%.o: %.c libft.h
+#	@echo "Compilando $<..."
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUS_OBJ)
 
 re: fclean all
 
