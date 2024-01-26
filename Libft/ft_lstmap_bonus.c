@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:00:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 19:16:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:24:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstadd_back(&my_list, new_node);
 			lst = lst->next;
 		}
-		//ft_lstclear(&my_list, del);
 	}
 	else
 		my_list = NULL;
 	return (my_list);
 }
-//cc -Wall -Wextra -Werror -g3 -fsanitize=address ft_lstmap_bonus.c ft_lstadd_back_bonus.c ft_lstclear_bonus.c ft_lstnew_bonus.c ft_strdup.c ft_strlen.c
 /* int	main(void)
 {
 	// Crear algunos nodos de la lista para el ejemplo
@@ -102,7 +100,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	printf("Después de ft_lstmap:\n");
 	while (my_new_list != NULL)
 	{
-		printf("Nodo: %p. Content: %s\n", my_new_list, (char *)(my_new_list->content));
+		printf("Nd: %p. Cnt: %s\n", my_new_list, (char *)(my_new_list->content));
 		my_new_list = my_new_list->next;
 	}
 
