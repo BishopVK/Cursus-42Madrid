@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 08:59:31 by danjimen          #+#    #+#              #
-#    Updated: 2024/01/26 14:45:19 by danjimen         ###   ########.fr        #
+#    Updated: 2024/01/26 19:25:31 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ BONUS_SRC	=	ft_lstnew_bonus.c \
 				ft_lstadd_back_bonus.c \
 				ft_lstdelone_bonus.c \
 				ft_lstclear_bonus.c \
-				ft_lstiter_bonus.c
+				ft_lstiter_bonus.c \
+				ft_lstmap_bonus.c
 
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
