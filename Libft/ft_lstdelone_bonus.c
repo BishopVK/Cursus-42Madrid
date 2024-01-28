@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:52:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:26:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/28 14:50:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /* static void	ft_del_node_content(void *content)
 {
-	free(content);
+	if (content != NULL)
+		free(content);
 } */
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))

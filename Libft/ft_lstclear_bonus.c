@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:46:03 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 18:50:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/28 15:08:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*next;
 
 	current = *lst;
-	while (current != NULL)
+	if (lst != NULL && del != NULL)
 	{
-		next = current->next;
-		del(current->content);
-		free(current);
-		current = next;
+		while (current != NULL)
+		{
+			next = current->next;
+			del(current->content);
+			free(current);
+			current = next;
+		}
 	}
 	*lst = NULL;
 }

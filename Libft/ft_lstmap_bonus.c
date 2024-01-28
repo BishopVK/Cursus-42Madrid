@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:00:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 19:24:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/28 15:27:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,27 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*my_list;
+	t_list	*my_new_list;
 	t_list	*new_node;
 
-	my_list = NULL;
+	my_new_list = NULL;
 	if (lst != NULL && f != NULL && del != NULL)
 	{
 		while (lst != NULL)
 		{
-			new_node = ft_lstnew(f(lst->content));
+			new_node = ft_lstnew((*f)(lst->content));
 			if (new_node == NULL)
 			{
-				ft_lstclear(&my_list, del);
+				ft_lstclear(&my_new_list, del);
 				return (NULL);
 			}
-			ft_lstadd_back(&my_list, new_node);
+			ft_lstadd_back(&my_new_list, new_node);
 			lst = lst->next;
 		}
 	}
 	else
-		my_list = NULL;
-	return (my_list);
+		return (NULL);
+	return (my_new_list);
 }
 /* int	main(void)
 {
