@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:46:03 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/28 17:51:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/28 22:52:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 			free(current);
 			current = next;
 		}
-	*lst = NULL;
+		*lst = NULL;
 	}
 }
 
