@@ -6,9 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 13:52:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:52:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft/libft.h"
 
 int	ft_printf(char const *, ...)
 {
