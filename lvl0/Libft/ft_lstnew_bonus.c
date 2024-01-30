@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:30:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/28 23:06:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:54:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Crea un nuevo nodo utilizando malloc(3). La variable miembro ’content’ se
+//inicializa con el contenido del parámetro ’content’.
+//La variable ’next’, con NULL.
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_node;

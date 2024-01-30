@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:52:35 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 14:15:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:57:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Itera la lista ’lst’ y aplica la función ’f’ en el contenido de cada nodo.
 /* static void	ft_strlowcase(void *content)
 {
 	if (content != NULL)

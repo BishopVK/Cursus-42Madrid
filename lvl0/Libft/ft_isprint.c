@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:04:22 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:25:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:33:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Verifica si un carácter es imprimible (visible) y pertenece
+//al conjunto de caracteres imprimibles de ASCII.
 int	ft_isprint(int c)
 {
 	return (c >= 32 && c <= 126);

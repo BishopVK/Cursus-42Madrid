@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 10:35:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 18:44:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:53:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Envía la string ’s’ al file descriptor dado, seguido de un salto de línea.
 void	ft_putendl_fd(char *s, int fd)
 {
 	char	newline;

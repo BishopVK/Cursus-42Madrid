@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:58:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 18:44:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:52:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Envía la string ’s’ al file descriptor especificado.
 void	ft_putstr_fd(char *s, int fd)
 {
 	while (*s != '\0')

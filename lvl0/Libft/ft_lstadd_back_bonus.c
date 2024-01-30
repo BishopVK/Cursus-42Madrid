@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:03:52 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/28 23:06:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:55:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Añade el nodo ’new’ al final de la lista ’lst’.
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;

@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:48 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:30:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:39:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Busca la primera aparición de un carácter en una cadena.
 char	*ft_strchr(const char *s, int c)
 {
 	c = (unsigned char)c;

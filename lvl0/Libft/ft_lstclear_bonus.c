@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:46:03 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/28 23:06:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:57:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Elimina y libera el nodo ’lst’ dado y todos los consecutivos de ese nodo,
+//utilizando la función ’del’ y free(3).
+//Al final, el puntero a la lista debe ser NULL.
 /*static void	ft_del_node_content(void *content)
 {
 	if (content != NULL)

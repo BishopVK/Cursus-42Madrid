@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:28:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/21 20:28:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:48:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Utilizando malloc(3), genera una string que represente el valor entero
+//recibido como argumento. Los números negativos tienen que gestionarse.
 static int	ft_num_len(int n)
 {
 	int	len;

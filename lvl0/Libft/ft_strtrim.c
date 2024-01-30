@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:07:01 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:51:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:47:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Elimina todos los caracteres de la string ’set’ desde el principio y desde
+//el final de ’s1’, hasta encontrar un caracter no perteneciente a ’set’.
+//La string resultante se devuelve con una reserva de malloc(3)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;

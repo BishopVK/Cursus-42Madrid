@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:28:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:35:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Rellena un bloque de memoria con un valor específico.
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*str;

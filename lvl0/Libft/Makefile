@@ -1,17 +1,17 @@
 # **************************************************************************** #
-#																			  #
-#														 :::	  ::::::::	#
-#	Makefile										   :+:	  :+:	:+:	#
-#													 +:+ +:+		 +:+	  #
-#	By: danjimen <danjimen@student.42madrid.com	+#+  +:+	   +#+		 #
-#												 +#+#+#+#+#+   +#+			#
-#	Created: 2024/01/10 20:45:51 by danjimen		  #+#	#+#			  #
-#	Updated: 2024/01/21 15:56:22 by danjimen		 ###   ########.fr		#
-#																			  #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/29 08:22:03 by danjimen          #+#    #+#              #
+#    Updated: 2024/01/29 09:59:27 by danjimen         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
-CC			=	gcc
+CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_isalpha.c \
 				ft_isdigit.c \
@@ -65,18 +65,12 @@ BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) libft.h
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "\nCompilación Completa!!\n"
-	@norminette $(SRC) libft.h
-	@echo "\nNorminette Finalizada!!\n"
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 bonus: $(BONUS_OBJ) libft.h
-	@ar rc $(NAME) $(BONUS_OBJ)
-	@ranlib $(NAME)
-	@echo "\nCompilación Completa!!\n"
-	@norminette $(BONUS_SRC) libft.h
-	@echo "\nNorminette Finalizada!!\n"
+	ar rc $(NAME) $(BONUS_OBJ)
+	ranlib $(NAME)
 
 %.o: %.c libft.h
 #	@echo "Compilando $<..."

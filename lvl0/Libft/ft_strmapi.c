@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+//A cada carácter de la string ’s’, aplica la función ’f’ dando como parámetros
+//el índice de cada carácter dentro de ’s’ y el propio carácter.
+//Genera una nueva string con el resultado del uso sucesivo de ’f’
 /*static char	ft_toggle_case(unsigned int n, char c)
 {
 	(void)n;

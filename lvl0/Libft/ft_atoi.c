@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:55:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:24:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:41:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Convierte una cadena de caracteres que representa
+//un número en un entero (int).
 int	ft_atoi(const char *nptr)
 {
 	int	sign;

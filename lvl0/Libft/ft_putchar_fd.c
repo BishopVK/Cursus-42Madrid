@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:05:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 18:44:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:51:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Envía el carácter ’c’ al file descriptor especificado.
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);

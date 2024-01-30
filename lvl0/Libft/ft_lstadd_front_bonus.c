@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:54:38 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:25:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:55:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Añade el nodo ’new’ al principio de la lista ’lst’.
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (*lst == NULL)

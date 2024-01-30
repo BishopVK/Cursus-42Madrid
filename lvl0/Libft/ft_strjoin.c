@@ -6,23 +6,25 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:54:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:31:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:01:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Reserva (con malloc(3)) y devuelve una nueva string,
+//formada por la concatenación de ’s1’ y ’s2’.
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	int		i;
 
+	i = 0;
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	i = 0;
 	while (*s1)
 		result[i++] = *s1++;
 	while (*s2)
@@ -31,13 +33,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	char const	*s1 = "Hola, soy ";
-	char const	*s2 = "danjimen";
+	char const	*s1 = NULL;
+	char const	*s2 = "Hola";
 	char		*result = ft_strjoin(s1, s2);
 
 	printf("Resultado: %s\n", result);
 	free(result);
 	return (0);
-}*/
+}

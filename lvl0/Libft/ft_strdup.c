@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:53 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:31:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/30 09:20:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Duplica una cadena de caracteres en una nueva ubicación de memoria,
+//asignando dinámicamente espacio suficiente
+//y copiando el contenido de la cadena original.
 char	*ft_strdup(const char *s)
 {
 	char	*dest;
@@ -27,19 +30,22 @@ char	*ft_strdup(const char *s)
 	return (principio);
 }
 
-/*int	main(void)
+void ft_leaks(void)
 {
-	char	*original = "Hello, World!";
-	//char	*duplicate = ft_strdup(original);
-	char	*duplicate = ft_strdup(((void *)0));
+	system("leaks -q a.out");
+}
 
-	if (duplicate != NULL)
-	{
-		printf("Original: %s\n", original);
-		printf("Duplicate: %s\n", duplicate);
-		free(duplicate);
-	}
-	else
-		fprintf(stderr, "Error: No se pudo duplicar la cadena\n");
+int	main(void)
+{
+	atexit(ft_leaks);
+	const char	*s = "HOLA";
+	char		*dst;
+
+	dst = ft_strdup(s);
+
+	printf("Origen %s\n", s);
+	printf("Destino %s\n", dst);
+
+	//free(dst);
 	return (0);
-}*/
+}

@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:16 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:28:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:36:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Copia un bloque de memoria desde una ubicación de origen
+//a una ubicación de destino, manejando superposiciones de memoria.
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*dst_tmp;

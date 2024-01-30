@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:06:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:31:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:27:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Concatena dos cadenas a un buffer con un límite máximo,
+//evitando desbordamientos de buffer.
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	src_length;

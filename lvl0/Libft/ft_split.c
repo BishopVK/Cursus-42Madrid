@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:30:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:37:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Reserva (utilizando malloc(3)) un array de strings resultante de separar
+//la string ’s’ en substrings utilizando el caracter ’c’ como delimitador.
+//El array debe terminar con un puntero NULL.
 static int	ft_count_elements(const char *s, char c)
 {
 	int	count;

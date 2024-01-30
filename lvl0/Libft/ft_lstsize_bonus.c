@@ -6,12 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:16:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/25 12:18:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:55:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Cuenta el número de nodos de una lista.
 int	ft_lstsize(t_list *lst)
 {
 	int	count;

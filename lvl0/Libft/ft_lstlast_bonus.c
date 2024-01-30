@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:21:31 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/24 14:42:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:55:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Devuelve el último nodo de la lista.
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)

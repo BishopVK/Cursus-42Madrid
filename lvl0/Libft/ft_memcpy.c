@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:05 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:28:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:36:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Copia un bloque de memoria desde una ubicación
+//de origen a una ubicación de destino.
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;

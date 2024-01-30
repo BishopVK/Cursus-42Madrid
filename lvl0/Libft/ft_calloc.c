@@ -6,12 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:01:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/26 08:19:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:43:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Asigna dinámicamente un bloque de memoria para un número
+//especificado de elementos, inicializando cada byte a cero.
 void	*ft_calloc(size_t count, size_t size)
 {
 	size_t	total_size;

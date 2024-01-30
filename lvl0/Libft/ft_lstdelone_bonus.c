@@ -6,12 +6,15 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:52:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/28 23:06:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:56:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Toma como parámetro un nodo ’lst’ y libera la memoria del contenido
+//utilizando la función ’del’ dada como parámetro, además
+//de liberar el nodo. La memoria de ’next’ no debe liberarse.
 /* static void	ft_del_node_content(void *content)
 {
 	if (content != NULL)

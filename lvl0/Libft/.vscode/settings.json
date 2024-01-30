@@ -1,7 +1,5 @@
 {
-	"C_Cpp.errorSquiggles": "disabled",
-
-	"terminal.external.windowsExec": "wsl.exe",
-	"terminal.integrated.shell.windows": "C:\\Windows\\System32\\bash.exe"
-
+	"files.associations": {
+		"libft.h": "c"
+	}
 }
