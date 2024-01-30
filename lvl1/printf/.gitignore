@@ -1,0 +1,13 @@
+# Ignorar archivos temporales
+*.tmp
+
+# Ignorar archivos de compilación
+*.o
+*.out
+
+# Ignorar directorios específicos
+/.vscode
+
+# Ignorar ficheros de pruebas
+testprintf.c
+ft_variadicas.c
