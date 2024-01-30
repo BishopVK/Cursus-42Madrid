@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:54:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 11:01:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:37:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	char const	*s1 = NULL;
 	char const	*s2 = "Hola";
@@ -42,4 +42,4 @@ int	main(void)
 	printf("Resultado: %s\n", result);
 	free(result);
 	return (0);
-}
+} */
