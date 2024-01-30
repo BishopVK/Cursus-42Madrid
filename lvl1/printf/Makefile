@@ -10,14 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-SRC = ft_printf.c
-OBJ = $(SRC:.c=.o)
-HEADER = libftprintf.h
+NAME		=	libftprintf.a
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror
+SRC			=	ft_printf.c
+OBJ			=	$(SRC:.c=.o)
+HEADER		=	libftprintf.h
 
-all: $(NAME)
+LIBFT_DIR	=	libft
+LIBFT		=	$(LIBFT_DIR)/libft.a
+LIBFT_INC	=	$(LIBFT_DIR)/libft.h
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $(SRC)
@@ -25,9 +32,11 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 clean:
+	@$(MAKE) -C $(LIBFT_DIR) clean
 	rm -f $(OBJ)
 
 fclean: clean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
