@@ -19,7 +19,6 @@ HEADER		=	libftprintf.h
 
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
-LIBFT_INC	=	$(LIBFT_DIR)/libft.h
 
 all: $(LIBFT) $(NAME)
 
@@ -27,8 +26,8 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -c -I$(LIBFT_INC) $(SRC)
+	ar rc $(NAME) $(OBJ) $(LIBFT)
 	ranlib $(NAME)
 
 clean:
