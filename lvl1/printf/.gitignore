@@ -11,3 +11,4 @@
 # Ignorar ficheros de pruebas
 testprintf.c
 ft_variadicas.c
+ft_variadicas2.c
