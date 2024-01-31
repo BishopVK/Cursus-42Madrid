@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/31 20:15:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/31 22:59:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ static void	ft_detect_format(va_list args, char *format, size_t *counter)
 		ft_putstr_printf(va_arg(args, char *), counter);
 	else if (*format == 'u')
 		ft_putunbr_printf(va_arg(args, unsigned int), counter);
-	/* else if (*format == 'p')
-		ft_tohex_printf(va_arg(args, int), format, counter);
-	else if (*format == 'x')
-		ft_tohex_printf(va_arg(args, int), format, counter);
-	else if (*format == 'X')
+	else if (*format == 'x' || *format == 'X')
+		ft_tohex_printf(va_arg(args, unsigned int), format, counter);
+	else if (*format == 'p')
+	{
+		ft_putchar_printf('0', counter);
+		ft_putchar_printf('x', counter);
+		ft_tohex_printf((unsigned int)(unsigned long)va_arg(args, void *), format, counter);
+	}
+	/*else if (*format == 'p')
 		ft_tohex_printf(va_arg(args, int), format, counter);
 	else
 		ft_putchar_printf(*format, counter); */
@@ -98,23 +102,23 @@ int	main(void)
 	size = ft_printf("ft_printf: %s\n", s);
 	printf("Size: %d\n", size);
 
-	char *p = "456";
+	int *p = &n;
 	printf("\nPUNTEROS (p):\n");
-	printf("Printf: %p\n", p);
-	//size = ft_printf("ft_printf: %%\n");
-	//printf("Size: %d\n", size);
+	printf("Printf: %p\n", (void *)p);
+	size = ft_printf("ft_printf: %p\n", (void *)p);
+	printf("Size: %d\n", size);
 
-	int	x = 123;
+	unsigned int	x = -1;
 	printf("\nHEXADECIMAL EN MINÚSCULAS (x):\n");
 	printf("Printf: %x\n", x);
-	//size = ft_printf("ft_printf: %%\n");
-	//printf("Size: %d\n", size);
+	size = ft_printf("ft_printf: %x\n", x);
+	printf("Size: %d\n", size);
 
-	int	xx = 123;
+	unsigned int	xx = -1;
 	printf("\nHEXADECIMAL EN MAYÚSCULAS (X):\n");
 	printf("Printf: %X\n", xx);
-	//size = ft_printf("ft_printf: %%\n");
-	//printf("Size: %d\n", size);
+	size = ft_printf("ft_printf: %X\n", xx);
+	printf("Size: %d\n", size);
 
 	//printf("");
 	//size = ft_printf("");
