@@ -6,13 +6,19 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:50:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 21:04:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:22:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-int	ft_printf(char const *, ...);
+# include <stdarg.h>
+# include <stdio.h>
+# include <unistd.h>
+
+int		ft_printf(char const *format, ...);
+void	ft_putchar_printf(char c, size_t *size);
+void	ft_putnbr_printf(int n, size_t *counter);
 
 #endif
