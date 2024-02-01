@@ -6,12 +6,12 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/31 22:59:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:29:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <unistd.h>
 
 static void	ft_detect_format(va_list args, char *format, size_t *counter)
@@ -25,19 +25,17 @@ static void	ft_detect_format(va_list args, char *format, size_t *counter)
 	else if (*format == 's')
 		ft_putstr_printf(va_arg(args, char *), counter);
 	else if (*format == 'u')
-		ft_putunbr_printf(va_arg(args, unsigned int), counter);
+		ft_putunbr_printf(va_arg(args, unsigned long), counter);
 	else if (*format == 'x' || *format == 'X')
-		ft_tohex_printf(va_arg(args, unsigned int), format, counter);
+		ft_tohex_printf((unsigned long)va_arg(args, unsigned int),
+			format, counter);
 	else if (*format == 'p')
 	{
 		ft_putchar_printf('0', counter);
 		ft_putchar_printf('x', counter);
-		ft_tohex_printf((unsigned int)(unsigned long)va_arg(args, void *), format, counter);
+		ft_tohex_printf((unsigned long)(unsigned long)va_arg(args, void *),
+			format, counter);
 	}
-	/*else if (*format == 'p')
-		ft_tohex_printf(va_arg(args, int), format, counter);
-	else
-		ft_putchar_printf(*format, counter); */
 }
 
 int	ft_printf(char const *format, ...)
@@ -64,7 +62,7 @@ int	ft_printf(char const *format, ...)
 	return (counter);
 }
 //cc -Wall -Wextra -Werror *.c && ./a.out && rm a.out
-int	main(void)
+/* int	main(void)
 {
 	int	size;
 
@@ -102,6 +100,12 @@ int	main(void)
 	size = ft_printf("ft_printf: %s\n", s);
 	printf("Size: %d\n", size);
 
+	char	*sn = NULL;
+	printf("\n>>STRING NULL (s):\n");
+	printf("Printf: %s\n", sn);
+	size = ft_printf("ft_printf: %s\n", sn);
+	printf("Size: %d\n", size);
+
 	int *p = &n;
 	printf("\nPUNTEROS (p):\n");
 	printf("Printf: %p\n", (void *)p);
@@ -125,4 +129,4 @@ int	main(void)
 	//printf("Size: %d", size);
 
 	return (0);
-}
+} */

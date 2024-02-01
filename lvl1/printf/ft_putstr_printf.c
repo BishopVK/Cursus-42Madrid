@@ -10,10 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putstr_printf(char *str, size_t *counter)
 {
+	char	*null;
+
+	null = "(null)";
+	if (!str)
+	{
+		ft_putstr_printf(null, counter);
+		return ;
+	}
 	while (*str)
 	{
 		ft_putchar_printf(*str, counter);

@@ -15,10 +15,13 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_printf.c \
 				ft_putchar_printf.c \
-				ft_putnbr_printf.c
+				ft_putnbr_printf.c \
+				ft_putstr_printf.c \
+				ft_putunbr_printf.c \
+				ft_tohex_printf.c
 
 OBJ			=	$(SRC:.c=.o)
-HEADER		=	libftprintf.h
+HEADER		=	ft_printf.h
 
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a

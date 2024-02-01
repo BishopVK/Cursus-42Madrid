@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/31 21:22:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/01 09:10:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putnbr_printf(int n, size_t *counter)
 {
