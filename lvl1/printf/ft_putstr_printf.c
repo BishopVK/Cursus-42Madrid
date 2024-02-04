@@ -27,7 +27,7 @@ void	ft_putstr_printf(char *str, size_t *counter, int *write_error)
 	while (*str)
 	{
 		ft_putchar_printf(*str, counter, write_error);
-		if (write_error < 0)
+		if (*write_error < 0)
 			return ;
 		str++;
 	}
