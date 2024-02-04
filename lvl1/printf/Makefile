@@ -32,9 +32,12 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -c -I$(LIBFT_INC) $(SRC)
+	$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $(SRC)
 	ar rc $(NAME) $(OBJ) $(LIBFT)
 	ranlib $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
