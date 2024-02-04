@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/02 17:40:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/04 23:06:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,11 @@ int	ft_printf(char const *format, ...)
 		{
 			format++;
 			ft_detect_format(args, (char *)format, &counter, &write_error);
-			/* if (write_error < 0)
-				return (-1); */
+			return ((write_error < 0) && -1);
 		}
 		else
 			ft_putchar_printf(*format, &counter, &write_error);
-		if (write_error < 0)
-			return (-1);
+		return ((write_error < 0) && -1);
 		format++;
 	}
 	va_end(args);
