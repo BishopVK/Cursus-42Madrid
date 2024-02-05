@@ -11,3 +11,7 @@
 
 # Ignorar directorios específicos
 /.vscode
+
+# Ignorar archivos específicos
+color-test.c
+main.c
