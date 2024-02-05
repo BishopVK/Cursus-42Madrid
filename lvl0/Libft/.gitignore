@@ -14,4 +14,4 @@
 
 # Ignorar archivos específicos
 color-test.c
-main.c
+# main.c
