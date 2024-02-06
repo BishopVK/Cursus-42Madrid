@@ -80,7 +80,12 @@ static void	ft_striteri_toggle_case(unsigned int n, char *c)
 ///////////////////////////////////
 //		PARTE OBLIGATORIA		//
 /////////////////////////////////
-/* int main()
+
+// make
+// cc main.c libft.a
+
+
+int main()
 {
 	// Test ft_isalpha
 	print_test_header("ft_isalpha");
@@ -1528,8 +1533,6 @@ static void	ft_striteri_toggle_case(unsigned int n, char *c)
 	return 0;
 }
 
- */
-
 
 //Funciones adicionales//
 static void	ft_del_node_content(void *content)
@@ -1562,8 +1565,10 @@ void *ft_double_content(void *content)
 //			PARTE BONUS			//
 /////////////////////////////////
 
-// cc main.c ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c ft_strjoin.c ft_strlen.c
+// make bonus
+// cc main.c libft.a ft_strjoin.c ft_strlen.c 
 
+/* 
 int main()
 {
 	// Test ft_lstnew
@@ -1801,8 +1806,6 @@ int main()
 	t_list *lst_map_test2 = NULL;
 	t_list *mapped_list_empty = ft_lstmap(lst_map_test2, &ft_double_content, &ft_del_node_content);
 	printf("Expected output: %s\n", (mapped_list_empty == NULL) ? OK : KO);
-
-
-
-
 }
+
+ */
