@@ -57,6 +57,7 @@ void print_test_header(const char* function_name) {
 	printf(ANSI_COLOR_BLUE ANSI_COLOR_BOLD "\nTesting %s\n" ANSI_COLOR_RESET, function_name);
 }
 
+//Funciones adicionales//
 static char	ft_strmapi_toggle_case(unsigned int n, char c)
 {
 	if (c >= 'a' && c <= 'z')
@@ -66,6 +67,7 @@ static char	ft_strmapi_toggle_case(unsigned int n, char c)
 	return (c);
 }
 
+//Funciones adicionales//
 static void	ft_striteri_toggle_case(unsigned int n, char *c)
 {
 	(void)n;
@@ -75,7 +77,11 @@ static void	ft_striteri_toggle_case(unsigned int n, char *c)
 		*c = (char)(*c - 'A' + 'a');
 }
 
-int main() {
+///////////////////////////////////
+//		PARTE OBLIGATORIA		//
+/////////////////////////////////
+/* int main()
+{
 	// Test ft_isalpha
 	print_test_header("ft_isalpha");
 
@@ -1285,7 +1291,7 @@ int main() {
 	{
 		perror("Error al eliminar el archivo");
 		return (EXIT_FAILURE);
-}
+	}
 
 	/////////////////////////////////////
 
@@ -1520,4 +1526,283 @@ int main() {
 
 	/////////////////////////////////////
 	return 0;
+}
+
+ */
+
+
+//Funciones adicionales//
+static void	ft_del_node_content(void *content)
+{
+	if (content != NULL)
+		free(content);
+}
+
+//Funciones adicionales ft_lstiter_bonus//
+// Define the function pointer type for the function to apply to each node content
+typedef void (*t_func_ptr)(void *);
+
+// Example function to be applied to each node content
+void	ft_print_content(void *content)
+{
+	if (content != NULL)
+		printf("%s\n", (char *)content);
+}
+
+//Funciones adicionales ft_lstmap_bonus//
+// Function to double the content of each node
+void *ft_double_content(void *content)
+{
+	char *original_value = (char *)content;
+	char *doubled_value = ft_strjoin(original_value, original_value); // Join the string with itself to double its content
+	return doubled_value;
+}
+
+///////////////////////////////////
+//			PARTE BONUS			//
+/////////////////////////////////
+
+// cc main.c ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c ft_strjoin.c ft_strlen.c
+
+int main()
+{
+	// Test ft_lstnew
+	print_test_header("ft_lstnew");
+
+	// Test 1: Create a new node with null content
+	print_test_title(ANSI_COLOR_CYAN, 1, "Create a new node with null content");
+	t_list *ft_lstnew_result1 = ft_lstnew(NULL);
+	printf("%s\n", (ft_lstnew_result1 != NULL && ft_lstnew_result1->content == NULL && ft_lstnew_result1->next == NULL) ? OK : KO);
+
+	// Test 2: Create a new node with non-null content
+	print_test_title(ANSI_COLOR_CYAN, 2, "Create a new node with non-null content");
+	char *content_test2 = "Test";
+	t_list *ft_lstnew_result2 = ft_lstnew(content_test2);
+	printf("%s\n", (ft_lstnew_result2 != NULL && ft_lstnew_result2->content != NULL && ft_lstnew_result2->next == NULL && strcmp(ft_lstnew_result2->content, content_test2) == 0) ? OK : KO);
+
+	// Test 3: Check the connection to the next node
+	print_test_title(ANSI_COLOR_CYAN, 3, "Check the connection to the next node");
+	t_list *node1_test3 = ft_lstnew("Node 1");
+	t_list *node2_test3 = ft_lstnew("Node 2");
+	node1_test3->next = node2_test3;
+	printf("%s\n", (node1_test3->next == node2_test3) ? OK : KO);
+
+	// Test 4: Check the connection to the next node when content is null
+	print_test_title(ANSI_COLOR_CYAN, 4, "Check the connection to the next node when content is null");
+	t_list *node1_test4 = ft_lstnew(NULL);
+	t_list *node2_test4 = ft_lstnew(NULL);
+	node1_test4->next = node2_test4;
+	printf("%s\n", (node1_test4->next == node2_test4) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstadd_front
+	print_test_header("ft_lstadd_front");
+
+	// Test 1: Add a node to an empty list
+	print_test_title(ANSI_COLOR_CYAN, 1, "Add a node to an empty list");
+	t_list *lst_test1 = NULL;
+	t_list *new_node_test1 = ft_lstnew("Node 1");
+	ft_lstadd_front(&lst_test1, new_node_test1);
+	printf("%s\n", (lst_test1 == new_node_test1) ? OK : KO);
+
+	// Test 2: Add a node to a non-empty list
+	print_test_title(ANSI_COLOR_CYAN, 2, "Add a node to a non-empty list");
+	t_list *lst_test2 = ft_lstnew("Node 1");
+	t_list *new_node_test2 = ft_lstnew("Node 2");
+	ft_lstadd_front(&lst_test2, new_node_test2);
+	printf("%s\n", (lst_test2 == new_node_test2 && lst_test2->next != NULL && lst_test2->next->content != NULL) ? OK : KO);
+
+	// Test 3: Add a node with null content to a non-empty list
+	print_test_title(ANSI_COLOR_CYAN, 3, "Add a node with null content to a non-empty list");
+	t_list *lst3 = ft_lstnew("node1");
+	t_list *new3 = ft_lstnew(NULL); // Crear un nuevo nodo con contenido nulo
+	ft_lstadd_front(&lst3, new3);
+	printf("%s\n", (lst3 == new3 && lst3->content == NULL && lst3->next != NULL) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstsize
+	print_test_header("ft_lstsize");
+
+	// Test 1: Count nodes in an empty list
+	print_test_title(ANSI_COLOR_CYAN, 1, "Count nodes in an empty list");
+	t_list *ft_lstsize_lst1 = NULL;
+	int ft_lstsize_result1 = ft_lstsize(ft_lstsize_lst1);
+	printf("%s\n", (ft_lstsize_result1 == 0) ? OK : KO);
+
+	// Test 2: Count nodes in a list with one node
+	print_test_title(ANSI_COLOR_CYAN, 2, "Count nodes in a list with one node");
+	t_list *ft_lstsize_lst2 = ft_lstnew("node1");
+	int ft_lstsize_result2 = ft_lstsize(ft_lstsize_lst2);
+	printf("%s\n", (ft_lstsize_result2 == 1) ? OK : KO);
+
+	// Test 3: Count nodes in a list with multiple nodes
+	print_test_title(ANSI_COLOR_CYAN, 3, "Count nodes in a list with multiple nodes");
+	t_list *ft_lstsize_lst3 = ft_lstnew("node1");
+	ft_lstadd_front(&ft_lstsize_lst3, ft_lstnew("node2"));
+	ft_lstadd_front(&ft_lstsize_lst3, ft_lstnew("node3"));
+	int ft_lstsize_result3 = ft_lstsize(ft_lstsize_lst3);
+	printf("%s\n", (ft_lstsize_result3 == 3) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstlast
+	print_test_header("ft_lstlast");
+
+	// Test 1: Get last node from an empty list
+	print_test_title(ANSI_COLOR_CYAN, 1, "Get last node from an empty list");
+	t_list *ft_lstlast_lst1 = NULL;
+	t_list *ft_lstlast_result1 = ft_lstlast(ft_lstlast_lst1);
+	printf("%s\n", (ft_lstlast_result1 == NULL) ? OK : KO);
+
+	// Test 2: Get last node from a list with one node
+	print_test_title(ANSI_COLOR_CYAN, 2, "Get last node from a list with one node");
+	t_list *ft_lstlast_lst2 = ft_lstnew("node1");
+	t_list *ft_lstlast_result2 = ft_lstlast(ft_lstlast_lst2);
+	printf("%s\n", (ft_lstlast_result2 == ft_lstlast_lst2) ? OK : KO);
+
+	// Test 3: Get last node from a list with multiple nodes
+	print_test_title(ANSI_COLOR_CYAN, 3, "Get last node from a list with multiple nodes");
+	t_list *ft_lstlast_lst3 = ft_lstnew("node1");
+	ft_lstadd_front(&ft_lstlast_lst3, ft_lstnew("node2"));
+	ft_lstadd_front(&ft_lstlast_lst3, ft_lstnew("node3"));
+	t_list *ft_lstlast_result3 = ft_lstlast(ft_lstlast_lst3);
+	printf("%s\n", (ft_lstlast_result3->content == "node1") ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstadd_back
+	print_test_header("ft_lstadd_back");
+
+	// Test 1: Add a node to the end of an empty list
+	print_test_title(ANSI_COLOR_CYAN, 1, "Add a node to the end of an empty list");
+	t_list *ft_lstadd_back_lst1 = NULL;
+	t_list *new_node1 = ft_lstnew("node1");
+	ft_lstadd_back(&ft_lstadd_back_lst1, new_node1);
+	printf("%s\n", (ft_lstadd_back_lst1 == new_node1) ? OK : KO);
+
+	// Test 2: Add a node to the end of a list with one node
+	print_test_title(ANSI_COLOR_CYAN, 2, "Add a node to the end of a list with one node");
+	t_list *ft_lstadd_back_lst2 = ft_lstnew("node1");
+	t_list *new_node2 = ft_lstnew("node2");
+	ft_lstadd_back(&ft_lstadd_back_lst2, new_node2);
+	printf("%s\n", (ft_lstadd_back_lst2->next == new_node2) ? OK : KO);
+
+	// Test 3: Add a node to the end of a list with multiple nodes
+	print_test_title(ANSI_COLOR_CYAN, 3, "Add a node to the end of a list with multiple nodes");
+	t_list *ft_lstadd_back_lst3 = ft_lstnew("node1");
+	ft_lstadd_back(&ft_lstadd_back_lst3, ft_lstnew("node2"));
+	ft_lstadd_back(&ft_lstadd_back_lst3, ft_lstnew("node3"));
+	t_list *new_node3 = ft_lstnew("node4");
+	ft_lstadd_back(&ft_lstadd_back_lst3, new_node3);
+	t_list *last_node = ft_lstlast(ft_lstadd_back_lst3);
+	printf("%s\n", (last_node == new_node3) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstdelone
+	print_test_header("ft_lstdelone");
+
+	// Test 1: Delete a node with content "Hello"
+	print_test_title(ANSI_COLOR_CYAN, 1, "Delete a node with content 'Hello'");
+	t_list *lst_delone_test1 = ft_lstnew(strdup("Hello"));
+	ft_lstdelone(lst_delone_test1, &ft_del_node_content);
+	lst_delone_test1 = NULL; // Set the pointer to NULL after deleting the node
+	printf("%s\n", (lst_delone_test1 == NULL) ? OK : KO);
+
+	// Test 2: Delete a node with content "World"
+	print_test_title(ANSI_COLOR_CYAN, 2, "Delete a node with content 'World'");
+	t_list *lst_delone_test2 = ft_lstnew(strdup("World"));
+	ft_lstdelone(lst_delone_test2, &ft_del_node_content);
+	lst_delone_test2 = NULL; // Set the pointer to NULL after deleting the node
+	printf("%s\n", (lst_delone_test2 == NULL) ? OK : KO);
+
+	// Test 3: Delete a NULL node
+	print_test_title(ANSI_COLOR_CYAN, 3, "Delete a NULL node");
+	t_list *lst_delone_test3 = NULL;
+	ft_lstdelone(lst_delone_test3, &ft_del_node_content);
+	printf("%s\n", (lst_delone_test3 == NULL) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstclear
+	print_test_header("ft_lstclear");
+
+	// Test 1: Clear a list with multiple nodes
+	print_test_title(ANSI_COLOR_CYAN, 1, "Clear a list with multiple nodes");
+	t_list *lst_clear_test1 = ft_lstnew(strdup("Node 1"));
+	ft_lstadd_back(&lst_clear_test1, ft_lstnew(strdup("Node 2")));
+	ft_lstadd_back(&lst_clear_test1, ft_lstnew(strdup("Node 3")));
+	ft_lstadd_back(&lst_clear_test1, ft_lstnew(strdup("Node 4")));
+	ft_lstclear(&lst_clear_test1, &ft_del_node_content);
+	printf("%s\n", (lst_clear_test1 == NULL) ? OK : KO);
+
+	// Test 2: Clear an empty list
+	print_test_title(ANSI_COLOR_CYAN, 2, "Clear an empty list");
+	t_list *lst_clear_test2 = NULL;
+	ft_lstclear(&lst_clear_test2, &ft_del_node_content);
+	printf("%s\n", (lst_clear_test2 == NULL) ? OK : KO);
+
+	/////////////////////////////////////
+
+	// Test ft_lstiter
+	print_test_header("ft_lstiter");
+
+	// Test 1: Iterate through a list and print each node content
+	print_test_title(ANSI_COLOR_CYAN, 1, "Iterate through a list and print each node content");
+	t_list *lst_iter_test1 = ft_lstnew(strdup("Node 1"));
+	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 2")));
+	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 3")));
+	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 4")));
+	printf("Expected output:\n");
+	ft_lstiter(lst_iter_test1, &ft_print_content);
+	printf("%s\n", OK);
+
+	// Test 2: Iterate through an empty list
+	print_test_title(ANSI_COLOR_CYAN, 2, "Iterate through an empty list");
+	t_list *lst_iter_test2 = NULL;
+	printf("Expected output: <No output>\n");
+	ft_lstiter(lst_iter_test2, &ft_print_content);
+	printf("%s\n", OK);
+
+	/////////////////////////////////////
+
+	// Test ft_lstmap
+	print_test_header("ft_lstmap");
+
+	// Test 1: Map each node content to double its value
+	print_test_title(ANSI_COLOR_CYAN, 1, "Map each node content to double its value");
+	t_list *lst_map_test1 = ft_lstnew(strdup("Node 1"));
+	ft_lstadd_back(&lst_map_test1, ft_lstnew(strdup("Node 2")));
+	ft_lstadd_back(&lst_map_test1, ft_lstnew(strdup("Node 3")));
+	ft_lstadd_back(&lst_map_test1, ft_lstnew(strdup("Node 4")));
+
+	t_list *mapped_list = ft_lstmap(lst_map_test1, &ft_double_content, &ft_del_node_content);
+	t_list *current = mapped_list;
+	int success = 1;
+	char *expected_values[] = {"Node 1Node 1", "Node 2Node 2", "Node 3Node 3", "Node 4Node 4"};
+	int i = 0;
+	while (current)
+	{
+		char *value = (char *)current->content;
+		printf("%s\n", value); // Print the content of each node
+		if (strcmp(value, expected_values[i++]) != 0)
+		{
+			success = 0;
+			break;
+		}
+		current = current->next;
+	}
+	printf("Expected output: %s\n", success ? OK : KO);
+
+	// Test 2: Map an empty list
+	print_test_title(ANSI_COLOR_CYAN, 2, "Map an empty list");
+	t_list *lst_map_test2 = NULL;
+	t_list *mapped_list_empty = ft_lstmap(lst_map_test2, &ft_double_content, &ft_del_node_content);
+	printf("Expected output: %s\n", (mapped_list_empty == NULL) ? OK : KO);
+
+
+
+
 }
