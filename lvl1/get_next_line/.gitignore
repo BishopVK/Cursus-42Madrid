@@ -10,5 +10,6 @@
 /.vscode
 
 # Ignorar ficheros de pruebas
+*.txt
 variables_estaticas.c
-archivo.txt
+prueba_gnl.c
