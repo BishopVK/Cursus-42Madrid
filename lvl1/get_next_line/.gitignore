@@ -1,0 +1,12 @@
+# Ignorar archivos temporales
+*.tmp
+
+# Ignorar archivos de compilación
+*.o
+*.out
+
+# Ignorar directorios específicos
+/.vscode
+
+# Ignorar ficheros de pruebas
+variables_estaticas.c
