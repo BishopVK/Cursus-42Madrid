@@ -18,24 +18,26 @@ char	*get_next_line(int fd)
 	ssize_t 	bytes_read;
 	char		*position;
 	//char		*result;
+	ssize_t		total_bytes_read;
 
 	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	if (buffer == NULL)
 		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
-	//buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
-	if (!buffer)
+	if (buffer == NULL)
 		return (NULL);
 
+	total_bytes_read = 0;
+	// Leer BUFFER_SIZE del fd y devolverlo con printf
 	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		if (write(1, (char *)buffer, bytes_read) != bytes_read)
+		/* if (write(1, buffer, bytes_read) != bytes_read)
 		{
 			perror("write");
 			return (buffer);
-		}
-		buffer++;
+		} */
+		total_bytes_read += bytes_read;
 	}
 
 	// Verificar errores de lectura
@@ -43,14 +45,6 @@ char	*get_next_line(int fd)
 	{ 
 		perror("read");
 		return (buffer);
-	}
-
-	// Final del documento
-	if (bytes_read == 0)
-	{ 
-		// Has alcanzado el final del archivo
-		printf("Fin del archivo alcanzado.\n");
-		return (NULL);
 	}
 
 	while (!buffer)
@@ -62,6 +56,13 @@ char	*get_next_line(int fd)
 			printf("No encontró el caracter '\n'");
 	}
 
+	// Final del documento
+	if (bytes_read == 0)
+	{ 
+		// Has alcanzado el final del archivo
+		printf("\n\n>> FIN DEL ARCHIVO ALCANZADO <<\n");
+		return (NULL);
+	}
 
 	// Colocar el terminador nulo al final de la cadena
 	//buffer[total_bytes_read] = '\0';
@@ -90,7 +91,8 @@ int	main(int argc, char *argv[])
 
 	// Llamar a la función para leer el contenido del archivo
 	while ((buffer = get_next_line(fd)) != NULL) {
-		printf("%s\n", buffer); // Procesar la línea leída, si es necesario
+		write(1, buffer, 1);
+		//printf("%s\n", buffer); // Procesar la línea leída, si es necesario
 		//free(buffer); // Liberar la memoria asignada a la línea
 	}
 
