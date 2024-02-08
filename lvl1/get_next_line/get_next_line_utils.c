@@ -10,28 +10,56 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putchar(char c)
+//Busca la primera aparición de un carácter en una cadena.
+char	*ft_strchr(const char *s, int c)
 {
-	int	write_error;
-
-	write_error = write(1, &c, 1);
-	if (write_error < 0)
-		return (-1);
-	return (0);
+	c = (unsigned char)c;
+	while (*s)
+	{
+		if (*s == c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
-int	ft_putstr_printf(char *str)
+//Copia un bloque de memoria desde una ubicación de origen
+//a una ubicación de destino, manejando superposiciones de memoria.
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	write_error;
+	unsigned char	*dst_tmp;
+	unsigned char	*src_tmp;
 
-	if (!str)
-		return ;
-	while (*str)
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	dst_tmp = (unsigned char *)dst;
+	src_tmp = (unsigned char *)src;
+	if (dst_tmp < src_tmp || dst_tmp >= (src_tmp + len))
 	{
-		write_error = ft_putchar_printf(*str);
-		if (write_error < 0)
-			return (-1);
-		str++;
+		while (len--)
+			*dst_tmp++ = *src_tmp++;
 	}
-	return (0);
+	else
+	{
+		dst_tmp += len - 1;
+		src_tmp += len - 1;
+		while (len--)
+			*dst_tmp-- = *src_tmp--;
+	}
+	return (dst);
+}
+
+//Rellena un bloque de memoria con un valor específico.
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*str;
+	size_t			i;
+
+	str = b;
+	i = 0;
+	while (i < len)
+		str[i++] = (unsigned char)c;
+	return (b);
 }
