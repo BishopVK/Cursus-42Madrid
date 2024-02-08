@@ -17,12 +17,14 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	ssize_t 	bytes_read;
 	char		*position;
-	char		*result;
+	//char		*result;
 
 	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 
-	buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
+	if (buffer == NULL)
+		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
+	//buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
 	if (!buffer)
 		return (NULL);
 
@@ -43,13 +45,21 @@ char	*get_next_line(int fd)
 		return (buffer);
 	}
 
+	// Final del documento
+	if (bytes_read == 0)
+	{ 
+		// Has alcanzado el final del archivo
+		printf("Fin del archivo alcanzado.\n");
+		return (NULL);
+	}
+
 	while (!buffer)
 	{
-		position = ft_strchr(buffer, '\n')
+		position = ft_strchr(buffer, '\n');
 		if (position != NULL)
-			printf("Se encontró el caracter '%c' en el índice %ld.\n", c, position - s);
+			printf("Se encontró el caracter '\n' en el índice %ld.\n", position - buffer);
 		else
-			printf("No encontró el caracter '%c'", c);
+			printf("No encontró el caracter '\n'");
 	}
 
 
@@ -60,7 +70,7 @@ char	*get_next_line(int fd)
 }
 
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c
-// ./a.out archivo.txt
+// ./a.out texto.txt
 
 int	main(int argc, char *argv[])
 {
@@ -81,7 +91,7 @@ int	main(int argc, char *argv[])
 	// Llamar a la función para leer el contenido del archivo
 	while ((buffer = get_next_line(fd)) != NULL) {
 		printf("%s\n", buffer); // Procesar la línea leída, si es necesario
-		free(buffer); // Liberar la memoria asignada a la línea
+		//free(buffer); // Liberar la memoria asignada a la línea
 	}
 
 	//printf("%s\n", buffer);
