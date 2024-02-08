@@ -25,6 +25,18 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+//Calcula la longitud de una cadena de caracteres
+//(sin incluir el carácter nulo).
+size_t	ft_strlen(const char *str)
+{
+	size_t	count;
+
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
+}
+
 //Copia un bloque de memoria desde una ubicación de origen
 //a una ubicación de destino, manejando superposiciones de memoria.
 void	*ft_memmove(void *dst, const void *src, size_t len)
