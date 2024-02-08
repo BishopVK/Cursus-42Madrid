@@ -11,5 +11,6 @@
 
 # Ignorar ficheros de pruebas
 *.txt
-variables_estaticas.c
-prueba_gnl.c
+*.c
+!get_next_line.c
+!get_next_line_utils.c
