@@ -14,42 +14,85 @@
 
 char	*get_next_line(int fd)
 {
-	ssize_t		num_bytes;
-	static char	buffer[100];
+	static char	*buffer;
+	ssize_t 	bytes_read;
+	char		*position;
+	char		*result;
 
-	num_bytes = read(fd, buffer, sizeof(buffer));
-	if (num_bytes == -1)
+	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE <= 0)
+		return (NULL);
+
+	buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
+	if (!buffer)
+		return (NULL);
+
+	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		perror("Error al leer el archivo");
+		if (write(1, (char *)buffer, bytes_read) != bytes_read)
+		{
+			perror("write");
+			return (buffer);
+		}
+		buffer++;
+	}
+
+	// Verificar errores de lectura
+	if (bytes_read < 0)
+	{ 
+		perror("read");
 		return (buffer);
 	}
 
-	printf("Se leyeron %zd bytes:\n%s\n", num_bytes, buffer);
+	while (!buffer)
+	{
+		position = ft_strchr(buffer, '\n')
+		if (position != NULL)
+			printf("Se encontró el caracter '%c' en el índice %ld.\n", c, position - s);
+		else
+			printf("No encontró el caracter '%c'", c);
+	}
+
+
+	// Colocar el terminador nulo al final de la cadena
+	//buffer[total_bytes_read] = '\0';
+
 	return (buffer);
 }
 
-int	main(void)
-{
-	int		fd;
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c
+// ./a.out archivo.txt
 
-	fd = open("archivo.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error al abrir el archivo");
-		return (1);
+int	main(int argc, char *argv[])
+{
+	char	*buffer;
+
+	if (argc != 2) {
+		fprintf(stderr, "Uso: %s <nombre_del_archivo>\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
 
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	
-	close(fd);
+	// Abrir el archivo para lectura
+	int fd = open(argv[1], O_RDONLY);
+	if (fd == -1) {
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+
+	// Llamar a la función para leer el contenido del archivo
+	while ((buffer = get_next_line(fd)) != NULL) {
+		printf("%s\n", buffer); // Procesar la línea leída, si es necesario
+		free(buffer); // Liberar la memoria asignada a la línea
+	}
+
+	//printf("%s\n", buffer);
+
+	free(buffer);
+
+	// Cerrar el descriptor de archivo
+	if (close(fd) == -1) {
+		perror("close");
+		exit(EXIT_FAILURE);
+	}
 
 	return (0);
 }
