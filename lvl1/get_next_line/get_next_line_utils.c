@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
 //Busca la primera aparición de un carácter en una cadena.
 char	*ft_strchr(const char *s, int c)
 {
