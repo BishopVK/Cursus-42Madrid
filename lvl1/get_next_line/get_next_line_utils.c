@@ -77,3 +77,18 @@ void	*ft_memset(void *b, int c, size_t len)
 		str[i++] = (unsigned char)c;
 	return (b);
 }
+
+char	*ft_strdup(const char *s)
+{
+	char	*dest;
+	char	*principio;
+
+	dest = (char *)malloc(ft_strlen(s) + 1);
+	if (dest == NULL)
+		return (NULL);
+	principio = dest;
+	while (*s != '\0')
+		*dest++ = *s++;
+	*dest = '\0';
+	return (principio);
+}
