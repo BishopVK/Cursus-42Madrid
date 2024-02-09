@@ -11,89 +11,57 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
-	ssize_t 	bytes_read;
-	char		*position;
-	char		*result;
+	ssize_t		bytes_read;
 	ssize_t		total_bytes_read;
+	char		*result;
 
-	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE >= INT_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-
+	buffer = NULL;
 	if (buffer == NULL)
 		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
 	if (buffer == NULL)
 		return (NULL);
-
-	bytes_read = 0;
 	total_bytes_read = 0;
-	// Leer BUFFER_SIZE del fd y devolverlo con printf
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0
-		&& total_bytes_read < BUFFER_SIZE)
+	bytes_read = read(fd, buffer + total_bytes_read, 1);
+	while (bytes_read > 0)
 	{
-		total_bytes_read += bytes_read;
-		printf("b_r: %lu\n", bytes_read); //100
-		printf("t_b_r: %lu\n", total_bytes_read); //100
-		printf("len buffer: %li\n", strlen(buffer)); //100
-		//buffer[total_bytes_read] = '\0';
-		printf("buffer = %.*s\n", (int)bytes_read, buffer);
-		if (total_bytes_read >= BUFFER_SIZE)
-			break;
-
-		//if (total_bytes_read == BUFFER_SIZE || bytes_read == 0)
-		//	return (buffer);
-		/* if (write(1, buffer, bytes_read) != bytes_read)
+		if (buffer[total_bytes_read] == '\n')
 		{
-			perror("write");
-			return (buffer);
-		} */
-	}
-	
-	buffer[total_bytes_read] = '\0';
-
-		// Verificar errores de lectura
-	if (bytes_read < 0)
-	{ 
-		perror("read");
-		return (buffer);
-	}
-
-	while (*buffer != '\0')
-	{
-		position = ft_strchr(buffer, '\n');
-		if (position != NULL)
-		{
-			printf("Se encontró el caracter '\\n' en el índice %ld.\n", position - buffer);
-			result = (char *)malloc(position - buffer + 1);
-			ft_memmove(result, buffer, position - buffer);
-			result[position - buffer] = '\0';
+			buffer[total_bytes_read++] = '\0';
+			result = ft_strdup(buffer);
+			ft_memmove(buffer, buffer + total_bytes_read,
+				BUFFER_SIZE - total_bytes_read + 1);
+			free(buffer);
 			return (result);
 		}
-		else
+		total_bytes_read++;
+		if (total_bytes_read == BUFFER_SIZE)
 		{
-			printf("No encontró el caracter '\\n'\n");
-			return (buffer);
+			buffer[total_bytes_read] = '\0';
+			result = (ft_strdup(buffer));
+			free(buffer);
+			return (result);
 		}
+		bytes_read = read(fd, buffer + total_bytes_read, 1);
 	}
-
-	// Final del documento
-	if (bytes_read == 0)
-	{ 
-		// Has alcanzado el final del archivo
-		printf("\n\n>> FIN DEL ARCHIVO ALCANZADO <<\n");
+	if (bytes_read < 0)
 		return (NULL);
+	if (total_bytes_read > 0)
+	{
+		buffer[total_bytes_read] = '\0';
+		result = (ft_strdup(buffer));
+		free(buffer);
+		return (result);
 	}
-
-	// Colocar el terminador nulo al final de la cadena
-	//buffer[total_bytes_read] = '\0';
-
-	return (buffer);
+	return (NULL);
 }
 
-// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
 // ./a.out texto.txt
 
 int	main(int argc, char *argv[])
@@ -114,14 +82,23 @@ int	main(int argc, char *argv[])
 
 	// Llamar a la función para leer el contenido del archivo
 	while ((buffer = get_next_line(fd)) != NULL) {
-		//write(1, buffer, 1);
-		printf("RECIBIDO: %s\n", buffer); // Procesar la línea leída, si es necesario
-		//free(buffer); // Liberar la memoria asignada a la línea
+		// Verificar si se asignó memoria correctamente
+		if (buffer == NULL)
+		{
+			fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
+			break;
+		}
+
+		// Procesar la línea leída
+		printf("RECIBIDO: %s\n", buffer);
+
+		// Liberar la memoria asignada a la línea
+		free(buffer);
 	}
 
 	//printf("%s\n", buffer);
 
-	free(buffer);
+	//free(buffer);
 
 	// Cerrar el descriptor de archivo
 	if (close(fd) == -1) {
