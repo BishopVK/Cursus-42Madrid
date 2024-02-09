@@ -19,11 +19,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <limits.h>
+#include <string.h>
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
+char	*ft_strdup(const char *s);
 
 #endif
