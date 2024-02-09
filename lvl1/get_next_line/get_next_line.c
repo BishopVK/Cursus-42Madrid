@@ -11,49 +11,72 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+#include <string.h>
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	ssize_t 	bytes_read;
 	char		*position;
-	//char		*result;
+	char		*result;
 	ssize_t		total_bytes_read;
 
 	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	if (buffer == NULL)
-		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
+		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
 	if (buffer == NULL)
 		return (NULL);
 
+	bytes_read = 0;
 	total_bytes_read = 0;
 	// Leer BUFFER_SIZE del fd y devolverlo con printf
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0
+		&& total_bytes_read < BUFFER_SIZE)
 	{
+		total_bytes_read += bytes_read;
+		printf("b_r: %lu\n", bytes_read); //100
+		printf("t_b_r: %lu\n", total_bytes_read); //100
+		printf("len buffer: %li\n", strlen(buffer)); //100
+		//buffer[total_bytes_read] = '\0';
+		printf("buffer = %.*s\n", (int)bytes_read, buffer);
+		if (total_bytes_read >= BUFFER_SIZE)
+			break;
+
+		//if (total_bytes_read == BUFFER_SIZE || bytes_read == 0)
+		//	return (buffer);
 		/* if (write(1, buffer, bytes_read) != bytes_read)
 		{
 			perror("write");
 			return (buffer);
 		} */
-		total_bytes_read += bytes_read;
 	}
+	
+	buffer[total_bytes_read] = '\0';
 
-	// Verificar errores de lectura
+		// Verificar errores de lectura
 	if (bytes_read < 0)
 	{ 
 		perror("read");
 		return (buffer);
 	}
 
-	while (!buffer)
+	while (*buffer != '\0')
 	{
 		position = ft_strchr(buffer, '\n');
 		if (position != NULL)
-			printf("Se encontró el caracter '\n' en el índice %ld.\n", position - buffer);
+		{
+			printf("Se encontró el caracter '\\n' en el índice %ld.\n", position - buffer);
+			result = (char *)malloc(position - buffer + 1);
+			ft_memmove(result, buffer, position - buffer);
+			result[position - buffer] = '\0';
+			return (result);
+		}
 		else
-			printf("No encontró el caracter '\n'");
+		{
+			printf("No encontró el caracter '\\n'\n");
+			return (buffer);
+		}
 	}
 
 	// Final del documento
@@ -70,7 +93,7 @@ char	*get_next_line(int fd)
 	return (buffer);
 }
 
-// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c
 // ./a.out texto.txt
 
 int	main(int argc, char *argv[])
@@ -91,8 +114,8 @@ int	main(int argc, char *argv[])
 
 	// Llamar a la función para leer el contenido del archivo
 	while ((buffer = get_next_line(fd)) != NULL) {
-		write(1, buffer, 1);
-		//printf("%s\n", buffer); // Procesar la línea leída, si es necesario
+		//write(1, buffer, 1);
+		printf("RECIBIDO: %s\n", buffer); // Procesar la línea leída, si es necesario
 		//free(buffer); // Liberar la memoria asignada a la línea
 	}
 
