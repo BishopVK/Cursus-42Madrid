@@ -17,7 +17,7 @@ NAME		=	get_next_line.a
 CC			=	gcc
 
 # Flags de compilación
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -D BUFFER_SIZE=$(BUFFER_SIZE)
 
 # Ficheros a compilar
 SRC			=	get_next_line.c \
@@ -34,7 +34,7 @@ all: $(NAME)
 
 # Regla para construir el archivo objetivo. Compilar los archivos objeto y crear el archivo objetivo. Crear la biblioteca estática. Indexar la biblioteca
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+#	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
