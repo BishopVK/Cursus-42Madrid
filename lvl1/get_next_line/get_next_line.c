@@ -64,7 +64,7 @@ char	*get_next_line(int fd)
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
 // ./a.out texto.txt
 
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	char	*buffer;
 
@@ -107,4 +107,4 @@ int	main(int argc, char *argv[])
 	}
 
 	return (0);
-}
+} */
