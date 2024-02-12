@@ -14,65 +14,28 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	char		*buffer;
+	static char	*result;
 	ssize_t		bytes_read;
-	ssize_t		total_bytes_read;
-	char		*result;
 
-	if (BUFFER_SIZE >= INT_MAX || BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	buffer = NULL;
-	if (buffer == NULL)
-		buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
+	buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
 	if (buffer == NULL)
 		return (NULL);
-	total_bytes_read = 0;
-	bytes_read = read(fd, buffer + total_bytes_read, 1);
-	while (bytes_read > 0)
+	bytes_read = 1;
+	while (bytes_read != 0 && ft_strchr(result, '\n') == NULL)
 	{
-		if (buffer[total_bytes_read] == '\n')
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
 		{
-			buffer[total_bytes_read++] = '\0';
-			result = ft_strdup(buffer);
-			ft_memmove(buffer, buffer + total_bytes_read,
-				BUFFER_SIZE - total_bytes_read + 1);
 			free(buffer);
-			return (result);
+			return (NULL);
 		}
-		total_bytes_read++;
-		if (total_bytes_read == BUFFER_SIZE)
-		{
-			buffer[total_bytes_read] = '\0';
-			result = (ft_strdup(buffer));
-			//ft_memmove(buffer, buffer + total_bytes_read,
-			//	BUFFER_SIZE - total_bytes_read + 1);
-			free(buffer);
-			return (result);
-		}
-		bytes_read = read(fd, buffer + total_bytes_read, 1);
+		buffer[bytes_read] = '\0';
+		result = ft_strjoin(result, buffer);
 	}
-	if (bytes_read < 0)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	/* if (bytes_read == 0)
-	{
-		free(buffer);
-		return (NULL);
-	} */
-	if (total_bytes_read > 0)
-	{
-		buffer[total_bytes_read] = '\0';
-		result = (ft_strdup(buffer));
-		free(buffer);
-		buffer = NULL;
-		return (result);
-	}
-
-	free(buffer);
-	buffer = NULL;
-	return (NULL);
+	return (buffer);
 }
 
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
