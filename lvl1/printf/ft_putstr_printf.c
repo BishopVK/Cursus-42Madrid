@@ -20,10 +20,7 @@ void	ft_putstr_printf(char *str, size_t *counter, int *write_error)
 		return ;
 	null = "(null)";
 	if (!str)
-	{
-		ft_putstr_printf(null, counter, write_error);
-		return ;
-	}
+		str = null;
 	while (*str)
 	{
 		ft_putchar_printf(*str, counter, write_error);
