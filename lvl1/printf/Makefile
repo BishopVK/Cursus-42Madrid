@@ -23,28 +23,28 @@ SRC			=	ft_printf.c \
 OBJ			=	$(SRC:.c=.o)
 HEADER		=	ft_printf.h
 
-LIBFT_DIR	=	libft
-LIBFT		=	$(LIBFT_DIR)/libft.a
+#LIBFT_DIR	=	libft
+#LIBFT		=	$(LIBFT_DIR)/libft.a
 
-all: $(LIBFT) $(NAME)
+#all: $(LIBFT) $(NAME)
+all: $(NAME)
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+#$(LIBFT):
+#	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $(SRC)
-	ar rc $(NAME) $(OBJ) $(LIBFT)
+#	$(CC) $(CFLAGS) -c -I$(LIBFT_INC) $(SRC)
+#	ar rc $(NAME) $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) -c $(SRC)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $< -o $@
-
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
+#	@$(MAKE) -C $(LIBFT_DIR) clean
 	rm -f $(OBJ)
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+#	@$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
