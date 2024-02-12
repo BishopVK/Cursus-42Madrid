@@ -9,6 +9,8 @@
 
 # Ignorar directorios específicos
 /.vscode
+/pruebas
+/txt
 
 # Ignorar ficheros de pruebas
 *.txt
