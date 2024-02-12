@@ -1674,7 +1674,7 @@ int main()
 	ft_lstadd_front(&ft_lstlast_lst3, ft_lstnew("node2"));
 	ft_lstadd_front(&ft_lstlast_lst3, ft_lstnew("node3"));
 	t_list *ft_lstlast_result3 = ft_lstlast(ft_lstlast_lst3);
-	printf("%s\n", (ft_lstlast_result3->content == "node1") ? OK : KO);
+	printf("%s\n", (strncmp(ft_lstlast_result3->content, "node1", strlen("node1")) == 0) ? OK : KO);
 
 	/////////////////////////////////////
 
@@ -1761,14 +1761,14 @@ int main()
 	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 2")));
 	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 3")));
 	ft_lstadd_back(&lst_iter_test1, ft_lstnew(strdup("Node 4")));
-	printf("Expected output:\n");
+	printf("\nExpected output:\n");
 	ft_lstiter(lst_iter_test1, &ft_print_content);
 	printf("%s\n", OK);
 
 	// Test 2: Iterate through an empty list
 	print_test_title(ANSI_COLOR_CYAN, 2, "Iterate through an empty list");
 	t_list *lst_iter_test2 = NULL;
-	printf("Expected output: <No output>\n");
+	printf("\nExpected output: <No output>\n");
 	ft_lstiter(lst_iter_test2, &ft_print_content);
 	printf("%s\n", OK);
 
@@ -1792,7 +1792,7 @@ int main()
 	while (current)
 	{
 		char *value = (char *)current->content;
-		printf("%s\n", value); // Print the content of each node
+		printf("\n%s", value); // Print the content of each node
 		if (strcmp(value, expected_values[i++]) != 0)
 		{
 			success = 0;
@@ -1800,13 +1800,13 @@ int main()
 		}
 		current = current->next;
 	}
-	printf("Expected output: %s\n", success ? OK : KO);
+	printf("\nExpected output: %s\n", success ? OK : KO);
 
 	// Test 2: Map an empty list
 	print_test_title(ANSI_COLOR_CYAN, 2, "Map an empty list");
 	t_list *lst_map_test2 = NULL;
 	t_list *mapped_list_empty = ft_lstmap(lst_map_test2, &ft_double_content, &ft_del_node_content);
-	printf("Expected output: %s\n", (mapped_list_empty == NULL) ? OK : KO);
+	printf("\nExpected output: %s\n", (mapped_list_empty == NULL) ? OK : KO);
 }
-
  */
+
