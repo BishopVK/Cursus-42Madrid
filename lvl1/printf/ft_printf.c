@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/04 23:06:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:51:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+//#include "libft/libft.h"
 #include "ft_printf.h"
 #include <unistd.h>
 
@@ -60,11 +60,11 @@ int	ft_printf(char const *format, ...)
 		{
 			format++;
 			ft_detect_format(args, (char *)format, &counter, &write_error);
-			return ((write_error < 0) && -1);
 		}
 		else
 			ft_putchar_printf(*format, &counter, &write_error);
-		return ((write_error < 0) && -1);
+		if (write_error < 0)
+			return (-1);
 		format++;
 	}
 	va_end(args);
@@ -115,11 +115,11 @@ int	ft_printf(char const *format, ...)
 	size = ft_printf("ft_printf: %s\n", s);
 	printf("Size ft_printf: %d\n", size);
 
-	char	*sn = NULL;
-	printf("\n>>STRING NULL (s):\n");
-	size = printf("%s\n", sn);
+	//char	*sn = NULL;
+	printf("\nSTRING NULL (s):\n");
+	size = printf("%s\n", (char *)NULL);
 	printf("Size Printf: %d\n", size);
-	size = ft_printf("%s\n", sn);
+	size = ft_printf("%s\n", (char *)NULL);
 	printf("Size ft_printf: %d\n", size);
 
 	int *p = &n;
@@ -127,6 +127,12 @@ int	ft_printf(char const *format, ...)
 	size = printf("Printf: %p\n", (void *)p);
 	printf("Size Printf: %d\n", size);
 	size = ft_printf("ft_printf: %p\n", (void *)p);
+	printf("Size ft_printf: %d\n", size);
+
+	printf("\n>>PUNTERO VACÍO(p):\n");
+	size = printf("Printf: %p\n", "");
+	printf("Size Printf: %d\n", size);
+	size = ft_printf("ft_printf: %p\n", "");
 	printf("Size ft_printf: %d\n", size);
 
 	unsigned int	x = -1;
