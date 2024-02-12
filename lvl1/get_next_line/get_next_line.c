@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	ssize_t		total_bytes_read;
 	char		*result;
 
-	if (BUFFER_SIZE >= INT_MAX || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE >= INT_MAX || BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	buffer = NULL;
 	if (buffer == NULL)
@@ -44,20 +44,34 @@ char	*get_next_line(int fd)
 		{
 			buffer[total_bytes_read] = '\0';
 			result = (ft_strdup(buffer));
+			//ft_memmove(buffer, buffer + total_bytes_read,
+			//	BUFFER_SIZE - total_bytes_read + 1);
 			free(buffer);
 			return (result);
 		}
 		bytes_read = read(fd, buffer + total_bytes_read, 1);
 	}
 	if (bytes_read < 0)
+	{
+		free(buffer);
 		return (NULL);
+	}
+	/* if (bytes_read == 0)
+	{
+		free(buffer);
+		return (NULL);
+	} */
 	if (total_bytes_read > 0)
 	{
 		buffer[total_bytes_read] = '\0';
 		result = (ft_strdup(buffer));
 		free(buffer);
+		buffer = NULL;
 		return (result);
 	}
+
+	free(buffer);
+	buffer = NULL;
 	return (NULL);
 }
 
