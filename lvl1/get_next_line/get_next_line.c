@@ -27,38 +27,44 @@ char	*get_next_line(int fd)
 	while (bytes_read != 0 && ft_strchr(result, '\n') == NULL)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
+		if (bytes_read == -1)
 		{
 			free(buffer);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
+		printf("buffer: %s\n", buffer);
 		result = ft_strjoin(result, buffer);
+		printf("result strjoin: %s\n", result);
 	}
-	return (buffer);
+	free(buffer);
+	return (result);
 }
 
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
-// ./a.out texto.txt
+// ./a.out txt/texto.txt
 
-/* int	main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char	*buffer;
 
-	if (argc != 2) {
+	if (argc != 2)
+	{
 		fprintf(stderr, "Uso: %s <nombre_del_archivo>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
 	// Abrir el archivo para lectura
 	int fd = open(argv[1], O_RDONLY);
-	if (fd == -1) {
+	if (fd == -1)
+	{
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
 
 	// Llamar a la función para leer el contenido del archivo
-	while ((buffer = get_next_line(fd)) != NULL) {
+	while ((buffer = get_next_line(fd)) != NULL)
+	{
 		// Verificar si se asignó memoria correctamente
 		if (buffer == NULL)
 		{
@@ -78,10 +84,11 @@ char	*get_next_line(int fd)
 	//free(buffer);
 
 	// Cerrar el descriptor de archivo
-	if (close(fd) == -1) {
+	if (close(fd) == -1)
+	{
 		perror("close");
 		exit(EXIT_FAILURE);
 	}
 
 	return (0);
-} */
+}
