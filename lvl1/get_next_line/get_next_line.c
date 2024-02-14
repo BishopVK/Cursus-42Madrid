@@ -16,6 +16,7 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	static char	*result;
+	char		*line;
 	ssize_t		bytes_read;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
@@ -33,12 +34,13 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		printf("buffer: %s\n", buffer);
+		//printf("buffer: %s\n", buffer);
 		result = ft_strjoin(result, buffer);
-		printf("result strjoin: %s\n", result);
+		//printf("result strjoin: %s\n", result);
 	}
 	free(buffer);
-	return (result);
+	line = 
+	return (line);
 }
 
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
