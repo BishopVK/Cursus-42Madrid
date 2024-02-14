@@ -16,6 +16,9 @@
 char	*ft_strchr(const char *s, int c)
 {
 	c = (unsigned char)c;
+
+	if (s == NULL)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == c)
@@ -33,49 +36,41 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	count;
 
+	if (str == NULL)
+		return (0);
 	count = 0;
 	while (str[count])
 		count++;
 	return (count);
 }
 
-//Copia un bloque de memoria desde una ubicación de origen
-//a una ubicación de destino, manejando superposiciones de memoria.
-void	*ft_memmove(void *dst, const void *src, size_t len)
+//Reserva (con malloc(3)) y devuelve una substring de la string ’s’.
+//La substring empieza desde el índice ’start’ y tiene una longitud máx. ’len’.
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*dst_tmp;
-	unsigned char	*src_tmp;
+	char	*sub;
+	size_t	i;
 
-	if (dst == NULL && src == NULL)
+	if (s == NULL)
 		return (NULL);
-	dst_tmp = (unsigned char *)dst;
-	src_tmp = (unsigned char *)src;
-	if (dst_tmp < src_tmp || dst_tmp >= (src_tmp + len))
+	if (start >= ft_strlen(s))
 	{
-		while (len--)
-			*dst_tmp++ = *src_tmp++;
+		sub = (char *)malloc(1);
+		if (sub != NULL)
+			sub[0] = '\0';
+		return (sub);
 	}
-	else
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	sub = (char *)malloc(len + 1);
+	if (sub != NULL)
 	{
-		dst_tmp += len - 1;
-		src_tmp += len - 1;
-		while (len--)
-			*dst_tmp-- = *src_tmp--;
+		i = 0;
+		while (i < len && s[start])
+			sub[i++] = s[start++];
+		sub[i] = '\0';
 	}
-	return (dst);
-}
-
-//Rellena un bloque de memoria con un valor específico.
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	*str;
-	size_t			i;
-
-	str = b;
-	i = 0;
-	while (i < len)
-		str[i++] = (unsigned char)c;
-	return (b);
+	return (sub);
 }
 
 char	*ft_strdup(const char *s)
@@ -95,6 +90,27 @@ char	*ft_strdup(const char *s)
 
 //Reserva (con malloc(3)) y devuelve una nueva string,
 //formada por la concatenación de ’s1’ y ’s2’.
+/* char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*result;
+	int		i;
+
+	i = 0;
+	//if (s1 == NULL && s2 == NULL)
+	//	return (NULL);
+	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	if (s1 != NULL)
+		while (*s1)
+			result[i++] = *s1++;
+	if (s2 != NULL)
+		while (*s2)
+			result[i++] = *s2++;
+	result[i] = '\0';
+	return (result);
+} */
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
@@ -112,4 +128,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		result[i++] = *s2++;
 	result[i] = '\0';
 	return (result);
+}
+
+//Copia una cadena a un buffer con un límite máximo,
+//evitando desbordamientos de buffer.
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	src_len;
+	size_t	i;
+
+	src_len = ft_strlen(src);
+	if (size == 0)
+		return (src_len);
+	i = 0;
+	while (i < size - 1 && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (src_len);
 }
