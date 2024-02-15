@@ -12,114 +12,94 @@
 
 #include "get_next_line.h"
 
-/* static char	*get_line_and_update_result(char *result, char *line)
-{
-	printf("Posición \\n = %ld\n", strchr(result, '\n') - result);
-	ft_strlcpy(line, result, (strchr(result, '\n') - result) + 2);
-	printf("line = %s\n", line);
-
-	// Actualizar result para contener solo el contenido restante
-	result += (strchr(result, '\n') - result) + 1;
-	printf("result actualizado = %s\n", result);
-
-	return (line);
-} */
-
-
 static char	*get_line_and_update_result(char **result, char *line)
 {
-	char *tmp;
-	//printf("Posición \\n = %ld\n", strchr(*result, '\n') - *result);
+	char	*tmp;
+
 	ft_strlcpy(line, *result, (strchr(*result, '\n') - *result) + 2);
-	//printf("line = %s\n", line);
-
-	// Actualizar result para contener solo el contenido restante
-	tmp = strdup(*result + (strchr(*result, '\n') - *result) + 1);
-	free(*result);
-	*result = tmp;
-	//printf("result actualizado = %s\n", *result);
-
+	tmp = *result;
+	*result = strdup(*result + (strchr(*result, '\n') - *result) + 1);
+	free(tmp);
 	return (line);
 }
 
 ssize_t	read_file(int fd, char **result, char *buffer)
 {
-    ssize_t		bytes_read;
+	ssize_t	bytes_read;
+	char	*tmp;
 
-    bytes_read = 1;
-    while (bytes_read != 0 && ft_strchr(*result, '\n') == NULL)
-    {
-        bytes_read = read(fd, buffer, BUFFER_SIZE);
-        if (bytes_read == -1)
-        {
-            free(buffer);
-            return (-1);
-        }
-        buffer[bytes_read] = '\0';
-        *result = ft_strjoin(*result, buffer);
-    }
-    free(buffer);
-    return bytes_read;
+	bytes_read = 1;
+	while (bytes_read != 0 && ft_strchr(*result, '\n') == NULL)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buffer);
+			free(*result);
+			*result = NULL;
+			return (-1);
+		}
+		buffer[bytes_read] = '\0';
+		tmp = *result;
+		*result = ft_strjoin(*result, buffer);
+		free(tmp);
+	}
+	return (bytes_read);
 }
 
-char	*process_result(ssize_t bytes_read, char **result)
+static char	*process_result(char **result)
 {
-    char *line;
+	char	*line;
 
-    if (bytes_read < 0)
-        return (NULL);
-
-    if (bytes_read == 0 && ft_strlen(*result) == 0)
-    {
-        free(*result);
-        *result = NULL;
-        return (NULL);
-    }
-
-    if (ft_strchr(*result, '\n'))
-    {
-        line = (char *)malloc(strchr(*result, '\n') - *result + 2);
-        line = get_line_and_update_result(result, line);
-    }
-    else
-    {
-        line = (char *)malloc(ft_strlen(*result) + 1);
-        if (line)
-        {
-            ft_strlcpy(line, *result, ft_strlen(*result) + 1);
-            free(*result);
-            *result = NULL;
-        }
-    }
-
-    return line;
+	if (ft_strchr(*result, '\n'))
+	{
+		line = (char *)malloc(strchr(*result, '\n') - *result + 2);
+		line = get_line_and_update_result(result, line);
+	}
+	else
+	{
+		line = (char *)malloc(ft_strlen(*result) + 1);
+		if (line)
+		{
+			ft_strlcpy(line, *result, ft_strlen(*result) + 1);
+			free(*result);
+			*result = NULL;
+		}
+	}
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-    char		*buffer;
-    static char	*result;
-    char		*line;
-    ssize_t		bytes_read;
+	char		*buffer;
+	static char	*result;
+	char		*line;
+	ssize_t		bytes_read;
 
-    if (BUFFER_SIZE <= 0 || fd < 0)
-        return (NULL);
-    if (!result)
-        result = ft_strdup("");
-    buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
-    if (buffer == NULL)
-        return (NULL);
-    bytes_read = read_file(fd, &result, buffer);
-    if (bytes_read == -1)
-        return (NULL);
-    line = process_result(bytes_read, &result);
-    return (line);
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, NULL, 0) < 0)
+		return (NULL);
+	if (!result)
+		result = ft_strdup("");
+	buffer = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
+	if (buffer == NULL)
+		return (NULL);
+	bytes_read = read_file(fd, &result, buffer);
+	free(buffer);
+	if (bytes_read <= 0 && ft_strlen(result) == 0)
+	{
+		free(result);
+		result = NULL;
+		return (NULL);
+	}
+	line = process_result(&result);
+	return (line);
 }
 
-// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100 get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=100
+// get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
 // ./a.out txt/texto.txt
 
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	char	*buffer;
 
@@ -156,6 +136,7 @@ int	main(int argc, char *argv[])
 
 	//printf("%s\n", buffer);
 
+	// Liberar la memoria asignada a buffer
 	//free(buffer);
 
 	// Cerrar el descriptor de archivo
@@ -166,4 +147,4 @@ int	main(int argc, char *argv[])
 	}
 
 	return (0);
-}
+} */
