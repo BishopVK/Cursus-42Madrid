@@ -16,7 +16,6 @@
 char	*ft_strchr(const char *s, int c)
 {
 	c = (unsigned char)c;
-
 	if (s == NULL)
 		return (NULL);
 	while (*s)
@@ -44,35 +43,9 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-//Reserva (con malloc(3)) y devuelve una substring de la string ’s’.
-//La substring empieza desde el índice ’start’ y tiene una longitud máx. ’len’.
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*sub;
-	size_t	i;
-
-	if (s == NULL)
-		return (NULL);
-	if (start >= ft_strlen(s))
-	{
-		sub = (char *)malloc(1);
-		if (sub != NULL)
-			sub[0] = '\0';
-		return (sub);
-	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc(len + 1);
-	if (sub != NULL)
-	{
-		i = 0;
-		while (i < len && s[start])
-			sub[i++] = s[start++];
-		sub[i] = '\0';
-	}
-	return (sub);
-}
-
+//Duplica una cadena de caracteres en una nueva ubicación de memoria,
+//asignando dinámicamente espacio suficiente
+//y copiando el contenido de la cadena original.
 char	*ft_strdup(const char *s)
 {
 	char	*dest;
@@ -90,27 +63,6 @@ char	*ft_strdup(const char *s)
 
 //Reserva (con malloc(3)) y devuelve una nueva string,
 //formada por la concatenación de ’s1’ y ’s2’.
-/* char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	//if (s1 == NULL && s2 == NULL)
-	//	return (NULL);
-	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (result == NULL)
-		return (NULL);
-	if (s1 != NULL)
-		while (*s1)
-			result[i++] = *s1++;
-	if (s2 != NULL)
-		while (*s2)
-			result[i++] = *s2++;
-	result[i] = '\0';
-	return (result);
-} */
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
