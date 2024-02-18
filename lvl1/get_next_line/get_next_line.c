@@ -91,6 +91,8 @@ char	*get_next_line(int fd)
 		result = NULL;
 		return (NULL);
 	}
+	if (result == NULL)
+		result = ft_strdup("");
 	line = process_result(&result);
 	return (line);
 }
@@ -99,7 +101,7 @@ char	*get_next_line(int fd)
 // get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
 // ./a.out txt/texto.txt
 
-/* int	main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char	*buffer;
 
@@ -147,4 +149,4 @@ char	*get_next_line(int fd)
 	}
 
 	return (0);
-} */
+}
