@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   prueba_gnl9_FINAL.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:33:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/07 11:33:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:31:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,11 @@ static char	*get_line_and_update_result(char **result, char *line)
 {
 	char	*tmp;
 
-	ft_strlcpy(line, *result, (strchr(*result, '\n') - *result) + 2);
+	ft_strlcpy(line, *result, (ft_strchr(*result, '\n') - *result) + 2);
 	tmp = *result;
-	*result = strdup(*result + (strchr(*result, '\n') - *result) + 1);
+	*result = ft_strdup(*result + (ft_strchr(*result, '\n') - *result) + 1);
 	free(tmp);
 	return (line);
-}
-
-ssize_t	read_file(int fd, char **result, char *buffer)
-{
-	ssize_t	bytes_read;
-	char	*tmp;
-
-	bytes_read = 1;
-	while (bytes_read != 0 && ft_strchr(*result, '\n') == NULL)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(buffer);
-			free(*result);
-			*result = NULL;
-			return (-1);
-		}
-		buffer[bytes_read] = '\0';
-		tmp = *result;
-		*result = ft_strjoin(*result, buffer);
-		free(tmp);
-	}
-	return (bytes_read);
 }
 
 static char	*process_result(char **result)
@@ -69,14 +45,37 @@ static char	*process_result(char **result)
 	return (line);
 }
 
+int	read_file(int fd, char **result, char *buffer)
+{
+	int		bytes_read;
+	char	*tmp;
+
+	bytes_read = 1;
+	while (bytes_read != 0 && ft_strchr(*result, '\n') == NULL)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(*result);
+			*result = ft_strdup("");
+			return (-1);
+		}
+		buffer[bytes_read] = '\0';
+		tmp = *result;
+		*result = ft_strjoin(*result, buffer);
+		free(tmp);
+	}
+	return (bytes_read);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*buffer;
 	static char	*result;
 	char		*line;
-	ssize_t		bytes_read;
+	int			bytes_read;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, NULL, 0) < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	if (!result)
 		result = ft_strdup("");
@@ -91,17 +90,15 @@ char	*get_next_line(int fd)
 		result = NULL;
 		return (NULL);
 	}
-	if (result == NULL)
-		result = ft_strdup("");
 	line = process_result(&result);
 	return (line);
 }
 
 // cc -Wall -Wextra -Werror -D BUFFER_SIZE=100
-// get_next_line.c get_next_line_utils.c -fsanitize=address -static-libasan
+// get_next_line.c get_next_line_utils.c -fsanitize=address -static-libsan
 // ./a.out txt/texto.txt
 
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	char	*buffer;
 
@@ -149,4 +146,54 @@ int	main(int argc, char *argv[])
 	}
 
 	return (0);
+} */
+
+/* void test_gnl(int fd, const char *expected) {
+    char *line = get_next_line(fd);
+    if (line == NULL && expected == NULL) {
+        printf("Test passed: expected NULL\n");
+    } else if (line != NULL && expected != NULL && strcmp(line, expected) == 0) {
+        printf("Test passed: %s\n", expected);
+    } else {
+        printf("Test failed: expected '%s', got '%s'\n", expected, line);
+    }
+    free(line);
 }
+
+int main() {
+    char *name = "txt/read_error.txt";
+    int fd = open(name, O_RDONLY);
+    if (fd == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    test_gnl(fd, "aaaaaaaaaa\n");
+    test_gnl(fd, "bbbbbbbbbb\n");
+
+    // Simulate read error
+    char *temp;
+    do {
+        temp = get_next_line(fd);
+        free(temp);
+    } while (temp != NULL);
+
+    test_gnl(fd, NULL);
+
+    close(fd);
+    fd = open(name, O_RDONLY);
+    if (fd == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    test_gnl(fd, "aaaaaaaaaa\n");
+    test_gnl(fd, "bbbbbbbbbb\n");
+    test_gnl(fd, "cccccccccc\n");
+    test_gnl(fd, "dddddddddd\n");
+    test_gnl(fd, NULL);
+
+    close(fd);
+
+    return 0;
+} */
