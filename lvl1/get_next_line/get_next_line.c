@@ -171,103 +171,40 @@ int	main(int argc, char *argv[])
 	return 0;
 }
 
-//LECTURA DE FICHERO
-/* int	main(int argc, char *argv[])
+//PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
+/* int main(int argc, char *argv[])
 {
-	char	*buffer;
+	char *buffer;
 
-	if (argc != 2)
-	{
+	if (argc != 2) {
 		fprintf(stderr, "Uso: %s <nombre_del_archivo>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
 	// Abrir el archivo para lectura
 	int fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
+	if (fd == -1) {
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
 
-	// Llamar a la función para leer el contenido del archivo
-	while ((buffer = get_next_line(fd)) != NULL)
-	{
-		// Verificar si se asignó memoria correctamente
-		if (buffer == NULL)
-		{
-			fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
-			break;
-		}
+	// Intentar leer de un descriptor de archivo arbitrario
+	int invalid_fd = 42;
+	printf("Intentando leer de un descriptor de archivo arbitrario (%d):\n", invalid_fd);
+	buffer = get_next_line(invalid_fd);
 
-		// Procesar la línea leída
-		printf("RECIBIDO: %s\n", buffer);
-
-		// Liberar la memoria asignada a la línea
+	if (buffer == NULL) {
+		printf("La función get_next_line devolvió NULL para el descriptor de archivo arbitrario %d, como se esperaba.\n", invalid_fd);
+	} else {
+		printf("La función get_next_line devolvió algo inesperado para el descriptor de archivo arbitrario %d.\n", invalid_fd);
 		free(buffer);
 	}
 
-	//printf("%s\n", buffer);
-
-	// Liberar la memoria asignada a buffer
-	//free(buffer);
-
 	// Cerrar el descriptor de archivo
-	if (close(fd) == -1)
-	{
+	if (close(fd) == -1) {
 		perror("close");
 		exit(EXIT_FAILURE);
 	}
 
-	return (0);
-} */
-
-/* void test_gnl(int fd, const char *expected) {
-    char *line = get_next_line(fd);
-    if (line == NULL && expected == NULL) {
-        printf("Test passed: expected NULL\n");
-    } else if (line != NULL && expected != NULL && strcmp(line, expected) == 0) {
-        printf("Test passed: %s\n", expected);
-    } else {
-        printf("Test failed: expected '%s', got '%s'\n", expected, line);
-    }
-    free(line);
-}
-
-int main() {
-    char *name = "txt/read_error.txt";
-    int fd = open(name, O_RDONLY);
-    if (fd == -1) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    test_gnl(fd, "aaaaaaaaaa\n");
-    test_gnl(fd, "bbbbbbbbbb\n");
-
-    // Simulate read error
-    char *temp;
-    do {
-        temp = get_next_line(fd);
-        free(temp);
-    } while (temp != NULL);
-
-    test_gnl(fd, NULL);
-
-    close(fd);
-    fd = open(name, O_RDONLY);
-    if (fd == -1) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    test_gnl(fd, "aaaaaaaaaa\n");
-    test_gnl(fd, "bbbbbbbbbb\n");
-    test_gnl(fd, "cccccccccc\n");
-    test_gnl(fd, "dddddddddd\n");
-    test_gnl(fd, NULL);
-
-    close(fd);
-
-    return 0;
+	return 0;
 } */
