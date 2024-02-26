@@ -30,11 +30,15 @@ static char	*process_result(char **result)
 	if (ft_strchr(*result, '\n'))
 	{
 		line = (char *)malloc(ft_strchr(*result, '\n') - *result + 2);
+		if (line == NULL)
+			return NULL;
 		line = get_line_and_update_result(result, line);
 	}
 	else
 	{
 		line = (char *)malloc(ft_strlen(*result) + 1);
+		if (line == NULL)
+			return NULL;
 		if (line)
 		{
 			ft_strlcpy(line, *result, ft_strlen(*result) + 1);
