@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 // ./a.out txt/texto.txt
 
 //LECTURA DE FICHERO O DE STDIN
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	char *buffer;
 
@@ -164,7 +164,7 @@ int	main(int argc, char *argv[])
 	}
 
 	return 0;
-}
+} */
 
 //PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
 /* int main(int argc, char *argv[])
