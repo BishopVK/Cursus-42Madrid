@@ -15,15 +15,10 @@
 static char	*get_line_and_update_result(char **result, char *line)
 {
 	char	*tmp;
-	char	*newline_ptr;
 
 	ft_strlcpy(line, *result, (ft_strchr(*result, '\n') - *result) + 2);
 	tmp = *result;
-	newline_ptr = ft_strchr(*result, '\n');
-	if (newline_ptr)
-		*result = ft_strdup(newline_ptr + 1);
-	else
-		*result = ft_strdup("");
+	*result = ft_strdup(ft_strchr(*result, '\n') + 1);
 	free(tmp);
 	return (line);
 }
@@ -34,7 +29,7 @@ static char	*process_result(char **result)
 
 	if (ft_strchr(*result, '\n'))
 	{
-		line = (char *)malloc(strchr(*result, '\n') - *result + 2);
+		line = (char *)malloc(ft_strchr(*result, '\n') - *result + 2);
 		line = get_line_and_update_result(result, line);
 	}
 	else
