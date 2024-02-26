@@ -15,10 +15,15 @@
 static char	*get_line_and_update_result(char **result, char *line)
 {
 	char	*tmp;
+	char	*newline_ptr;
 
 	ft_strlcpy(line, *result, (ft_strchr(*result, '\n') - *result) + 2);
 	tmp = *result;
-	*result = ft_strdup(*result + (ft_strchr(*result, '\n') - *result) + 1);
+	newline_ptr = ft_strchr(*result, '\n');
+	if (newline_ptr)
+		*result = ft_strdup(newline_ptr + 1);
+	else
+		*result = ft_strdup("");
 	free(tmp);
 	return (line);
 }
@@ -98,6 +103,75 @@ char	*get_next_line(int fd)
 // get_next_line.c get_next_line_utils.c -fsanitize=address -static-libsan
 // ./a.out txt/texto.txt
 
+//LECTURA DE FICHERO O DE STDIN
+int	main(int argc, char *argv[])
+{
+	char *buffer;
+
+	// Leer desde archivo si se proporciona un argumento en la línea de comandos
+	if (argc == 2)
+	{
+		// Abrir el archivo para lectura
+		int fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			exit(EXIT_FAILURE);
+		}
+
+		// Llamar a la función para leer el contenido del archivo
+		while ((buffer = get_next_line(fd)) != NULL)
+		{
+			// Verificar si se asignó memoria correctamente
+			if (buffer == NULL)
+			{
+				fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
+				break;
+			}
+
+			// Procesar la línea leída
+			printf("RECIBIDO: %s\n", buffer);
+
+			// Liberar la memoria asignada a la línea
+			free(buffer);
+		}
+
+		// Cerrar el descriptor de archivo
+		if (close(fd) == -1)
+		{
+			perror("close");
+			exit(EXIT_FAILURE);
+		}
+	}
+	// Leer desde stdin si no se proporcionan argumentos en la línea de comandos
+	else if (argc == 1)
+	{
+		while ((buffer = get_next_line(STDIN_FILENO)) != NULL)
+		{
+			// Verificar si se asignó memoria correctamente
+			if (buffer == NULL)
+			{
+				fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
+				break;
+			}
+
+			// Procesar la línea leída
+			printf("RECIBIDO: %s\n", buffer);
+
+			// Liberar la memoria asignada a la línea
+			free(buffer);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "Uso: %s [nombre_del_archivo]\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	return 0;
+}
+
+//LECTURA DE FICHERO
 /* int	main(int argc, char *argv[])
 {
 	char	*buffer;
