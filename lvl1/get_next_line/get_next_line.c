@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prueba_gnl9_FINAL.c                                :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:33:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/20 15:31:50 by danjimen         ###   ########.fr       */
+/*   Created: 2024/02/27 08:11:52 by danjimen          #+#    #+#             */
+/*   Updated: 2024/02/27 08:11:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ static char	*process_result(char **result)
 	{
 		line = (char *)malloc(ft_strchr(*result, '\n') - *result + 2);
 		if (line == NULL)
-			return NULL;
+			return (NULL);
 		line = get_line_and_update_result(result, line);
 	}
 	else
 	{
 		line = (char *)malloc(ft_strlen(*result) + 1);
 		if (line == NULL)
-			return NULL;
+			return (NULL);
 		if (line)
 		{
 			ft_strlcpy(line, *result, ft_strlen(*result) + 1);
 			free(*result);
-			*result = NULL;
+			*result = (NULL);
 		}
 	}
 	return (line);
@@ -124,7 +124,7 @@ char	*get_next_line(int fd)
 			// Verificar si se asignó memoria correctamente
 			if (buffer == NULL)
 			{
-				fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
+				fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
 				break;
 			}
 
@@ -150,7 +150,7 @@ char	*get_next_line(int fd)
 			// Verificar si se asignó memoria correctamente
 			if (buffer == NULL)
 			{
-				fprintf(stderr, "Error: Fallo al asignar memoria para el buffer\n");
+				fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
 				break;
 			}
 
@@ -189,13 +189,15 @@ char	*get_next_line(int fd)
 
 	// Intentar leer de un descriptor de archivo arbitrario
 	int invalid_fd = 42;
-	printf("Intentando leer de un descriptor de archivo arbitrario (%d):\n", invalid_fd);
+	printf("Intentando leer de un fd arbitrario (%d):\n", invalid_fd);
 	buffer = get_next_line(invalid_fd);
 
 	if (buffer == NULL) {
-		printf("La función get_next_line devolvió NULL para el descriptor de archivo arbitrario %d, como se esperaba.\n", invalid_fd);
+		printf("gnl devolvió NULL para el fd arbitrario %d, como esperaba\n",
+			invalid_fd);
 	} else {
-		printf("La función get_next_line devolvió algo inesperado para el descriptor de archivo arbitrario %d.\n", invalid_fd);
+		printf("gnl devolvió algo inesperado para el fd arbitrario %d.\n",
+			invalid_fd);
 		free(buffer);
 	}
 
