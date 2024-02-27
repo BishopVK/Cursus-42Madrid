@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:12:38 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/27 10:15:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:55:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 // ./a.out txt/texto.txt
 
 //LECTURA DE FICHERO O DE STDIN
-int	main(int argc, char *argv[]) {
+/* int	main(int argc, char *argv[]) {
 	char *buffer;
 
 	//Leer desde archivo si se proporciona al menos
@@ -163,7 +163,7 @@ int	main(int argc, char *argv[]) {
 	}
 
 	return 0;
-}
+} */
 
 //PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
 /* int main(int argc, char *argv[])
