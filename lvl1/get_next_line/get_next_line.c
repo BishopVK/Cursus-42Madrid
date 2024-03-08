@@ -145,6 +145,7 @@ char	*get_next_line(int fd)
 	// Leer desde stdin si no se proporcionan argumentos en la línea de comandos
 	else if (argc == 1)
 	{
+		printf("Ingrese texto desde stdin:\n");
 		while ((buffer = get_next_line(STDIN_FILENO)) != NULL)
 		{
 			// Verificar si se asignó memoria correctamente

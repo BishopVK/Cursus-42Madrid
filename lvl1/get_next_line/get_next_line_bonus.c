@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:12:38 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/27 19:05:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/29 08:57:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ int	read_file(int fd, char **result, char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*buffer;
-	static char	*result[MAX_FD];
+	static char	*result[OPEN_MAX];
 	char		*line;
 	int			bytes_read;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= MAX_FD)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= OPEN_MAX)
 		return (NULL);
 	if (!result[fd])
 		result[fd] = ft_strdup("");
@@ -125,7 +125,6 @@ char	*get_next_line(int fd)
 					fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
 					break;
 				}
-
 				// Procesar la línea leída
 				printf("RECIBIDO: %s\n", buffer);
 
