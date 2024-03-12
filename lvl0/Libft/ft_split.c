@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:41 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 11:37:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:02:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	**ft_split(char const *s, char c)
 	int		count;
 	int		i;
 
+	if (s == NULL)
+		return (NULL);
 	count = ft_count_elements(s, c);
 	split = (char **)malloc((count + 1) * sizeof(char *));
 	if (!split)

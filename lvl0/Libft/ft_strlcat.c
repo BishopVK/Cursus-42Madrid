@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:06:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/05 14:28:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/12 08:46:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,26 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	src_length;
-	size_t	dst_length;
+	size_t	dst_lenght;
 	size_t	i;
 
+	if (dstsize == 0)
+		return (ft_strlen(src));
 	src_length = ft_strlen(src);
-	dst_length = ft_strlen(dst);
-	if (dstsize <= dst_length)
+	dst_lenght = ft_strlen(dst);
+	if (dstsize <= dst_lenght)
 		return (src_length + dstsize);
 	i = 0;
-	while (src[i] != '\0' && i < dstsize - dst_length - 1)
+	while (src[i] != '\0' && i < dstsize - dst_lenght - 1)
 	{
-		dst[dst_length + i] = src[i];
+		dst[dst_lenght + i] = src[i];
 		i++;
 	}
-	dst[dst_length + i] = '\0';
-	return (src_length + dst_length);
+	dst[dst_lenght + i] = '\0';
+	return (src_length + dst_lenght);
 }
 
-/*int	main(void)
+/* int	main(void)
 {
 	char			dst[30] = "Hola ";
 	char			src[] = "mundo1234567890abcdefghi";
@@ -44,4 +46,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	printf("%s\n", dst);
 	printf("%u\n", length);
 	return (0);
-}*/
+} */

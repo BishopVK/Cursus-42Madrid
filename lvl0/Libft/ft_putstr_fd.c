@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:58:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/29 09:52:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:13:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 //Envía la string ’s’ al file descriptor especificado.
 void	ft_putstr_fd(char *s, int fd)
 {
+	if (s == NULL)
+		s = "(null)";
 	while (*s != '\0')
 	{
 		write(fd, s, 1);

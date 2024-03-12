@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:05:53 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 20:37:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/02/16 09:07:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strdup(const char *s)
 
 /* int	main(void)
 {
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	const char	*s = "HOLA";
 	char		*dst;
 
@@ -47,5 +47,6 @@ char	*ft_strdup(const char *s)
 	printf("Destino %s\n", dst);
 
 	free(dst);
+	system("leaks -q a.out");
 	return (0);
 } */
