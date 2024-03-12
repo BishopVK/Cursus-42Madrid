@@ -13,8 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//printf
-# include <stdio.h>
+//libft
+# include "libft/libft.h"
+
+//ft_printf
+# include "printf/ft_printf.h"
+
+//get_next_line
+# include "get_next_line/get_next_line_bonus.h"
 
 //argc, argv
 # include <stdlib.h>
