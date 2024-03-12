@@ -12,24 +12,31 @@
 
 #include "push_swap.h"
 
-int main(int argc, char *argv[]) {
-	int all_quoted;
-	int i;
+// cc push_swap.c push_swap.a libft/libft.a printf/libftprintf.a
+int	main(int argc, char *argv[])
+{
+	int		i;
+	int		all_quoted;
+	char	*argument;
+	char	**tokens;
+	int		j;
+
 	// Verificar si se proporcionaron al menos dos argumentos
-	if (argc < 2) {
-		printf("Error: Debe proporcionar al menos un argumento.\n");
+	if (argc < 2)
+	{
+		ft_printf("Error: Debe proporcionar al menos un argumento.\n");
 		return (1); // Devolver un código de error
 	}
 
 	// Verificar si todos los argumentos están entre comillas o ninguno lo está
-	all_quoted = 1;
 	i = 1;
+	all_quoted = 1;
 	while (i < argc)
 	{
-		if (argv[i][0] != '"' || argv[i][strlen(argv[i]) - 1] != '"')
+		if (argv[i][0] != '"' || argv[i][ft_strlen(argv[i]) - 1] != '"')
 		{
 			all_quoted = 0;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -40,17 +47,27 @@ int main(int argc, char *argv[]) {
 		i = 1;
 		while (i < argc)
 		{
-			char *argument = argv[i];
+			argument = argv[i];
 			// Eliminar las comillas
-			memmove(argument, argument + 1, strlen(argument));
-			argument[strlen(argument) - 1] = '\0';
+			ft_memmove(argument, argument + 1, ft_strlen(argument));
+			argument[ft_strlen(argument) - 1] = '\0';
 
 			// Ahora, imprimir y procesar los valores separados por espacio
-			char *token = strtok(argument, " ");
-			while (token != NULL)
+			tokens = ft_split(argument, ' ');
+			if (tokens)
 			{
-				printf("%s\n", token);
-				token = strtok(NULL, " ");
+				j = 0;
+				while (tokens[j] != NULL)
+				{
+					ft_printf("%s\n", tokens[j]);
+					free(tokens[j]); // Liberar memoria para cada token
+					j++;
+				}
+				free(tokens); // Liberar memoria para el arreglo de tokens
+			} else
+			{
+				// Manejar el caso en que ft_split devuelva NULL
+				ft_printf("Error al dividir la cadena\n");
 			}
 			i++;
 		}
@@ -61,7 +78,7 @@ int main(int argc, char *argv[]) {
 		i = 1;
 		while (i < argc)
 		{
-			printf("%s\n", argv[i]);
+			ft_printf("%s\n", argv[i]);
 			i++;
 		}
 	}
