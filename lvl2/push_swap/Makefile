@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/03/12 19:36:28 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/14 10:21:34 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	push_swap.a
+NAME		=	push_swap
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	push_swap.c \
@@ -27,9 +27,6 @@ LIBFT		=	$(LIBFT_DIR)/libft.a
 PRINTF_DIR	=	printf
 PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
-#GNL_DIR		=	get_next_line
-#GNL			=	$(GNL_DIR)/gnl.a
-
 all: $(NAME)
 
 $(LIBFT):
@@ -40,11 +37,10 @@ $(PRINTF):
 	@$(MAKE) -C $(PRINTF_DIR)
 
 $(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	ar -rcs $(NAME) $(OBJ) $(LIBFT) $(PRINTF)
-	ranlib $(NAME)
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I -L$(LIBFT_DIR) -I -L$(PRINTF_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
