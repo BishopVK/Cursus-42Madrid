@@ -1,0 +1,14 @@
+# Ignorar archivos temporales
+*.tmp
+.DS_Store
+
+# Ignorar archivos de compilación
+*.o
+*.out
+*.a
+push_swap
+
+# Ignorar directorios específicos
+/.vscode
+/pruebas
+/txt
