@@ -10,5 +10,4 @@ push_swap
 
 # Ignorar directorios específicos
 /.vscode
-/pruebas
 /txt
