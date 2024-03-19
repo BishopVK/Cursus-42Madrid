@@ -31,4 +31,30 @@
 //strlen, memmove, strtok
 # include <string.h>
 
+/* typedef struct s_stack_node
+{
+	int					nb;
+	int					index;
+	struct s_stack_node	*next;
+	struct s_stack_node	*prev;
+}					t_stack_node;
+
+struct s_stack
+{
+	struct t_stack_node	*head;
+	struct t_stack_node	*tail;
+}					t_stack; */
+
+/************************************************************/
+/*							parse.c							*/
+/************************************************************/
+int				parse_argvs(int argc, char **argv);
+
+/************************************************************/
+/*						create_stack.c						*/
+/************************************************************/
+//t_stack_node	*stack_new_node(void *content);
+
+
+
 #endif
