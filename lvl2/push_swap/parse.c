@@ -6,11 +6,16 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/18 15:11:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:05:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	no_repeat_numbers(int len)
+{
+	
+}
 
 static int	allowed_chars(char *argv, char *allowed)
 {
@@ -46,11 +51,14 @@ static void	split_argvs(char *argv)
 	int		j;
 	char	**split;
 	int		num_strings;
+	static int	total_strings;
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
 	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay en frases
 		num_strings++;
+	total_strings += num_strings;
+	//printf("total_strings = %d\n", total_strings);
 	j = 0;
 	while (j < num_strings) // Imprimir las frases almacenadas
 	{
