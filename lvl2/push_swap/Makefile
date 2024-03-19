@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/03/15 11:13:10 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/19 11:23:36 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		=	push_swap
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	push_swap.c \
+				parse.c \
 				get_next_line/get_next_line_bonus.c \
 				get_next_line/get_next_line_utils_bonus.c
 
