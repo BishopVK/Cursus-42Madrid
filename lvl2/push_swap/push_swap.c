@@ -17,8 +17,10 @@
 // ./a.out `jot -r 500 -100 100`
 int	main(int argc, char *argv[])
 {
-	int				not_allowed_char;
+	int					not_allowed_char;
+	t_stack_node	*new_node;
 
+	new_node = NULL;
 	if (argc < 2)
 	{
 		ft_printf("Uso: %s <num1> <num2> ... <numN>\n", argv[0]);
@@ -26,7 +28,7 @@ int	main(int argc, char *argv[])
 	}
 	if (argc >= 2)
 	{
-		not_allowed_char = parse_argvs(argc, argv);
+		not_allowed_char = parse_argvs(argc, argv, new_node);
 		if (not_allowed_char != 0)
 			return (1);
 	}
