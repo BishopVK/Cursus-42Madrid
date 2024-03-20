@@ -17,7 +17,7 @@
 // ./a.out `jot -r 500 -100 100`
 int	main(int argc, char *argv[])
 {
-	int					not_allowed_char;
+	int				not_allowed_char;
 	t_stack_node	*new_node;
 
 	new_node = NULL;

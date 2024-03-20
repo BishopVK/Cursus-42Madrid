@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/20 19:47:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:54:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	allowed_chars(char *argv, char *allowed)
 	return (not_allowed_char);
 }
 
-t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node)
+t_stack_node	*split_argvs(char *argv, int *total_strings,
+					t_stack_node *new_node)
 {
 	int				j;
 	char			**split;
@@ -54,7 +55,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
-	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay en frases
+	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay
 		num_strings++;
 	*total_strings += num_strings;
 	j = 0;
@@ -71,7 +72,6 @@ t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node
 		j++;
 	}
 	free(split); // Liberar el array bidimensional
-	//printf("total_strings = %d\n", *total_strings);
 	return (new_node);
 }
 
@@ -92,7 +92,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
 			printf("Has introducido caracteres no permitidos\n");
 			return (1);
 		}
-	} 
+	}
 	i = 1;
 	while (i < argc)
 		new_node = split_argvs(argv[i++], &total_strings, new_node);

@@ -46,14 +46,15 @@ typedef struct s_stack_node
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
-int	parse_argvs(int argc, char **argv, t_stack_node *new_node);
-t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node);
-int	allowed_chars(char *argv, char *allowed);
+int				parse_argvs(int argc, char **argv, t_stack_node *new_node);
+t_stack_node	*split_argvs(char *argv, int *total_strings,
+					t_stack_node *new_node);
+int				allowed_chars(char *argv, char *allowed);
 
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
-void	display(t_stack_node *new_node);
+void			display(t_stack_node *new_node);
 t_stack_node	*push(int nbr, t_stack_node *new_node);
 
 #endif
