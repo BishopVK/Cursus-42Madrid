@@ -6,37 +6,46 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/19 11:22:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:02:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* t_stack_node	*stack_new_node(void *content, void *index)
+void	display(t_stack_node *new_node)
 {
-	t_stack_node	*new_node;
+	t_stack_node	*local_node;
 
-	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
-	if (!new_node)
+	local_node = new_node;
+	if (local_node == NULL)
+		ft_printf("Stack vacío\n");
+	else
+		while (local_node)
+		{
+			ft_printf("valor = %d\n", local_node->nb);
+			local_node = local_node->next;
+		}
+}
+
+t_stack_node	*push(int nbr, t_stack_node *new_node)
+{
+	t_stack_node	*local_node;
+
+	local_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+	if (!local_node)
 		return (NULL);
-	new_node->nb = content;
-	new_node->index = index;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
+	if (new_node == NULL)
+	{
+		local_node->nb = nbr;
+		local_node->next = NULL;
+		//local_node->prev = NULL;
+	}
+	else
+	{
+		local_node->nb = nbr;
+		local_node->next = new_node;
+	}
+	return (local_node);
 }
 
-void	initialize_stack(struct t_stack	*stack)
-{
-	stack->head = NULL;
-	stack->tail = NULL;
-}
-
-t_stack_node	*create_stack(void)
-{
-	t_stack_node	*stack_a;
-	t_stack_node	*stack_b;
-
-	initialize_stack(&stack_a);
-} */
 
