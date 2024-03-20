@@ -31,7 +31,7 @@
 //strlen, memmove, strtok
 # include <string.h>
 
-/* typedef struct s_stack_node
+typedef struct s_stack_node
 {
 	int					nb;
 	int					index;
@@ -43,7 +43,7 @@ struct s_stack
 {
 	struct t_stack_node	*head;
 	struct t_stack_node	*tail;
-}					t_stack; */
+}					t_stack;
 
 /************************************************************/
 /*							parse.c							*/
