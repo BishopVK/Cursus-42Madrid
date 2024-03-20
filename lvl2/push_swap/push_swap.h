@@ -34,27 +34,26 @@
 typedef struct s_stack_node
 {
 	int					nb;
-	int					index;
 	struct s_stack_node	*next;
-	struct s_stack_node	*prev;
 }					t_stack_node;
 
-struct s_stack
+/* typedef struct s_stack
 {
 	struct t_stack_node	*head;
 	struct t_stack_node	*tail;
-}					t_stack;
+}					t_stack; */
 
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
-int				parse_argvs(int argc, char **argv);
+int	parse_argvs(int argc, char **argv, t_stack_node *new_node);
+t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node);
+int	allowed_chars(char *argv, char *allowed);
 
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
-//t_stack_node	*stack_new_node(void *content);
-
-
+void	display(t_stack_node *new_node);
+t_stack_node	*push(int nbr, t_stack_node *new_node);
 
 #endif
