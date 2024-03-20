@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/03/19 11:23:36 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/20 14:30:29 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	push_swap.c \
 				parse.c \
+				create_stack.c \
 				get_next_line/get_next_line_bonus.c \
 				get_next_line/get_next_line_utils_bonus.c
 
