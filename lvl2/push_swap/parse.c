@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/20 10:29:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:47:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	
 } */
 
-static int	allowed_chars(char *argv, char *allowed)
+int	allowed_chars(char *argv, char *allowed)
 {
 	int		j;
 	int		k;
@@ -46,11 +46,11 @@ static int	allowed_chars(char *argv, char *allowed)
 	return (not_allowed_char);
 }
 
-static void	split_argvs(char *argv, int *total_strings)
+t_stack_node	*split_argvs(char *argv, int *total_strings, t_stack_node *new_node)
 {
-	int		j;
-	char	**split;
-	int		num_strings;
+	int				j;
+	char			**split;
+	int				num_strings;
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
@@ -60,6 +60,7 @@ static void	split_argvs(char *argv, int *total_strings)
 	j = 0;
 	while (j < num_strings) // Imprimir las frases almacenadas
 	{
+		new_node = push(ft_atoi(split[j]), new_node);
 		printf("split[%d]: %s\n", j, split[j]);
 		j++;
 	}
@@ -71,10 +72,10 @@ static void	split_argvs(char *argv, int *total_strings)
 	}
 	free(split); // Liberar el array bidimensional
 	//printf("total_strings = %d\n", *total_strings);
-	//return (total_strings);
+	return (new_node);
 }
 
-int	parse_argvs(int argc, char **argv)
+int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
 {
 	int		i;
 	int		not_allowed_char;
@@ -91,10 +92,11 @@ int	parse_argvs(int argc, char **argv)
 			printf("Has introducido caracteres no permitidos\n");
 			return (1);
 		}
-	}
+	} 
 	i = 1;
 	while (i < argc)
-		split_argvs(argv[i++], &total_strings);
+		new_node = split_argvs(argv[i++], &total_strings, new_node);
 	printf("total_strings = %d\n", total_strings);
+	display(new_node);
 	return (0);
 }
