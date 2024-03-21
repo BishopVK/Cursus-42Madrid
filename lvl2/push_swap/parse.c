@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/20 19:54:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:36:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 	int				j;
 	char			**split;
 	int				num_strings;
+	long			num_not_integer;
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
@@ -61,21 +62,56 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 	j = 0;
 	while (j < num_strings) // Imprimir las frases almacenadas
 	{
-		new_node = push(ft_atoi(split[j]), new_node);
-		printf("split[%d]: %s\n", j, split[j]);
+		num_not_integer = ft_atol(split[j]);
+		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
+		{
+			ft_printf("%s fuera de los límites de INT\n", split[j]);
+			//stack_clear(new_node);
+			//exit(-1);
+		}
+		ft_printf("split[%d]: %s\n", j, split[j]);
 		j++;
 	}
 	j = 0;
 	while (j < num_strings) // Liberar la memoria asignada a cada split
 	{
+		new_node = push(ft_atoi(split[j]), new_node);
 		free(split[j]);
 		j++;
 	}
 	free(split); // Liberar el array bidimensional
+	//system("leaks -q push_swap");
 	return (new_node);
 }
 
 int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
+{
+	int		i;
+	int		not_allowed_char;
+	int		total_strings;
+
+	i = 1;
+	while (i < argc)
+	{
+		not_allowed_char = allowed_chars(argv[i++], "0123456789 +-");
+		if (not_allowed_char != 0)
+		{
+			ft_printf("Has introducido caracteres no permitidos\n");
+			return (1);
+		}
+	}
+	i = 1;
+	while (i < argc)
+		new_node = split_argvs(argv[i++], &total_strings, new_node);
+	ft_printf("total_strings = %d\n", total_strings);
+	display(new_node);
+	no_repeat_numbers(new_node);
+	ft_printf("%d elementos en el stack\n", stack_len(new_node));
+	ft_printf("HOLA");
+	return (0);
+}
+
+/* int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
 {
 	int		i;
 	int		not_allowed_char;
@@ -89,14 +125,16 @@ int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
 		not_allowed_char = allowed_chars(argv[i++], allowed);
 		if (not_allowed_char != 0)
 		{
-			printf("Has introducido caracteres no permitidos\n");
+			ft_printf("Has introducido caracteres no permitidos\n");
 			return (1);
 		}
 	}
 	i = 1;
 	while (i < argc)
 		new_node = split_argvs(argv[i++], &total_strings, new_node);
-	printf("total_strings = %d\n", total_strings);
+	ft_printf("total_strings = %d\n", total_strings);
 	display(new_node);
+	no_repeat_numbers(new_node);
+	ft_printf("HOLA");
 	return (0);
-}
+} */
