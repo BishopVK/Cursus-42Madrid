@@ -31,6 +31,9 @@
 //strlen, memmove, strtok
 # include <string.h>
 
+//INT_MAX, INT_MIN
+# include <limits.h>
+
 typedef struct s_stack_node
 {
 	int					nb;
@@ -46,15 +49,28 @@ typedef struct s_stack_node
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
-int				parse_argvs(int argc, char **argv, t_stack_node *new_node);
+int				allowed_chars(char *argv, char *allowed);
 t_stack_node	*split_argvs(char *argv, int *total_strings,
 					t_stack_node *new_node);
-int				allowed_chars(char *argv, char *allowed);
+int				parse_argvs(int argc, char **argv, t_stack_node *new_node);
 
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
+void			ft_del_node_content(void *content);
+void			stack_clear(t_stack_node *node);
+void			no_repeat_numbers(t_stack_node *new_node);
 void			display(t_stack_node *new_node);
 t_stack_node	*push(int nbr, t_stack_node *new_node);
+
+/************************************************************/
+/*						ft_atol.c							*/
+/************************************************************/
+long			ft_atol(const char *nptr);
+
+/************************************************************/
+/*						stack_utils.c						*/
+/************************************************************/
+int	stack_len(t_stack_node *new_node);
 
 #endif
