@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 18:34:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:48:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 	no_repeat_numbers(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Realizamos un swap\n");
-	sa(stack_node_a);
+	sa(&stack_node_a);
 	display(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Vaciamos el stack\n");
