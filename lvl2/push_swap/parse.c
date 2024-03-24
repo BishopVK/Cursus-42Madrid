@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 12:45:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:28:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 		}
 	}
 	i = 1;
+	total_strings = 0;
 	while (i < argc)
 		stack_node_a = split_argvs(argv[i++], &total_strings, stack_node_a);
 	ft_printf("total_strings = %d\n", total_strings);
