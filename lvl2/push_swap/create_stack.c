@@ -6,11 +6,27 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 18:35:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:33:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	stack_len(t_stack_node *new_node)
+{
+	int	len;
+
+	len = 0;
+	if (new_node != NULL)
+	{
+		while (new_node)
+		{
+			new_node = new_node->next;
+			len++;
+		}
+	}
+	return (len);
+}
 
 void	stack_clear(t_stack_node **node)
 {
