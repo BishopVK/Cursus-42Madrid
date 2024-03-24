@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 20:58:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 21:32:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 		num_not_integer = ft_atol(split[i]);
 		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
 			*out_of_limits -= 1;
-		new_node = push(ft_atoi(split[i]), new_node);
+		new_node = push(ft_custom_atoi(split[i]), new_node);
 		free(split[i]);
 		i++;
 	}
