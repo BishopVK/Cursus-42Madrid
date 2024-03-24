@@ -78,9 +78,9 @@ int				stack_len(t_stack_node *new_node);
 /************************************************************/
 /*							swap.c							*/
 /************************************************************/
-void			swap(t_stack_node *node);
-void			sa(t_stack_node *stack_node_a);
-void			sb(t_stack_node *stack_node_b);
-void			ss(t_stack_node *stack_node_a, t_stack_node *stack_node_b);
+void			swap(t_stack_node **node);
+void			sa(t_stack_node **stack_node_a);
+void			sb(t_stack_node **stack_node_b);
+void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 
 #endif
