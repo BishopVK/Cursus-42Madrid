@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/21 14:36:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:30:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
 	display(new_node);
 	no_repeat_numbers(new_node);
 	ft_printf("%d elementos en el stack\n", stack_len(new_node));
-	ft_printf("HOLA");
+	stack_clear(&new_node);
+	display(new_node);
 	return (0);
 }
 
