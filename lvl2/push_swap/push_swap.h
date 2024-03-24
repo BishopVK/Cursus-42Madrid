@@ -37,6 +37,7 @@
 typedef struct s_stack_node
 {
 	int					nb;
+	//int					orden; //orden en que deben estar ordenados
 	struct s_stack_node	*next;
 }					t_stack_node;
 
@@ -58,7 +59,7 @@ int				parse_argvs(int argc, char **argv, t_stack_node *new_node);
 /*						create_stack.c						*/
 /************************************************************/
 void			ft_del_node_content(void *content);
-void			stack_clear(t_stack_node *node);
+void			stack_clear(t_stack_node **node);
 void			no_repeat_numbers(t_stack_node *new_node);
 void			display(t_stack_node *new_node);
 t_stack_node	*push(int nbr, t_stack_node *new_node);
@@ -71,6 +72,6 @@ long			ft_atol(const char *nptr);
 /************************************************************/
 /*						stack_utils.c						*/
 /************************************************************/
-int	stack_len(t_stack_node *new_node);
+int				stack_len(t_stack_node *new_node);
 
 #endif
