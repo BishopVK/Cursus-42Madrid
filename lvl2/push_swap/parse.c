@@ -6,18 +6,28 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 18:48:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:58:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	no_repeat_numbers(t_stack_node *new_node)
+void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
+{
+	if (out_of_limits < 0)
+	{
+		stack_clear(&stack_node_a);
+		ft_printf("Error: Number out of INT limits\n");
+		exit(-1);
+	}
+}
+
+void	no_repeat_numbers(t_stack_node *stack_node_a)
 {
 	t_stack_node	*local_node;
 	t_stack_node	*tmp_node;
 
-	local_node = new_node;
+	local_node = stack_node_a;
 	if (local_node == NULL)
 		ft_printf("Stack vacío\n");
 	else
@@ -29,7 +39,8 @@ void	no_repeat_numbers(t_stack_node *new_node)
 			{
 				if (local_node->nb == tmp_node->nb)
 				{
-					ft_printf("valor duplicado -> %d.\n", local_node->nb);
+					ft_printf("ERROR: %d is duplicate\n", local_node->nb);
+					stack_clear(&stack_node_a);
 					exit(-1);
 				}
 				tmp_node = tmp_node->next;
@@ -69,49 +80,39 @@ int	allowed_chars(char *argv, char *allowed)
 }
 
 t_stack_node	*split_argvs(char *argv, int *total_strings,
-					t_stack_node *new_node)
+					t_stack_node *new_node, int *out_of_limits)
 {
-	int				j;
-	char			**split;
-	int				num_strings;
-	long			num_not_integer;
+	int		i;
+	char	**split;
+	int		num_strings;
+	long	num_not_integer;
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
 	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay
 		num_strings++;
 	*total_strings += num_strings;
-	j = 0;
-	while (j < num_strings) // Imprimir las frases almacenadas
+	i = 0;
+	while (i < num_strings) // Liberar la memoria asignada a cada split
 	{
-		num_not_integer = ft_atol(split[j]);
+		num_not_integer = ft_atol(split[i]);
 		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
-		{
-			ft_printf("%s fuera de los límites de INT\n", split[j]);
-			//stack_clear(new_node);
-			//exit(-1);
-		}
-		ft_printf("split[%d]: %s\n", j, split[j]);
-		j++;
-	}
-	j = 0;
-	while (j < num_strings) // Liberar la memoria asignada a cada split
-	{
-		new_node = push(ft_atoi(split[j]), new_node);
-		free(split[j]);
-		j++;
+			*out_of_limits -= 1;
+		new_node = push(ft_atoi(split[i]), new_node);
+		free(split[i]);
+		i++;
 	}
 	free(split); // Liberar el array bidimensional
-	//system("leaks -q push_swap");
 	return (new_node);
 }
 
 int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 		t_stack_node *stack_node_b)
 {
-	int		i;
-	int		not_allowed_char;
-	int		total_strings;
+	int	i;
+	int	not_allowed_char;
+	int	total_strings;
+	int	out_of_limits;
 
 	i = 1;
 	while (i < argc)
@@ -119,17 +120,20 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 		not_allowed_char = allowed_chars(argv[i++], "0123456789 +-");
 		if (not_allowed_char != 0)
 		{
-			ft_printf("Has introducido caracteres no permitidos\n");
+			ft_printf("ERROR: You have entered illegal characters\n");
 			return (1);
 		}
 	}
 	i = 1;
 	total_strings = 0;
+	out_of_limits = 0;
 	while (i < argc)
-		stack_node_a = split_argvs(argv[i++], &total_strings, stack_node_a);
+		stack_node_a = split_argvs(argv[i++], &total_strings, stack_node_a,
+			&out_of_limits);
+	integer_number(out_of_limits, stack_node_a);
+	no_repeat_numbers(stack_node_a);
 	ft_printf("total_strings = %d\n", total_strings);
 	display(stack_node_a);
-	no_repeat_numbers(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Realizamos un swap\n");
 	sa(&stack_node_a);

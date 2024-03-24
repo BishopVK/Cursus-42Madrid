@@ -50,10 +50,11 @@ typedef struct s_stack_node
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
-void			no_repeat_numbers(t_stack_node *new_node);
+void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
+void			no_repeat_numbers(t_stack_node *stack_node_a);
 int				allowed_chars(char *argv, char *allowed);
 t_stack_node	*split_argvs(char *argv, int *total_strings,
-					t_stack_node *new_node);
+					t_stack_node *new_node, int *out_of_limits);
 int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 					t_stack_node *stack_node_b);
 
