@@ -34,6 +34,5 @@ int	main(int argc, char *argv[])
 		if (not_allowed_char != 0)
 			return (1);
 	}
-	//system("leaks -q push_swap");
 	return (0);
 }
