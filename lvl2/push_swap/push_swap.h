@@ -50,6 +50,7 @@ typedef struct s_stack_node
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
+void			no_repeat_numbers(t_stack_node *new_node);
 int				allowed_chars(char *argv, char *allowed);
 t_stack_node	*split_argvs(char *argv, int *total_strings,
 					t_stack_node *new_node);
@@ -61,7 +62,6 @@ int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 /************************************************************/
 void			ft_del_node_content(void *content);
 void			stack_clear(t_stack_node **node);
-void			no_repeat_numbers(t_stack_node *new_node);
 void			display(t_stack_node *new_node);
 t_stack_node	*push(int nbr, t_stack_node *new_node);
 
