@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/21 13:26:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:33:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,21 @@
 		free(content);
 } */
 
-void	stack_clear(t_stack_node *node)
+void	stack_clear(t_stack_node **node)
 {
 	t_stack_node	*current;
 	t_stack_node	*next;
-	//int				*ptr;
 
-	current = node;
-	if (node != NULL)
+	current = *node;
+	if (*node != NULL)
 	{
 		while (current != NULL)
 		{
-			//ptr = &(current->nb);
 			next = current->next;
-			//ft_del_node_content((void *)ptr);
 			free(current);
 			current = next;
 		}
-		node = NULL;
+		*node = NULL;
 	}
 }
 
