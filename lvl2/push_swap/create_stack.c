@@ -6,17 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/22 14:33:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:21:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* void	ft_del_node_content(void *content)
-{
-	if (content != NULL)
-		free(content);
-} */
 
 void	stack_clear(t_stack_node **node)
 {
@@ -80,7 +74,29 @@ void	display(t_stack_node *new_node)
 	}
 }
 
-t_stack_node	*push(int nbr, t_stack_node *new_node)
+t_stack_node	*push(int nbr, t_stack_node *node)
+{
+	t_stack_node	*new_node;
+	t_stack_node	*current;
+
+	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+	if (!new_node)
+		return (NULL);
+	new_node->nb = nbr;
+	new_node->next = NULL;
+	if (node == NULL)
+		return (new_node);
+	current = node;
+	while (current->next != NULL)
+		current = current->next;
+
+	current->next = new_node;
+		
+	return (node);
+}
+
+// Introducir en orden inverso
+/* t_stack_node	*push(int nbr, t_stack_node *new_node)
 {
 	t_stack_node	*local_node;
 
@@ -98,4 +114,4 @@ t_stack_node	*push(int nbr, t_stack_node *new_node)
 		local_node->next = new_node;
 	}
 	return (local_node);
-}
+} */
