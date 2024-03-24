@@ -18,9 +18,11 @@
 int	main(int argc, char *argv[])
 {
 	int				not_allowed_char;
-	t_stack_node	*new_node;
+	t_stack_node	*stack_node_a;
+	t_stack_node	*stack_node_b;
 
-	new_node = NULL;
+	stack_node_a = NULL;
+	stack_node_b = NULL;
 	if (argc < 2)
 	{
 		ft_printf("Uso: %s <num1> <num2> ... <numN>\n", argv[0]);
@@ -28,7 +30,7 @@ int	main(int argc, char *argv[])
 	}
 	if (argc >= 2)
 	{
-		not_allowed_char = parse_argvs(argc, argv, new_node);
+		not_allowed_char = parse_argvs(argc, argv, stack_node_a, stack_node_b);
 		if (not_allowed_char != 0)
 			return (1);
 	}
