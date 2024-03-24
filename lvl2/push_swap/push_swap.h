@@ -72,6 +72,11 @@ t_stack_node	*push(int nbr, t_stack_node *new_node);
 long			ft_atol(const char *nptr);
 
 /************************************************************/
+/*					ft_custom_atoi.c						*/
+/************************************************************/
+int ft_custom_atoi(const char *nptr);
+
+/************************************************************/
 /*						stack_utils.c						*/
 /************************************************************/
 int				stack_len(t_stack_node *new_node);
