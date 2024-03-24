@@ -10,6 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Definición de colores
+COLOR_CYAN := "\x1b[36m"
+COLOR_GREEN := "\x1b[32m"
+COLOR_RESET := "\x1b[0m"
+
+# Macro para imprimir un mensaje en color cyan
+define print_cyan
+	@echo $(COLOR_CYAN)$1$(COLOR_RESET)
+endef
+
+# Macro para imprimir un mensaje en color green
+define print_green
+	@echo $(COLOR_GREEN)$1$(COLOR_RESET)
+endef
+
 NAME		=	libftprintf.a
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
@@ -35,17 +50,23 @@ all: $(NAME)
 $(NAME): $(OBJ)
 #	$(CC) $(CFLAGS) -c -I$(LIBFT_INC) $(SRC)
 #	ar rc $(NAME) $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+#	@$(CC) $(CFLAGS) -c $(SRC)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	$(call print_cyan,"Compiled printf")
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 #	@$(MAKE) -C $(LIBFT_DIR) clean
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	$(call print_green,"Cleaned object files of printf")
 
 fclean: clean
 #	@$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	$(call print_green,"Cleaned the library libftprintf.a")
 
 re: fclean all
 

@@ -6,9 +6,24 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 08:22:03 by danjimen          #+#    #+#              #
-#    Updated: 2024/01/29 09:59:27 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/22 13:34:26 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# Definición de colores
+COLOR_CYAN := "\x1b[36m"
+COLOR_GREEN := "\x1b[32m"
+COLOR_RESET := "\x1b[0m"
+
+# Macro para imprimir un mensaje en color cyan
+define print_cyan
+	@echo $(COLOR_CYAN)$1$(COLOR_RESET)
+endef
+
+# Macro para imprimir un mensaje en color green
+define print_green
+	@echo $(COLOR_GREEN)$1$(COLOR_RESET)
+endef
 
 NAME		=	libft.a
 CC			=	cc
@@ -65,12 +80,14 @@ BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) libft.h
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	$(call print_cyan,"Compiled libft")
 
 bonus: $(BONUS_OBJ) libft.h
-	ar rc $(NAME) $(BONUS_OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(BONUS_OBJ)
+	@ranlib $(NAME)
+	$(call print_cyan,"Compiled libft bonus")
 
 %.o: %.c libft.h
 #	@echo "Compilando $<..."
@@ -78,9 +95,11 @@ bonus: $(BONUS_OBJ) libft.h
 
 clean:
 	@rm -f $(OBJ) $(BONUS_OBJ)
+	$(call print_green,"Cleaned object files of libft")
 
 fclean: clean
 	@rm -f $(NAME) $(BONUS_OBJ)
+	$(call print_green,"Cleaned the library libft.a")
 
 re: fclean all
 
