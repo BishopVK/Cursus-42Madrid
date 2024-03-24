@@ -53,7 +53,8 @@ typedef struct s_stack_node
 int				allowed_chars(char *argv, char *allowed);
 t_stack_node	*split_argvs(char *argv, int *total_strings,
 					t_stack_node *new_node);
-int				parse_argvs(int argc, char **argv, t_stack_node *new_node);
+int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
+					t_stack_node *stack_node_b);
 
 /************************************************************/
 /*						create_stack.c						*/
@@ -73,5 +74,13 @@ long			ft_atol(const char *nptr);
 /*						stack_utils.c						*/
 /************************************************************/
 int				stack_len(t_stack_node *new_node);
+
+/************************************************************/
+/*							swap.c							*/
+/************************************************************/
+void			swap(t_stack_node *node);
+void			sa(t_stack_node *stack_node_a);
+void			sb(t_stack_node *stack_node_b);
+void			ss(t_stack_node *stack_node_a, t_stack_node *stack_node_b);
 
 #endif
