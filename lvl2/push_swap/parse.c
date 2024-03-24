@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 21:32:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/24 23:12:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	no_repeat_numbers(t_stack_node *stack_node_a)
 
 	local_node = stack_node_a;
 	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
+		ft_printf("Empty Stack\n");
 	else
 	{
 		while (local_node)
@@ -132,7 +132,8 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 			&out_of_limits);
 	integer_number(out_of_limits, stack_node_a);
 	no_repeat_numbers(stack_node_a);
-	ft_printf("total_strings = %d\n", total_strings);
+	//sort_numbers(stack_node_a, stack_node_b);
+	/* ft_printf("total_strings = %d\n", total_strings);
 	display(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Realizamos un swap\n");
@@ -140,7 +141,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 	display(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Vaciamos el stack\n");
-	stack_clear(&stack_node_a);
+	stack_clear(&stack_node_a); */
 	display(stack_node_b);
 	return (0);
 }
