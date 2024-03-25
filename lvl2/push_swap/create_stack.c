@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 22:33:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:40:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,44 @@ int	stack_len(t_stack_node *new_node)
 		}
 	}
 	return (len);
+}
+
+void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
+{
+	if (out_of_limits < 0)
+	{
+		stack_clear(&stack_node_a);
+		ft_printf("Error: Number out of INT limits\n");
+		exit(-1);
+	}
+}
+
+void	no_repeat_numbers(t_stack_node *stack_node_a)
+{
+	t_stack_node	*local_node;
+	t_stack_node	*tmp_node;
+
+	local_node = stack_node_a;
+	if (local_node == NULL)
+		ft_printf("Empty Stack\n");
+	else
+	{
+		while (local_node)
+		{
+			tmp_node = local_node->next;
+			while (tmp_node)
+			{
+				if (local_node->nb == tmp_node->nb)
+				{
+					ft_printf("ERROR: %d is duplicate\n", local_node->nb);
+					stack_clear(&stack_node_a);
+					exit(-1);
+				}
+				tmp_node = tmp_node->next;
+			}
+			local_node = local_node->next;
+		}
+	}
 }
 
 void	stack_clear(t_stack_node **node)
@@ -63,7 +101,7 @@ void	display(t_stack_node *new_node)
 	}
 }
 
-t_stack_node	*push(int nbr, t_stack_node *node)
+t_stack_node	*create_stack(int nbr, t_stack_node *node)
 {
 	t_stack_node	*new_node;
 	t_stack_node	*current;
@@ -78,9 +116,7 @@ t_stack_node	*push(int nbr, t_stack_node *node)
 	current = node;
 	while (current->next != NULL)
 		current = current->next;
-
 	current->next = new_node;
-		
 	return (node);
 }
 
