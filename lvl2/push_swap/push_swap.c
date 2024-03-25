@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 	stack_node_b = NULL;
 	if (argc < 2)
 	{
-		ft_printf("Uso: %s <num1> <num2> ... <numN>\n", argv[0]);
+		ft_printf("Use: %s <num1> <num2> ... <numN>\n", argv[0]);
 		return (1);
 	}
 	if (argc >= 2)
