@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 14:22:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:33:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	signs_checker(char *argv)
 {
 	int	i;
-	int	error;
 
 	i = 0;
-	error = 0;
 	if (ft_strlen(&argv[i]) < 2)
 		return ;
 	ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
@@ -26,7 +24,12 @@ void	signs_checker(char *argv)
 	{
 		if ((argv[i] == '+' || argv[i] == '-') && (argv[i + 1] == '+' || argv[i + 1] == '-'))
 		{
-			ft_printf("ERROR: 2 caracteres consecutivos\n");
+			ft_printf("ERROR: 2 signos consecutivos\n");
+			exit(1);
+		}
+		if (argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
+		{
+			ft_printf("ERROR: Sin espacio antes de un signo\n");
 			exit(1);
 		}
 		i++;
