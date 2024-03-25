@@ -31,8 +31,11 @@
 //strlen, memmove, strtok
 # include <string.h>
 
-//INT_MAX, INT_MIN
+//INT_MAX, INT_MIN, LLONG_MAX, LLONG_MIN
 # include <limits.h>
+
+//errno, ERANGE
+#include <errno.h>
 
 typedef struct s_stack_node
 {
@@ -92,5 +95,10 @@ void			only_one_element(t_stack_node *stack_node_a);
 void			its_ordered(t_stack_node *stack_node_a);
 void			sort_numbers(t_stack_node *stack_node_a,
 					t_stack_node *stack_node_b);
+
+/************************************************************/
+/*					ft_custom_atoll.c						*/
+/************************************************************/
+long long int	ft_custom_atoll(const char *nptr);
 
 #endif
