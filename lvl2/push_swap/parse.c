@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 18:47:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:00:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	allowed_chars(char *argv, char *allowed)
 t_stack_node	*split_argvs(char *argv, int *total_strings,
 					t_stack_node *new_node, int *out_of_limits)
 {
-	int		i;
-	char	**split;
-	int		num_strings;
-	long	num_not_integer;
+	int				i;
+	char			**split;
+	int				num_strings;
+	long long int	num_not_integer;
 
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
@@ -76,7 +76,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 	i = 0;
 	while (i < num_strings) // Liberar la memoria asignada a cada split
 	{
-		num_not_integer = ft_atol(split[i]);
+		num_not_integer = ft_custom_atoll(split[i]);
 		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
 			*out_of_limits -= 1;
 		new_node = create_stack(ft_atoi(split[i]), new_node);
