@@ -50,8 +50,7 @@ typedef struct s_stack_node
 /************************************************************/
 /*							parse.c							*/
 /************************************************************/
-void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
-void			no_repeat_numbers(t_stack_node *stack_node_a);
+void			signs_checker(char *argv);
 int				allowed_chars(char *argv, char *allowed);
 t_stack_node	*split_argvs(char *argv, int *total_strings,
 					t_stack_node *new_node, int *out_of_limits);
@@ -61,11 +60,12 @@ int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
+void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
+void			no_repeat_numbers(t_stack_node *stack_node_a);
 int				stack_len(t_stack_node *new_node);
-void			ft_del_node_content(void *content);
 void			stack_clear(t_stack_node **node);
-void			display(t_stack_node *new_node);
-t_stack_node	*push(int nbr, t_stack_node *new_node);
+void			display(t_stack_node *new_node); //ELIMINAR
+t_stack_node	*create_stack(int nbr, t_stack_node *new_node);
 
 /************************************************************/
 /*						ft_atol.c							*/
@@ -88,7 +88,8 @@ void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 /************************************************************/
 /*						sort_numbers.c						*/
 /************************************************************/
-void			ordered_numbers(t_stack_node *stack_node_a);
+void			only_one_element(t_stack_node *stack_node_a);
+void			its_ordered(t_stack_node *stack_node_a);
 void			sort_numbers(t_stack_node *stack_node_a,
 					t_stack_node *stack_node_b);
 
