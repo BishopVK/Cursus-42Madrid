@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/03/25 08:33:10 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/25 20:33:17 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC			=	push_swap.c \
 				create_stack.c \
 				ft_atol.c \
 				ft_custom_atoi.c \
+				ft_custom_atoll.c \
 				swap.c \
 				sort_numbers.c \
 				get_next_line/get_next_line_bonus.c \
