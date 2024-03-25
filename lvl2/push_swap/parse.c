@@ -6,47 +6,30 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/24 23:12:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:22:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
+void	signs_checker(char *argv)
 {
-	if (out_of_limits < 0)
-	{
-		stack_clear(&stack_node_a);
-		ft_printf("Error: Number out of INT limits\n");
-		exit(-1);
-	}
-}
+	int	i;
+	int	error;
 
-void	no_repeat_numbers(t_stack_node *stack_node_a)
-{
-	t_stack_node	*local_node;
-	t_stack_node	*tmp_node;
-
-	local_node = stack_node_a;
-	if (local_node == NULL)
-		ft_printf("Empty Stack\n");
-	else
+	i = 0;
+	error = 0;
+	if (ft_strlen(&argv[i]) < 2)
+		return ;
+	ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
+	while(argv[i + 1] != '\0')
 	{
-		while (local_node)
+		if ((argv[i] == '+' || argv[i] == '-') && (argv[i + 1] == '+' || argv[i + 1] == '-'))
 		{
-			tmp_node = local_node->next;
-			while (tmp_node)
-			{
-				if (local_node->nb == tmp_node->nb)
-				{
-					ft_printf("ERROR: %d is duplicate\n", local_node->nb);
-					stack_clear(&stack_node_a);
-					exit(-1);
-				}
-				tmp_node = tmp_node->next;
-			}
-			local_node = local_node->next;
+			ft_printf("ERROR: 2 caracteres consecutivos\n");
+			exit(1);
 		}
+		i++;
 	}
 }
 
@@ -98,7 +81,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 		num_not_integer = ft_atol(split[i]);
 		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
 			*out_of_limits -= 1;
-		new_node = push(ft_custom_atoi(split[i]), new_node);
+		new_node = create_stack(ft_atoi(split[i]), new_node);
 		free(split[i]);
 		i++;
 	}
@@ -117,6 +100,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 	i = 1;
 	while (i < argc)
 	{
+		signs_checker(argv[i]);
 		not_allowed_char = allowed_chars(argv[i++], "0123456789 +-");
 		if (not_allowed_char != 0)
 		{
@@ -132,17 +116,19 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 			&out_of_limits);
 	integer_number(out_of_limits, stack_node_a);
 	no_repeat_numbers(stack_node_a);
-	//sort_numbers(stack_node_a, stack_node_b);
-	/* ft_printf("total_strings = %d\n", total_strings);
+	sort_numbers(stack_node_a, stack_node_b);
+	if (stack_node_b)
+		ft_printf("HI!");
 	display(stack_node_a);
+	/* ft_printf("total_strings = %d\n", total_strings);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Realizamos un swap\n");
 	sa(&stack_node_a);
 	display(stack_node_a);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Vaciamos el stack\n");
-	stack_clear(&stack_node_a); */
-	display(stack_node_b);
+	stack_clear(&stack_node_a);
+	display(stack_node_b); */
 	return (0);
 }
 
