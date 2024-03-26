@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 21:07:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:48:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,7 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	//ft_printf("--------\n");
 	//display_by_order(stack_node_a);
 
-	ra(&stack_node_a);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
 	pb(&stack_node_a, &stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	rr(&stack_node_a, &stack_node_b);
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
@@ -104,14 +92,20 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	ft_printf("----stack b----\n");
 	display(stack_node_b);
 
-	rb(&stack_node_b);
+	rra(&stack_node_a);
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
 	display(stack_node_b);
 
-	ft_printf("----rotate both----\n");
-	rr(&stack_node_a, &stack_node_b);
+	rrb(&stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	ft_printf("----reverse rotate both----\n");
+	rrr(&stack_node_a, &stack_node_b);
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
