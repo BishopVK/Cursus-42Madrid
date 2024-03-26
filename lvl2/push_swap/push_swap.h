@@ -67,12 +67,12 @@ void			stack_clear(t_stack_node **node);
 t_stack_node	*create_stack(int nbr, t_stack_node *new_node);
 
 /************************************************************/
-/*						ft_atol.c							*/
+/*							ft_atol.c						*/
 /************************************************************/
 long			ft_atol(const char *nptr);
 
 /************************************************************/
-/*					ft_custom_atoi.c						*/
+/*						ft_custom_atoi.c					*/
 /************************************************************/
 int				ft_custom_atoi(const char *nptr);
 
@@ -85,12 +85,12 @@ void			sort_numbers(t_stack_node *stack_node_a,
 					t_stack_node *stack_node_b);
 
 /************************************************************/
-/*					ft_custom_atoll.c						*/
+/*						ft_custom_atoll.c					*/
 /************************************************************/
 long long int	ft_custom_atoll(const char *nptr);
 
 /************************************************************/
-/*					stack_utils.c							*/
+/*						stack_utils.c						*/
 /************************************************************/
 int				stack_len(t_stack_node *new_node);
 void			display_by_order(t_stack_node *new_node);
@@ -98,7 +98,7 @@ void			display_order(t_stack_node *new_node);
 void			display(t_stack_node *new_node); //ELIMINAR
 
 /************************************************************/
-/*						push.c								*/
+/*							push.c							*/
 /************************************************************/
 void			push(t_stack_node **src, t_stack_node **dst);
 void			pa(t_stack_node **a, t_stack_node **b);
@@ -113,11 +113,19 @@ void			sb(t_stack_node **stack_node_b);
 void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 
 /************************************************************/
-/*						rotate.c							*/
+/*							rotate.c						*/
 /************************************************************/
 void			rotate(t_stack_node **node);
 void			ra(t_stack_node **stack_node_a);
 void			rb(t_stack_node **stack_node_b);
 void			rr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
+
+/************************************************************/
+/*						reverse_rotate.c					*/
+/************************************************************/
+void	reverse_rotate(t_stack_node **node);
+void	rra(t_stack_node **stack_node_a);
+void	rrb(t_stack_node **stack_node_b);
+void	rrr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 
 #endif
