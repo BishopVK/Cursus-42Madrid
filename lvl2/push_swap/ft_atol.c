@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:43:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 20:45:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:55:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ long	ft_atol(const char *nptr)
 	sign = 1;
 	while (*nptr && (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r')))
 		nptr++;
-	while (*nptr == '+' || *nptr == '-') {
+	while (*nptr == '+' || *nptr == '-')
+	{
 		if (*nptr == '-')
 			sign *= -1;
 		nptr++;
