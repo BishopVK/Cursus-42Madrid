@@ -34,13 +34,10 @@
 //INT_MAX, INT_MIN, LLONG_MAX, LLONG_MIN
 # include <limits.h>
 
-//errno, ERANGE
-#include <errno.h>
-
 typedef struct s_stack_node
 {
 	int					nb;
-	//int					orden; //orden en que deben estar ordenados
+	int					order;
 	struct s_stack_node	*next;
 }					t_stack_node;
 
@@ -63,11 +60,10 @@ int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
+void			assign_order(t_stack_node *node);
 void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
 void			no_repeat_numbers(t_stack_node *stack_node_a);
-int				stack_len(t_stack_node *new_node);
 void			stack_clear(t_stack_node **node);
-void			display(t_stack_node *new_node); //ELIMINAR
 t_stack_node	*create_stack(int nbr, t_stack_node *new_node);
 
 /************************************************************/
@@ -81,14 +77,6 @@ long			ft_atol(const char *nptr);
 int				ft_custom_atoi(const char *nptr);
 
 /************************************************************/
-/*							swap.c							*/
-/************************************************************/
-void			swap(t_stack_node **node);
-void			sa(t_stack_node **stack_node_a);
-void			sb(t_stack_node **stack_node_b);
-void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
-
-/************************************************************/
 /*						sort_numbers.c						*/
 /************************************************************/
 void			only_one_element(t_stack_node *stack_node_a);
@@ -100,5 +88,28 @@ void			sort_numbers(t_stack_node *stack_node_a,
 /*					ft_custom_atoll.c						*/
 /************************************************************/
 long long int	ft_custom_atoll(const char *nptr);
+
+/************************************************************/
+/*					stack_utils.c							*/
+/************************************************************/
+int				stack_len(t_stack_node *new_node);
+void			display_by_order(t_stack_node *new_node);
+void			display_order(t_stack_node *new_node);
+void			display(t_stack_node *new_node); //ELIMINAR
+
+/************************************************************/
+/*						push.c								*/
+/************************************************************/
+void			push(t_stack_node **src, t_stack_node **dst);
+void			pa(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **a, t_stack_node **b);
+
+/************************************************************/
+/*							swap.c							*/
+/************************************************************/
+void			swap(t_stack_node **node);
+void			sa(t_stack_node **stack_node_a);
+void			sb(t_stack_node **stack_node_b);
+void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 
 #endif
