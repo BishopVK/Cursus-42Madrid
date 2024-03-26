@@ -112,4 +112,12 @@ void			sa(t_stack_node **stack_node_a);
 void			sb(t_stack_node **stack_node_b);
 void			ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 
+/************************************************************/
+/*						rotate.c							*/
+/************************************************************/
+void			rotate(t_stack_node **node);
+void			ra(t_stack_node **stack_node_a);
+void			rb(t_stack_node **stack_node_b);
+void			rr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
+
 #endif
