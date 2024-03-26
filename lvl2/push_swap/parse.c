@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 21:00:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:58:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ void	signs_checker(char *argv)
 	if (ft_strlen(&argv[i]) < 2)
 		return ;
 	ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
-	while(argv[i + 1] != '\0')
+	while (argv[i + 1] != '\0')
 	{
 		if (argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
 		{
 			ft_printf("ERROR: Sin espacio antes de un signo\n");
+			exit(1);
+		}
+		if ((argv[i] == '+' || argv[i] == '-') && argv[i + 1] == ' ')
+		{
+			ft_printf("ERROR: Signo sin digito a continuación\n");
 			exit(1);
 		}
 		i++;
@@ -68,6 +73,8 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 	int				num_strings;
 	long long int	num_not_integer;
 
+	if (argv[0] == '\0')
+		return (new_node);
 	split = ft_split(argv, ' '); // Realizar split a cada argumento
 	num_strings = 0;
 	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay
@@ -111,14 +118,13 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 	out_of_limits = 0;
 	while (i < argc)
 		stack_node_a = split_argvs(argv[i++], &total_strings, stack_node_a,
-			&out_of_limits);
+				&out_of_limits);
 	integer_number(out_of_limits, stack_node_a);
 	no_repeat_numbers(stack_node_a);
 	sort_numbers(stack_node_a, stack_node_b);
-	if (stack_node_b)
-		ft_printf("HI!");
-	display(stack_node_a);
-	/* ft_printf("total_strings = %d\n", total_strings);
+	(void)stack_node_b;
+	/* display(stack_node_a);
+	ft_printf("total_strings = %d\n", total_strings);
 	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
 	ft_printf("Realizamos un swap\n");
 	sa(&stack_node_a);
