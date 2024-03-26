@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 12:48:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:00:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 void	only_one_element(t_stack_node *stack_node_a)
 {
 	if (stack_node_a == NULL)
+	{
 		ft_printf("Empty Stack\n");
+		exit(1);
+	}
 	else if (stack_node_a->next == NULL)
 	{
 		ft_printf("Only one element on the stack. Already ordered.\n");
@@ -65,6 +68,47 @@ void	its_ordered(t_stack_node *stack_node_a)
 void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 {
 	its_ordered(stack_node_a);
-	if (stack_node_b)
-		ft_printf("HOLA!");
+	assign_order(stack_node_a);
+	display_order(stack_node_a);
+	ft_printf("--------\n");
+	display_by_order(stack_node_a);
+
+	/* pb(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	pb(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	pb(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	pb(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	pa(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b);
+
+	ft_printf("----swap both----\n");
+	ss(&stack_node_a, &stack_node_b);
+	ft_printf("----stack a----\n");
+	display(stack_node_a);
+	ft_printf("----stack b----\n");
+	display(stack_node_b); */
+
+	(void)stack_node_b;
 }
