@@ -6,27 +6,41 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/25 13:40:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:24:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_len(t_stack_node *new_node)
+void	assign_order(t_stack_node *node)
 {
-	int	len;
+	t_stack_node	*current;
+	t_stack_node	*temp;
+	int				smaller_count;
 
-	len = 0;
-	if (new_node != NULL)
+	current = node;
+	while (current != NULL)
 	{
-		while (new_node)
+		smaller_count = 0;
+		temp = node;
+		while (temp != current)
 		{
-			new_node = new_node->next;
-			len++;
+			if (temp->nb < current->nb)
+				smaller_count++;
+			temp = temp->next;
 		}
+		temp = current->next;
+		while (temp != NULL)
+		{
+			if (temp->nb < current->nb)
+				smaller_count++;
+			temp = temp->next;
+		}
+		current->order = smaller_count + 1;
+		current = current->next;
 	}
-	return (len);
 }
+
 
 void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
 {
@@ -84,23 +98,6 @@ void	stack_clear(t_stack_node **node)
 	}
 }
 
-void	display(t_stack_node *new_node)
-{
-	t_stack_node	*local_node;
-
-	local_node = new_node;
-	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
-	else
-	{
-		while (local_node)
-		{
-			ft_printf("valor = %d\n", local_node->nb);
-			local_node = local_node->next;
-		}
-	}
-}
-
 t_stack_node	*create_stack(int nbr, t_stack_node *node)
 {
 	t_stack_node	*new_node;
@@ -110,6 +107,7 @@ t_stack_node	*create_stack(int nbr, t_stack_node *node)
 	if (!new_node)
 		return (NULL);
 	new_node->nb = nbr;
+	new_node->order = -1;
 	new_node->next = NULL;
 	if (node == NULL)
 		return (new_node);
