@@ -29,7 +29,7 @@
 # include <stddef.h>
 
 //strlen, memmove, strtok
-# include <string.h>
+//# include <string.h>
 
 //INT_MAX, INT_MIN, LLONG_MAX, LLONG_MIN
 # include <limits.h>
@@ -123,9 +123,17 @@ void			rr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 /************************************************************/
 /*						reverse_rotate.c					*/
 /************************************************************/
-void	reverse_rotate(t_stack_node **node);
-void	rra(t_stack_node **stack_node_a);
-void	rrb(t_stack_node **stack_node_b);
-void	rrr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
+void			reverse_rotate(t_stack_node **node);
+void			rra(t_stack_node **stack_node_a);
+void			rrb(t_stack_node **stack_node_b);
+void			rrr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
+
+/************************************************************/
+/*						sort_short.c						*/
+/************************************************************/
+void			short_algorithm(t_stack_node *stack_node_a,
+					t_stack_node *stack_node_b);
+void			sort_3_numbers(t_stack_node *stack_node_a);
+void			sort_short(t_stack_node *stack_node_a);
 
 #endif
