@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 21:48:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:08:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	only_one_element(t_stack_node *stack_node_a)
 	if (stack_node_a == NULL)
 	{
 		ft_printf("Empty Stack\n");
-		exit(1);
+		exit(-1);
 	}
 	else if (stack_node_a->next == NULL)
 	{
 		ft_printf("Only one element on the stack. Already ordered.\n");
 		stack_clear(&stack_node_a);
-		exit(1);
+		exit(0);
 	}
 }
 
@@ -60,7 +60,7 @@ void	its_ordered(t_stack_node *stack_node_a)
 		{
 			ft_printf("Numbers already ordered\n");
 			stack_clear(&stack_node_a);
-			exit(1);
+			exit(0);
 		}
 	}
 }
@@ -69,12 +69,19 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 {
 	its_ordered(stack_node_a);
 	assign_order(stack_node_a);
-	display(stack_node_a);
+	if (stack_len(stack_node_a) <= 5)
+		short_algorithm(stack_node_a, stack_node_b);
+		//sort_short(stack_node_a);
+	//display(stack_node_a);
+	stack_clear(&stack_node_a);
+	stack_clear(&stack_node_b);
+	exit(0);
+
 	//display_order(stack_node_a);
 	//ft_printf("--------\n");
 	//display_by_order(stack_node_a);
 
-	pb(&stack_node_a, &stack_node_b);
+	/* pb(&stack_node_a, &stack_node_b);
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
@@ -109,7 +116,7 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
-	display(stack_node_b);
+	display(stack_node_b); */
 
 	(void)stack_node_b;
 }
