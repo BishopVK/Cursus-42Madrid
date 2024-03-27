@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 18:58:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:31:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,23 @@ void	signs_checker(char *argv)
 
 	i = 0;
 	if (ft_strlen(&argv[i]) < 2)
-		return ;
-	ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
+	{
+		if (ft_isdigit(argv[i]))
+			return ;
+		else
+		{
+			ft_printf("ERROR: Signo suelto o string vacío\n");
+			exit(-1);
+		}
+	}
+	//ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
 	while (argv[i + 1] != '\0')
 	{
-		if (argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
+		if ((argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
+			|| ((argv[i] == '+' || argv[i] == '-') && argv[i + 1] == ' '))
 		{
-			ft_printf("ERROR: Sin espacio antes de un signo\n");
-			exit(1);
-		}
-		if ((argv[i] == '+' || argv[i] == '-') && argv[i + 1] == ' ')
-		{
-			ft_printf("ERROR: Signo sin digito a continuación\n");
-			exit(1);
+			ft_printf("ERROR: Sin espacio antes o después de un signo\n");
+			exit(-1);
 		}
 		i++;
 	}
