@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/27 20:33:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:25:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	its_ordered(stack_node_a);
 	assign_order(stack_node_a);
 	if (stack_len(stack_node_a) <= 5)
-		short_algorithm(stack_node_a, stack_node_b);
-		//sort_short(stack_node_a);
-	//display(stack_node_a);
+		//short_algorithm(stack_node_a, stack_node_b);
+		sort_short(stack_node_a);
+	ft_printf("++Stack a in sort_numbers after sorting++\n");		
+	display(stack_node_a);
 	stack_clear(&stack_node_a);
 	stack_clear(&stack_node_b);
 	exit(0);
