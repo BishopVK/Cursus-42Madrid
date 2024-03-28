@@ -11,3 +11,4 @@ push_swap
 # Ignorar directorios específicos
 /.vscode
 /txt
+/checker
