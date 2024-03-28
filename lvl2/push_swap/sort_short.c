@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 17:39:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:03:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,8 +185,8 @@ void	sort_3_numbers(t_stack_node **stack_node_a)
 	t_stack_node	*first;
 
 	first = *stack_node_a;
-	ft_printf(">>Stack a in sort_3_numbers<<\n");
-	display(*stack_node_a);
+	/* ft_printf(">>Stack a in sort_3_numbers<<\n");
+	display(*stack_node_a); */
 	if (first->order < first->next->order
 		&& first->order < first->next->next->order)
 	{
@@ -209,8 +209,8 @@ void	sort_3_numbers(t_stack_node **stack_node_a)
 		ra(stack_node_a);
 		sa(stack_node_a);
 	}
-	ft_printf(">>Stack a at end of sort_3_numbers<<\n");
-	display(*stack_node_a);
+	/* ft_printf(">>Stack a at end of sort_3_numbers<<\n");
+	display(*stack_node_a); */
 }
 
 void	sort_short(t_stack_node **stack_node_a)
