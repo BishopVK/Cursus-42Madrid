@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:30:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 12:24:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:55:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,3 @@ t_stack_node	*create_stack(int nbr, t_stack_node *node)
 	current->next = new_node;
 	return (node);
 }
-
-// Introducir en orden inverso
-/* t_stack_node	*push(int nbr, t_stack_node *new_node)
-{
-	t_stack_node	*local_node;
-
-	local_node = (t_stack_node *)malloc(sizeof(t_stack_node));
-	if (!local_node)
-		return (NULL);
-	if (new_node == NULL)
-	{
-		local_node->nb = nbr;
-		local_node->next = NULL;
-	}
-	else
-	{
-		local_node->nb = nbr;
-		local_node->next = new_node;
-	}
-	return (local_node);
-} */
