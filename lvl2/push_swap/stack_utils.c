@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 12:37:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:18:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,64 +28,39 @@ int	stack_len(t_stack_node *new_node)
 	return (len);
 }
 
-void	display_by_order(t_stack_node *new_node)
+void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
+{
+	if (out_of_limits < 0)
+	{
+		stack_clear(&stack_node_a);
+		ft_printf("Error: Number out of INT limits\n");
+		exit(-1);
+	}
+}
+
+void	no_repeat_numbers(t_stack_node *stack_node_a)
 {
 	t_stack_node	*local_node;
-	int				i;
+	t_stack_node	*tmp_node;
 
-	local_node = new_node;
+	local_node = stack_node_a;
 	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
+		ft_printf("Empty Stack\n");
 	else
 	{
-		i = 1;
-		while (i <= stack_len(new_node))
+		while (local_node)
 		{
-			while (local_node)
+			tmp_node = local_node->next;
+			while (tmp_node)
 			{
-				if (i == local_node->order)
+				if (local_node->nb == tmp_node->nb)
 				{
-					ft_printf("%d valor = %d\n", local_node->order, local_node->nb);
-					break ;
+					ft_printf("ERROR: %d is duplicate\n", local_node->nb);
+					stack_clear(&stack_node_a);
+					exit(-1);
 				}
-				local_node = local_node->next;
+				tmp_node = tmp_node->next;
 			}
-			local_node = new_node;
-			i++;
-		}
-	}
-}
-
-void	display_order(t_stack_node *new_node)
-{
-	t_stack_node	*local_node;
-
-	local_node = new_node;
-	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
-	else
-	{
-		while (local_node)
-		{
-			ft_printf("valor = %d\n", local_node->nb);
-			ft_printf("order = %d\n", local_node->order);
-			local_node = local_node->next;
-		}
-	}
-}
-
-void	display(t_stack_node *new_node)
-{
-	t_stack_node	*local_node;
-
-	local_node = new_node;
-	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
-	else
-	{
-		while (local_node)
-		{
-			ft_printf("valor = %d\n", local_node->nb);
 			local_node = local_node->next;
 		}
 	}
