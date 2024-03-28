@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/27 19:35:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/27 20:25:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ void	short_algorithm(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	local_b = stack_node_b;
 	i = 1;
 
-	/* ft_printf("--Stack a--\n");
-	display(local_a);
-	ft_printf("--Stack b--\n");
-	display(local_b); */
+	//ft_printf("--Stack a--\n");
+	//display(local_a);
+	//ft_printf("--Stack b--\n");
+	//display(local_b);
 	while (stack_len(local_a) > 1)
 	{
 		while (local_a->order != i)
 			ra(&local_a);
-		/* ft_printf("--Stack a--\n");
-		display(local_a);
-		ft_printf("--Stack b--\n");
-		display(local_b); */
+		//ft_printf("--Stack a--\n");
+		//display(local_a);
+		//ft_printf("--Stack b--\n");
+		//display(local_b);
 		pb(&local_a, &local_b);
-		/* ft_printf("--Stack a--\n");
-		display(local_a);
-		ft_printf("--Stack b--\n");
-		display(local_b); */
+		//ft_printf("--Stack a--\n");
+		//display(local_a);
+		//ft_printf("--Stack b--\n");
+		//display(local_b);
 		i++;
 	}
 	while (stack_len(local_b) > 0)
