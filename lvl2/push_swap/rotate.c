@@ -37,12 +37,14 @@ void	rotate(t_stack_node **node)
 void	ra(t_stack_node **stack_node_a)
 {
 	rotate(stack_node_a);
+	assign_half(*stack_node_a);
 	ft_printf("ra\n");
 }
 
 void	rb(t_stack_node **stack_node_b)
 {
 	rotate(stack_node_b);
+	assign_half(*stack_node_b);
 	ft_printf("rb\n");
 }
 
@@ -50,5 +52,7 @@ void	rr(t_stack_node **stack_node_a, t_stack_node **stack_node_b)
 {
 	rotate(stack_node_a);
 	rotate(stack_node_b);
+	assign_half(*stack_node_a);
+	assign_half(*stack_node_b);
 	ft_printf("rr\n");
 }

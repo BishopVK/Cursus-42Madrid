@@ -31,12 +31,14 @@ void	swap(t_stack_node **node)
 void	sa(t_stack_node **stack_node_a)
 {
 	swap(stack_node_a);
+	assign_half(*stack_node_a);
 	ft_printf("sa\n");
 }
 
 void	sb(t_stack_node **stack_node_b)
 {
 	swap(stack_node_b);
+	assign_half(*stack_node_b);
 	ft_printf("sb\n");
 }
 
@@ -44,6 +46,8 @@ void	ss(t_stack_node **stack_node_a, t_stack_node **stack_node_b)
 {
 	swap(stack_node_a);
 	swap(stack_node_b);
+	assign_half(*stack_node_a);
+	assign_half(*stack_node_b);
 	ft_printf("ss\n");
 }
 

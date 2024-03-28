@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 14:30:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:15:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ void	push(t_stack_node **src, t_stack_node **dst)
 void	pa(t_stack_node **a, t_stack_node **b)
 {
 	push(b, a);
+	assign_half(*a);
+	assign_half(*b);
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack_node **a, t_stack_node **b)
 {
 	push(a, b);
+	assign_half(*a);
+	assign_half(*b);
 	ft_printf("pb\n");
 }
