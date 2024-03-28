@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 12:19:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:12:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 {
 	its_ordered(stack_node_a);
 	assign_order(stack_node_a);
+	assign_half(stack_node_a);
+	display_half(stack_node_a);
 	if (stack_len(stack_node_a) <= 5)
 		//short_algorithm(stack_node_a, stack_node_b);
 		sort_short(stack_node_a);
