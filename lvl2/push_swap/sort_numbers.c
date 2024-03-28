@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 11:36:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:19:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,4 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
 	display(stack_node_b); */
-
-	(void)stack_node_b;
 }
