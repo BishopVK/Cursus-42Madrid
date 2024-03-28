@@ -34,12 +34,19 @@
 //INT_MAX, INT_MIN, LLONG_MAX, LLONG_MIN
 # include <limits.h>
 
+typedef enum s_half
+{
+	UP,
+	DOWN
+}	t_half;
+
 typedef struct s_stack_node
 {
 	int					nb;
 	int					order;
+	t_half				half;
 	struct s_stack_node	*next;
-}					t_stack_node;
+}	t_stack_node;
 
 /* typedef struct s_stack
 {
