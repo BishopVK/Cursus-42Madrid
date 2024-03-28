@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/27 20:25:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:27:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,27 @@ void	short_algorithm(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	local_a = stack_node_a;
 	local_b = stack_node_b;
 	i = 1;
-
-	/* ft_printf("--Stack a--\n");
+	ft_printf("--Stack a--\n");
 	display(local_a);
 	ft_printf("--Stack b--\n");
-	display(local_b); */
-	while (stack_len(local_a) > 2)
+	display(local_b);
+	while (stack_len(local_a) > 3)
 	{
 		while (local_a->order != i)
 			ra(&local_a);
-		/* ft_printf("--Stack a--\n");
+		ft_printf("--Stack a--\n");
 		display(local_a);
 		ft_printf("--Stack b--\n");
-		display(local_b); */
+		display(local_b);
 		pb(&local_a, &local_b);
-		/* ft_printf("--Stack a--\n");
+		ft_printf("--Stack a--\n");
 		display(local_a);
 		ft_printf("--Stack b--\n");
-		display(local_b); */
+		display(local_b);
 		i++;
 	}
+	ft_printf("FUCK!\n");
+	sort_3_numbers(local_a);
 	while (stack_len(local_b) > 0)
 		pa(&local_a, &local_b);
 	ft_printf("--Stack a--\n");
@@ -86,7 +87,7 @@ void	short_algorithm(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	display(local_b);
 } */
 
-void	sort_3_numbers(t_stack_node *stack_node_a)
+/* void	sort_3_numbers(t_stack_node *stack_node_a)
 {
 	t_stack_node	*local_node;
 
@@ -108,6 +109,39 @@ void	sort_3_numbers(t_stack_node *stack_node_a)
 		ra(&stack_node_a);
 		sa(&stack_node_a);
 	}
+} */
+
+void	sort_3_numbers(t_stack_node *stack_node_a)
+{
+	t_stack_node	*first;
+
+	first = stack_node_a;
+	ft_printf(">>Stack a in sort_3_numbers<<\n");
+	display(stack_node_a);
+	if (first->order < first->next->order
+		&& first->order < first->next->next->order)
+	{
+		ra(&stack_node_a);
+		sa(&stack_node_a);
+		rra(&stack_node_a);
+	}
+	else if (first->order > first->next->order
+		&& first->order < first->next->next->order)
+		sa(&stack_node_a);
+	else if (first->order < first->next->order
+		&& first->order > first->next->next->order)
+		rra(&stack_node_a);
+	else if (first->order > first->next->order
+		&& first->next->order < first->next->next->order)
+		ra(&stack_node_a);
+	else if (first->order > first->next->order
+		&& first->next->order > first->next->next->order)
+	{
+		ra(&stack_node_a);
+		sa(&stack_node_a);
+	}
+	ft_printf(">>Stack a at end of sort_3_numbers<<\n");
+	display(stack_node_a);
 }
 
 void	sort_short(t_stack_node *stack_node_a)
@@ -115,5 +149,9 @@ void	sort_short(t_stack_node *stack_node_a)
 	if (stack_len(stack_node_a) == 2)
 		sa(&stack_node_a);
 	else if (stack_len(stack_node_a) == 3)
+	{
+		ft_printf("<<Stack a in sort_short>>\n");
+		display(stack_node_a);
 		sort_3_numbers(stack_node_a);
+	}
 }
