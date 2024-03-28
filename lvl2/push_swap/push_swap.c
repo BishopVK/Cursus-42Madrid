@@ -15,6 +15,7 @@
 // cc push_swap.c push_swap.a libft/libft.a printf/libftprintf.a
 //                  n min max
 // ./a.out `jot -r 500 -100 100`
+// ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 int	main(int argc, char *argv[])
 {
 	int				not_allowed_char;
