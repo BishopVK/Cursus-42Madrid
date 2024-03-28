@@ -67,9 +67,8 @@ int				parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 /************************************************************/
 /*						create_stack.c						*/
 /************************************************************/
+void			assign_half(t_stack_node *node);
 void			assign_order(t_stack_node *node);
-void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
-void			no_repeat_numbers(t_stack_node *stack_node_a);
 void			stack_clear(t_stack_node **node);
 t_stack_node	*create_stack(int nbr, t_stack_node *new_node);
 
@@ -100,9 +99,8 @@ long long int	ft_custom_atoll(const char *nptr);
 /*						stack_utils.c						*/
 /************************************************************/
 int				stack_len(t_stack_node *new_node);
-void			display_by_order(t_stack_node *new_node);
-void			display_order(t_stack_node *new_node);
-void			display(t_stack_node *new_node); //ELIMINAR
+void			integer_number(int out_of_limits, t_stack_node *stack_node_a);
+void			no_repeat_numbers(t_stack_node *stack_node_a);
 
 /************************************************************/
 /*							push.c							*/
@@ -142,5 +140,13 @@ void			short_algorithm(t_stack_node *stack_node_a,
 					t_stack_node *stack_node_b);
 void			sort_3_numbers(t_stack_node *stack_node_a);
 void			sort_short(t_stack_node *stack_node_a);
+
+/************************************************************/
+/*						display.c							*/
+/************************************************************/
+void			display_by_order(t_stack_node *new_node);
+void			display_order(t_stack_node *new_node);
+void			display_half(t_stack_node *new_node);
+void			display(t_stack_node *new_node);
 
 #endif
