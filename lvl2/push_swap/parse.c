@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/27 20:30:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:23:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,31 +139,3 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 	display(stack_node_b); */
 	return (0);
 }
-
-/* int	parse_argvs(int argc, char **argv, t_stack_node *new_node)
-{
-	int		i;
-	int		not_allowed_char;
-	char	*allowed;
-	int		total_strings;
-
-	allowed = ft_strdup("0123456789 +-");
-	i = 1;
-	while (i < argc)
-	{
-		not_allowed_char = allowed_chars(argv[i++], allowed);
-		if (not_allowed_char != 0)
-		{
-			ft_printf("Has introducido caracteres no permitidos\n");
-			return (1);
-		}
-	}
-	i = 1;
-	while (i < argc)
-		new_node = split_argvs(argv[i++], &total_strings, new_node);
-	ft_printf("total_strings = %d\n", total_strings);
-	display(new_node);
-	no_repeat_numbers(new_node);
-	ft_printf("HOLA");
-	return (0);
-} */
