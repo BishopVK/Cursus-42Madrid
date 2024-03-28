@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:43:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/26 10:55:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:28:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,3 @@ long	ft_atol(const char *nptr)
 	}
 	return (nb * sign);
 }
-
-/* int	main(void)
-{
-	long	resultado;
-
-	resultado = ft_atol("   -2147483648");
-	printf("Resultado = %ld\n", resultado);
-	if (resultado < INT_MIN || resultado > INT_MAX)
-		printf("El nº %ld está fuera de los límites de INT\n", resultado);
-	return (0);
-} */
