@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 18:03:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:07:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,14 +213,21 @@ void	sort_3_numbers(t_stack_node **stack_node_a)
 	display(*stack_node_a); */
 }
 
-void	sort_short(t_stack_node **stack_node_a)
+void	sort_short(t_stack_node **stack_node_a, t_stack_node **stack_node_b)
 {
 	if (stack_len(*stack_node_a) == 2)
+	{
+		ft_printf("<<Vamos a ordenar 2 números>>\n");
 		sa(stack_node_a);
+	}
 	else if (stack_len(*stack_node_a) == 3)
 	{
-		ft_printf("<<Stack a in sort_short>>\n");
-		display(*stack_node_a);
+		ft_printf("<<Vamos a ordenar 3 números>>\n");
 		sort_3_numbers(stack_node_a);
+	}
+	else
+	{
+		ft_printf("<<Vamos a ordenar 4 o 5 números>>\n");
+		short_algorithm(stack_node_a, stack_node_b);
 	}
 }
