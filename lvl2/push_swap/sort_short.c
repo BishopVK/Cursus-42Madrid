@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/29 11:07:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:17:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,24 +187,24 @@ void	sort_3_numbers(t_stack_node **stack_node_a)
 	first = *stack_node_a;
 	/* ft_printf(">>Stack a in sort_3_numbers<<\n");
 	display(*stack_node_a); */
-	if (first->order < first->next->order
-		&& first->order < first->next->next->order)
+	if (first->order < first->next->next->order
+		&& first->next->next->order < first->next->order)
 	{
 		ra(stack_node_a);
 		sa(stack_node_a);
 		rra(stack_node_a);
 	}
-	else if (first->order > first->next->order
+	else if (first->next->order < first->order
 		&& first->order < first->next->next->order)
 		sa(stack_node_a);
-	else if (first->order < first->next->order
-		&& first->order > first->next->next->order)
+	else if (first->next->next->order < first->order
+		&& first->order < first->next->order)
 		rra(stack_node_a);
-	else if (first->order > first->next->order
-		&& first->next->order < first->next->next->order)
+	else if (first->next->order < first->next->next->order
+		&& first->next->next->order < first->order)
 		ra(stack_node_a);
-	else if (first->order > first->next->order
-		&& first->next->order > first->next->next->order)
+	else if (first->next->next->order < first->next->order
+		&& first->next->order < first->order)
 	{
 		ra(stack_node_a);
 		sa(stack_node_a);
