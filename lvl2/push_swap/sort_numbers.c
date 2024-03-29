@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/29 10:47:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:44:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	only_one_element(t_stack_node *stack_node_a)
 	}
 	else if (stack_node_a->next == NULL)
 	{
-		ft_printf("Only one element on the stack. Already ordered.\n");
+		//ft_printf("Only one element on the stack. Already ordered.\n");
 		stack_clear(&stack_node_a);
 		exit(0);
 	}
@@ -58,7 +58,7 @@ void	its_ordered(t_stack_node *stack_node_a)
 		}
 		if (current_node->next == NULL)
 		{
-			ft_printf("Numbers already ordered\n");
+			//ft_printf("Numbers already ordered\n");
 			stack_clear(&stack_node_a);
 			exit(0);
 		}
@@ -75,14 +75,14 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 		sort_short(&stack_node_a, &stack_node_b);
 	else
 	{
-		ft_printf("<<Vamos a ordenar más de 5 números>>\n");
+		//ft_printf("<<Vamos a ordenar más de 5 números>>\n");
 		short_algorithm(&stack_node_a, &stack_node_b);
 	}
-	ft_printf("++Stack a in sort_numbers after sorting++\n");
+	/* ft_printf("++Stack a in sort_numbers after sorting++\n");
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
-	display(stack_node_b);
+	display(stack_node_b); */
 	stack_clear(&stack_node_a);
 	stack_clear(&stack_node_b);
 	exit(0);
