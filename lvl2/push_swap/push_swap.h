@@ -139,7 +139,8 @@ void			rrr(t_stack_node **stack_node_a, t_stack_node **stack_node_b);
 void			short_algorithm(t_stack_node **stack_node_a,
 					t_stack_node **stack_node_b);
 void			sort_3_numbers(t_stack_node **stack_node_a);
-void			sort_short(t_stack_node **stack_node_a);
+void			sort_short(t_stack_node **stack_node_a,
+					t_stack_node **stack_node_b);
 
 /************************************************************/
 /*						display.c							*/
