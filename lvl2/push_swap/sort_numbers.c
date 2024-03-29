@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 18:08:54 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/29 10:47:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,18 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	assign_order(stack_node_a);
 	assign_half(stack_node_a);
 	//display_half(stack_node_a);
-	//if (stack_len(stack_node_a) <= 5)
-	short_algorithm(&stack_node_a, &stack_node_b);
-		//sort_short(&stack_node_a);
-	/* ft_printf("++Stack a in sort_numbers after sorting++\n");
+	if (stack_len(stack_node_a) <= 5)
+		sort_short(&stack_node_a, &stack_node_b);
+	else
+	{
+		ft_printf("<<Vamos a ordenar más de 5 números>>\n");
+		short_algorithm(&stack_node_a, &stack_node_b);
+	}
+	ft_printf("++Stack a in sort_numbers after sorting++\n");
 	ft_printf("----stack a----\n");
 	display(stack_node_a);
 	ft_printf("----stack b----\n");
-	display(stack_node_b); */
+	display(stack_node_b);
 	stack_clear(&stack_node_a);
 	stack_clear(&stack_node_b);
 	exit(0);
