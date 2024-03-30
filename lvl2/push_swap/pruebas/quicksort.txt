@@ -1,0 +1,30 @@
+Entiendo, parece que estás buscando implementar el algoritmo de quicksort utilizando las operaciones de stack que has definido. Aquí te dejo un pseudocódigo que puedes seguir para implementar el algoritmo:
+
+Define una función quicksort que toma como argumentos las dos pilas y la longitud de la pila que se va a ordenar.
+Si la longitud de la pila es menor o igual a 1, no hay nada que ordenar, así que simplemente regresa.
+Calcula la mediana de la pila que se va a ordenar.
+Mientras haya elementos en la pila que se va a ordenar, haz lo siguiente:
+Si el elemento superior de la pila es menor que la mediana, haz un PB para moverlo a la pila B.
+Si el elemento superior de la pila es mayor o igual que la mediana, haz un RA para rotar la pila A.
+Ahora, todos los elementos menores que la mediana están en la pila B y los elementos mayores o iguales que la mediana están en la pila A, pero en el orden inverso.
+Haz un RRB por cada elemento que hayas movido a la pila B para rotar la pila B en el orden correcto.
+Ahora, repite el proceso para las dos pilas: llama a quicksort para la pila A y la pila B con las longitudes correctas.
+
+
+-----------------------------------------------------
+
+Aquí te dejo un pseudocódigo para un algoritmo de ordenación rápida que podría funcionar en este caso:
+
+1. Si la pila 'a' tiene menos de 2 elementos, no hagas nada (el caso base de la recursión).
+2. Encuentra la mediana de los números en la pila 'a'.
+3. Mientras la pila 'a' no esté vacía, realiza los siguientes pasos:
+	3.1. Si el número en la parte superior de la pila 'a' es menor o igual que la mediana, mueve ese número a la pila 'b' (utiliza el comando 'pb').
+	3.2. Si el número en la parte superior de la pila 'a' es mayor que la mediana, rota la pila 'a' (utiliza el comando 'ra').
+4. Ahora, los números en la pila 'b' son todos menores o iguales que la mediana, y los números en la pila 'a' son todos mayores que la mediana.
+5. Recursivamente ordena la pila 'b' (que contiene los números menores o iguales que la mediana).
+6. Mueve todos los números de la pila 'b' a la pila 'a' (utiliza el comando 'pa').
+7. Recursivamente ordena la parte de la pila 'a' que contiene los números mayores que la mediana.
+
+Este algoritmo divide la pila 'a' en dos partes, una con números menores o iguales que la mediana y otra con números mayores que la mediana, y luego ordena cada parte por separado. Esto reduce el número de comparaciones necesarias y hace que el algoritmo sea más eficiente.
+
+Por favor, ten en cuenta que este es solo un pseudocódigo y necesitarás implementar este algoritmo en tu lenguaje de programación preferido. Además, este algoritmo asume que tienes implementadas las funciones para los comandos 'pa', 'pb', 'ra', y que puedes encontrar la mediana de una pila.
