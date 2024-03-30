@@ -150,4 +150,9 @@ void			display_order(t_stack_node *new_node);
 void			display_half(t_stack_node *new_node);
 void			display(t_stack_node *new_node);
 
+/************************************************************/
+/*						quicksort.c							*/
+/************************************************************/
+void quicksort(t_stack_node **stack_a, t_stack_node **stack_b, int len);
+
 #endif
