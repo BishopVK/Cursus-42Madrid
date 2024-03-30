@@ -28,3 +28,21 @@ Aquí te dejo un pseudocódigo para un algoritmo de ordenación rápida que podr
 Este algoritmo divide la pila 'a' en dos partes, una con números menores o iguales que la mediana y otra con números mayores que la mediana, y luego ordena cada parte por separado. Esto reduce el número de comparaciones necesarias y hace que el algoritmo sea más eficiente.
 
 Por favor, ten en cuenta que este es solo un pseudocódigo y necesitarás implementar este algoritmo en tu lenguaje de programación preferido. Además, este algoritmo asume que tienes implementadas las funciones para los comandos 'pa', 'pb', 'ra', y que puedes encontrar la mediana de una pila.
+
+-----------------------------------------------------
+
+Ayogun (Turk Algorithm):
+
+1. Para comenzar a ordenar, mi código empuja primero dos elementos desde la parte superior de la pila_a hacia la pila_b. De esta manera, creamos un número más pequeño y uno más grande en la pila_b. Estos son los requisitos previos de mi código. Porque antes de empujar un número de la pila_a a la pila_b, una de las cosas más importantes que hace el algoritmo es; comparar el número que se está empujando con el número más pequeño de la pila_b y el número más grande de la pila_b.
+
+2. En este paso, el algoritmo verifica cada número en la pila_a. Busca el número que requiere la cantidad mínima de operaciones para ser colocado en la posición correcta en la pila_b.
+
+3. Después de eso, el algoritmo decide qué número debe ser empujado, calcula cuántas veces debe rotar la pila_a y cuántas veces debe rotar la pila_b. Cualquiera que tenga el número más pequeño, el algoritmo rota ambas pilas según lo indique el número más pequeño. Y completa el resto de las rotaciones en una sola pila, la que requiera más operaciones de rotación. Puedes ver cómo funciona este paso en acción aquí: https://github.com/ayogun/push_swap?tab=readme-ov-file#visualizer
+
+4. Después de esto, el algoritmo empuja el número desde la parte superior de la pila_a hasta la parte superior de la pila_b. Cada vez, este lugar en la pila_b es el lugar correcto para el número gracias a los cálculos anteriores. Este bucle de empuje continúa hasta que solo quedan tres elementos en la pila_a.
+
+5. El algoritmo ordena rápidamente los tres miembros restantes en la pila_a.
+
+6. Cada miembro en la pila_b se empuja uno por uno a la pila_a de arriba hacia abajo. Sin embargo, verifica cada vez antes de que los elementos sean empujados. Esto continúa hasta que la pila_b esté vacía.
+
+7. Finalmente, se aplica la cantidad requerida de rotación por última vez para llevar el número más pequeño a la parte superior de la pila_a.
