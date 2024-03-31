@@ -40,6 +40,24 @@ void	display_by_order(t_stack_node *new_node)
 	}
 }
 
+void	display_cost(t_stack_node *new_node)
+{
+	t_stack_node	*local_node;
+
+	local_node = new_node;
+	if (local_node == NULL)
+		ft_printf("Stack vacío\n");
+	else
+	{
+		while (local_node)
+		{
+			ft_printf("valor = %d\n", local_node->nb);
+			ft_printf("cost = %d\n\n", local_node->cost);
+			local_node = local_node->next;
+		}
+	}
+}
+
 void	display_order(t_stack_node *new_node)
 {
 	t_stack_node	*local_node;
