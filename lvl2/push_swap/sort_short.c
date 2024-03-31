@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:08:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/29 11:42:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/03/31 00:23:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,8 @@ void	sort_3_numbers(t_stack_node **stack_node_a)
 	if (first->order < first->next->next->order
 		&& first->next->next->order < first->next->order)
 	{
-		ra(stack_node_a);
 		sa(stack_node_a);
-		rra(stack_node_a);
+		ra(stack_node_a);
 	}
 	else if (first->next->order < first->order
 		&& first->order < first->next->next->order)
