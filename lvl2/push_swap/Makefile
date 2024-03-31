@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/03/31 01:03:24 by danjimen         ###   ########.fr        #
+#    Updated: 2024/03/31 21:42:13 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC			=	push_swap.c \
 				sort_short.c \
 				quicksort.c \
 				display.c \
+				turk.c \
 				get_next_line/get_next_line_bonus.c \
 				get_next_line/get_next_line_utils_bonus.c
 
