@@ -46,3 +46,5 @@ Ayogun (Turk Algorithm):
 6. Cada miembro en la pila_b se empuja uno por uno a la pila_a de arriba hacia abajo. Sin embargo, verifica cada vez antes de que los elementos sean empujados. Esto continúa hasta que la pila_b esté vacía.
 
 7. Finalmente, se aplica la cantidad requerida de rotación por última vez para llevar el número más pequeño a la parte superior de la pila_a.
+
+https://medium.com/@ayogun/push-swap-c1f5d2d41e97
