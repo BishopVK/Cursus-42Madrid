@@ -147,13 +147,19 @@ void			sort_short(t_stack_node **stack_node_a,
 /*						display.c							*/
 /************************************************************/
 void			display_by_order(t_stack_node *new_node);
+void			display_cost(t_stack_node *new_node);
 void			display_order(t_stack_node *new_node);
 void			display_half(t_stack_node *new_node);
 void			display(t_stack_node *new_node);
 
 /************************************************************/
-/*						quicksort.c							*/
+/*							turk.c							*/
 /************************************************************/
-void quicksort(t_stack_node **stack_a, t_stack_node **stack_b, int len);
+void			less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b);
+int				find_less_cost(t_stack_node *stack);
+void			assign_cost(t_stack_node *a, t_stack_node **stack);
+void			calc_cost(t_stack_node **stack_a, t_stack_node **stack_b);
+void			find_min_max(t_stack_node *stack, int *min, int *max);
+void			turk_sort(t_stack_node **stack_a, t_stack_node **stack_b);
 
 #endif
