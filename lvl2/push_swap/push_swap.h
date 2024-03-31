@@ -45,6 +45,7 @@ typedef struct s_stack_node
 	int					nb;
 	int					order;
 	t_half				half;
+	int					cost;
 	struct s_stack_node	*next;
 }	t_stack_node;
 
