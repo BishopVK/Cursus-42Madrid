@@ -162,10 +162,10 @@ void			final_cost(t_stack_node *a, t_stack_node **stack_a,
 					t_stack_node *b, t_stack_node **stack_b);
 void			nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 					t_stack_node *local_b, t_stack_node **stack_b);
+void			find_min_max(t_stack_node *stack, int *min, int *max);
 void			find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 					int *min, int *max);
 void			less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b);
-void			find_min_max(t_stack_node *stack, int *min, int *max);
 void			turk_sort(t_stack_node **stack_a, t_stack_node **stack_b);
 
 #endif
