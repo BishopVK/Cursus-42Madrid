@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/28 15:07:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:52:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	signs_checker(char *argv)
 			exit(-1);
 		}
 	}
-	//ft_printf("LEN: %i\n", ft_strlen(&argv[i]));
 	while (argv[i + 1] != '\0')
 	{
 		if ((argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
@@ -79,13 +78,13 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 
 	if (argv[0] == '\0')
 		return (new_node);
-	split = ft_split(argv, ' '); // Realizar split a cada argumento
+	split = ft_split(argv, ' ');
 	num_strings = 0;
-	while (split[num_strings] != NULL) // Contar cuántos elementos no nulos hay
+	while (split[num_strings] != NULL)
 		num_strings++;
 	*total_strings += num_strings;
 	i = 0;
-	while (i < num_strings) // Liberar la memoria asignada a cada split
+	while (i < num_strings)
 	{
 		num_not_integer = ft_custom_atoll(split[i]);
 		if (num_not_integer < INT_MIN || num_not_integer > INT_MAX)
@@ -94,7 +93,7 @@ t_stack_node	*split_argvs(char *argv, int *total_strings,
 		free(split[i]);
 		i++;
 	}
-	free(split); // Liberar el array bidimensional
+	free(split);
 	return (new_node);
 }
 
@@ -103,8 +102,8 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 {
 	int	i;
 	int	not_allowed_char;
-	int	total_strings;
-	int	out_of_limits;
+	int	t_str;
+	int	out_lim;
 
 	i = 1;
 	while (i < argc)
@@ -118,24 +117,12 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 		}
 	}
 	i = 1;
-	total_strings = 0;
-	out_of_limits = 0;
+	t_str = 0;
+	out_lim = 0;
 	while (i < argc)
-		stack_node_a = split_argvs(argv[i++], &total_strings, stack_node_a,
-				&out_of_limits);
-	integer_number(out_of_limits, stack_node_a);
+		stack_node_a = split_argvs(argv[i++], &t_str, stack_node_a, &out_lim);
+	integer_number(out_lim, stack_node_a);
 	no_repeat_numbers(stack_node_a);
 	sort_numbers(stack_node_a, stack_node_b);
-	(void)stack_node_b;
-	/* display(stack_node_a);
-	ft_printf("total_strings = %d\n", total_strings);
-	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
-	ft_printf("Realizamos un swap\n");
-	sa(&stack_node_a);
-	display(stack_node_a);
-	ft_printf("%d elementos en el stack\n", stack_len(stack_node_a));
-	ft_printf("Vaciamos el stack\n");
-	stack_clear(&stack_node_a);
-	display(stack_node_b); */
 	return (0);
 }
