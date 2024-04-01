@@ -157,7 +157,7 @@ void			display(t_stack_node *new_node);
 /************************************************************/
 /*							turk.c							*/
 /************************************************************/
-void			local_cost(t_stack_node *local, t_stack_node **stack);
+void			assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack);
 void			final_cost(t_stack_node *a, t_stack_node **stack_a,
 					t_stack_node *b, t_stack_node **stack_b);
 void			nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
