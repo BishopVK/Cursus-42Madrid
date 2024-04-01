@@ -29,7 +29,8 @@ void	display_by_order(t_stack_node *new_node)
 			{
 				if (i == local_node->order)
 				{
-					ft_printf("%d valor = %d\n", local_node->order, local_node->nb);
+					ft_printf("%d valor = %d\n", local_node->order,
+						local_node->nb);
 					break ;
 				}
 				local_node = local_node->next;
