@@ -14,7 +14,7 @@
 
 // This function calculates the cost of moving each node by doing rotate
 // and reverse rotate and saves the value inside the node
-void	local_cost(t_stack_node *local, t_stack_node **stack)
+void	assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack)
 {
 	t_stack_node *tmp;
 	int			len;
@@ -51,8 +51,8 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 	int	rr_rr;
 	int	r_rr;
 	int	rr_r;
-	local_cost(a, stack_a);
-	local_cost(b, stack_b);
+	assign_rot_rev_rot(a, stack_a);
+	assign_rot_rev_rot(b, stack_b);
 	ft_printf("--Nodo a--\n");
 	ft_printf("%d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
 	ft_printf("%d->rev_rot = %d\n", (*stack_a)->nb, (*stack_a)->rev_rot);
