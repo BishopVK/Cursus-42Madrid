@@ -109,6 +109,6 @@ void	turk_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 		return ;
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
-	//calc_cost(stack_a, stack_b);
 	less_node_cost(stack_a, stack_b);
+	push_a_to_b(stack_a, stack_b);
 }
