@@ -54,12 +54,12 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 
 	assign_rot_rev_rot(a, stack_a);
 	assign_rot_rev_rot(b, stack_b);
-	ft_printf("--Nodo a--\n");
+	/* ft_printf("--Nodo a--\n");
 	ft_printf("%d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
 	ft_printf("%d->rev_rot = %d\n", (*stack_a)->nb, (*stack_a)->rev_rot);
 	ft_printf("--Nodo b--\n");
 	ft_printf("%d->rot = %d\n", (*stack_b)->nb, (*stack_b)->rot);
-	ft_printf("%d->rev_rot = %d\n", (*stack_b)->nb, (*stack_b)->rev_rot);
+	ft_printf("%d->rev_rot = %d\n", (*stack_b)->nb, (*stack_b)->rev_rot); */
 	if ((*stack_a)->rot >= (*stack_b)->rot)
 		r_r = (*stack_a)->rot + 1;
 	else if ((*stack_a)->rot <= (*stack_b)->rot)
@@ -80,17 +80,42 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 }
 
 // This function goes through the stack to return
-// the value of the node that has the lowest cost
-int	find_less_cost(t_stack_node *stack)
+// the node that has the lowest cost
+t_stack_node	*find_less_cost(t_stack_node *stack)
 {
-	int	less;
+	t_stack_node	*less;
 
-	less = stack->cost;
+	less = stack;
 	while (stack)
 	{
-		if (stack->cost < less)
-			less = stack->cost;
+		if (stack->cost < less->cost)
+			less = stack;
 		stack = stack->next;
 	}
-	return (stack->order);
+	return (less);
+}
+
+/* void	push_node()
+{
+
+} */
+
+void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	t_stack_node	*local_a;
+	
+	local_a = *stack_a;
+	ft_printf("Len =  %d\n", stack_len(local_a));
+	while (stack_len(local_a) > 3)
+	{
+		*stack_a = find_less_cost(*stack_a); // Aquí tengo el nodo con menor coste
+		if (local_a == *stack_a)
+			local_a = local_a->next;
+		ft_printf("El node que menor coste tiene es %d\n", (*stack_a)->nb);
+		//push_node(stack_a, stack_b);
+		pb(stack_a, stack_b);
+		ft_printf("El primer nodo de stack_a es %d\n", (*stack_a)->nb);
+		ft_printf("El primer nodo de stack_b es %d\n", (*stack_b)->nb);
+		ft_printf("Len =  %d\n", stack_len(local_a));
+	}
 }
