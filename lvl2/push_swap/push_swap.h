@@ -45,6 +45,8 @@ typedef struct s_stack_node
 	int					nb;
 	int					order;
 	t_half				half;
+	int					rot;
+	int					rev_rot;
 	int					cost;
 	struct s_stack_node	*next;
 }	t_stack_node;
@@ -155,10 +157,14 @@ void			display(t_stack_node *new_node);
 /************************************************************/
 /*							turk.c							*/
 /************************************************************/
+void			local_cost(t_stack_node *local, t_stack_node **stack);
+void			final_cost(t_stack_node *a, t_stack_node **stack_a,
+					t_stack_node *b, t_stack_node **stack_b);
+void			nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
+					t_stack_node *local_b, t_stack_node **stack_b);
+void			find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
+					int *min, int *max);
 void			less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b);
-int				find_less_cost(t_stack_node *stack);
-void			assign_cost(t_stack_node *a, t_stack_node **stack);
-void			calc_cost(t_stack_node **stack_a, t_stack_node **stack_b);
 void			find_min_max(t_stack_node *stack, int *min, int *max);
 void			turk_sort(t_stack_node **stack_a, t_stack_node **stack_b);
 
