@@ -76,16 +76,6 @@ void			stack_clear(t_stack_node **node);
 t_stack_node	*create_stack(int nbr, t_stack_node *new_node);
 
 /************************************************************/
-/*							ft_atol.c						*/
-/************************************************************/
-long			ft_atol(const char *nptr);
-
-/************************************************************/
-/*						ft_custom_atoi.c					*/
-/************************************************************/
-int				ft_custom_atoi(const char *nptr);
-
-/************************************************************/
 /*						sort_numbers.c						*/
 /************************************************************/
 void			only_one_element(t_stack_node *stack_node_a);
@@ -157,9 +147,6 @@ void			display(t_stack_node *new_node);
 /************************************************************/
 /*							turk.c							*/
 /************************************************************/
-void			assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack);
-void			final_cost(t_stack_node *a, t_stack_node **stack_a,
-					t_stack_node *b, t_stack_node **stack_b);
 void			nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 					t_stack_node *local_b, t_stack_node **stack_b);
 void			find_min_max(t_stack_node *stack, int *min, int *max);
@@ -167,5 +154,13 @@ void			find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 					int *min, int *max);
 void			less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b);
 void			turk_sort(t_stack_node **stack_a, t_stack_node **stack_b);
+
+/************************************************************/
+/*						turk_extra.c						*/
+/************************************************************/
+void			assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack);
+void			final_cost(t_stack_node *a, t_stack_node **stack_a,
+					t_stack_node *b, t_stack_node **stack_b);
+int				find_less_cost(t_stack_node *stack);
 
 #endif
