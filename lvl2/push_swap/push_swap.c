@@ -16,7 +16,7 @@
 //                  n min max
 // ./a.out `jot -r 500 -100 100`
 // ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker/checker_linux $ARG
-// ARG=`jot -r 500 -10000000 10000000`; ./push_swap $ARG | ./checker/checker_linux $ARG
+// ARG=`jot -r 500 -1000 1000`; ./push_swap $ARG | ./checker/checker_linux $ARG
 // ((VER LEAKS)) valgrind --leak-check=full ./push_swap <lista_de_numeros>
 int	main(int argc, char *argv[])
 {
