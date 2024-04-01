@@ -16,9 +16,9 @@
 // and reverse rotate and saves the value inside the node
 void	assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack)
 {
-	t_stack_node *tmp;
-	int			len;
-	int	i;
+	t_stack_node	*tmp;
+	int				len;
+	int				i;
 
 	len = stack_len(local);
 	tmp = local;
@@ -51,6 +51,7 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 	int	rr_rr;
 	int	r_rr;
 	int	rr_r;
+
 	assign_rot_rev_rot(a, stack_a);
 	assign_rot_rev_rot(b, stack_b);
 	ft_printf("--Nodo a--\n");
@@ -79,14 +80,13 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 		(*stack_a)->cost = rr_r;
 }
 
-
 // This function is responsible for locating for each node in stack_a its pair
 // in stack_b as long as it is not outside the min and max limits of stack_b
 void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 			t_stack_node *local_b, t_stack_node **stack_b)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 1;
 	flag = 0;
@@ -149,9 +149,7 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 			final_cost(local_a, stack_a, local_b, stack_b);
 		}
 		else
-		{
 			nb_inside_limits(local_a, stack_a, local_b, stack_b);
-		}
 		*stack_a = (*stack_a)->next;
 	}
 	*stack_a = local_a;
@@ -163,8 +161,8 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 // on top to calculate the final cost of moving a node.
 void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	int				min_b;
-	int				max_b;
+	int	min_b;
+	int	max_b;
 
 	min_b = 0;
 	max_b = 0;
@@ -231,7 +229,6 @@ void	turk_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	if (stack_a == NULL && stack_b != NULL)
 		return ;
-
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
 	//calc_cost(stack_a, stack_b);
