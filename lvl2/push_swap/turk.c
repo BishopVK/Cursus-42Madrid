@@ -70,7 +70,6 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 		rr_rr = (*stack_b)->rev_rot + 1;
 	r_rr = (*stack_a)->rot + (*stack_b)->rev_rot + 1;
 	rr_r = (*stack_a)->rev_rot + (*stack_b)->rot + 1;
-
 	(*stack_a)->cost = r_r;
 	if (rr_rr < (*stack_a)->cost)
 		(*stack_a)->cost = rr_rr;
