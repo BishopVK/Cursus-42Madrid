@@ -19,17 +19,15 @@ void	rotate(t_stack_node **node)
 	t_stack_node	*tmp_node;
 
 	if (*node == NULL || (*node)->next == NULL)
-		return ; // No hay suficientes nodos para intercambiar
+		return ;
 	first_node = *node;
 	tmp_node = *node;
-	while (tmp_node->next != NULL) //Llegar al último nodo
+	while (tmp_node->next != NULL)
 	{
 		tmp_node = tmp_node->next;
 	}
 	last_node = tmp_node;
-	// Actualizar el puntero de la cabeza si los nodos intercambiados son los primeros
 	*node = first_node->next;
-	// Cambiar los punteros para intercambiar los nodos
 	last_node->next = first_node;
 	first_node->next = NULL;
 }
