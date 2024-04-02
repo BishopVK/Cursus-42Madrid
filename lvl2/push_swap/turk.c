@@ -94,28 +94,66 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 // on top to calculate the final cost of moving a node.
 void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	t_stack_node	*local_a;
-	t_stack_node	*local_b;
+	//t_stack_node	*local_a;
+	//t_stack_node	*local_b;
 	int	min_b;
 	int	max_b;
 	int	len_a;
+	//int	i;
 
 	min_b = 0;
 	max_b = 0;
 	len_a = stack_len(*stack_a);
-	local_a = *stack_a;
-	local_b = *stack_b;
+	ft_printf("LEN = %d\n", len_a);
+	//local_a = *stack_a;
+	//local_b = *stack_b;
 	find_pair(stack_a, stack_b, &min_b, &max_b);
 
-	// Ordenar los 3 primeros movimientos a mano (5 2 1 4 3 6 8 0)
-	/* rb(stack_b);
+	while (len_a > 3) // Mover los nodos de menor coste de stack_a a stack_b
+	{
+		push_a_to_b(stack_a, stack_b, &min_b, &max_b);
+		//pb(stack_a, stack_b);
+		find_pair(stack_a, stack_b, &min_b, &max_b);
+		ft_printf("LEN = %d\n", len_a);
+		ft_printf("HOLA\n");
+		len_a--;
+	}
+
+	/* push_a_to_b(stack_a, stack_b, &min_b, &max_b);
+	//pb(stack_a, stack_b);
+	find_pair(stack_a, stack_b, &min_b, &max_b);
+	ft_printf("LEN = %d\n", len_a);
+	ft_printf("HOLA\n"); */
+	
+	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
+
+	//i = 1;
+	/* while (*stack_b) // Mover los nodos de stack_b a stack_a
+	{
+		while (*stack_a)
+		{
+			ft_printf("HOLA\n");
+			*stack_a = (*stack_a)->next;
+		}
+		// *stack_a = local_a;
+		*stack_b = (*stack_b)->next;
+	} */
+
+	/* // Ordenar los 3 primeros movimientos a mano (5 2 1 4 3 6 8 0)
+	rb(stack_b);
 	pb(stack_a, stack_b);
+
+	find_pair(stack_a, stack_b, &min_b, &max_b);
 
 	rrb(stack_b);
 	pb(stack_a, stack_b);
 
-	rrr(stack_a, stack_b);
-	pb(stack_a, stack_b); */
+	find_pair(stack_a, stack_b, &min_b, &max_b);
+
+	rb(stack_b);
+	pb(stack_a, stack_b);
+
+	sort_3_numbers(stack_a); */
 	
 	/* while (len_a-- > 3)
 	{
@@ -134,9 +172,9 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 // the first 2 movements and calling the rest of the functions
 void	turk_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	int	len_a;
+	//int	len_a;
 
-	len_a = stack_len(*stack_a);
+	//len_a = stack_len(*stack_a);
 	if (stack_a == NULL && stack_b != NULL)
 		return ;
 	pb(stack_a, stack_b);
