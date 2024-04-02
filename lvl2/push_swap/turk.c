@@ -20,9 +20,10 @@ void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 	int	i;
 	int	flag;
 
+
 	i = 1;
 	flag = 0;
-	while (i <= stack_len(local_b))
+	while (i < INT_MAX)
 	{
 		*stack_b = local_b;
 		while (*stack_b)
@@ -93,22 +94,52 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 // on top to calculate the final cost of moving a node.
 void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 {
+	t_stack_node	*local_a;
+	t_stack_node	*local_b;
 	int	min_b;
 	int	max_b;
+	int	len_a;
 
 	min_b = 0;
 	max_b = 0;
+	len_a = stack_len(*stack_a);
+	local_a = *stack_a;
+	local_b = *stack_b;
 	find_pair(stack_a, stack_b, &min_b, &max_b);
+
+	// Ordenar los 3 primeros movimientos a mano (5 2 1 4 3 6 8 0)
+	/* rb(stack_b);
+	pb(stack_a, stack_b);
+
+	rrb(stack_b);
+	pb(stack_a, stack_b);
+
+	rrr(stack_a, stack_b);
+	pb(stack_a, stack_b); */
+	
+	/* while (len_a-- > 3)
+	{
+		ra(stack_a);
+		find_pair(stack_a, stack_b, &min_b, &max_b);
+	} */
+/* 	while (len_a-- > 3)
+	{ */
+		//push_a_to_b(stack_a, stack_b, &min_b, &max_b);
+	//}
+	//*stack_b = local_b;
+	//*stack_a = local_a;
 }
 
 // This is the main function and is responsible for performing
 // the first 2 movements and calling the rest of the functions
 void	turk_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
+	int	len_a;
+
+	len_a = stack_len(*stack_a);
 	if (stack_a == NULL && stack_b != NULL)
 		return ;
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
 	less_node_cost(stack_a, stack_b);
-	push_a_to_b(stack_a, stack_b);
 }
