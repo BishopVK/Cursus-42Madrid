@@ -62,11 +62,11 @@ void	final_cost(t_stack_node *a, t_stack_node **stack_a,
 	ft_printf("%d->rev_rot = %d\n", (*stack_b)->nb, (*stack_b)->rev_rot); */
 	if ((*stack_a)->rot >= (*stack_b)->rot)
 		r_r = (*stack_a)->rot + 1;
-	else if ((*stack_a)->rot <= (*stack_b)->rot)
+	else
 		r_r = (*stack_b)->rot + 1;
 	if ((*stack_a)->rev_rot >= (*stack_b)->rev_rot)
 		rr_rr = (*stack_a)->rev_rot + 1;
-	else if ((*stack_a)->rev_rot <= (*stack_b)->rev_rot)
+	else
 		rr_rr = (*stack_b)->rev_rot + 1;
 	r_rr = (*stack_a)->rot + (*stack_b)->rev_rot + 1;
 	rr_r = (*stack_a)->rev_rot + (*stack_b)->rot + 1;
@@ -95,27 +95,76 @@ t_stack_node	*find_less_cost(t_stack_node *stack)
 	return (less);
 }
 
-/* void	push_node()
+void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 {
+	int	r_r;
+	int	rr_rr;
+	int	r_rr;
+	int	rr_r;
 
-} */
+	if ((*stack_a)->rot >= (*stack_b)->rot)
+		r_r = (*stack_a)->rot + 1;
+	else
+		r_r = (*stack_b)->rot + 1;
+	if ((*stack_a)->rev_rot >= (*stack_b)->rev_rot)
+		rr_rr = (*stack_a)->rev_rot + 1;
+	else
+		rr_rr = (*stack_b)->rev_rot + 1;
+	r_rr = (*stack_a)->rot + (*stack_b)->rev_rot + 1;
+	rr_r = (*stack_a)->rev_rot + (*stack_b)->rot + 1;
+	(*stack_a)->cost = r_r;
+	if (rr_rr < (*stack_a)->cost)
+		(*stack_a)->cost = rr_rr;
+	if (r_rr < (*stack_a)->cost)
+		(*stack_a)->cost = r_rr;
+	if (rr_r < (*stack_a)->cost)
+		(*stack_a)->cost = rr_r;
+}
 
-void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
+void	find_each_pair(t_stack_node **stack_a, t_stack_node **stack_b,
+			int *min, int *max)
 {
 	t_stack_node	*local_a;
-	
+	t_stack_node	*local_b;
+
 	local_a = *stack_a;
-	ft_printf("Len =  %d\n", stack_len(local_a));
-	while (stack_len(local_a) > 3)
+	local_b = *stack_b;
+	find_min_max(*stack_b, min, max);
+	//ft_printf("local_b->nb = %d\n", local_b->nb);
+
+	//ft_printf("(*stack_b)->nb = %d\n", (*stack_b)->nb);
+	if ((*stack_a)->order < *min || (*stack_a)->order > *max)
 	{
-		*stack_a = find_less_cost(*stack_a); // Aquí tengo el nodo con menor coste
-		if (local_a == *stack_a)
-			local_a = local_a->next;
-		ft_printf("El node que menor coste tiene es %d\n", (*stack_a)->nb);
-		//push_node(stack_a, stack_b);
-		pb(stack_a, stack_b);
-		ft_printf("El primer nodo de stack_a es %d\n", (*stack_a)->nb);
-		ft_printf("El primer nodo de stack_b es %d\n", (*stack_b)->nb);
-		ft_printf("Len =  %d\n", stack_len(local_a));
+		while ((*stack_b)->order != *max)
+			*stack_b = (*stack_b)->next;
+		final_cost(local_a, stack_a, local_b, stack_b);
 	}
+	else
+		nb_inside_limits(local_a, stack_a, local_b, stack_b);
+}
+
+// This function must locate the node with the lowest value and perform
+// the necessary operations to push it to the stack b.
+void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
+			int *min, int *max)
+{
+	t_stack_node	*local_b;
+	t_stack_node	*local_a;
+
+	local_b = *stack_b;
+	ft_printf("@@@Stack_a es %d\n", (*stack_a)->nb);
+	ft_printf("@@@Stack_b es %d\n", (*stack_b)->nb);
+	find_each_pair(stack_a, stack_b, min, max);
+	ft_printf(">>>Stack_a es %d\n", (*stack_a)->nb);
+	ft_printf(">>>Stack_b es %d\n", (*stack_b)->nb);
+	local_a = *stack_a;
+	if (local_a == *stack_a) // Si vamos a mover el primer nodo... avanzamos local_a al segundo
+		local_a = local_a->next;
+	ra(stack_a);
+	//pb(stack_a, stack_b);
+	//push_node(stack_a, stack_b);
+	// ft_printf(">>>Stack_a es %d\n", (*stack_a)->nb);
+	// ft_printf(">>>Stack_b es %d\n", (*stack_b)->nb);
+	*stack_b = local_b;
+	*stack_a = local_a;
 }
