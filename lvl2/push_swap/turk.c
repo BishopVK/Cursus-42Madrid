@@ -104,7 +104,7 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	min_b = 0;
 	max_b = 0;
 	len_a = stack_len(*stack_a);
-	ft_printf("LEN = %d\n", len_a);
+	//ft_printf("LEN = %d\n", len_a);
 	//local_a = *stack_a;
 	//local_b = *stack_b;
 	find_pair(stack_a, stack_b, &min_b, &max_b);
@@ -114,8 +114,8 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 		push_a_to_b(stack_a, stack_b, &min_b, &max_b);
 		//pb(stack_a, stack_b);
 		find_pair(stack_a, stack_b, &min_b, &max_b);
-		ft_printf("LEN = %d\n", len_a);
-		ft_printf("HOLA\n");
+		//ft_printf("LEN = %d\n", len_a);
+		//ft_printf("HOLA\n");
 		len_a--;
 	}
 

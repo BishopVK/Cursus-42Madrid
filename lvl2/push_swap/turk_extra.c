@@ -238,6 +238,10 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 		}
 		pb(stack_a, stack_b);
 	}
+	ft_printf("<<STACK_A>>\n");
+	display(*stack_a);
+	ft_printf("<<STACK_B>>\n");
+	display(*stack_b);
 	// *stack_a = local_a;
 	// *stack_b = local_b;
 }
