@@ -139,7 +139,6 @@ void			sort_short(t_stack_node **stack_node_a,
 /************************************************************/
 /*						display.c							*/
 /************************************************************/
-void			display_by_order(t_stack_node *new_node);
 void			display_pair(t_stack_node *new_node);
 void			display_cost(t_stack_node *new_node);
 void			display_order(t_stack_node *new_node);

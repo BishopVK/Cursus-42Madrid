@@ -12,35 +12,6 @@
 
 #include "push_swap.h"
 
-/* void	display_by_order(t_stack_node *new_node)
-{
-	t_stack_node	*local_node;
-	int				i;
-
-	local_node = new_node;
-	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
-	else
-	{
-		i = 1;
-		while (i <= stack_len(new_node))
-		{
-			while (local_node)
-			{
-				if (i == local_node->order)
-				{
-					ft_printf("%d valor = %d\n", local_node->order,
-						local_node->nb);
-					break ;
-				}
-				local_node = local_node->next;
-			}
-			local_node = new_node;
-			i++;
-		}
-	}
-} */
-
 void	display_pair(t_stack_node *new_node)
 {
 	t_stack_node	*local_node;
