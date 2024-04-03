@@ -29,8 +29,6 @@ void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 		{
 			if ((*stack_b)->order == (*stack_a)->order - i)
 			{
-				/* ft_printf("a = %d\n", (*stack_a)->nb);
-				ft_printf("b = %d\n", (*stack_b)->nb); */
 				(*stack_a)->pair_order = (*stack_b)->order;
 				final_cost(local_a, stack_a, local_b, stack_b);
 				flag = 1;
@@ -72,15 +70,11 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 	local_a = *stack_a;
 	local_b = *stack_b;
 	find_min_max(*stack_b, min, max);
-	//ft_printf("local_b->nb = %d\n", local_b->nb);
 	while (*stack_a)
 	{
 		*stack_b = local_b;
-		//ft_printf("(*stack_b)->nb = %d\n", (*stack_b)->nb);
 		if ((*stack_a)->order < *min || (*stack_a)->order > *max)
 		{
-			/* ft_printf("a = %d\n", (*stack_a)->nb);
-			ft_printf("b = %d\n", (*stack_b)->nb); */
 			while ((*stack_b)->order != *max)
 				*stack_b = (*stack_b)->next;
 			(*stack_a)->pair_order = (*stack_b)->order;
@@ -99,41 +93,21 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 // on top to calculate the final cost of moving a node.
 void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	//t_stack_node	*local_a;
-	//t_stack_node	*local_b;
 	int	min_b;
 	int	max_b;
 	int	len_a;
-	//int	i;
 
 	min_b = 0;
 	max_b = 0;
 	len_a = stack_len(*stack_a);
-	//ft_printf("LEN = %d\n", len_a);
-	//local_a = *stack_a;
-	//local_b = *stack_b;
 	find_pair(stack_a, stack_b, &min_b, &max_b);
 	
-	ft_printf("<<STACK_A>>\n");
-	display_pair(*stack_a);
-	ft_printf("<<STACK_B>>\n");
-	display_pair(*stack_b);
-
 	while (len_a > 3) // Mover los nodos de menor coste de stack_a a stack_b
 	{
-		push_a_to_b(stack_a, stack_b, &min_b, &max_b);
-		//pb(stack_a, stack_b);
+		push_a_to_b(stack_a, stack_b);
 		find_pair(stack_a, stack_b, &min_b, &max_b);
-		//ft_printf("LEN = %d\n", len_a);
-		//ft_printf("HOLA\n");
 		len_a--;
 	}
-
-	/* push_a_to_b(stack_a, stack_b, &min_b, &max_b);
-	//pb(stack_a, stack_b);
-	find_pair(stack_a, stack_b, &min_b, &max_b);
-	ft_printf("LEN = %d\n", len_a);
-	ft_printf("HOLA\n"); */
 	
 	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
 
@@ -154,9 +128,6 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 // the first 2 movements and calling the rest of the functions
 void	turk_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	//int	len_a;
-
-	//len_a = stack_len(*stack_a);
 	if (stack_a == NULL && stack_b != NULL)
 		return ;
 	pb(stack_a, stack_b);
