@@ -106,59 +106,13 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	rr_r = local_a->rev_rot + local_b->rot + 1;
 
 	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r) // Rotar ambos stacks
-	{
-		if (local_a->rot <= local_b->rot)
-		{
-			while ((local_b->rot-- - local_a->rot) > 0)
-				rb(stack_b);
-			while (local_a->rot-- > 0)
-				rr(stack_a, stack_b);
-			pb(stack_a, stack_b);
-		}
-		else
-		{
-			while ((local_a->rot-- - local_b->rot) > 0)
-				ra(stack_a);
-			while (local_b->rot-- > 0)
-				rr(stack_a, stack_b);
-			pb(stack_a, stack_b);
-		}
-	}
+		r_r_its_less(stack_a, local_a, stack_b, local_b);
 	else if (rr_rr <= r_r && rr_rr <= r_rr && rr_rr <= rr_r) // Rotar inversamente ambos stacks
-	{
-		if (local_a->rev_rot <= local_b->rev_rot)
-		{
-			while ((local_b->rev_rot-- - local_a->rev_rot) > 0)
-				rrb(stack_b);
-			while (local_a->rev_rot-- > 0)
-				rrr(stack_a, stack_b);
-			pb(stack_a, stack_b);
-		}
-		else
-		{
-			while ((local_a->rev_rot-- - local_b->rev_rot) > 0)
-				rra(stack_a);
-			while (local_b->rev_rot-- > 0)
-				rrr(stack_a, stack_b);
-			pb(stack_a, stack_b);
-		}
-	}
+		rr_rr_its_less(stack_a, local_a, stack_b, local_b);
 	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r) // Rotar A y rotar inversamente B
-	{
-		while (local_a->rot-- > 0)
-			ra(stack_a);
-		while (local_b->rev_rot-- > 0)
-			rrb(stack_b);
-		pb(stack_a, stack_b);
-	}
+		r_rr_its_less(stack_a, local_a, stack_b, local_b);
 	else // Rotar inversamente A y rotar B
-	{
-		while (local_a->rev_rot-- > 0)
-			rra(stack_a);
-		while (local_b->rot-- > 0)
-			rb(stack_b);
-		pb(stack_a, stack_b);
-	}
+		rr_r_its_less(stack_a, local_a, stack_b, local_b);
 }
 
 // This function must locate the node with the lowest value and perform
