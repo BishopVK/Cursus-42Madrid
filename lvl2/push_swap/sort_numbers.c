@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/03 16:49:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:01:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,11 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	its_ordered(stack_node_a);
 	assign_order(stack_node_a);
 	assign_half(stack_node_a);
-	//display_half(stack_node_a);
 	if (stack_len(stack_node_a) <= 5)
 		sort_short(&stack_node_a, &stack_node_b);
 	else
 	{
 		//ft_printf("<<Vamos a ordenar más de 5 números>>\n");
-		//short_algorithm(&stack_node_a, &stack_node_b);
 		turk_sort(&stack_node_a, &stack_node_b);
 	}
 
@@ -93,45 +91,4 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	stack_clear(&stack_node_a);
 	stack_clear(&stack_node_b);
 	exit(0);
-
-	//display_order(stack_node_a);
-	//ft_printf("--------\n");
-	//display_by_order(stack_node_a);
-
-	/* pb(&stack_node_a, &stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	pb(&stack_node_a, &stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	pb(&stack_node_a, &stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	rra(&stack_node_a);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	rrb(&stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b);
-
-	ft_printf("----reverse rotate both----\n");
-	rrr(&stack_node_a, &stack_node_b);
-	ft_printf("----stack a----\n");
-	display(stack_node_a);
-	ft_printf("----stack b----\n");
-	display(stack_node_b); */
 }
