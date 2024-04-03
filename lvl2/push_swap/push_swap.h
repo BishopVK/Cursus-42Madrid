@@ -164,7 +164,8 @@ void			assign_rot_rev_rot(t_stack_node *local, t_stack_node **stack);
 void			final_cost(t_stack_node *a, t_stack_node **stack_a,
 					t_stack_node *b, t_stack_node **stack_b);
 t_stack_node	*find_less_cost(t_stack_node *stack);
-void			push_node(t_stack_node **stack_a, t_stack_node **stack_b);
+void			push_node(t_stack_node **stack_a, t_stack_node *local_a,
+					t_stack_node **stack_b, t_stack_node *local_b);
 void			find_each_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 					int *min, int *max);
 void			push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
