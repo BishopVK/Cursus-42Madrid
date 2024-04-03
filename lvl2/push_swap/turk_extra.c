@@ -109,30 +109,18 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	{
 		if (local_a->rot <= local_b->rot)
 		{
-			while ((local_b->rot - local_a->rot) > 0)
-			{
+			while ((local_b->rot-- - local_a->rot) > 0)
 				rb(stack_b);
-				local_b->rot--;
-			}
-			while (local_a->rot > 0)
-			{
+			while (local_a->rot-- > 0)
 				rr(stack_a, stack_b);
-				local_a->rot--;
-			}
 			pb(stack_a, stack_b);
 		}
 		else
 		{
-			while ((local_a->rot - local_b->rot) > 0)
-			{
+			while ((local_a->rot-- - local_b->rot) > 0)
 				ra(stack_a);
-				local_a->rot--;
-			}
-			while (local_b->rot > 0)
-			{
+			while (local_b->rot-- > 0)
 				rr(stack_a, stack_b);
-				local_b->rot--;
-			}
 			pb(stack_a, stack_b);
 		}
 	}
@@ -140,59 +128,35 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	{
 		if (local_a->rev_rot <= local_b->rev_rot)
 		{
-			while ((local_b->rev_rot - local_a->rev_rot) > 0)
-			{
+			while ((local_b->rev_rot-- - local_a->rev_rot) > 0)
 				rrb(stack_b);
-				local_b->rev_rot--;
-			}
-			while (local_a->rev_rot > 0)
-			{
+			while (local_a->rev_rot-- > 0)
 				rrr(stack_a, stack_b);
-				local_a->rev_rot--;
-			}
 			pb(stack_a, stack_b);
 		}
 		else
 		{
-			while ((local_a->rev_rot - local_b->rev_rot) > 0)
-			{
+			while ((local_a->rev_rot-- - local_b->rev_rot) > 0)
 				rra(stack_a);
-				local_a->rev_rot--;
-			}
-			while (local_b->rev_rot > 0)
-			{
+			while (local_b->rev_rot-- > 0)
 				rrr(stack_a, stack_b);
-				local_b->rev_rot--;
-			}
 			pb(stack_a, stack_b);
 		}
 	}
 	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r) // Rotar A y rotar inversamente B
 	{
-		while (local_a->rot > 0)
-		{
+		while (local_a->rot-- > 0)
 			ra(stack_a);
-			local_a->rot--;
-		}
-		while (local_b->rev_rot > 0)
-		{
+		while (local_b->rev_rot-- > 0)
 			rrb(stack_b);
-			local_b->rev_rot--;
-		}
 		pb(stack_a, stack_b);
 	}
 	else // Rotar inversamente A y rotar B
 	{
-		while (local_a->rev_rot > 0)
-		{
+		while (local_a->rev_rot-- > 0)
 			rra(stack_a);
-			local_a->rev_rot--;
-		}
-		while (local_b->rot > 0)
-		{
+		while (local_b->rot-- > 0)
 			rb(stack_b);
-			local_b->rot--;
-		}
 		pb(stack_a, stack_b);
 	}
 }
