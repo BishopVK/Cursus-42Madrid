@@ -31,7 +31,7 @@ void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 			{
 				/* ft_printf("a = %d\n", (*stack_a)->nb);
 				ft_printf("b = %d\n", (*stack_b)->nb); */
-				(*stack_a)->pair_order = (*stack_b)->nb;
+				(*stack_a)->pair_order = (*stack_b)->order;
 				final_cost(local_a, stack_a, local_b, stack_b);
 				flag = 1;
 				break ;
@@ -83,7 +83,7 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 			ft_printf("b = %d\n", (*stack_b)->nb); */
 			while ((*stack_b)->order != *max)
 				*stack_b = (*stack_b)->next;
-			(*stack_a)->pair_order = (*stack_b)->nb;
+			(*stack_a)->pair_order = (*stack_b)->order;
 			final_cost(local_a, stack_a, local_b, stack_b);
 		}
 		else
@@ -119,7 +119,7 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	ft_printf("<<STACK_B>>\n");
 	display_pair(*stack_b);
 
-	while (len_a > 5) // Mover los nodos de menor coste de stack_a a stack_b
+	while (len_a > 3) // Mover los nodos de menor coste de stack_a a stack_b
 	{
 		push_a_to_b(stack_a, stack_b, &min_b, &max_b);
 		//pb(stack_a, stack_b);
