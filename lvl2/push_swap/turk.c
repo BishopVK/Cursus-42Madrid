@@ -20,7 +20,6 @@ void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 	int	i;
 	int	flag;
 
-
 	i = 1;
 	flag = 0;
 	while (i < INT_MAX)
@@ -30,6 +29,9 @@ void	nb_inside_limits(t_stack_node *local_a, t_stack_node **stack_a,
 		{
 			if ((*stack_b)->order == (*stack_a)->order - i)
 			{
+				/* ft_printf("a = %d\n", (*stack_a)->nb);
+				ft_printf("b = %d\n", (*stack_b)->nb); */
+				(*stack_a)->pair_order = (*stack_b)->nb;
 				final_cost(local_a, stack_a, local_b, stack_b);
 				flag = 1;
 				break ;
@@ -77,8 +79,11 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 		//ft_printf("(*stack_b)->nb = %d\n", (*stack_b)->nb);
 		if ((*stack_a)->order < *min || (*stack_a)->order > *max)
 		{
+			/* ft_printf("a = %d\n", (*stack_a)->nb);
+			ft_printf("b = %d\n", (*stack_b)->nb); */
 			while ((*stack_b)->order != *max)
 				*stack_b = (*stack_b)->next;
+			(*stack_a)->pair_order = (*stack_b)->nb;
 			final_cost(local_a, stack_a, local_b, stack_b);
 		}
 		else
@@ -108,8 +113,13 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	//local_a = *stack_a;
 	//local_b = *stack_b;
 	find_pair(stack_a, stack_b, &min_b, &max_b);
+	
+	ft_printf("<<STACK_A>>\n");
+	display_pair(*stack_a);
+	ft_printf("<<STACK_B>>\n");
+	display_pair(*stack_b);
 
-	while (len_a > 3) // Mover los nodos de menor coste de stack_a a stack_b
+	while (len_a > 5) // Mover los nodos de menor coste de stack_a a stack_b
 	{
 		push_a_to_b(stack_a, stack_b, &min_b, &max_b);
 		//pb(stack_a, stack_b);
@@ -125,7 +135,7 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	ft_printf("LEN = %d\n", len_a);
 	ft_printf("HOLA\n"); */
 	
-	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
+	//sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
 
 	//i = 1;
 	/* while (*stack_b) // Mover los nodos de stack_b a stack_a
@@ -138,34 +148,6 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 		// *stack_a = local_a;
 		*stack_b = (*stack_b)->next;
 	} */
-
-	/* // Ordenar los 3 primeros movimientos a mano (5 2 1 4 3 6 8 0)
-	rb(stack_b);
-	pb(stack_a, stack_b);
-
-	find_pair(stack_a, stack_b, &min_b, &max_b);
-
-	rrb(stack_b);
-	pb(stack_a, stack_b);
-
-	find_pair(stack_a, stack_b, &min_b, &max_b);
-
-	rb(stack_b);
-	pb(stack_a, stack_b);
-
-	sort_3_numbers(stack_a); */
-	
-	/* while (len_a-- > 3)
-	{
-		ra(stack_a);
-		find_pair(stack_a, stack_b, &min_b, &max_b);
-	} */
-/* 	while (len_a-- > 3)
-	{ */
-		//push_a_to_b(stack_a, stack_b, &min_b, &max_b);
-	//}
-	//*stack_b = local_b;
-	//*stack_a = local_a;
 }
 
 // This is the main function and is responsible for performing

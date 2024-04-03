@@ -144,6 +144,9 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 		if ((*stack_a)->cost == (*stack_a)->rot + 1)
 		{
 			ft_printf("A es más barato\n");
+			ft_printf("            %d->cost = %d\n", (*stack_a)->nb, (*stack_a)->cost);
+			ft_printf("            %d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
+			ft_printf("            %d->rot = %d\n", (*stack_b)->nb, (*stack_b)->rot);
 			while ((*stack_a)->rot > 0)
 			{
 				rr(stack_a, stack_b);
@@ -159,6 +162,9 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 		else
 		{
 			ft_printf("B es más barato\n");
+			ft_printf("            %d->cost = %d\n", (*stack_a)->nb, (*stack_a)->cost);
+			ft_printf("            %d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
+			ft_printf("            %d->rot = %d\n", (*stack_b)->nb, (*stack_b)->rot);
 			while ((*stack_b)->rot > 0)
 			{
 				rr(stack_a, stack_b);
@@ -169,6 +175,8 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 				ra(stack_a);
 				(*stack_a)->rot--;
 			}
+			/* rb(stack_b);
+			rb(stack_b); */
 			pb(stack_a, stack_b);
 		}
 	}
@@ -238,10 +246,10 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 		}
 		pb(stack_a, stack_b);
 	}
-	ft_printf("<<STACK_A>>\n");
+	/* ft_printf("<<STACK_A>>\n");
 	display(*stack_a);
 	ft_printf("<<STACK_B>>\n");
-	display(*stack_b);
+	display(*stack_b); */
 	// *stack_a = local_a;
 	// *stack_b = local_b;
 }
@@ -275,22 +283,22 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 {
 	t_stack_node	*local_a;
 	t_stack_node	*local_b;
-	int				less;
+	int				less_a;
 
 	local_a = *stack_a;
 	local_b = *stack_b;
-	less = (*stack_a)->cost;
+	less_a = (*stack_a)->cost;
 	while(*stack_a) // Encontrar el coste mínimo
 	{
-		if ((*stack_a)->cost < less)
-			less = (*stack_a)->cost;
+		if ((*stack_a)->cost < less_a)
+			less_a = (*stack_a)->cost;
 		*stack_a = (*stack_a)->next;
 	}
 	*stack_a = local_a;
 
 	while(*stack_a) // Encontrar la primera coincidencia con el coste mínimo
 	{
-		if ((*stack_a)->cost == less)
+		if ((*stack_a)->cost == less_a)
 			break ;
 		*stack_a = (*stack_a)->next;
 	}
@@ -300,7 +308,11 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 	{
 		while ((*stack_b)->order != *max)
 			*stack_b = (*stack_b)->next;
-		push_node(&local_a, &local_b); // Si lo hemos encontado...
+		//find_pair(stack_a, stack_b, min, max);
+		ft_printf("a = %d\n", (*stack_a)->nb);
+		ft_printf("b = %d\n", (*stack_b)->nb);
+		//push_node(stack_a, stack_b); // Si lo hemos encontado...
+		//push_node(stack_a, &local_b); // Si lo hemos encontado...
 		//pb(&local_a, &local_b);
 	}
 	else
@@ -316,7 +328,10 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 			{
 				if ((*stack_b)->order == (*stack_a)->order - i)
 				{
-					push_node(&local_a, &local_b); // Si lo hemos encontado...
+					ft_printf("a = %d\n", (*stack_a)->nb);
+					ft_printf("b = %d\n", (*stack_b)->nb);
+					//push_node(stack_a, stack_b); // Si lo hemos encontado...
+					//push_node(stack_a, &local_b); // Si lo hemos encontado...
 					//pb(&local_a, &local_b);
 					flag = 1;
 					break ;
@@ -328,14 +343,17 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 			i++;
 		}
 	}
-	*stack_a = local_a;
-	*stack_b = local_b;
+	//*stack_a = local_a;
+	//*stack_b = local_b;
 
-	ft_printf("@@@Stack_a es %d\n", (*stack_a)->nb);
+	(void)min;
+	(void)max;
+	(void)stack_b;
+	/* ft_printf("@@@Stack_a es %d\n", (*stack_a)->nb);
 	ft_printf("@@@Stack_b es %d\n", (*stack_b)->nb);
 	ft_printf(">>>min es %d\n", *min);
 	ft_printf(">>>max es %d\n", *max);
-	ft_printf(">>>%d cost == %d\n", (*stack_a)->nb, less);
+	ft_printf(">>>%d cost == %d\n", (*stack_a)->nb, less); */
 	
 }
 
