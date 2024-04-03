@@ -167,4 +167,16 @@ void			push_node(t_stack_node **stack_a, t_stack_node *local_a,
 					t_stack_node **stack_b, t_stack_node *local_b);
 void			push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b);
 
+/************************************************************/
+/*					determine_moves.c						*/
+/************************************************************/
+void			r_r_its_less(t_stack_node **stack_a, t_stack_node *local_a,
+					t_stack_node **stack_b, t_stack_node *local_b);
+void			rr_rr_its_less(t_stack_node **stack_a, t_stack_node *local_a,
+					t_stack_node **stack_b, t_stack_node *local_b);
+void			r_rr_its_less(t_stack_node **stack_a, t_stack_node *local_a,
+					t_stack_node **stack_b, t_stack_node *local_b);
+void			rr_r_its_less(t_stack_node **stack_a, t_stack_node *local_a,
+					t_stack_node **stack_b, t_stack_node *local_b);
+
 #endif
