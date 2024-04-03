@@ -281,13 +281,14 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 			int *min, int *max)
 {
-	t_stack_node	*local_a;
-	t_stack_node	*local_b;
-	int				less_a;
+	//t_stack_node	*local_a;
+	//t_stack_node	*local_b;
+	//int				less_a;
 
-	local_a = *stack_a;
-	local_b = *stack_b;
-	less_a = (*stack_a)->cost;
+	//local_a = *stack_a;
+	//local_b = *stack_b;
+	ra(stack_a);
+	/* less_a = (*stack_a)->cost;
 	while(*stack_a) // Encontrar el coste mínimo
 	{
 		if ((*stack_a)->cost < less_a)
@@ -304,6 +305,7 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 	}
 
 	// Buscamos el nodo del stack_b por el que debemos intercambiarlo
+	// Si el nodo del stack_a es menor que el min o mayor que el max
 	if ((*stack_a)->order < *min || (*stack_a)->order > *max)
 	{
 		while ((*stack_b)->order != *max)
@@ -313,9 +315,9 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 		ft_printf("b = %d\n", (*stack_b)->nb);
 		//push_node(stack_a, stack_b); // Si lo hemos encontado...
 		//push_node(stack_a, &local_b); // Si lo hemos encontado...
-		//pb(&local_a, &local_b);
+		pb(stack_a, stack_b);
 	}
-	else
+	else // Si el nodo del stack_a es debe colocarse en una zona media del stack_b
 	{
 		int	i;
 		int	flag;
@@ -332,7 +334,7 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 					ft_printf("b = %d\n", (*stack_b)->nb);
 					//push_node(stack_a, stack_b); // Si lo hemos encontado...
 					//push_node(stack_a, &local_b); // Si lo hemos encontado...
-					//pb(&local_a, &local_b);
+					pb(stack_a, stack_b);
 					flag = 1;
 					break ;
 				}
@@ -342,7 +344,7 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 				break ;
 			i++;
 		}
-	}
+	} */
 	//*stack_a = local_a;
 	//*stack_b = local_b;
 
