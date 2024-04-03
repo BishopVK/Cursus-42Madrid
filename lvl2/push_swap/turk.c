@@ -93,9 +93,9 @@ void	find_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 // on top to calculate the final cost of moving a node.
 void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	int	min_b;
-	int	max_b;
-	int	len_a;
+	int				min_b;
+	int				max_b;
+	int				len_a;
 
 	min_b = 0;
 	max_b = 0;
@@ -111,17 +111,7 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	
 	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
 
-	//i = 1;
-	/* while (*stack_b) // Mover los nodos de stack_b a stack_a
-	{
-		while (*stack_a)
-		{
-			ft_printf("HOLA\n");
-			*stack_a = (*stack_a)->next;
-		}
-		// *stack_a = local_a;
-		*stack_b = (*stack_b)->next;
-	} */
+	return_b_to_a(stack_a, stack_b); // Mover los nodos de stack_b a stack_a
 }
 
 // This is the main function and is responsible for performing
