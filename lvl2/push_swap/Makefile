@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/04/01 22:06:30 by danjimen         ###   ########.fr        #
+#    Updated: 2024/04/03 17:13:33 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC			=	push_swap.c \
 				display.c \
 				turk.c \
 				turk_extra.c \
+				determine_moves.c \
 				get_next_line/get_next_line_bonus.c \
 				get_next_line/get_next_line_utils_bonus.c
 
