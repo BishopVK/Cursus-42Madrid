@@ -168,7 +168,6 @@ void			push_node(t_stack_node **stack_a, t_stack_node *local_a,
 					t_stack_node **stack_b, t_stack_node *local_b);
 void			find_each_pair(t_stack_node **stack_a, t_stack_node **stack_b,
 					int *min, int *max);
-void			push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
-					int *min, int *max);
+void			push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b);
 
 #endif
