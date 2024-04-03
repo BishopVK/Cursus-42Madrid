@@ -95,88 +95,82 @@ t_stack_node	*find_less_cost(t_stack_node *stack)
 	return (less);
 }
 
-void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
+void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
+			t_stack_node **stack_b, t_stack_node *local_b)
 {
 	int	r_r;
 	int	rr_rr;
 	int	r_rr;
 	int	rr_r;
 
-	if ((*stack_a)->rot >= (*stack_b)->rot)
+	if (local_a->rot >= local_b->rot)
 	{
-		r_r = (*stack_a)->rot + 1;
+		r_r = local_a->rot + 1;
 		ft_printf("r_r1 = %d\n", r_r);
 	}
+
 	else
 	{
-		r_r = (*stack_b)->rot + 1;
+		r_r = local_b->rot + 1;
 		ft_printf("r_r2 = %d\n", r_r);
 	}
-	if ((*stack_a)->rev_rot >= (*stack_b)->rev_rot)
+	if (local_a->rev_rot >= local_b->rev_rot)
 	{
-		rr_rr = (*stack_a)->rev_rot + 1;
+		rr_rr = local_a->rev_rot + 1;
 		ft_printf("rr_rr1 = %d\n", rr_rr);
 	}
 	else
 	{
-		rr_rr = (*stack_b)->rev_rot + 1;
+		rr_rr = local_b->rev_rot + 1;
 		ft_printf("rr_rr2 = %d\n", rr_rr);
 	}
-	r_rr = (*stack_a)->rot + (*stack_b)->rev_rot + 1;
+	r_rr = local_a->rot + local_b->rev_rot + 1;
 	ft_printf("r_rr = %d\n", r_rr);
-	rr_r = (*stack_a)->rev_rot + (*stack_b)->rot + 1;
-	
-	/* (*stack_a)->cost = r_r;
-	if (rr_rr < (*stack_a)->cost)
-		(*stack_a)->cost = rr_rr;
-	if (r_rr < (*stack_a)->cost)
-		(*stack_a)->cost = r_rr;
-	if (rr_r < (*stack_a)->cost)
-		(*stack_a)->cost = rr_r; */
+	rr_r = local_a->rev_rot + local_b->rot + 1;
 
-	//t_stack_node *local_a = *stack_a;
-	//t_stack_node *local_b = *stack_b;
+	ft_printf("SEGUIMOS CON LA MISMA DECISIÓN:\n");
+	ft_printf("Intercambiaremos:\n");
+	ft_printf("Pondremos %d\n", local_a->nb);
+	ft_printf("Sobre %d\n", local_b->nb);
 
 	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r) // Rotar ambos stacks
 	{
 		ft_printf("r_r es el menor\n");
 		// Si rotar A es más barato, realiza la rotación en A
-		if ((*stack_a)->cost == (*stack_a)->rot + 1)
+		if (local_a->rot <= local_b->rot)
 		{
 			ft_printf("A es más barato\n");
-			ft_printf("            %d->cost = %d\n", (*stack_a)->nb, (*stack_a)->cost);
-			ft_printf("            %d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
-			ft_printf("            %d->rot = %d\n", (*stack_b)->nb, (*stack_b)->rot);
-			while ((*stack_a)->rot > 0)
-			{
-				rr(stack_a, stack_b);
-				(*stack_a)->rot--;
-			}
-			while (((*stack_b)->rot - (*stack_a)->rot) > 0)
+			ft_printf("            %d->cost = %d\n", local_a->nb, local_a->cost);
+			ft_printf("            %d->rot = %d\n", local_a->nb, local_a->rot);
+			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot);
+			while ((local_b->rot - local_a->rot) > 0)
 			{
 				rb(stack_b);
-				(*stack_b)->rot--;
+				local_b->rot--;
+			}
+			while (local_a->rot > 0)
+			{
+				rr(stack_a, stack_b);
+				local_a->rot--;
 			}
 			pb(stack_a, stack_b);
 		}
 		else
 		{
 			ft_printf("B es más barato\n");
-			ft_printf("            %d->cost = %d\n", (*stack_a)->nb, (*stack_a)->cost);
-			ft_printf("            %d->rot = %d\n", (*stack_a)->nb, (*stack_a)->rot);
-			ft_printf("            %d->rot = %d\n", (*stack_b)->nb, (*stack_b)->rot);
-			while ((*stack_b)->rot > 0)
-			{
-				rr(stack_a, stack_b);
-				(*stack_b)->rot--;
-			}
-			while (((*stack_a)->rot - (*stack_b)->rot) > 0)
+			ft_printf("            %d->cost = %d\n", local_a->nb, local_a->cost);
+			ft_printf("            %d->rot = %d\n", local_a->nb, local_a->rot);
+			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot);
+			while ((local_a->rot - local_b->rot) > 0)
 			{
 				ra(stack_a);
-				(*stack_a)->rot--;
+				local_a->rot--;
 			}
-			/* rb(stack_b);
-			rb(stack_b); */
+			while (local_b->rot > 0)
+			{
+				rr(stack_a, stack_b);
+				local_b->rot--;
+			}
 			pb(stack_a, stack_b);
 		}
 	}
@@ -184,33 +178,33 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 	{
 		ft_printf("rr_rr es el menor\n");
 		// Si rotar A es más barato, realiza la rotación en A
-		if ((*stack_a)->cost == (*stack_a)->rev_rot + 1)
+		if (local_a->rev_rot <= local_b->rev_rot)
 		{
 			ft_printf("A es más barato\n");
-			while ((*stack_a)->rev_rot > 0)
-			{
-				rrr(stack_a, stack_b);
-				(*stack_a)->rev_rot--;
-			}
-			while (((*stack_b)->rev_rot - (*stack_a)->rev_rot) > 0)
+			while ((local_b->rev_rot - local_a->rev_rot) > 0)
 			{
 				rrb(stack_b);
-				(*stack_b)->rev_rot--;
+				local_b->rev_rot--;
+			}
+			while (local_a->rev_rot > 0)
+			{
+				rrr(stack_a, stack_b);
+				local_a->rev_rot--;
 			}
 			pb(stack_a, stack_b);
 		}
 		else
 		{
 			ft_printf("A es más barato\n");
-			while ((*stack_b)->rev_rot > 0)
-			{
-				rrr(stack_a, stack_b);
-				(*stack_b)->rev_rot--;
-			}
-			while (((*stack_a)->rev_rot - (*stack_b)->rev_rot) > 0)
+			while ((local_a->rev_rot - local_b->rev_rot) > 0)
 			{
 				rra(stack_a);
-				(*stack_a)->rev_rot--;
+				local_a->rev_rot--;
+			}
+			while (local_b->rev_rot > 0)
+			{
+				rrr(stack_a, stack_b);
+				local_b->rev_rot--;
 			}
 			pb(stack_a, stack_b);
 		}
@@ -218,15 +212,15 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r) // Rotar A y rotar inversamente B
 	{
 		ft_printf("r_rr es el menor\n");
-		while ((*stack_a)->rot > 0)
+		while (local_a->rot > 0)
 		{
 			ra(stack_a);
-			(*stack_a)->rot--;
+			local_a->rot--;
 		}
-		while ((*stack_b)->rev_rot > 0)
+		while (local_b->rev_rot > 0)
 		{
 			rrb(stack_b);
-			(*stack_b)->rev_rot--;
+			local_b->rev_rot--;
 		}
 		pb(stack_a, stack_b);
 	}
@@ -234,22 +228,22 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 	else // Rotar inversamente A y rotar B
 	{
 		ft_printf("rr_r es el menor\n");
-		while ((*stack_a)->rev_rot > 0)
+		while (local_a->rev_rot > 0)
 		{
 			rra(stack_a);
-			(*stack_a)->rev_rot--;
+			local_a->rev_rot--;
 		}
-		while ((*stack_b)->rot > 0)
+		while (local_b->rot > 0)
 		{
 			rb(stack_b);
-			(*stack_b)->rot--;
+			local_b->rot--;
 		}
 		pb(stack_a, stack_b);
 	}
-	/* ft_printf("<<STACK_A>>\n");
+	ft_printf("<<STACK_A>>\n");
 	display(*stack_a);
 	ft_printf("<<STACK_B>>\n");
-	display(*stack_b); */
+	display(*stack_b);
 	// *stack_a = local_a;
 	// *stack_b = local_b;
 }
@@ -281,14 +275,13 @@ void	push_node(t_stack_node **stack_a, t_stack_node **stack_b)
 void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 			int *min, int *max)
 {
-	//t_stack_node	*local_a;
-	//t_stack_node	*local_b;
-	//int				less_a;
+	t_stack_node	*local_a;
+	t_stack_node	*local_b;
+	int				less_a;
 
-	//local_a = *stack_a;
-	//local_b = *stack_b;
-	ra(stack_a);
-	/* less_a = (*stack_a)->cost;
+	local_a = *stack_a;
+	local_b = *stack_b;
+	less_a = (*stack_a)->cost;
 	while(*stack_a) // Encontrar el coste mínimo
 	{
 		if ((*stack_a)->cost < less_a)
@@ -297,14 +290,25 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 	}
 	*stack_a = local_a;
 
-	while(*stack_a) // Encontrar la primera coincidencia con el coste mínimo
+	while(local_a) // Encontrar la primera coincidencia con el coste mínimo
 	{
-		if ((*stack_a)->cost == less_a)
+		if (local_a->cost == less_a)
 			break ;
-		*stack_a = (*stack_a)->next;
+		local_a = local_a->next;
 	}
 
 	// Buscamos el nodo del stack_b por el que debemos intercambiarlo
+	while (local_b->order != local_a->pair_order)
+	{
+		local_b = local_b->next;
+	}
+	ft_printf("Números a intercambiar:\n");
+	ft_printf("Pondremos %d\n", local_a->nb);
+	ft_printf("Sobre %d\n", local_b->nb);
+
+	push_node(stack_a, local_a, stack_b, local_b);
+
+	/* // Buscamos el nodo del stack_b por el que debemos intercambiarlo
 	// Si el nodo del stack_a es menor que el min o mayor que el max
 	if ((*stack_a)->order < *min || (*stack_a)->order > *max)
 	{
