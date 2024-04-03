@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/03 13:20:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:37:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 	}
 
 	ft_printf("--STACK A--\n");
-	display_cost(stack_node_a);
+	display(stack_node_a);
 	ft_printf("--STACK B--\n");
-	display_cost(stack_node_b);
+	display(stack_node_b);
 
 	/*ft_printf("++Stack a in sort_numbers after sorting++\n");
 	ft_printf("----stack a----\n");
