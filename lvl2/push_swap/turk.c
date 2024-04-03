@@ -135,7 +135,7 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	ft_printf("LEN = %d\n", len_a);
 	ft_printf("HOLA\n"); */
 	
-	//sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
+	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
 
 	//i = 1;
 	/* while (*stack_b) // Mover los nodos de stack_b a stack_a

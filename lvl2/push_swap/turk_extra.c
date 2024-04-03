@@ -106,43 +106,43 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	if (local_a->rot >= local_b->rot)
 	{
 		r_r = local_a->rot + 1;
-		ft_printf("r_r1 = %d\n", r_r);
+		//ft_printf("r_r1 = %d\n", r_r);
 	}
 
 	else
 	{
 		r_r = local_b->rot + 1;
-		ft_printf("r_r2 = %d\n", r_r);
+		//ft_printf("r_r2 = %d\n", r_r);
 	}
 	if (local_a->rev_rot >= local_b->rev_rot)
 	{
 		rr_rr = local_a->rev_rot + 1;
-		ft_printf("rr_rr1 = %d\n", rr_rr);
+		//ft_printf("rr_rr1 = %d\n", rr_rr);
 	}
 	else
 	{
 		rr_rr = local_b->rev_rot + 1;
-		ft_printf("rr_rr2 = %d\n", rr_rr);
+		//ft_printf("rr_rr2 = %d\n", rr_rr);
 	}
 	r_rr = local_a->rot + local_b->rev_rot + 1;
-	ft_printf("r_rr = %d\n", r_rr);
+	//ft_printf("r_rr = %d\n", r_rr);
 	rr_r = local_a->rev_rot + local_b->rot + 1;
 
-	ft_printf("SEGUIMOS CON LA MISMA DECISIÓN:\n");
+	/* ft_printf("SEGUIMOS CON LA MISMA DECISIÓN:\n");
 	ft_printf("Intercambiaremos:\n");
 	ft_printf("Pondremos %d\n", local_a->nb);
-	ft_printf("Sobre %d\n", local_b->nb);
+	ft_printf("Sobre %d\n", local_b->nb); */
 
 	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r) // Rotar ambos stacks
 	{
-		ft_printf("r_r es el menor\n");
+		//ft_printf("r_r es el menor\n");
 		// Si rotar A es más barato, realiza la rotación en A
 		if (local_a->rot <= local_b->rot)
 		{
-			ft_printf("A es más barato\n");
+			/* ft_printf("A es más barato\n");
 			ft_printf("            %d->cost = %d\n", local_a->nb, local_a->cost);
 			ft_printf("            %d->rot = %d\n", local_a->nb, local_a->rot);
-			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot);
+			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot); */
 			while ((local_b->rot - local_a->rot) > 0)
 			{
 				rb(stack_b);
@@ -157,10 +157,10 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 		}
 		else
 		{
-			ft_printf("B es más barato\n");
+			/* ft_printf("B es más barato\n");
 			ft_printf("            %d->cost = %d\n", local_a->nb, local_a->cost);
 			ft_printf("            %d->rot = %d\n", local_a->nb, local_a->rot);
-			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot);
+			ft_printf("            %d->rot = %d\n", local_b->nb, local_b->rot); */
 			while ((local_a->rot - local_b->rot) > 0)
 			{
 				ra(stack_a);
@@ -176,11 +176,11 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	}
 	else if (rr_rr <= r_r && rr_rr <= r_rr && rr_rr <= rr_r) // Rotar inversamente ambos stacks
 	{
-		ft_printf("rr_rr es el menor\n");
+		//ft_printf("rr_rr es el menor\n");
 		// Si rotar A es más barato, realiza la rotación en A
 		if (local_a->rev_rot <= local_b->rev_rot)
 		{
-			ft_printf("A es más barato\n");
+			//ft_printf("A es más barato\n");
 			while ((local_b->rev_rot - local_a->rev_rot) > 0)
 			{
 				rrb(stack_b);
@@ -195,7 +195,7 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 		}
 		else
 		{
-			ft_printf("A es más barato\n");
+			//ft_printf("A es más barato\n");
 			while ((local_a->rev_rot - local_b->rev_rot) > 0)
 			{
 				rra(stack_a);
@@ -211,7 +211,7 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	}
 	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r) // Rotar A y rotar inversamente B
 	{
-		ft_printf("r_rr es el menor\n");
+		//ft_printf("r_rr es el menor\n");
 		while (local_a->rot > 0)
 		{
 			ra(stack_a);
@@ -227,7 +227,7 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 	// Si rotar inversamente B es más barato, realiza la rotación inversa en B
 	else // Rotar inversamente A y rotar B
 	{
-		ft_printf("rr_r es el menor\n");
+		//ft_printf("rr_r es el menor\n");
 		while (local_a->rev_rot > 0)
 		{
 			rra(stack_a);
@@ -240,10 +240,10 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 		}
 		pb(stack_a, stack_b);
 	}
-	ft_printf("<<STACK_A>>\n");
+	/* ft_printf("<<STACK_A>>\n");
 	display(*stack_a);
 	ft_printf("<<STACK_B>>\n");
-	display(*stack_b);
+	display(*stack_b); */
 	// *stack_a = local_a;
 	// *stack_b = local_b;
 }
@@ -302,9 +302,9 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b,
 	{
 		local_b = local_b->next;
 	}
-	ft_printf("Números a intercambiar:\n");
+	/* ft_printf("Números a intercambiar:\n");
 	ft_printf("Pondremos %d\n", local_a->nb);
-	ft_printf("Sobre %d\n", local_b->nb);
+	ft_printf("Sobre %d\n", local_b->nb); */
 
 	push_node(stack_a, local_a, stack_b, local_b);
 
