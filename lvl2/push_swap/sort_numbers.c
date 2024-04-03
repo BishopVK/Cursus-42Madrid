@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:57:49 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/03 15:37:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:49:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 		sort_short(&stack_node_a, &stack_node_b);
 	else
 	{
-		ft_printf("<<Vamos a ordenar más de 5 números>>\n");
+		//ft_printf("<<Vamos a ordenar más de 5 números>>\n");
 		//short_algorithm(&stack_node_a, &stack_node_b);
 		turk_sort(&stack_node_a, &stack_node_b);
 	}
