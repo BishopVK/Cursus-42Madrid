@@ -104,13 +104,13 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 		rr_rr = local_b->rev_rot + 1;
 	r_rr = local_a->rot + local_b->rev_rot + 1;
 	rr_r = local_a->rev_rot + local_b->rot + 1;
-	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r) // Rotar ambos stacks
+	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r)
 		r_r_its_less(stack_a, local_a, stack_b, local_b);
-	else if (rr_rr <= r_r && rr_rr <= r_rr && rr_rr <= rr_r) // Rotar inversamente ambos stacks
+	else if (rr_rr <= r_r && rr_rr <= r_rr && rr_rr <= rr_r)
 		rr_rr_its_less(stack_a, local_a, stack_b, local_b);
-	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r) // Rotar A y rotar inversamente B
+	else if (r_rr <= r_r && r_rr <= rr_rr && r_rr <= rr_r)
 		r_rr_its_less(stack_a, local_a, stack_b, local_b);
-	else // Rotar inversamente A y rotar B
+	else
 		rr_r_its_less(stack_a, local_a, stack_b, local_b);
 }
 
@@ -125,20 +125,20 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	local_a = *stack_a;
 	local_b = *stack_b;
 	less_a = (*stack_a)->cost;
-	while (*stack_a) // Encontrar el coste mínimo
+	while (*stack_a)
 	{
 		if ((*stack_a)->cost < less_a)
 			less_a = (*stack_a)->cost;
 		*stack_a = (*stack_a)->next;
 	}
 	*stack_a = local_a;
-	while (local_a) // Encontrar la primera coincidencia con el coste mínimo
+	while (local_a)
 	{
 		if (local_a->cost == less_a)
 			break ;
 		local_a = local_a->next;
 	}
-	while (local_b->order != local_a->pair_order) // Buscamos el nodo del stack_b por el que debemos intercambiarlo
+	while (local_b->order != local_a->pair_order)
 		local_b = local_b->next;
 	push_node(stack_a, local_a, stack_b, local_b);
 }
