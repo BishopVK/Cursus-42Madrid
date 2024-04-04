@@ -182,7 +182,8 @@ void			rr_r_its_less(t_stack_node **stack_a, t_stack_node *local_a,
 /************************************************************/
 /*						return_b_to_a.c						*/
 /************************************************************/
-int				find_higher(t_stack_node *local_a, t_stack_node *local_b);
+//int				find_higher(t_stack_node *local_a, t_stack_node *local_b);
+int				find_higher(t_stack_node *local_a, int num_b);
 void			movements_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b,
 					int *min, int *max);
 void			return_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b);
