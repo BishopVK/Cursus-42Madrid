@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:47:53 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/04 20:06:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/04 21:05:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 		turk_sort(&stack_node_a, &stack_node_b);
 	stack_clear(&stack_node_a);
 	stack_clear(&stack_node_b);
-	exit(0);
 }
