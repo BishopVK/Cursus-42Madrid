@@ -157,10 +157,25 @@ void	return_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 	movements_b_to_a(stack_a, stack_b, &min, &max);
 	
 	//Rotar el stack para dejar el 1 arriba
-	/* local_a = *stack_a;
-	ft_printf("stack_len(*stack_a) = %d\n", stack_len(*stack_a));
-	ft_printf("stack_len(local_a) = %d\n", stack_len(local_a));
+	local_a = *stack_a;
+	//ft_printf("stack_len(*stack_a) = %d\n", stack_len(*stack_a));
+	//ft_printf("stack_len(local_a) = %d\n", stack_len(local_a));
 	i = 0;
+
+	/* // Buscar el número 1 en el stack y contar cuántas veces necesitamos rotar
+	while (current && current->order != 1) {
+		current = current->next;
+		i++;
+	}
+
+	// Rotar el stack para dejar el número 1 en la parte superior
+	while (i > 0)
+	{
+		// Implementa rra(stack_a) aquí para rotar hacia la derecha
+		// Esto debería mover el elemento superior del stack al fondo
+		i--;
+	} */
+
 	while (local_a)
 	{
 		if (local_a->order != 1)
@@ -169,12 +184,15 @@ void	return_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 			break ;
 		local_a = local_a->next;
 	}
-	ft_printf("i = %d\n", i);
+	//ft_printf("i = %d\n", i);
 	local_a = *stack_a;
+
+	// ft_printf("stack_len(*stack_a) = %d\n", stack_len(*stack_a));
+	// ft_printf("stack_len(local_a) = %d\n", stack_len(local_a));
 
 	if (i < (stack_len(*stack_a) - i))
 	{
-		while (i < 0)
+		while (i > 0)
 		{
 			ra(stack_a);
 			i--;
@@ -187,7 +205,7 @@ void	return_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 			rra(stack_a);
 			i++;
 		}
-	} */
+	}
 
 	/* while ((*stack_a)->order != 1)
 	{
