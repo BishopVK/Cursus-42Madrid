@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:04:46 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/01 19:52:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:49:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	signs_checker(char *argv)
 			return ;
 		else
 		{
-			ft_printf("ERROR: Signo suelto o string vacío\n");
+			ft_printf("ERROR\n");
 			exit(-1);
 		}
 	}
@@ -32,7 +32,7 @@ void	signs_checker(char *argv)
 		if ((argv[i] != ' ' && (argv[i + 1] == '+' || argv[i + 1] == '-'))
 			|| ((argv[i] == '+' || argv[i] == '-') && argv[i + 1] == ' '))
 		{
-			ft_printf("ERROR: Sin espacio antes o después de un signo\n");
+			ft_printf("ERROR\n");
 			exit(-1);
 		}
 		i++;
@@ -112,7 +112,7 @@ int	parse_argvs(int argc, char **argv, t_stack_node *stack_node_a,
 		not_allowed_char = allowed_chars(argv[i++], "0123456789 +-");
 		if (not_allowed_char != 0)
 		{
-			ft_printf("ERROR: You have entered illegal characters\n");
+			ft_printf("ERROR\n");
 			return (1);
 		}
 	}
