@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/04 12:48:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:50:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	no_repeat_numbers(t_stack_node *stack_node_a)
 			{
 				if (local_node->nb == tmp_node->nb)
 				{
-					ft_printf("ERROR\n");
+					ft_printf("Error\n");
 					stack_clear(&stack_node_a);
 					exit(-1);
 				}
