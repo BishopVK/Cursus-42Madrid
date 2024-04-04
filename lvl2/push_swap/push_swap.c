@@ -18,6 +18,7 @@
 // ./push_swap `seq 1 500 | shuf -n 500`
 // ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker/checker_linux $ARG
 // ARG=`jot -r 500 -1000 1000`; ./push_swap $ARG | ./checker/checker_linux $ARG
+// ARG=`seq -10000 10000 | shuf -n 500`; ./push_swap $ARG | ./checker/checker_linux $ARG
 // ((VER LEAKS)) valgrind --leak-check=full ./push_swap <lista_de_numeros>
 int	main(int argc, char *argv[])
 {
