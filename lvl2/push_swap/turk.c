@@ -101,16 +101,13 @@ void	less_node_cost(t_stack_node **stack_a, t_stack_node **stack_b)
 	max_b = 0;
 	len_a = stack_len(*stack_a);
 	find_pair(stack_a, stack_b, &min_b, &max_b);
-	
 	while (len_a > 3) // Mover los nodos de menor coste de stack_a a stack_b
 	{
 		push_a_to_b(stack_a, stack_b);
 		find_pair(stack_a, stack_b, &min_b, &max_b);
 		len_a--;
 	}
-	
 	sort_3_numbers(stack_a); // Ordenar los 3 últimos nodos de stack_a
-
 	return_b_to_a(stack_a, stack_b); // Mover los nodos de stack_b a stack_a
 }
 
