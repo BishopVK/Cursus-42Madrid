@@ -104,7 +104,6 @@ void	push_node(t_stack_node **stack_a, t_stack_node *local_a,
 		rr_rr = local_b->rev_rot + 1;
 	r_rr = local_a->rot + local_b->rev_rot + 1;
 	rr_r = local_a->rev_rot + local_b->rot + 1;
-
 	if (r_r <= rr_rr && r_r <= r_rr && r_r <= rr_r) // Rotar ambos stacks
 		r_r_its_less(stack_a, local_a, stack_b, local_b);
 	else if (rr_rr <= r_r && rr_rr <= r_rr && rr_rr <= rr_r) // Rotar inversamente ambos stacks
@@ -126,14 +125,14 @@ void	push_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	local_a = *stack_a;
 	local_b = *stack_b;
 	less_a = (*stack_a)->cost;
-	while(*stack_a) // Encontrar el coste mínimo
+	while (*stack_a) // Encontrar el coste mínimo
 	{
 		if ((*stack_a)->cost < less_a)
 			less_a = (*stack_a)->cost;
 		*stack_a = (*stack_a)->next;
 	}
 	*stack_a = local_a;
-	while(local_a) // Encontrar la primera coincidencia con el coste mínimo
+	while (local_a) // Encontrar la primera coincidencia con el coste mínimo
 	{
 		if (local_a->cost == less_a)
 			break ;
