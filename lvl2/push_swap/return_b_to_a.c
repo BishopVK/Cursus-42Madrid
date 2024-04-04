@@ -42,7 +42,7 @@
 	return(higher);
 } */
 
-int find_higher(t_stack_node *local_a, t_stack_node *local_b)
+/* int find_higher(t_stack_node *local_a, t_stack_node *local_b)
 {
 	int				higher;
 	t_stack_node	*current_a;
@@ -66,21 +66,71 @@ int find_higher(t_stack_node *local_a, t_stack_node *local_b)
 	}
 
 	return (higher);
+} */
+
+// Mi último código
+/* int find_higher(t_stack_node *local_a, t_stack_node *local_b)
+{
+	int				higher;
+	int				i;
+	int				flag;
+	t_stack_node	*current_a;
+
+	higher = 0;
+	current_a = local_a;
+	i = 1;
+	flag = 0;
+	while (i < INT_MAX) // Recorre el Stack A
+	{
+		current_a = local_a;
+		while (current_a) // Recorre el Stack A
+		{
+			if (current_a->order == local_b->order + i)
+			{
+				higher = current_a->order;
+				flag = 1;
+				break ;
+			}
+			current_a = current_a->next;
+		}
+		if (flag != 0)
+			break ;
+		i++;
+	}
+	return (higher);
+} */
+
+int	find_higher(t_stack_node *local_a, int num_b)
+{
+	int				higher;
+	t_stack_node	*current;
+	
+	higher = INT_MAX;
+	current = local_a;
+	while (current)
+	{
+		if (current->order > num_b && current->order < higher)
+		{
+			higher = current->order;
+		}
+		current = current->next;
+	}
+	return (higher);
 }
 
 void	movements_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b,
 			int *min, int *max)
 {
-	t_stack_node	*local_a;
-	t_stack_node	*local_b;
+	//t_stack_node	*local_a;
+	//t_stack_node	*local_b;
 	int				higher;
 
-	local_a = *stack_a;
-	local_b = *stack_b;
+	//local_a = *stack_a;
+	//local_b = *stack_b;
 	while (*stack_b)
 	{
-		local_a = *stack_a;
-		higher = find_higher(local_a, local_b);
+		higher = find_higher(*stack_a, (*stack_b)->order);
+		//local_a = *stack_a;
 		find_min_max(*stack_a, min, max);
 		if ((*stack_b)->order > *max || (*stack_b)->order < *min)
 		{
@@ -90,10 +140,9 @@ void	movements_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b,
 		}
 		else
 		{
-			if ((*stack_a)->order == higher)
-				pa(stack_a, stack_b);
-			else
+			while ((*stack_a)->order != higher)
 				rra(stack_a);
+			pa(stack_a, stack_b);
 		}
 	}
 }
@@ -102,19 +151,44 @@ void	return_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	int				min;
 	int				max;
-	//t_stack_node	*local_a;
-	//int				half;
+	t_stack_node	*local_a;
+	int				i;
 
 	movements_b_to_a(stack_a, stack_b, &min, &max);
+	
+	//Rotar el stack para dejar el 1 arriba
 	/* local_a = *stack_a;
-	while (*stack_a)
+	ft_printf("stack_len(*stack_a) = %d\n", stack_len(*stack_a));
+	ft_printf("stack_len(local_a) = %d\n", stack_len(local_a));
+	i = 0;
+	while (local_a)
 	{
-		if ((*stack_a)->order == 1)
-			half = (*stack_a)->half;
-		*stack_a = (*stack_a)->next;
+		if (local_a->order != 1)
+			i++;
+		else
+			break ;
+		local_a = local_a->next;
 	}
-	ft_printf("%d->half = %d\n", (*stack_a)->order, half);
-	*stack_a = local_a; */
+	ft_printf("i = %d\n", i);
+	local_a = *stack_a;
+
+	if (i < (stack_len(*stack_a) - i))
+	{
+		while (i < 0)
+		{
+			ra(stack_a);
+			i--;
+		}
+	}
+	else
+	{
+		while ((stack_len(*stack_a) - i) > 0)
+		{
+			rra(stack_a);
+			i++;
+		}
+	} */
+
 	/* while ((*stack_a)->order != 1)
 	{
 
