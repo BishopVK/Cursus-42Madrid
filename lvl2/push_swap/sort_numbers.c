@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:47:53 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/03 19:04:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:05:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	sort_numbers(t_stack_node *stack_node_a, t_stack_node *stack_node_b)
 		turk_sort(&stack_node_a, &stack_node_b);
 	}
 
-	ft_printf("--STACK A--\n");
+	/* ft_printf("--STACK A--\n");
 	display(stack_node_a);
 	ft_printf("--STACK B--\n");
-	display(stack_node_b);
+	display(stack_node_b); */
 
 	/*ft_printf("++Stack a in sort_numbers after sorting++\n");
 	ft_printf("----stack a----\n");
