@@ -29,11 +29,9 @@ NAME		=	libftprintf.a
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_printf.c \
-				ft_putchar_printf.c \
-				ft_putnbr_printf.c \
-				ft_putstr_printf.c \
-				ft_putunbr_printf.c \
-				ft_tohex_printf.c
+				ft_dprintf.c \
+				ft_converions.c \
+				ft_printf_utils.c \
 
 OBJ			=	$(SRC:.c=.o)
 HEADER		=	ft_printf.h
