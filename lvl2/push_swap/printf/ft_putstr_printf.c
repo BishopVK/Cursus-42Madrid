@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-void	ft_putstr_printf(char *str, size_t *counter, int *write_error)
+int	ft_putstr_printf(char *str, size_t *counter)
 {
 	char	*null;
+	int		write_error;
 
-	if (*write_error < 0)
-		return ;
 	null = "(null)";
 	if (!str)
 		str = null;
 	while (*str)
 	{
-		ft_putchar_printf(*str, counter, write_error);
-		if (*write_error < 0)
-			return ;
+		write_error = ft_putchar_printf(*str, counter);
+		if (write_error < 0)
+			return (write_error);
 		str++;
 	}
+	return (write_error);
 }

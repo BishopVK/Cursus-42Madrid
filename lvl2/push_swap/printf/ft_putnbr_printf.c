@@ -6,30 +6,31 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/02 11:06:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:02:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_printf(int n, size_t *counter, int *write_error)
+int	ft_putnbr_printf(int n, size_t *counter)
 {
-	if (*write_error < 0)
-		return ;
+	int	write_error;
+
 	if (n == -2147483648)
 	{
-		ft_putnbr_printf((n / 10), counter, write_error);
-		ft_putchar_printf('8', counter, write_error);
+		ft_putnbr_printf((n / 10), counter);
+		write_error = ft_putchar_printf('8', counter);
 	}
 	else if (n < 0)
 	{
-		ft_putchar_printf('-', counter, write_error);
-		ft_putnbr_printf(-n, counter, write_error);
+		write_error = ft_putchar_printf('-', counter);
+		ft_putnbr_printf(-n, counter);
 	}
 	else
 	{
 		if (n > 9)
-			ft_putnbr_printf((n / 10), counter, write_error);
-		ft_putchar_printf((n % 10) + '0', counter, write_error);
+			ft_putnbr_printf((n / 10), counter);
+		write_error = ft_putchar_printf((n % 10) + '0', counter);
 	}
+	return (write_error);
 }

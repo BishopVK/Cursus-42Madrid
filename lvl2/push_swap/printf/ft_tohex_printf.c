@@ -12,25 +12,25 @@
 
 #include "ft_printf.h"
 
-void	ft_tohex_printf(unsigned long n, char *format, size_t *counter,
-			int *write_error)
+int	ft_tohex_printf(unsigned long n, char *format, size_t *counter)
 {
-	if (*write_error < 0)
-		return ;
+	int	write_error;
+
 	if (n == 0)
-		ft_putchar_printf('0', counter, write_error);
+		write_error = ft_putchar_printf('0', counter);
 	else
 	{
 		if (n >= 16)
-			ft_tohex_printf((n / 16), format, counter, write_error);
+			ft_tohex_printf((n / 16), format, counter);
 		if ((n % 16) < 10)
-			ft_putchar_printf((n % 16) + '0', counter, write_error);
+			write_error = ft_putchar_printf((n % 16) + '0', counter);
 		else
 		{
 			if (*format == 'X')
-				ft_putchar_printf((n % 16) - 10 + 'A', counter, write_error);
+				write_error = ft_putchar_printf((n % 16) - 10 + 'A', counter);
 			else
-				ft_putchar_printf((n % 16) - 10 + 'a', counter, write_error);
+				write_error = ft_putchar_printf((n % 16) - 10 + 'a', counter);
 		}
 	}
+	return (write_error);
 }

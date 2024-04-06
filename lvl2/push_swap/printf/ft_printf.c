@@ -6,50 +6,48 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/12 13:51:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:40:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "libft/libft.h"
 #include "ft_printf.h"
-#include <unistd.h>
 
-static void	ft_detect_format(va_list args, char *format,
-	size_t *counter, int *write_error)
+static int	ft_detect_format(va_list args, char *format, size_t *counter)
 {
-	if (*write_error < 0)
-		return ;
+	int	write_error;
+
 	if (*format == 'c')
-		ft_putchar_printf(va_arg(args, int), counter, write_error);
+		write_error = ft_putchar_printf(va_arg(args, int), counter);
 	else if (*format == 'i' || *format == 'd')
-		ft_putnbr_printf(va_arg(args, int), counter, write_error);
+		write_error = ft_putnbr_printf(va_arg(args, int), counter);
 	else if (*format == '%')
-		ft_putchar_printf('%', counter, write_error);
+		write_error = ft_putchar_printf('%', counter);
 	else if (*format == 's')
-		ft_putstr_printf(va_arg(args, char *), counter, write_error);
+		write_error = ft_putstr_printf(va_arg(args, char *), counter);
 	else if (*format == 'u')
-		ft_putunbr_printf(va_arg(args, unsigned long), counter, write_error);
+		write_error = ft_putunbr_printf(va_arg(args, unsigned long), counter);
 	else if (*format == 'x' || *format == 'X')
-		ft_tohex_printf((unsigned long)va_arg(args, unsigned int),
-			format, counter, write_error);
+		write_error = ft_tohex_printf((unsigned long)va_arg(args, unsigned int),
+				format, counter);
 	else if (*format == 'p')
 	{
-		ft_putchar_printf('0', counter, write_error);
-		ft_putchar_printf('x', counter, write_error);
-		ft_tohex_printf((unsigned long)(unsigned long)va_arg(args, void *),
-			format, counter, write_error);
+		write_error = ft_putchar_printf('0', counter);
+		write_error = ft_putchar_printf('x', counter);
+		write_error = ft_tohex_printf((unsigned long)(unsigned long)va_arg
+				(args, void *), format, counter);
 	}
 	else
-		(*write_error) = -1;
+		write_error = -1;
+	return (write_error);
 }
 
 int	ft_printf(char const *format, ...)
 {
-	size_t	counter;
 	va_list	args;
+	size_t	counter;
 	int		write_error;
 
-	write_error = 0;
 	if (!format)
 		return (0);
 	counter = 0;
@@ -59,10 +57,10 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			ft_detect_format(args, (char *)format, &counter, &write_error);
+			write_error = ft_detect_format(args, (char *)format, &counter);
 		}
 		else
-			ft_putchar_printf(*format, &counter, &write_error);
+			write_error = ft_putchar_printf(*format, &counter);
 		if (write_error < 0)
 			return (-1);
 		format++;
@@ -115,11 +113,11 @@ int	ft_printf(char const *format, ...)
 	size = ft_printf("ft_printf: %s\n", s);
 	printf("Size ft_printf: %d\n", size);
 
-	//char	*sn = NULL;
+	char	*sn = NULL;
 	printf("\nSTRING NULL (s):\n");
-	size = printf("%s\n", (char *)NULL);
+	size = printf("%s\n", sn);
 	printf("Size Printf: %d\n", size);
-	size = ft_printf("%s\n", (char *)NULL);
+	size = ft_printf("%s\n", sn);
 	printf("Size ft_printf: %d\n", size);
 
 	int *p = &n;
@@ -129,7 +127,7 @@ int	ft_printf(char const *format, ...)
 	size = ft_printf("ft_printf: %p\n", (void *)p);
 	printf("Size ft_printf: %d\n", size);
 
-	printf("\n>>PUNTERO VACÍO(p):\n");
+	printf("\nPUNTERO VACÍO(p):\n");
 	size = printf("Printf: %p\n", "");
 	printf("Size Printf: %d\n", size);
 	size = ft_printf("ft_printf: %p\n", "");
@@ -150,8 +148,8 @@ int	ft_printf(char const *format, ...)
 	printf("Size ft_printf: %d\n", size);
 
 	printf("\nVACÍO:\n");
-	size = printf("");
-	printf("Size Printf: %d\n", size);
+	//size = printf("");
+	//printf("Size Printf: %d\n", size);
 	size = ft_printf("");
 	printf("Size ft_printf: %d\n", size);
 
@@ -165,6 +163,14 @@ int	ft_printf(char const *format, ...)
 	size = printf("Printf: \001\002\007\v\010\f\r\n");
 	printf("Size Printf: %d\n", size);
 	size = ft_printf("ft_printf: \001\002\007\v\010\f\r\n");
+	printf("Size ft_printf: %d\n", size);
+
+	printf("\nMÚLTIPLES CONVERSIONES:\n");
+	size = printf("Printf: int = %i, char = %c, str = %s, hex = %x\n",
+		n, c, s, x);
+	printf("Size Printf: %d\n", size);
+	size = ft_printf("ft_printf: int = %i, char = %c, str = %s, hex = %x\n",
+		n, c, s, x);
 	printf("Size ft_printf: %d\n", size);
 
 	return (0);

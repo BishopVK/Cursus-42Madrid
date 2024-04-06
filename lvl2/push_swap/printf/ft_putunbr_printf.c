@@ -12,11 +12,12 @@
 
 #include "ft_printf.h"
 
-void	ft_putunbr_printf(unsigned int n, size_t *counter, int *write_error)
+int	ft_putunbr_printf(unsigned int n, size_t *counter)
 {
-	if (*write_error < 0)
-		return ;
+	int	write_error;
+
 	if (n >= 10)
-		ft_putunbr_printf((n / 10), counter, write_error);
-	ft_putchar_printf(((n % 10) + '0'), counter, write_error);
+		ft_putunbr_printf((n / 10), counter);
+	write_error = ft_putchar_printf(((n % 10) + '0'), counter);
+	return (write_error);
 }
