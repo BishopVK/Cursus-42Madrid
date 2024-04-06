@@ -4,6 +4,7 @@
 # Ignorar archivos de compilación
 *.o
 *.out
+*.a
 
 # Ignorar directorios específicos
 /.vscode
