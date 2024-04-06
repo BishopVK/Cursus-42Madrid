@@ -6,11 +6,10 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:17:43 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/06 16:40:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:48:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft/libft.h"
 #include "ft_printf.h"
 
 static int	ft_detect_format(va_list args, char *format, size_t *counter)
