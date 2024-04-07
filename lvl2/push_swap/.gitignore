@@ -8,6 +8,9 @@
 *.a
 push_swap
 
+# Ignorar archivos de test
+*.txt
+
 # Ignorar directorios específicos
 /.vscode
 /txt
