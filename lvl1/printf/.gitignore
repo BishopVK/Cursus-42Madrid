@@ -6,6 +6,9 @@
 *.out
 *.a
 
+# Ignorar archivos de prueba
+*.txt
+
 # Ignorar directorios específicos
 /.vscode
 /pruebas
