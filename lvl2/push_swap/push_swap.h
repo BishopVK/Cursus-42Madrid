@@ -28,9 +28,6 @@
 //NULL
 # include <stddef.h>
 
-//strlen, memmove, strtok
-//# include <string.h>
-
 //INT_MAX, INT_MIN, LLONG_MAX, LLONG_MIN
 # include <limits.h>
 
