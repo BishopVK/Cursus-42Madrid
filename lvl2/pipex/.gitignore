@@ -1,0 +1,13 @@
+# Ignorar archivos temporales
+*.tmp
+.DS_Store
+
+# Ignorar archivos de compilación
+*.o
+*.out
+*.a
+pipex
+
+# Ignorar directorios específicos
+/.vscode
+/testing
