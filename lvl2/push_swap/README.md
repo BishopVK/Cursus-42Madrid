@@ -22,6 +22,12 @@ it that can't be executed won't.
 | `rrr` | reverse rotate a + reverse rotate b | both `rra` and `rrb`                                   |
 
 
+## push_swap live
+
+<p align="center">
+<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/push_swap_visualizer.gif">
+</p>
+
 ## Flowchart
 
 <p>In the flow chart you will be able to see the flow of the program, and the logic that follows from the beginning to the end, from the parse of the data to the choice of the algorithm according to the number of elements and their own execution.</p>
