@@ -24,8 +24,8 @@ it that can't be executed won't.
 
 ## Flowchart
 
-In the flow chart you will be able to see the flow of the program, and the logic that follows from the beginning to the end, from the parse of the data to the choice of the algorithm according to the number of elements and their own execution.
-You can see it <a target="_blank" href="https://miro.com/welcomeonboard/dXZvNFVMbkNGakxyZ3JQdzZsYlNyQ0tkNUtqMEg5Y1MwUjdtSUFPVm5OSlRUUXNBS3A3V2dxRklOM1dtODg2TnwzNDU4NzY0NTg0MTgxMDc2MTY0fDI=?share_link_id=798564080102">here.</a>
+<p>In the flow chart you will be able to see the flow of the program, and the logic that follows from the beginning to the end, from the parse of the data to the choice of the algorithm according to the number of elements and their own execution.</p>
+<p>You can see it <a target="_blank" href="https://miro.com/welcomeonboard/dXZvNFVMbkNGakxyZ3JQdzZsYlNyQ0tkNUtqMEg5Y1MwUjdtSUFPVm5OSlRUUXNBS3A3V2dxRklOM1dtODg2TnwzNDU4NzY0NTg0MTgxMDc2MTY0fDI=?share_link_id=798564080102">here.</a></p>
 
 <p align="center">
 <img width="2275px" alt="1102px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/flowchart_4564-2236.png">
