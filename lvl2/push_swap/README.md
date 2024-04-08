@@ -36,7 +36,7 @@ it that can't be executed won't.
 
 <p>The scoring criteria for the ranges of 100 and 500 numbers are as follows:</p>
 
-|  `100 numbers`  |      |    `500 numbers`    |      |
+|  `100 numbers`        ||    `500 numbers`          ||
 |:------------:|------|:------------:|------|
 |   MOVES   |   SCORE   |    MOVES    |   SCORE   |
 | ----------- | --------- | ----------- | --------- |
