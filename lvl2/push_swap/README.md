@@ -21,7 +21,7 @@ it that can't be executed won't.
 | `rrb` | reverse rotate b                    | shifts all elements of stack b from top to bottom      |
 | `rrr` | reverse rotate a + reverse rotate b | both `rra` and `rrb`                                   |
 
-[//]: <> ## Flowchart
+## Flowchart
 
 In the flow chart you will be able to see the flow of the program, and the logic that follows from the beginning to the end, from the parse of the data to the choice of the algorithm according to the number of elements and their own execution.
 
@@ -34,8 +34,9 @@ In the flow chart you will be able to see the flow of the program, and the logic
 <p align="center">
 <img width="2275px" alt="1102px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/test_2275-1102.png">
 </p>
-
-[//]: <> ## Grade
-[//]: <> <p align="center">
-[//]: <> <img width="210" alt="125" src="https://github.com/JZJavier/42/assets/76801285/9b5924a8-8876-4bce-b783-1e6b5da93252">
-[//]: <> </p>
+<!--
+## Grade
+<p align="center">
+<img width="210" alt="125" src="https://github.com/JZJavier/42/assets/76801285/9b5924a8-8876-4bce-b783-1e6b5da93252">
+</p>
+-->
