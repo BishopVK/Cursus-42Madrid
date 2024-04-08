@@ -36,14 +36,16 @@ it that can't be executed won't.
 
 <p>The scoring criteria for the ranges of 100 and 500 numbers are as follows:</p>
 
-|      `100 numbers`    ||       `500 numbers`    ||
-|    MOVES   |   SCORE   |    MOVES    |   SCORE   |
-| ---------------------- | ----------------------- |
+|  `100 numbers`  |      |    `500 numbers`    |      |
+|:------------:|------|:------------:|------|
+|   MOVES   |   SCORE   |    MOVES    |   SCORE   |
+| ----------- | --------- | ----------- | --------- |
 |   < 700    |    `5`    |   < 5500    |    `5`    |
 |   < 900    |    `4`    |   < 7000    |    `4`    |
-|   < 1100   |    `3`    |   < 8500    |    `3`    |
-|   < 1300   |    `2`    |   < 10000   |    `2`    |
-|   < 1500   |    `1`    |   < 11500   |    `1`    |
+|  < 1100   |    `3`    |   < 8500    |    `3`    |
+|  < 1300   |    `2`    |  < 10000   |    `2`    |
+|  < 1500   |    `1`    |  < 11500   |    `1`    |
+
 
 <p align="center">
 <img width="2275px" alt="1102px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/test_2275-1102.png">
