@@ -1,0 +1,4 @@
+La función access() en C se utiliza para verificar los permisos de acceso a un
+archivo o directorio. Puedes usarla para determinar si un archivo o directorio
+existe y si tienes permiso para realizar ciertas operaciones sobre él,
+como leer, escribir o ejecutar.
