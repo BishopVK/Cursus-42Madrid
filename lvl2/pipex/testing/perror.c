@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// perror es una función en C que se utiliza para imprimir un mensaje de error
+// seguido de una descripción del error correspondiente al valor de errno actual.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -33,3 +36,9 @@ int main(void)
 	fclose(fp);
 	return 0;
 }
+
+// En este ejemplo, perror se utiliza después de una llamada a fopen,
+// que intenta abrir un archivo que no existe. Si fopen devuelve NULL,
+// perror imprime un mensaje de error con la descripción del error correspondiente
+// al valor de errno actual. En este caso, el mensaje impreso sería algo
+// como "Error al abrir el archivo: No such file or directory".

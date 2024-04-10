@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// La función access() en C se utiliza para verificar los permisos de acceso a un
+// archivo o directorio. Puedes usarla para determinar si un archivo o directorio
+// existe y si tienes permiso para realizar ciertas operaciones sobre él,
+// como leer, escribir o ejecutar.
+
 #include <stdio.h>
 #include <unistd.h>
 
@@ -46,3 +51,7 @@ int main() {
 
 	return 0;
 }
+
+// Este programa verificará la existencia del archivo "access.txt" y luego
+// verificará si tienes permisos de lectura, escritura y ejecución para ese archivo.
+// Asegúrate de incluir #include <unistd.h> para utilizar la función access().
