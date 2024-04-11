@@ -1,0 +1,17 @@
+# Ignorar archivos temporales
+*.tmp
+*.DS_Store
+
+# Ignorar archivos de compilación
+*.o
+*.out
+
+# Ignorar archivos creados por el file descriptor (fd)
+*.txt
+
+# Ignorar directorios específicos
+/.vscode
+
+# Ignorar archivos específicos
+color-test.c
+# main.c
