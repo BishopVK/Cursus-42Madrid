@@ -47,4 +47,8 @@ int main()
 // indicando que el archivo se eliminó correctamente. De lo contrario, imprimimos un mensaje
 // de error utilizando la función perror() y salimos del programa con un código de error.
 
-// Es importante tener en cuenta que unlink() solo elimina el enlace al archivo desde el sistema de archivos, no lo destruye completamente. Si hay otros enlaces al mismo archivo, o si el archivo está abierto por algún proceso, el espacio en disco asociado al archivo no se liberará hasta que todos los enlaces al archivo sean eliminados y todos los descriptores de archivo asociados al archivo sean cerrados.
+// Es importante tener en cuenta que unlink() solo elimina el enlace al archivo desde
+// el sistema de archivos, no lo destruye completamente. Si hay otros enlaces al mismo
+// archivo, o si el archivo está abierto por algún proceso, el espacio en disco asociado
+// al archivo no se liberará hasta que todos los enlaces al archivo sean eliminados y
+// todos los descriptores de archivo asociados al archivo sean cerrados.
