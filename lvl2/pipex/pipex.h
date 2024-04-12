@@ -10,6 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PIPEX_H
+# define PIPEX_H
+
+//libft
+#include "libft/libft.h"
+
+//ft_printf, ft_dprintf
+#include "printf/ft_printf.h"
+
 //open, wait, waitpid
 #include <sys/types.h>
 
@@ -25,7 +34,15 @@
 //strerror
 #include <string.h>
 
+//index pipe extremo escritura
+#define READ_END 0
+
+//index pipe extremo lectura
+#define WRITE_END 1
+
 /************************************/
-/*				main.c				*/
+/*				pipex.c				*/
 /************************************/
-int	main(int argc, char **argv);
+int	main(int argc, char **argv, char **env);
+
+#endif

@@ -28,7 +28,7 @@ endef
 NAME		=	pipex
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
-SRC			=	main.c
+SRC			=	pipex.c
 
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
