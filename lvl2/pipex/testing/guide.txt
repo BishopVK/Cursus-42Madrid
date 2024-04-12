@@ -6,9 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 08:45:07 by danjimen          #+#    #+#              #
-#    Updated: 2024/04/12 08:48:00 by danjimen         ###   ########.fr        #
+#    Updated: 2024/04/12 12:48:24 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+---GUÍA 1---
 
 1. Analizar los argumentos de la línea de comandos:
 	- Usa argc y argv para obtener los argumentos proporcionados por el usuario.
@@ -42,3 +44,31 @@
 
 9. Manejo de errores:
 	- Implementa un manejo de errores adecuado para verificar el éxito de cada llamada al sistema y manejar los casos en los que algo salga mal.
+
+
+---GUÍA 2---
+
+1. Abrir el archivo de entrada (archivo1):
+	- Usa la función open con O_RDONLY para abrir el archivo.
+
+2. Crear un pipe:
+	- Usa la función pipe para crear un pipe. Esto te dará dos descriptores de archivo,
+	  uno para leer desde el pipe (pipe_fd[0]) y otro para escribir en él (pipe_fd[1]).
+
+3. Crear el primer proceso hijo:
+	- Usa fork para crear un nuevo proceso.
+	- En el proceso hijo, cierra el extremo de lectura del pipe (pipe_fd[0]) y redirige la
+	  salida estándar (STDOUT_FILENO) al extremo de escritura del pipe (pipe_fd[1]).
+	- Ejecuta el primer comando usando execve. Asegúrate de pasar los argumentos adecuados.
+
+4. Crear el segundo proceso hijo:
+	- En el proceso padre, después de haber creado el primer hijo, crea otro hijo.
+	- En este nuevo proceso hijo, cierra el extremo de escritura del pipe (pipe_fd[1]) y
+	  redirige la entrada estándar (STDIN_FILENO) al extremo de lectura del pipe (pipe_fd[0]).
+	- Ejecuta el segundo comando usando execve. Asegúrate de pasar los argumentos adecuados.
+
+5. Esperar a que ambos procesos hijos terminen:
+	- En el proceso padre, usa wait o waitpid para esperar a que ambos procesos hijos terminen.
+
+6. Cerrar los descriptores de archivo y archivos:
+	- En el proceso padre, cierra los descriptores de archivo y archivos abiertos.

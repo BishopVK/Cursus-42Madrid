@@ -55,6 +55,59 @@ int	main(int argc, char **argv, char **env)
 	return (0);
 }
 
+/* int main(int argc, char **argv) {
+    if (argc != 5) {
+        fprintf(stderr, "Uso: %s archivo1 comando1 comando2 archivo2\n", argv[0]);
+        return 1;
+    }
+
+    // Abrir archivo1
+    int fd_infile = open(argv[1], O_RDONLY);
+    if (fd_infile == -1) {
+        perror("Error al abrir archivo1");
+        return 1;
+    }
+
+    // Crear pipe
+    int pipe_fd[2];
+    if (pipe(pipe_fd) == -1) {
+        perror("Error al crear el pipe");
+        return 1;
+    }
+
+    // Crear primer proceso hijo
+    pid_t pid1 = fork();
+    if (pid1 == -1) {
+        perror("Error al crear el primer proceso hijo");
+        return 1;
+    } else if (pid1 == 0) {
+        // Código del primer hijo
+    } else {
+        // Código del padre
+        // Crear segundo proceso hijo
+        pid_t pid2 = fork();
+        if (pid2 == -1) {
+            perror("Error al crear el segundo proceso hijo");
+            return 1;
+        } else if (pid2 == 0) {
+            // Código del segundo hijo
+        } else {
+            // Código del padre
+        }
+    }
+
+    // Cerrar descriptores de archivo
+    close(fd_infile);
+    close(pipe_fd[0]);
+    close(pipe_fd[1]);
+
+    // Esperar a que ambos procesos hijos terminen
+    wait(NULL);
+    wait(NULL);
+
+    return 0;
+} */
+
 /* int	main(int argc, char **argv, char **env)
 {
 	(void)env;
