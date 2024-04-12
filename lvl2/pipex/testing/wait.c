@@ -50,3 +50,8 @@ int main()
 
 	return 0;
 }
+
+/*
+	Waitpid --> [pid o codigo, puntero a variable para guardar status, opciones --> 0]
+	wait(x)    --> [variabke para guardar el status] = waitpid(-1, x, ---)
+*/

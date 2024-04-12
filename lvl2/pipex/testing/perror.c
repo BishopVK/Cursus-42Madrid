@@ -17,6 +17,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 int main(void)
 {
@@ -42,3 +44,23 @@ int main(void)
 // perror imprime un mensaje de error con la descripción del error correspondiente
 // al valor de errno actual. En este caso, el mensaje impreso sería algo
 // como "Error al abrir el archivo: No such file or directory".
+
+// static int my_func(int x) {
+// 	if (x > 100)
+// 	{
+// 		errno = 35;
+// 		return (1);
+// 	}
+// 	errno = 0;
+// 	return (0);
+// }
+
+// int main() {
+// 	my_func(14);
+// 	perror("Error con 14");
+
+// 	my_func(214);
+// 	perror("Error con 214");
+
+// 	return (1);
+// }

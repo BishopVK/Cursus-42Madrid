@@ -12,21 +12,22 @@
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+/* int	main(int argc, char **argv, char **env)
 {
 	int	pipe_fd[2];
 	pid_t	pidC;
+	(void)env;
 
-	if (argc != 5)
+	if (argc != 3) //Cambiar el 3 por un 5
 		return (-1);
 	
 	if (pipe(pipe_fd) == -1)
 		exit (-1);
 	pidC = fork();
 	return (0);
-}
+} */
 
-/* int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	//int	pipe_fd[2];
 	//pid_t	pid;
@@ -50,4 +51,4 @@ int	main(int argc, char **argv, char **env)
 		i++;
 	}
 	return (0);
-} */
+}

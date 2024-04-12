@@ -1,0 +1,44 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    guide.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/12 08:45:07 by danjimen          #+#    #+#              #
+#    Updated: 2024/04/12 08:48:00 by danjimen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+1. Analizar los argumentos de la línea de comandos:
+	- Usa argc y argv para obtener los argumentos proporcionados por el usuario.
+	- Verifica que se proporcionen los cuatro argumentos requeridos y guárdalos en variables para su posterior uso.
+
+2. Crear un proceso hijo:
+	- Usa fork() para crear un nuevo proceso hijo.
+	- Verifica si el fork fue exitoso para distinguir entre el proceso padre y el hijo.
+
+3. Redirigir la entrada y salida estándar:
+	- En el proceso hijo, redirige la entrada estándar desde archivo1 utilizando dup2() y open().
+	- En el proceso hijo, redirige la salida estándar hacia archivo2 utilizando dup2() y open().
+
+4. Ejecutar comando1 y comando2:
+		- En el proceso hijo, usa execvp() para ejecutar comando1 y comando2 con sus respectivos parámetros.
+
+5. Establecer la tubería (pipe):
+	- En el proceso padre, crea una tubería utilizando pipe() para conectar la salida de comando1 con la entrada de comando2.
+
+6. Ejecutar comando1 y comando2 en el contexto de la tubería:
+	- En el proceso padre, utiliza fork() nuevamente para crear dos nuevos procesos hijos.
+	- En uno de los procesos hijos, redirige la salida estándar hacia la extremidad de escritura de la tubería.
+	- En el otro proceso hijo, redirige la entrada estándar desde la extremidad de lectura de la tubería.
+	- Luego, en ambos procesos hijos, utiliza execvp() para ejecutar comando1 y comando2 con sus respectivos parámetros.
+
+7. Esperar a que los procesos hijos terminen:
+	- En el proceso padre, utiliza wait() o waitpid() para esperar a que los procesos hijos terminen.
+
+8. Liberar recursos:
+	- Cierra los descriptores de archivo y libera cualquier memoria asignada.
+
+9. Manejo de errores:
+	- Implementa un manejo de errores adecuado para verificar el éxito de cada llamada al sistema y manejar los casos en los que algo salga mal.
