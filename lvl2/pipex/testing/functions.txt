@@ -1,0 +1,64 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    functions.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/12 07:46:31 by danjimen          #+#    #+#              #
+#    Updated: 2024/04/12 07:49:59 by danjimen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+1. open: Esta función se utiliza para abrir un archivo o crear uno nuevo
+   si no existe. Devuelve un descriptor de archivo que puede ser utilizado
+   para realizar operaciones de lectura o escritura en el archivo.
+
+2. close: Se utiliza para cerrar un descriptor de archivo que ha sido abierto
+   previamente con la función open o creado por otras funciones relacionadas
+   con el sistema de archivos.
+
+3. read: Lee datos desde un descriptor de archivo abierto y los almacena en
+   un buffer proporcionado por el usuario.
+
+4. write: Escribe datos desde un buffer proporcionado por el usuario en un
+   descriptor de archivo abierto.
+
+5. malloc: Reserva un bloque de memoria del tamaño especificado y devuelve un
+   puntero a la primera posición de ese bloque.
+
+6. free: Libera un bloque de memoria previamente asignado con malloc,
+   calloc, o realloc.
+
+7. perror: Imprime un mensaje de error asociado al valor de errno actual en
+   la salida estándar de error.
+
+8. strerror: Devuelve una cadena de caracteres que describe el error asociado
+   a un valor de errno dado.
+
+9. access: Verifica los permisos de acceso a un archivo especificado por la
+   ruta proporcionada.
+
+10. dup y dup2: Estas funciones se utilizan para duplicar un descriptor de archivo.
+    dup crea una copia del descriptor de archivo con el número más bajo disponible,
+    mientras que dup2 permite especificar el número de descriptor de archivo deseado.
+
+11. execve: Reemplaza el proceso actual con un nuevo programa. Es una de las
+    funciones utilizadas para ejecutar programas en un sistema operativo basado en Unix.
+
+12. exit: Termina la ejecución del programa actual y devuelve un estado
+    de salida al sistema operativo.
+
+13. fork: Crea un nuevo proceso duplicando el proceso actual. Después de una llamada
+    exitosa a fork, hay dos procesos en ejecución: el proceso padre y el proceso hijo.
+
+14. pipe: Crea un par de descriptores de archivo que están conectados entre sí,
+    de modo que lo que se escribe en uno de ellos se puede leer desde el otro.
+
+15. unlink: Elimina el enlace a un archivo, disminuyendo el contador de enlaces.
+    Si el contador llega a cero, el archivo se elimina del sistema de archivos.
+
+16. wait y waitpid: Estas funciones se utilizan para esperar a que un proceso hijo
+    termine su ejecución. wait suspende la ejecución del proceso actual hasta que uno
+    de sus hijos termine, mientras que waitpid espera a un proceso hijo específico
+	o a cualquier hijo, dependiendo de los parámetros proporcionados.
