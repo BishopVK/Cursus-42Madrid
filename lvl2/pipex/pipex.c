@@ -55,7 +55,7 @@
 	return (0);
 } */
 
-int	main(int argc, char **argv)
+/* int	main(int argc, char **argv)
 {
 	int fd_infile;
 	int pipe_fd[2];
@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 	wait(NULL);
 
 	return 0;
-}
+} */
 
 /* int	main(int argc, char **argv, char **env)
 {
@@ -175,7 +175,7 @@ int	main(int argc, char **argv)
 	return (0);
 } */
 
-/* int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	//int	pipe_fd[2];
 	//pid_t	pid;
@@ -200,4 +200,4 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	return (0);
-} */
+}
