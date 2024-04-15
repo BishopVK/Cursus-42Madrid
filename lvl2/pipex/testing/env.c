@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:08:47 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/15 12:05:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:08:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,15 @@ int	main(int argc, char **argv, char **env)
 	}
 	free(split);
 
+	// Redireccionar la entrada del archivo
+	int infile_fd = open("txt.txt", O_RDONLY);
+	if (infile_fd < 0)
+	{
+		perror("open");
+		return (1);
+	}
+	dup2(infile_fd, STDIN_FILENO); // Duplica infile_fd en stdin (descriptor de archivo 0)
+	close(infile_fd); // Cierre el descriptor de archivo original
 
 	//Ejecutar
 	printf("Intentando ejecutar: %s\n", args[0]); // Añadido para depurar
