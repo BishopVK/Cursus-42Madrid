@@ -175,7 +175,7 @@
 	return (0);
 } */
 
-int	main(int argc, char **argv, char **env)
+/* int	main(int argc, char **argv, char **env)
 {
 	//int	pipe_fd[2];
 	//pid_t	pid;
@@ -200,4 +200,41 @@ int	main(int argc, char **argv, char **env)
 		i++;
 	}
 	return (0);
+} */
+
+int	main(int argc, char **argv, char **env)
+{
+
+
+	if (argc < 2 || argc > 5)
+		return (-1);
+	
+
+
+	return (0);
+}
+
+void hijo() {
+	char *path;
+	char **comands;
+	
+	/*
+		1. Abrir infile o outfile
+	*/
+
+	/*
+		2. Obtener path
+	*/
+	path = get_path();
+
+
+	/*
+		3. Obtener argumentos
+	*/
+	arguments = get_arguments();
+
+	/*
+		4. Hacer dups	
+	*/
+	execve(path, arguments, env);
 }
