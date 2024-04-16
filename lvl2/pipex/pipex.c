@@ -202,39 +202,54 @@
 	return (0);
 } */
 
-int	main(int argc, char **argv, char **env)
+void	child(char **argv, int *p_fd, char **env)
 {
-
-
-	if (argc < 2 || argc > 5)
-		return (-1);
+	//char *path;
+	//char **comands;
+	int	infile_fd;
+	(void)p_fd;
+	(void)env;
 	
+	//	1. Abrir infile o outfile
+	infile_fd = open(argv[1], O_RDONLY);
+	//(infile_fd < 0) && (perror("open"), exit(0));
+	if (infile_fd < 0)
+	{
+		perror("open");
+		exit (0);
+	}
+	dup2(infile_fd, STDIN_FILENO); // Duplica infile_fd en stdin (descriptor de archivo 0)
+	close(infile_fd); // Cierre el descriptor de archivo original
 
+	//	2. Obtener path
+	//path = get_path();
 
-	return (0);
+	//	3. Obtener argumentos
+	//arguments = get_arguments();
+
+	//	4. Hacer dups	
+	//execve(path, arguments, env);
 }
 
-void hijo() {
-	char *path;
-	char **comands;
-	
-	/*
-		1. Abrir infile o outfile
-	*/
+int	main(int argc, char **argv, char **env)
+{
+	int		p_fd[2];
+	pid_t	pid;
+	(void)env;
 
-	/*
-		2. Obtener path
-	*/
-	path = get_path();
+	if (argc != 5)
+	{
+		ft_dprintf(2, "Wrong amount of args: %s infile cmd1 cmd2 outfile\n", argv[0]);
+		return (-1);
+	}
+	if (pipe(p_fd) == -1)
+		exit(-1);
+	pid = fork();
+	if (pid == -1)
+		exit(-1);
+	if (!pid)
+		child(argv, p_fd, env);
+	//parent(argv, p_fd, env);
 
-
-	/*
-		3. Obtener argumentos
-	*/
-	arguments = get_arguments();
-
-	/*
-		4. Hacer dups	
-	*/
-	execve(path, arguments, env);
+	return (0);
 }
