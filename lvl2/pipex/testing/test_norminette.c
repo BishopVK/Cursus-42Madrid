@@ -17,7 +17,7 @@
 /**************************************************************/
 
 // 1. Clásico (12 líneas)
-/* int	main(void)
+int	main(void)
 {
 	int	i;
 
@@ -31,7 +31,7 @@
 		i++;
 	}
 	return (0);
-} */
+}
 
 // 2. Sintetizado (10 líneas)
 /* int	main(void)
@@ -102,13 +102,16 @@
 } */
 
 // 3. Minimal (7 líneas)
-int	main(void)
+/* int	main(void)
 {
 	int	i;
 
 	i = -1;
 	while (++i < 10)
-		(i % 2 != 0 && (printf("%d es impar\n", i), printf("%d^2 = %i\n", i, (i * i)))
-			|| ((i % 2 == 0 && printf("%d es par\n", i)), printf("%d^2 = %i\n", i, (i * i))));
+		(i % 2 != 0) && (printf("%d es impar\n", i),
+				printf("%d^2 = %i\n", i, (i * i))
+			|| ((i % 2 == 0) && printf("%d es par\n", i)),
+				printf("%d^2 = %i\n", i, (i * i)));
 	return (0);
 }
+ */
