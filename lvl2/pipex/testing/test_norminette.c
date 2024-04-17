@@ -113,5 +113,4 @@ int	main(void)
 			|| ((i % 2 == 0) && printf("%d es par\n", i)),
 				printf("%d^2 = %i\n", i, (i * i)));
 	return (0);
-}
- */
+} */
