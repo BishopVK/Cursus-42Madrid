@@ -202,14 +202,78 @@
 	return (0);
 } */
 
+/* void ft_leaks(void)
+{
+	system("leaks -q ./pipex");
+} */
+
+static void	free_split(char **split)
+{
+	int	i;
+
+	if (split == NULL)
+		return ; // No hay nada que liberar
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		split[i] = NULL;
+		//printf("split[%d] = %s\n", i, split[i]);
+		i++;
+	}
+	free(split);
+}
+
+static char	**get_path(char **env)
+{
+	int		i;
+	char	*path;
+	char	**split_path;
+
+	i = 0;
+
+	while (env[i] != NULL)
+	{
+		path = ft_strnstr(env[i], "PATH=", ft_strlen(env[i]));
+		if (path != NULL)
+		{
+			path += 5;
+			printf("path= %s\n", path);
+			break ;
+		}
+		i++;
+	}
+
+	// Separar path por ':'
+	split_path = ft_split(path, ':');
+	i = 0;
+	while (split_path[i])
+	{
+		printf("split_path[%d] = %s\n", i, split_path[i]);
+		i++;
+	}
+	return (split_path);
+}
+
 void	child(char **argv, int *p_fd, char **env)
 {
 	//char *path;
 	//char **comands;
-	int	infile_fd;
+	int		infile_fd;
+	char	**split_path;
+	char	**split_argv;
+
 	(void)p_fd;
-	(void)env;
 	
+	//	0. Dividir el comando de los flags y/o argumentos
+	split_argv = ft_split(argv[2], ' ');
+	int i = 0;
+	while (split_argv[i])
+	{
+		printf("split_argv[%d] = %s\n", i, split_argv[i]);
+		i++;
+	}
+
 	//	1. Abrir infile o outfile
 	infile_fd = open(argv[1], O_RDONLY);
 	//(infile_fd < 0) && (perror("open"), exit(0));
@@ -222,7 +286,8 @@ void	child(char **argv, int *p_fd, char **env)
 	close(infile_fd); // Cierre el descriptor de archivo original
 
 	//	2. Obtener path
-	//path = get_path();
+	split_path = get_path(env);
+	free_split(split_path);
 
 	//	3. Obtener argumentos
 	//arguments = get_arguments();
@@ -235,8 +300,9 @@ int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
 	pid_t	pid;
-	(void)env;
 
+	//atexit(ft_leaks);
+	(void)env;
 	if (argc != 5)
 	{
 		ft_dprintf(2, "Wrong amount of args: %s infile cmd1 cmd2 outfile\n", argv[0]);
@@ -249,7 +315,8 @@ int	main(int argc, char **argv, char **env)
 		exit(-1);
 	if (!pid)
 		child(argv, p_fd, env);
-	//parent(argv, p_fd, env);
+	//else
+		//parent(argv, p_fd, env);
 
 	return (0);
 }
