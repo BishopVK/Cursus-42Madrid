@@ -207,7 +207,97 @@
 	system("leaks -q ./pipex");
 } */
 
-static void	free_split(char **split)
+/* static char	**get_arguments(char *full_path, char **split_argv)
+{
+	char	**args;
+	//(void)full_path;
+	int		count;
+	int		i;
+
+	ft_printf("HOLA\n");
+	count = 0;
+	while (split_argv[count])
+		count++;
+	ft_printf("count = %d\n", count);
+
+	args = (char **)malloc((count + 2) * sizeof(char *));
+	if (args == NULL)
+		return (NULL);
+	args[0] = ft_strdup(full_path);
+	i = 1;
+	while (i <= count)
+	{
+		args[i] = ft_strdup(split_argv[i - 1]);
+		i++;
+	}
+	ft_printf("AQUÍ HE LLEGADO\n");
+	args[i] = NULL;
+	ft_printf("ADIOS\n");
+
+	return (args);
+} */
+
+/* static char	**get_arguments(char **split_argv)
+{
+	char	**args;
+	int		count;
+	int		i;
+
+	ft_printf("HOLA\n");
+	count = 0;
+	while (split_argv[count])
+		count++;
+	ft_printf("count = %d\n", count);
+
+	args = (char **)malloc((count + 2) * sizeof(char *));
+	if (args == NULL)
+		return (NULL);
+	args[0] = ft_strdup(full_path);
+	i = 1;
+	while (i <= count)
+	{
+		args[i] = ft_strdup(split_argv[i - 1]);
+		i++;
+	}
+	ft_printf("AQUÍ HE LLEGADO\n");
+	args[i] = NULL;
+	ft_printf("ADIOS\n");
+
+	return (args);
+} */
+
+static char	*find_command_in_path(const char *command, char **path_list)
+{
+	int i = 0;
+	char *full_path = NULL;
+
+	while (path_list[i] != NULL)
+	{
+		char *path = path_list[i];
+		int path_len = strlen(path);
+		int command_len = strlen(command);
+		full_path = malloc(path_len + command_len + 2); // +1 para el '/' y +1 para el '\0'
+		if (full_path == NULL)
+		{
+			perror("malloc failed");
+			exit(1);
+		}
+		strcpy(full_path, path);
+		full_path[path_len] = '/';
+		strcpy(full_path + path_len + 1, command);
+		if (access(full_path, X_OK) == 0) // Comprueba si el archivo es ejecutable
+		{
+			ft_printf("El proceso \"%s\" es ejecutable\n", command);
+			return (full_path);
+		}
+		free(full_path);
+		i++;
+	}
+
+	return (NULL); // No se encontró el comando en ninguna de las rutas del PATH
+}
+
+/* static void	free_split(char **split)
 {
 	int	i;
 
@@ -223,7 +313,7 @@ static void	free_split(char **split)
 	}
 	free(split);
 }
-
+ */
 static char	**get_path(char **env)
 {
 	int		i;
@@ -255,17 +345,18 @@ static char	**get_path(char **env)
 	return (split_path);
 }
 
-void	child(char **argv, int *p_fd, char **env)
+static void	child(char **argv, int *p_fd, char **env)
 {
 	//char *path;
 	//char **comands;
-	int		infile_fd;
 	char	**split_path;
 	char	**split_argv;
+	char	*full_path;
+	//char	**args;
 
 	(void)p_fd;
 	
-	//	0. Dividir el comando de los flags y/o argumentos
+	//	1. Dividir el comando de los flags y/o argumentos
 	split_argv = ft_split(argv[2], ' ');
 	int i = 0;
 	while (split_argv[i])
@@ -274,6 +365,49 @@ void	child(char **argv, int *p_fd, char **env)
 		i++;
 	}
 
+	//	2. Obtener path
+	split_path = get_path(env);
+	//free_split(split_path); // Cuando ya no sea necesario
+
+	//	3. Encuentra el comando en las rutas del PATH
+	full_path = find_command_in_path(split_argv[0], split_path);
+	ft_printf("full_path = %s\n", full_path);
+
+	//	4. Obtener argumentos
+	/* args = get_arguments(split_argv);
+	i = 0;
+	while (args[i])
+	{
+		printf("args[%d] = %s\n", i, args[i]);
+		i++;
+	} */
+
+	//	5. Hacer dups	//	EJECUTAR
+	//execve(path, arguments, env);
+	printf("Intentando ejecutar: %s\n", split_argv[0]); // Añadido para depurar
+	/* if (execve(full_path, split_argv, NULL) == -1) {
+		perror("execve");
+	} */
+	if (full_path != NULL && access(full_path, X_OK) == 0)
+	{
+		execve(full_path, split_argv, NULL);
+		// Si execve devuelve algo, aquí el código nunca se alcanzará a ejecutar.
+		perror("execve failed");
+		exit (1);
+	}
+	else
+	{
+		if (full_path == NULL)
+			printf("La ruta completa del comando no fue encontrada\n");
+		else
+			printf("El comando no es accesible\n");
+	}
+}
+
+/* static void	parent(char **argv)
+{
+	int	infile_fd;
+	
 	//	1. Abrir infile o outfile
 	infile_fd = open(argv[1], O_RDONLY);
 	//(infile_fd < 0) && (perror("open"), exit(0));
@@ -284,26 +418,29 @@ void	child(char **argv, int *p_fd, char **env)
 	}
 	dup2(infile_fd, STDIN_FILENO); // Duplica infile_fd en stdin (descriptor de archivo 0)
 	close(infile_fd); // Cierre el descriptor de archivo original
-
-	//	2. Obtener path
-	split_path = get_path(env);
-	free_split(split_path);
-
-	//	3. Obtener argumentos
-	//arguments = get_arguments();
-
-	//	4. Hacer dups	
-	//execve(path, arguments, env);
-}
+} */
 
 int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
 	pid_t	pid;
+	int		status;
+	int	infile_fd;
+	
+	//	0. Abrir infile o outfile
+	infile_fd = open(argv[1], O_RDONLY);
+	//(infile_fd < 0) && (perror("open"), exit(0));
+	if (infile_fd < 0)
+	{
+		perror("open");
+		exit (0);
+	}
+	dup2(infile_fd, STDIN_FILENO); // Duplica infile_fd en stdin (descriptor de archivo 0)
+	close(infile_fd); // Cierre el descriptor de archivo original
 
 	//atexit(ft_leaks);
 	(void)env;
-	if (argc != 5)
+	if (argc != 3) // CAMBIAR A 5
 	{
 		ft_dprintf(2, "Wrong amount of args: %s infile cmd1 cmd2 outfile\n", argv[0]);
 		return (-1);
@@ -313,10 +450,20 @@ int	main(int argc, char **argv, char **env)
 	pid = fork();
 	if (pid == -1)
 		exit(-1);
-	if (!pid)
+	if (pid == 0) // Proceso hijo
+	{
+		printf("Soy el proceso hijo\n");
 		child(argv, p_fd, env);
-	//else
-		//parent(argv, p_fd, env);
+		exit(0);
+	}
+	else if (pid > 0) // Proceso padre
+	{
+		printf("Esperando al proceso hijo...\n");
+		//parent(argv);
+		waitpid(pid, &status, 0);
+		//wait(&status);
+		printf("Proceso hijo terminado\n");
+	}
 
 	return (0);
 }
