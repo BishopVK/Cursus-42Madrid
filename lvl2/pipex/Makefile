@@ -40,7 +40,6 @@ all: $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) bonus -C $(LIBFT_DIR)
 
 $(PRINTF):
 	@$(MAKE) -C $(PRINTF_DIR)
