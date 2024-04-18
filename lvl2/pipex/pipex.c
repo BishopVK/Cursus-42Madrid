@@ -28,7 +28,6 @@ static void	free_split(char **split)
 	{
 		free(split[i]);
 		split[i] = NULL;
-		//printf("split[%d] = %s\n", i, split[i]);
 		i++;
 	}
 	free(split);
@@ -36,24 +35,22 @@ static void	free_split(char **split)
 
 static char	*find_command_in_path(const char *command, char **path_list)
 {
-	int i;
-	char *full_path;
-	int path_len;
+	int		i;
+	char	*full_path;
 
 	i = 0;
 	full_path = NULL;
 	while (path_list[i] != NULL)
 	{
-		path_len = ft_strlen(path_list[i]);
-		full_path = malloc(path_len + ft_strlen(command) + 2); // +1 para el '/' y +1 para el '\0'
+		full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2); // +1 para el '/' y +1 para el '\0'
 		if (full_path == NULL)
 		{
 			perror("malloc failed");
 			exit(1);
 		}
 		ft_strcpy(full_path, path_list[i]);
-		full_path[path_len] = '/';
-		ft_strcpy(full_path + path_len + 1, command);
+		full_path[ft_strlen(path_list[i])] = '/';
+		ft_strcpy(full_path + ft_strlen(path_list[i]) + 1, command);
 		if (access(full_path, X_OK) == 0) // Comprueba si el archivo es ejecutable
 		{
 			ft_printf("El proceso \"%s\" es ejecutable\n", command);
@@ -78,20 +75,12 @@ static char	**get_path(char **env)
 		if (path != NULL)
 		{
 			path += 5;
-			//printf("path= %s\n", path);
 			break ;
 		}
 		i++;
 	}
-
 	// Separar path por ':'
 	split_path = ft_split(path, ':');
-	/* i = 0;
-	while (split_path[i])
-	{
-		printf("split_path[%d] = %s\n", i, split_path[i]);
-		i++;
-	} */
 	return (split_path);
 }
 
@@ -121,25 +110,13 @@ static char	**child(char **argv, int *p_fd, char **env)
 	char	*full_path;
 
 	(void)p_fd;
-	
 	//	1. Dividir el comando de los flags y/o argumentos
 	split_argv = ft_split(argv[2], ' ');
-	/* int i = 0;
-	while (split_argv[i])
-	{
-		printf("split_argv[%d] = %s\n", i, split_argv[i]);
-		i++;
-	} */
-
 	//	2. Obtener path
 	split_path = get_path(env);
-	//free_split(split_path); // Cuando ya no sea necesario
-
 	//	3. Encuentra el comando en las rutas del PATH
 	full_path = find_command_in_path(split_argv[0], split_path);
-	//ft_printf("full_path = %s\n", full_path);
 	free_split(split_path);
-
 	//	4. EJECUTAR
 	execute(split_argv, full_path);
 	return (split_argv);
@@ -147,11 +124,10 @@ static char	**child(char **argv, int *p_fd, char **env)
 
 static void	parent(char **argv)
 {
-	int		infile_fd;
-	
+	int	infile_fd;
+
 	//	1. Abrir infile o outfile
 	infile_fd = open(argv[1], O_RDONLY);
-	//(infile_fd < 0) && (perror("open"), exit(0));
 	if (infile_fd < 0)
 	{
 		perror("open");
