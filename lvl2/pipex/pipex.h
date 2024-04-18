@@ -34,6 +34,9 @@
 //strerror
 #include <string.h>
 
+//wait, waitpid
+#include <sys/wait.h>
+
 //index pipe extremo escritura
 #define READ_END 0
 
