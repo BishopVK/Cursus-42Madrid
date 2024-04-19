@@ -46,6 +46,17 @@
 /************************************/
 /*				pipex.c				*/
 /************************************/
-int	main(int argc, char **argv, char **env);
+void	execute(char **split_argv, char *full_path, char **env);
+char	**child(char **argv, int *p_fd, char **env);
+char	**parent(char **argv, int *p_fd, char **env);
+int		main(int argc, char **argv, char **env);
+
+/************************************/
+/*			pipex_utils.c			*/
+/************************************/
+void	free_split(char **split);
+char	*find_command_in_path(const char *command, char **path_list);
+char	**get_path(char **env);
+int		open_fd(char *file_name, int stdin_stdout);
 
 #endif
