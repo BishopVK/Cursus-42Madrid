@@ -84,12 +84,12 @@ static char	**get_path(char **env)
 	return (split_path);
 }
 
-static void	execute(char **split_argv, char *full_path)
+static void	execute(char **split_argv, char *full_path, char **env)
 {
 	printf("Intentando ejecutar: %s\n", split_argv[0]); // Añadido para depurar
 	if (full_path != NULL && access(full_path, X_OK) == 0)
 	{
-		execve(full_path, split_argv, NULL);
+		execve(full_path, split_argv, env);
 		// Si execve devuelve algo, aquí el código nunca se alcanzará a ejecutar.
 		perror("execve failed");
 		exit (1);
@@ -118,7 +118,7 @@ static char	**child(char **argv, int *p_fd, char **env)
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
 	//	4. EJECUTAR
-	execute(split_argv, full_path);
+	execute(split_argv, full_path, env);
 	return (split_argv);
 }
 
@@ -126,7 +126,7 @@ static void	parent(char **argv)
 {
 	int	infile_fd;
 
-	//	1. Abrir infile o outfile
+	//	0. Abrir infile o outfile
 	infile_fd = open(argv[1], O_RDONLY);
 	if (infile_fd < 0)
 	{
