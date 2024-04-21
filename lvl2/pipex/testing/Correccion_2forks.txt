@@ -1,0 +1,24 @@
+// Crear un pipe
+pipe(p_fd);
+
+// Crear el primer proceso hijo
+pid1 = fork();
+if (pid1 == 0) {
+    // Este es el primer proceso hijo
+    // Redirigir la salida estándar al extremo de escritura del pipe
+    // Ejecutar el primer comando
+} else {
+    // Este es el proceso padre
+    // Crear el segundo proceso hijo
+    pid2 = fork();
+    if (pid2 == 0) {
+        // Este es el segundo proceso hijo
+        // Redirigir la entrada estándar al extremo de lectura del pipe
+        // Ejecutar el segundo comando
+    } else {
+        // Este es el proceso padre
+        // Esperar a que ambos procesos hijos terminen
+        waitpid(pid1, &status, 0);
+        waitpid(pid2, &status, 0);
+    }
+}
