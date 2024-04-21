@@ -1,0 +1,25 @@
+./pipex infile "ls -l" "wc -l" outfile
+deberá hacer lo mismo que “<infile ls -l | wc -l >outfile”
+
+./pipex infile "grep a1" "wc -w" outfile
+deberá hacer lo mismo que “<infile grep a1 | wc -w >outfile”
+
+1. Contar el número de líneas que contienen la palabra "error" en un archivo:
+./pipex infile "grep error" "wc -l" outfile
+Esto sería equivalente a <infile grep error | wc -l >outfile.
+
+2. Filtrar las líneas que contienen la palabra "success" y contar cuántas palabras tiene cada una:
+./pipex infile "grep success" "wc -w" outfile
+Esto sería equivalente a <infile grep success | wc -w >outfile.
+
+3. Mostrar los procesos en ejecución que contienen la palabra "bash" y contar cuántos hay:
+./pipex infile "ps aux" "grep bash" "wc -l" outfile
+Esto sería equivalente a <infile ps aux | grep bash | wc -l >outfile.
+
+4. Ordenar alfabéticamente las líneas de un archivo y contar cuántas son:
+./pipex infile "sort" "wc -l" outfile
+Esto sería equivalente a <infile sort | wc -l >outfile.
+
+5. Contar cuántas veces aparece una palabra específica en un archivo de texto:
+./pipex infile "grep palabra" "wc -l" outfile
+Esto sería equivalente a <infile grep palabra | wc -l >outfile.
