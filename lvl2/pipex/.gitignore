@@ -6,6 +6,7 @@
 *.o
 *.out
 *.a
+salida.txt
 pipex
 
 # Ignorar directorios específicos
