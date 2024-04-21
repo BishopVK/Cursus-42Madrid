@@ -19,7 +19,7 @@
 
 void	execute(char **split_argv, char *full_path, char **env)
 {
-	printf("Intentando ejecutar: %s\n", split_argv[0]); // Añadido para depurar
+	//printf("Trying to run: %s\n", split_argv[0]); // Añadido para depurar
 	if (full_path != NULL && access(full_path, X_OK) == 0)
 	{
 		execve(full_path, split_argv, env);
@@ -30,25 +30,11 @@ void	execute(char **split_argv, char *full_path, char **env)
 	else
 	{
 		if (full_path == NULL)
-			printf("La ruta completa del comando no fue encontrada\n");
+			ft_dprintf(2, "The full path of the command was not found\n");
 		else
-			printf("El comando no es accesible\n");
+			ft_dprintf(2, "The command is not accessible\n");
 	}
 }
-
-/* static void	open_fd(char **argv)
-{
-	int	infile_fd;
-
-	infile_fd = open(argv[1], O_RDONLY);
-	if (infile_fd < 0)
-	{
-		perror("open");
-		exit (0);
-	}
-	dup2(infile_fd, STDIN_FILENO);// Duplica infile_fd en stdin (descriptor de archivo 0)
-	close(infile_fd); // Cierre el descriptor de archivo original
-} */
 
 char	**child(char **argv, int *p_fd, char **env)
 {
@@ -57,13 +43,13 @@ char	**child(char **argv, int *p_fd, char **env)
 	char	*full_path;
 	int		fd;
 
-	(void)p_fd;
 	//	0. Abrir infile o outfile
 	fd = open_fd(argv[1], 0);
 	dup2(fd, STDIN_FILENO);// Duplica fd en stdin (descriptor de archivo 0)
 	close(fd); // Cierre el descriptor de archivo original
-	// dup2(p_fd[1], 1);
-	// close(p_fd[0]);
+	close(p_fd[0]);
+	dup2(p_fd[1], STDOUT_FILENO);
+	close(p_fd[1]);
 	//	1. Dividir el comando de los flags y/o argumentos
 	split_argv = ft_split(argv[2], ' ');
 	//	2. Obtener path
@@ -76,20 +62,20 @@ char	**child(char **argv, int *p_fd, char **env)
 	return (split_argv);
 }
 
-/* char	**parent(char **argv, int *p_fd, char **env)
+char	**parent(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
 	char	*full_path;
 	int		fd;
 
-	(void)p_fd;
 	//	0. Abrir infile o outfile
 	fd = open_fd(argv[4], 1);
 	dup2(fd, STDOUT_FILENO);// Duplica fd en stdin (descriptor de archivo 0)
 	close(fd); // Cierre el descriptor de archivo original
-	// dup2(p_fd[0], 0);
-	// close(p_fd[1]);
+	close(p_fd[1]);
+	dup2(p_fd[0], STDIN_FILENO);
+	close(p_fd[0]);
 	//	1. Dividir el comando de los flags y/o argumentos
 	split_argv = ft_split(argv[3], ' ');
 	//	2. Obtener path
@@ -100,7 +86,7 @@ char	**child(char **argv, int *p_fd, char **env)
 	//	4. Ejecutar
 	execute(split_argv, full_path, env);
 	return (split_argv);
-} */
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -111,7 +97,7 @@ int	main(int argc, char **argv, char **env)
 
 	split_argv = NULL;
 	//atexit(ft_leaks);
-	if (argc != 3) // CAMBIAR A 5
+	if (argc != 5) // CAMBIAR A 5
 	{
 		ft_dprintf(2, "Wrong use: %s infile cmd1 cmd2 outfile\n", argv[0]);
 		return (-1);
@@ -123,20 +109,20 @@ int	main(int argc, char **argv, char **env)
 		exit(-1);
 	if (pid == 0) // Proceso hijo
 	{
-		printf("Soy el proceso hijo\n");
+		//printf("Soy el proceso hijo\n");
 		split_argv = child(argv, p_fd, env);
 		free_split(split_argv);
 		exit(0);
 	}
 	else if (pid > 0) // Proceso padre
 	{
-		printf("Esperando al proceso hijo...\n");
+		//printf("Esperando al proceso hijo...\n");
 		//parent(argv);
 		waitpid(pid, &status, 0);
-		//split_argv = parent(argv, p_fd, env);
-		//free_split(split_argv);
+		split_argv = parent(argv, p_fd, env);
+		free_split(split_argv);
 		//wait(&status);
-		printf("Proceso hijo terminado\n");
+		//printf("Proceso hijo terminado\n");
 	}
 	return (0);
 }
