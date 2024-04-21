@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/19 11:08:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:09:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*find_command_in_path(const char *command, char **path_list)
 		ft_strcpy(full_path + ft_strlen(path_list[i]) + 1, command);
 		if (access(full_path, X_OK) == 0) // Comprueba si el archivo es ejecutable
 		{
-			ft_printf("El proceso \"%s\" es ejecutable\n", command);
+			//ft_printf("The process \"%s\" is executable\n", command);
 			return (full_path);
 		}
 		free(full_path);
