@@ -47,8 +47,8 @@
 /*				pipex.c				*/
 /************************************/
 void	execute(char **split_argv, char *full_path, char **env);
-char	**child(char **argv, int *p_fd, char **env);
-char	**parent(char **argv, int *p_fd, char **env);
+void	child1(char **argv, int *p_fd, char **env);
+void	child2(char **argv, int *p_fd, char **env);
 int		main(int argc, char **argv, char **env);
 
 /************************************/
