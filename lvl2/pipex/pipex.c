@@ -36,7 +36,7 @@ void	execute(char **split_argv, char *full_path, char **env)
 	}
 }
 
-char	**child(char **argv, int *p_fd, char **env)
+void	child1(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -59,10 +59,10 @@ char	**child(char **argv, int *p_fd, char **env)
 	free_split(split_path);
 	//	4. Ejecutar
 	execute(split_argv, full_path, env);
-	return (split_argv);
+	free_split(split_argv);
 }
 
-char	**parent(char **argv, int *p_fd, char **env)
+void child2(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -85,17 +85,16 @@ char	**parent(char **argv, int *p_fd, char **env)
 	free_split(split_path);
 	//	4. Ejecutar
 	execute(split_argv, full_path, env);
-	return (split_argv);
+	free_split(split_argv);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
-	pid_t	pid;
+	pid_t	pid1;
+	pid_t	pid2;
 	int		status;
-	char	**split_argv;
 
-	split_argv = NULL;
 	//atexit(ft_leaks);
 	if (argc != 5) // CAMBIAR A 5
 	{
@@ -104,25 +103,35 @@ int	main(int argc, char **argv, char **env)
 	}
 	if (pipe(p_fd) == -1)
 		exit(-1);
-	pid = fork();
-	if (pid == -1)
+	pid1 = fork();
+	if (pid1 == -1)
 		exit(-1);
-	if (pid == 0) // Proceso hijo
+	if (pid1 == 0) // Este es el primer proceso hijo
 	{
-		//printf("Soy el proceso hijo\n");
-		split_argv = child(argv, p_fd, env);
-		free_split(split_argv);
+		//printf("Soy el primer proceso hijo\n");
+		child1(argv, p_fd, env);
 		exit(0);
 	}
-	else if (pid > 0) // Proceso padre
+	else // Proceso padre
 	{
-		//printf("Esperando al proceso hijo...\n");
-		//parent(argv);
-		waitpid(pid, &status, 0);
-		split_argv = parent(argv, p_fd, env);
-		free_split(split_argv);
-		//wait(&status);
-		//printf("Proceso hijo terminado\n");
+		pid2 = fork();
+		if (pid2 == -1)
+			exit(-1);
+		if (pid2 == 0) // Este es el segundo proceso hijo
+		{
+			//printf("Soy el segundo proceso hijo\n");
+			child2(argv, p_fd, env);
+			exit(0);
+		}
+		else if (pid2 > 0) // Proceso padre
+		{
+			//printf("Esperando a los procesos hijos...\n");
+			close(p_fd[0]);
+			close(p_fd[1]);
+			waitpid(pid1, &status, 0);
+			waitpid(pid2, &status, 0);
+			//printf("Procesos hijos terminados\n");
+		}
 	}
 	return (0);
 }
