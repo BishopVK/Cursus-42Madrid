@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/21 23:22:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/22 08:25:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_split(char **split)
 	int	i;
 
 	if (split == NULL)
-		return ; // No hay nada que liberar
+		return ;
 	i = 0;
 	while (split[i])
 	{
@@ -37,7 +37,7 @@ char	*find_command_in_path(const char *command, char **path_list)
 	full_path = NULL;
 	while (path_list[i] != NULL)
 	{
-		full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2); // +1 para el '/' y +1 para el '\0'
+		full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2);
 		if (full_path == NULL)
 		{
 			perror("malloc failed");
@@ -46,15 +46,12 @@ char	*find_command_in_path(const char *command, char **path_list)
 		ft_strcpy(full_path, path_list[i]);
 		full_path[ft_strlen(path_list[i])] = '/';
 		ft_strcpy(full_path + ft_strlen(path_list[i]) + 1, command);
-		if (access(full_path, X_OK) == 0) // Comprueba si el archivo es ejecutable
-		{
-			//ft_printf("The process \"%s\" is executable\n", command);
+		if (access(full_path, X_OK) == 0)
 			return (full_path);
-		}
 		free(full_path);
 		i++;
 	}
-	return (NULL); // No se encontró el comando en ninguna de las rutas del PATH
+	return (NULL);
 }
 
 char	**get_path(char **env)
@@ -74,7 +71,6 @@ char	**get_path(char **env)
 		}
 		i++;
 	}
-	// Separar path por ':'
 	split_path = ft_split(path, ':');
 	return (split_path);
 }
