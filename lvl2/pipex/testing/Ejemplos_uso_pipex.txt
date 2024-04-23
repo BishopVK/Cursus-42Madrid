@@ -23,3 +23,22 @@ Esto sería equivalente a <infile sort | wc -l >outfile.
 5. Contar cuántas veces aparece una palabra específica en un archivo de texto:
 ./pipex infile "grep palabra" "wc -l" outfile
 Esto sería equivalente a <infile grep palabra | wc -l >outfile.
+
+
+----RETURN----
+
+- ERROR EN EL INFILE:
+<infile.ttxxtt grep "a" | wc -w >salida.txt
+echo $? --> 0
+
+- ERROR EN EL PRIMER COMANDO:
+<testing/test.txt greppp "a" | wc -w >salida.txt
+echo $? --> 0
+
+- ERROR EN EL SEGUNDO COMANDO:
+<testing/test.txt grep "a" | wccc -w >salida.txt
+echo $? --> 127
+
+- ERROR EN EL OUTFILE:
+<testing/test.txt grep "a" | wc -w >/no_exist/salida.txt
+echo $? --> 1
