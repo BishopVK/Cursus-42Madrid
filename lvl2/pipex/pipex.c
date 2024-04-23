@@ -12,26 +12,30 @@
 
 #include "pipex.h"
 
-int	execute(char **split_argv, char *full_path, char **env)
+void	execute(char **split_argv, char *full_path, char **env)
 {
 	if (full_path != NULL && access(full_path, X_OK) == 0)
 	{
 		execve(full_path, split_argv, env);
 		perror("execve failed");
-		return (-1);
+		exit (127);
 	}
 	else
 	{
 		if (full_path == NULL)
+		{
 			ft_dprintf(2, "The full path of the command was not found\n");
+			exit (127);
+		}
 		else
+		{
 			ft_dprintf(2, "The command is not accessible\n");
-		return (-1);
+			exit (127);
+		}
 	}
-	return (0);
 }
 
-int	child1(char **argv, int *p_fd, char **env)
+void	child1(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -48,12 +52,11 @@ int	child1(char **argv, int *p_fd, char **env)
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
-	return (execute(split_argv, full_path, env));
+	execute(split_argv, full_path, env);
 	free_split(split_argv);
-	return (0);
 }
 
-int	child2(char **argv, int *p_fd, char **env)
+void	child2(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -70,21 +73,20 @@ int	child2(char **argv, int *p_fd, char **env)
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
-	return (execute(split_argv, full_path, env));
+	execute(split_argv, full_path, env);
 	free_split(split_argv);
-	return (0);
 }
 
-int	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
+void	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 {
 	pid_t	pid2;
 	int		status;
 
 	pid2 = fork();
 	if (pid2 == -1)
-		return (-1);
+		exit(-1);
 	if (pid2 == 0)
-		return (child2(argv, p_fd, env));
+		child2(argv, p_fd, env);
 	else if (pid2 > 0)
 	{
 		close(p_fd[0]);
@@ -92,7 +94,6 @@ int	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 		waitpid(pid1, &status, 0);
 		waitpid(pid2, &status, 0);
 	}
-	return (0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -107,13 +108,13 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	}
 	if (pipe(p_fd) == -1)
-		return (-1);
+		exit(-1);
 	pid1 = fork();
 	if (pid1 == -1)
-		return (-1);
+		exit(-1);
 	if (pid1 == 0)
-		return (child1(argv, p_fd, env));
+		child1(argv, p_fd, env);
 	else if (pid1 > 0)
-		return (second_fork(argv, env, p_fd, pid1));
+		second_fork(argv, env, p_fd, pid1);
 	return (0);
 }
