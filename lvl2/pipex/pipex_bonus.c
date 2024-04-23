@@ -95,10 +95,17 @@ int	main(int argc, char **argv, char **env)
 	int		p_fd[2];
 	pid_t	pid1;
 
-	if (argc != 5)
+	if (argc < 5)
 	{
 		ft_dprintf(2, "Correct use: %s infile \"cmd1\" \"cmd2\" outfile\n",
 			argv[0]);
+		ft_dprintf(2, "or: %s here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n",
+			argv[0]);
+		return (-1);
+	}
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+	{
+		ft_printf("Detectado!\n", argv[0]);
 		return (-1);
 	}
 	if (pipe(p_fd) == -1)
