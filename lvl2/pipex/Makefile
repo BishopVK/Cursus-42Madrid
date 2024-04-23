@@ -31,6 +31,13 @@ CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	pipex.c \
 				pipex_utils.c
 
+OBJ			=	$(SRC:.c=.o)
+
+BONUS_SRC	=	pipex_bonus.c \
+				pipex_utils_bonus.c
+
+BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
+
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
@@ -39,19 +46,29 @@ PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
 all: $(NAME)
 
+bonus: $(NAME)_bonus
+
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(PRINTF):
 	@$(MAKE) -C $(PRINTF_DIR)
 
-$(NAME): $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(SRC) $(LIBFT) $(PRINTF) -o $(NAME)
+$(NAME): $(LIBFT) $(PRINTF) $(OBJ)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 	$(call print_cyan,"Compiled pipex")
+
+$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Regla para compilar con objetos bonus
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(BONUS_OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+	$(call print_cyan,"Compiled pipex (bonus)")
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(PRINTF_DIR) clean
+	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
