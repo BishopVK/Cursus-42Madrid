@@ -96,7 +96,11 @@ int	main(int argc, char **argv, char **env)
 	pid_t	pid1;
 
 	if (argc != 5)
+	{
+		ft_dprintf(2, "Correct use: %s infile \"cmd1\" \"cmd2\" outfile\n",
+			argv[0]);
 		return (-1);
+	}
 	if (pipe(p_fd) == -1)
 		exit(-1);
 	pid1 = fork();
