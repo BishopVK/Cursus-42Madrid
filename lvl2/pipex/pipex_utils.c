@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/22 08:25:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:37:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	open_fd(char *file_name, int stdin_stdout)
 	if (fd < 0)
 	{
 		perror("open");
-		exit (0);
+		exit (1);
 	}
 	return (fd);
 }
