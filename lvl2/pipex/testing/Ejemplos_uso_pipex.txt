@@ -29,16 +29,20 @@ Esto sería equivalente a <infile grep palabra | wc -l >outfile.
 
 - ERROR EN EL INFILE:
 <infile.ttxxtt grep "a" | wc -w >salida.txt
+./pipex testing/test.ttxxtt "grep a" "wc -w" salida.txt
 echo $? --> 0
 
 - ERROR EN EL PRIMER COMANDO:
 <testing/test.txt greppp "a" | wc -w >salida.txt
+./pipex testing/test.txt "greppp a" "wc -w" salida.txt
 echo $? --> 0
 
 - ERROR EN EL SEGUNDO COMANDO:
 <testing/test.txt grep "a" | wccc -w >salida.txt
+./pipex testing/test.txt "grep a" "wccc -w" salida.txt
 echo $? --> 127
 
 - ERROR EN EL OUTFILE:
 <testing/test.txt grep "a" | wc -w >/no_exist/salida.txt
+./pipex testing/test.txt "grep a" "wc -w" /no_exist/salida.txt
 echo $? --> 1
