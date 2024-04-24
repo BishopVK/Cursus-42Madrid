@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	execute(char **split_argv, char *full_path, char **env)
 {
@@ -105,8 +105,9 @@ int	main(int argc, char **argv, char **env)
 	}
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 	{
-		ft_printf("Detectado!\n", argv[0]);
-		return (-1);
+		ft_printf("DETECTADO\n");
+		here_doc(argv, env);
+		return (0);
 	}
 	if (pipe(p_fd) == -1)
 		exit(-1);
