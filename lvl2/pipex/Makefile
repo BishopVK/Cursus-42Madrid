@@ -34,7 +34,8 @@ SRC			=	pipex.c \
 OBJ			=	$(SRC:.c=.o)
 
 BONUS_SRC	=	pipex_bonus.c \
-				pipex_utils_bonus.c
+				pipex_utils_bonus.c \
+				here_doc_bonus.c
 
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
