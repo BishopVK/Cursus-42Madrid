@@ -6,11 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/22 14:09:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:55:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	free_split(char **split)
 {
