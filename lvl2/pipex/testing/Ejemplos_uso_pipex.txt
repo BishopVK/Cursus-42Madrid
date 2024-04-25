@@ -24,6 +24,23 @@ Esto sería equivalente a <infile sort | wc -l >outfile.
 ./pipex infile "grep palabra" "wc -l" outfile
 Esto sería equivalente a <infile grep palabra | wc -l >outfile.
 
+--AWK--
+
+6. Sumar los valores de la segunda columna del fichero Libro1.csv (separados por ;)
+./pipex testing/txt.txt "grep 4" "awk -F ';' '{suma += \$2} END {print suma}' testing/Libro1.csv" salida.txt
+Esto sería equivalente a <infile grep "4" | awk -F',' '{suma += $2} END {print suma}' archivo.csv >salida.txt
+
+7. Imprimir la primera columna de un documento csv
+./pipex testing/txt.txt "grep 4" "awk -F ';' '{print \$1}' testing/Libro1.csv" salida.txt
+Esto sería equivalente a <infile grep "4" | awk -F ';' '{print $1}' testing/Libro1.csv >salida.txt
+
+8. Suma la primera columna separadas por tabulación del archivo impreso por cat: testing/txt.txt
+./pipex testing/txt.txt "cat" "awk -F '\t' '{suma += \$1} END {print suma}'" salida.txt
+Esto sería equivalente a <infile cat | awk -F '\t' '{suma += $1} END {print suma}'
+
+9. Imprimir las líneas que tengan un número mayor que 10 y mostrar solo la segunda columna
+./pipex testing/txt.txt "cat" "awk '\$1 > 10 {print \$2}'" salida.txt
+Esto sería equivalente a <testing/txt.txt cat | awk '$1 > 10 {print $2}' >salida.txt
 
 ----RETURN----
 
