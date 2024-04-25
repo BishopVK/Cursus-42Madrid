@@ -18,14 +18,20 @@ void	execute(char **split_argv, char *full_path, char **env)
 	{
 		execve(full_path, split_argv, env);
 		perror("execve failed");
-		exit (1);
+		exit (127);
 	}
 	else
 	{
 		if (full_path == NULL)
+		{
 			ft_dprintf(2, "The full path of the command was not found\n");
+			exit (127);
+		}
 		else
+		{
 			ft_dprintf(2, "The command is not accessible\n");
+			exit (127);
+		}
 	}
 }
 
@@ -42,7 +48,10 @@ void	child1(char **argv, int *p_fd, char **env)
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
-	split_argv = ft_split(argv[2], ' ');
+	if (ft_strncmp(argv[2], "awk", 3) == 0)
+		split_argv = ft_split_awk(argv[2], ' ');
+	else
+		split_argv = ft_split(argv[2], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
@@ -63,7 +72,10 @@ void	child2(char **argv, int *p_fd, char **env)
 	close(p_fd[1]);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[0]);
-	split_argv = ft_split(argv[3], ' ');
+	if (ft_strncmp(argv[3], "awk", 3) == 0)
+		split_argv = ft_split_awk(argv[3], ' ');
+	else
+		split_argv = ft_split(argv[3], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
