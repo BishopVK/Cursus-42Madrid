@@ -48,15 +48,10 @@ void	child1(char **argv, int *p_fd, char **env)
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
-	ft_printf("El primer comando es: %s\n",	argv[2]);
 	if (ft_strncmp(argv[2], "awk", 3) == 0)
-	{
-		ft_printf("He detectado AWK en el 1º comando\n");
 		split_argv = ft_split_awk(argv[2], ' ');
-	}
 	else
 		split_argv = ft_split(argv[2], ' ');
-	//split_argv = ft_split(argv[2], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
@@ -77,15 +72,10 @@ void	child2(char **argv, int *p_fd, char **env)
 	close(p_fd[1]);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[0]);
-	ft_printf("El segundo comando es: %s\n",	argv[3]);
 	if (ft_strncmp(argv[3], "awk", 3) == 0)
-	{
-		ft_printf("He detectado AWK en el 2º comando\n");
 		split_argv = ft_split_awk(argv[3], ' ');
-	}
 	else
 		split_argv = ft_split(argv[3], ' ');
-	//split_argv = ft_split(argv[3], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
