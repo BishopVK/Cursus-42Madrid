@@ -49,23 +49,28 @@ static void	free_split_awk(char **split, int count)
 	}
 }
 
-static int	find_string(int *i, char c, const char *s, int *quote)
+static int	find_string(int *i, char c, const char *s)
 {
 	int	start;
+	int	quote;
 
 	start = 0;
+	quote = 0;
 	while (s[*i] == c)
 		(*i)++;
 	if (s[*i] == '\0')
 		return (start);
 	start = *i;
-	if (s[*i] == '\'' && *quote == 0)
-		*quote = 1;
-	while ((s[*i] != c && s[*i] != '\0') || *quote == 1)
+	if (s[*i] == '\'' && quote == 0)
+	{
+		quote = 1;
+		//start++;
+	}
+	while ((s[*i] != c && s[*i] != '\0') || quote == 1)
 	{
 		(*i)++;
-		if (s[*i] == '\'' && *quote == 1)
-			*quote = 0;
+		if (s[*i] == '\'' && quote == 1)
+			quote = 0;
 	}
 	return (start);
 }
@@ -75,22 +80,27 @@ static char	**ft_copy_string(const char *s, char c, char **split)
 	int	start;
 	int	count;
 	int	i;
-	int	quote;
 
 	start = 0;
 	count = 0;
 	i = 0;
-	quote = 0;
 	while (s[i])
 	{
-		start = find_string(&i, c, s, &quote);
-		split[count] = (char *)malloc((i - start + 1) * sizeof(char));
+		start = find_string(&i, c, s);
+		printf("s[start] = %c\n", s[start]);
+		printf("s[i - 1] = %c\n", s[i - 1]);
+		if (s[start] == '\'')
+			start++;
+		split[count] = (char *)malloc((i - start) * sizeof(char));
 		if (!split[count])
 		{
 			free_split_awk(split, count);
 			return (NULL);
 		}
-		ft_strlcpy(split[count], s + start, i - start + 1);
+		if (s[start - 1] == '\'')
+			ft_strlcpy(split[count], s + start, i - start);
+		else
+			ft_strlcpy(split[count], s + start, i - start + 1);
 		count++;
 	}
 	split[count] = NULL;
@@ -117,7 +127,7 @@ char	**ft_split_awk(char const *s, char c)
 }
 
 // cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
-/* int	main(void)
+int	main(void)
 {
 	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
 	char		c = ' ';
@@ -149,4 +159,4 @@ char	**ft_split_awk(char const *s, char c)
 	free(split);
 
 	return (0);
-} */
+}
