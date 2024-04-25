@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
 static int	ft_count_elements(const char *s, char c)
 {
@@ -62,10 +61,7 @@ static int	find_string(int *i, char c, const char *s)
 		return (start);
 	start = *i;
 	if (s[*i] == '\'' && quote == 0)
-	{
 		quote = 1;
-		//start++;
-	}
 	while ((s[*i] != c && s[*i] != '\0') || quote == 1)
 	{
 		(*i)++;
@@ -87,10 +83,7 @@ static char	**ft_copy_string(const char *s, char c, char **split)
 	while (s[i])
 	{
 		start = find_string(&i, c, s);
-		printf("s[start] = %c\n", s[start]);
-		printf("s[i - 1] = %c\n", s[i - 1]);
-		if (s[start] == '\'')
-			start++;
+		(s[start] == '\'') && start++;
 		split[count] = (char *)malloc((i - start) * sizeof(char));
 		if (!split[count])
 		{
@@ -129,7 +122,7 @@ char	**ft_split_awk(char const *s, char c)
 // cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
 /* int	main(void)
 {
-	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
+	char const	*s = "awk -F ',' '{suma += $2} END {print suma}' archivo.csv";
 	char		c = ' ';
 	char		**split;
 	int			i;
