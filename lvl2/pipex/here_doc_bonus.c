@@ -18,6 +18,7 @@ void	here_doc_read_buffer(int fd, char *eof)
 	char	buffer[BUFFER_SIZE];
 	char	*eof_pos;
 
+	bytes_read = 0;
 	while ((bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE)) > 0)
 	{
 		if (write(fd, buffer, bytes_read) == -1)
@@ -44,7 +45,6 @@ void	here_doc_child1(int *p_fd, char **env, char *cmd1)
 	char	*full_path;
 	//int		fd;
 
-	(void)eof;
 	// Cerrar el extremo de lectura del pipe en el proceso hijo
 	close(p_fd[READ_END]);
 
@@ -121,7 +121,7 @@ void	here_doc(char **argv, char **env)
 		here_doc_child1(p_fd, env, cmd1);
 	else if (pid1 > 0)
 	{
-		here_doc_read_buffer(fd, eof);
+		here_doc_read_buffer(p_fd[0], eof);
 		here_doc_second_fork(argv, env, p_fd, pid1);
 	}
 }
