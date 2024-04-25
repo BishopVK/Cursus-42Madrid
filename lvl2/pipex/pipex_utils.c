@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/24 20:07:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:08:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,6 @@ void	free_split(char **split)
 	}
 	free(split);
 }
-
-/* char	**awk_split(char *command)
-{
-	char	**split_argv;
-
-	split_argv = (char **)malloc(3 * sizeof(char *));
-	if (!split_argv)
-		return (NULL);
-	split_argv[0] = (char*)malloc(4 * sizeof(char));
-	split_argv[1] = (char*)malloc((ft_strlen(command) - 2) * sizeof(char));
-	if (split_argv[0] == NULL || split_argv[1] == NULL)
-		return (NULL);
-	ft_strlcpy(split_argv[0], command, 3);
-	split_argv[0][3] = '\0';
-	ft_printf("split_argv[0] = %s\n", split_argv[0]);
-	ft_strcpy(split_argv[1], command + 4);
-	ft_printf("split_argv[1] = %s\n", split_argv[1]);
-	split_argv[2] = NULL;
-	return (split_argv);
-} */
 
 char	*find_command_in_path(const char *command, char **path_list)
 {
