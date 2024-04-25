@@ -66,9 +66,15 @@ int		open_fd(char *file_name, int stdin_stdout);
 /*			here_doc_bonus.c		*/
 /************************************/
 void	here_doc_write_buffer(int fd, char *eof);
-void	here_doc_child1(int *p_fd, char **env, char *cmd1, char *eof);
+void	here_doc_child1(int *p_fd, char **env, char *cmd1);
 void	here_doc_child2(char **argv, int *p_fd, char **env);
 void	here_doc_second_fork(char **argv, char **env, int *p_fd, pid_t pid1);
 void	here_doc(char **argv, char **env);
+
+/************************************/
+/*			ft_split_awk_bonus.c	*/
+/************************************/
+char	**ft_split_awk(char const *s, char c);
+
 
 #endif
