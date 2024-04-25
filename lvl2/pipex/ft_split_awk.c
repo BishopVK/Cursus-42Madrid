@@ -127,7 +127,7 @@ char	**ft_split_awk(char const *s, char c)
 }
 
 // cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
-int	main(void)
+/* int	main(void)
 {
 	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
 	char		c = ' ';
@@ -147,16 +147,16 @@ int	main(void)
 	printf("Número de frases almacenadas: %d\n", numStrings);
 
 	// Imprimir las frases almacenadas
-	for (int i = 0; i < numStrings; i++) {
+	for (i = 0; i < numStrings; i++) {
 		printf("split[%d]: %s\n", i, split[i]);
 	}
 
 	// Liberar la memoria asignada
-	for (int i = 0; i < numStrings; i++) {
+	for (i = 0; i < numStrings; i++) {
 		free(split[i]);
 	}
 
 	free(split);
 
 	return (0);
-}
+} */
