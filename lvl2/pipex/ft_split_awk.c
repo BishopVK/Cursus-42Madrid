@@ -10,28 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
+#include <stdio.h>
 
 static int	ft_count_elements(const char *s, char c)
 {
-	int	count;
-	int	i;
+	int		count;
+	int		i;
+	int		quote;
 
 	count = 0;
 	i = 0;
+	quote = 0;
 	while (s[i] != '\0')
 	{
 		while (s[i] == c)
 			i++;
 		if (s[i] != c && s[i] != '\0')
 			count++;
-		while (s[i] != c && s[i] != '\0')
+		if (s[i] == '\'' && quote == 0)
+			quote = 1;
+		while ((s[i] != c && s[i] != '\0') || quote == 1)
+		{
 			i++;
+			if (s[i] == '\'' && quote == 1)
+				quote = 0;
+		}
 	}
 	return (count);
 }
 
-static void	free_split(char **split, int count)
+static void	free_split_awk(char **split, int count)
 {
 	while (count > 0)
 	{
@@ -40,26 +49,45 @@ static void	free_split(char **split, int count)
 	}
 }
 
-static char	**ft_copy_string(const char *s, char c, char **split, int i)
+static int	find_string(int *i, char c, const char *s, int *quote)
+{
+	int	start;
+
+	start = 0;
+	while (s[*i] == c)
+		(*i)++;
+	if (s[*i] == '\0')
+		return (start);
+	start = *i;
+	if (s[*i] == '\'' && *quote == 0)
+		*quote = 1;
+	while ((s[*i] != c && s[*i] != '\0') || *quote == 1)
+	{
+		(*i)++;
+		if (s[*i] == '\'' && *quote == 1)
+			*quote = 0;
+	}
+	return (start);
+}
+
+static char	**ft_copy_string(const char *s, char c, char **split)
 {
 	int	start;
 	int	count;
+	int	i;
+	int	quote;
 
 	start = 0;
 	count = 0;
+	i = 0;
+	quote = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
-			(i)++;
-		if (s[i] == '\0')
-			break ;
-		start = i;
-		while (s[i] != c && s[i] != '\0')
-			(i)++;
+		start = find_string(&i, c, s, &quote);
 		split[count] = (char *)malloc((i - start + 1) * sizeof(char));
 		if (!split[count])
 		{
-			free_split(split, count);
+			free_split_awk(split, count);
 			return (NULL);
 		}
 		ft_strlcpy(split[count], s + start, i - start + 1);
@@ -69,11 +97,10 @@ static char	**ft_copy_string(const char *s, char c, char **split, int i)
 	return (split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_awk(char const *s, char c)
 {
 	char	**split;
 	int		count;
-	int		i;
 
 	if (s == NULL)
 		return (NULL);
@@ -81,8 +108,7 @@ char	**ft_split(char const *s, char c)
 	split = (char **)malloc((count + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	i = 0;
-	if (!ft_copy_string(s, c, split, i))
+	if (!ft_copy_string(s, c, split))
 	{
 		free(split);
 		return (NULL);
@@ -90,16 +116,17 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-/*int	main(void)
+// cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
+/* int	main(void)
 {
-	char const	*s = "awk '{print $1}'";
+	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
 	char		c = ' ';
 	char		**split;
 	int			i;
 	int			numStrings = 0;
 
 	i = 0;
-	split = ft_split(s, c);
+	split = ft_split_awk(s, c);
 
 	// Contar cuántos elementos no nulos hay en frases
 	while (split[numStrings] != NULL) {
@@ -121,5 +148,5 @@ char	**ft_split(char const *s, char c)
 
 	free(split);
 
-	return(0);
-}*/
+	return (0);
+} */
