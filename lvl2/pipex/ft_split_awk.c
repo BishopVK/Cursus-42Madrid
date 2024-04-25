@@ -83,7 +83,8 @@ static char	**ft_copy_string(const char *s, char c, char **split)
 	while (s[i])
 	{
 		start = find_string(&i, c, s);
-		(s[start] == '\'') && start++;
+		if (s[start] == '\'')
+			start++;
 		split[count] = (char *)malloc((i - start) * sizeof(char));
 		if (!split[count])
 		{
@@ -91,10 +92,9 @@ static char	**ft_copy_string(const char *s, char c, char **split)
 			return (NULL);
 		}
 		if (s[start - 1] == '\'')
-			ft_strlcpy(split[count], s + start, i - start);
+			ft_strlcpy(split[count++], s + start, i - start);
 		else
-			ft_strlcpy(split[count], s + start, i - start + 1);
-		count++;
+			ft_strlcpy(split[count++], s + start, i - start + 1);
 	}
 	split[count] = NULL;
 	return (split);
@@ -122,7 +122,7 @@ char	**ft_split_awk(char const *s, char c)
 // cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
 /* int	main(void)
 {
-	char const	*s = "awk -F ',' '{suma += $2} END {print suma}' archivo.csv";
+	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
 	char		c = ' ';
 	char		**split;
 	int			i;
