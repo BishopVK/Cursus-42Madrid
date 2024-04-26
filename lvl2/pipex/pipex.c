@@ -86,8 +86,9 @@ void	child2(char **argv, int *p_fd, char **env)
 int	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 {
 	pid_t	pid2;
-	int		status = 0;
+	int		status;
 
+	status = 0;
 	pid2 = fork();
 	if (pid2 == -1)
 		exit(-1);
