@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/26 08:24:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:02:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*find_command_in_path(const char *command, char **path_list)
 
 	i = 0;
 	full_path = NULL;
+	if (access(command, 0) == 0)
+		return (ft_strdup(command));
 	while (path_list[i] != NULL)
 	{
 		full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2);
