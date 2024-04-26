@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-int main(int argc, char *argv[])
+int here_doc(int argc, char *argv[])
 {
 	if (argc != 2) {
 		printf("Uso: %s here_doc\n", argv[0]);
