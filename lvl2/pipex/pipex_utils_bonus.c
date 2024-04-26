@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/24 12:55:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:12:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*find_command_in_path(const char *command, char **path_list)
 		free(full_path);
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(command));
 }
 
 char	**get_path(char **env)
@@ -86,7 +86,7 @@ int	open_fd(char *file_name, int stdin_stdout)
 	if (fd < 0)
 	{
 		perror("open");
-		exit (0);
+		exit (1);
 	}
 	return (fd);
 }
