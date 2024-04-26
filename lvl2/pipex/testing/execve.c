@@ -19,6 +19,7 @@
 int main() {
 	// Definir el arreglo de argumentos que se pasarán al programa ejecutable
 	char *args[] = {"/bin/ls", "-l", NULL};
+	//char *args[] = {"../test/test", "", NULL};
 	
 	// Definir el arreglo de variables de entorno (opcional)
 	char *env[] = {NULL};
