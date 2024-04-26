@@ -49,7 +49,7 @@
 void	execute(char **split_argv, char *full_path, char **env);
 void	child1(char **argv, int *p_fd, char **env);
 void	child2(char **argv, int *p_fd, char **env);
-void	second_fork(char **argv, char **env, int *p_fd, pid_t pid1);
+int		second_fork(char **argv, char **env, int *p_fd, pid_t pid1);
 
 /************************************/
 /*			pipex_utils.c			*/
