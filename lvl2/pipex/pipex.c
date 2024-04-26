@@ -83,10 +83,10 @@ void	child2(char **argv, int *p_fd, char **env)
 	free_split(split_argv);
 }
 
-void	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
+int	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 {
 	pid_t	pid2;
-	int		status;
+	int		status = 0;
 
 	pid2 = fork();
 	if (pid2 == -1)
@@ -99,7 +99,9 @@ void	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 		close(p_fd[1]);
 		waitpid(pid1, &status, 0);
 		waitpid(pid2, &status, 0);
+		status = WEXITSTATUS(status);
 	}
+	return (status);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -121,6 +123,6 @@ int	main(int argc, char **argv, char **env)
 	if (pid1 == 0)
 		child1(argv, p_fd, env);
 	else if (pid1 > 0)
-		second_fork(argv, env, p_fd, pid1);
+		return (second_fork(argv, env, p_fd, pid1));
 	return (0);
 }
