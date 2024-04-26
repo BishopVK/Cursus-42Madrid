@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/25 21:08:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/26 08:24:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*find_command_in_path(const char *command, char **path_list)
 		free(full_path);
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(command));
 }
 
 char	**get_path(char **env)
