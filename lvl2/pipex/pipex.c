@@ -77,15 +77,6 @@ void	child2(char **argv, int *p_fd, char **env)
 		split_argv = ft_split_awk(argv[3], ' ');
 	else
 		split_argv = ft_split(argv[3], ' ');
-	/* ft_printf("el cmd es: %s\n", argv[3]);
-	ft_printf("el primer caracter del cmd es: %c\n", argv[3][0]);
-	if (argv[3][0] == '/')
-	{
-		ft_printf("He entrado!!!\n");
-		full_path = ft_strdup(split_argv[3][0]);
-	}
-	else
-		full_path = find_command_in_path(split_argv[0], split_path); */
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
 	execute(split_argv, full_path, env);
