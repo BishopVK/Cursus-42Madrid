@@ -24,6 +24,7 @@ Esto sería equivalente a <infile sort | wc -l >outfile.
 ./pipex infile "grep palabra" "wc -l" outfile
 Esto sería equivalente a <infile grep palabra | wc -l >outfile.
 
+
 --AWK--
 
 6. Sumar los valores de la segunda columna del fichero Libro1.csv (separados por ;)
@@ -41,6 +42,60 @@ Esto sería equivalente a <infile cat | awk -F '\t' '{suma += $1} END {print sum
 9. Imprimir las líneas que tengan un número mayor que 10 y mostrar solo la segunda columna
 ./pipex testing/txt.txt "cat" "awk '\$1 > 10 {print \$2}'" salida.txt
 Esto sería equivalente a <testing/txt.txt cat | awk '$1 > 10 {print $2}' >salida.txt
+
+
+---PRUEBAS ENVIRONMENT---
+
+SYSTEM:
+	<testing/txt.txt grep "4" | ls >/dev/stdout
+	Devuelve un ls
+
+	<testing/txt.txt grep "4" | /home/bishopvk/cursus/lvl2/pipex/ls >/dev/stdout
+	Devuelve mi programa ls
+
+	<testing/txt.txt grep "4" | /home/bishopvk/cursus/lvl2/pipex/dani >/dev/stdout
+	Devuelve error
+
+		>>QUITAMOS LAS VARIABLES DE ENTORNO
+		# Guarda el valor actual de la variable de entorno que deseas deshabilitar
+		OLDPATH="$PATH"
+
+		# Desactiva temporalmente la variable de entorno
+		unset PATH
+
+		# Restaura el valor original de la variable de entorno después de las pruebas
+		export PATH="$OLDPATH"
+
+	<testing/txt.txt grep "4" | ls >/dev/stdout
+	Devuelve mi programa ls
+
+	<testing/txt.txt grep "4" | /home/bishopvk/cursus/lvl2/pipex/ls >/dev/stdout
+	Devuelve mi programa ls
+
+	<testing/txt.txt grep "4" | /home/bishopvk/cursus/lvl2/pipex/dani >/dev/stdout
+	Devuelve error
+
+PIPEX:
+	./pipex testing/txt.txt "grep 4" ls /dev/stdout
+	Devuelve un ls
+
+	./pipex testing/txt.txt "grep 4" "/home/bishopvk/cursus/lvl2/pipex/ls" /dev/stdout
+	Devuelve mi programa ls
+
+	./pipex testing/txt.txt "grep 4" "/home/bishopvk/cursus/lvl2/pipex/dani" /dev/stdout
+	Devuelve error
+
+		>>QUITAMOS LAS VARIABLES DE ENTORNO
+
+	env -i ./pipex testing/txt.txt "grep 4" ls /dev/stdout
+	Devuelve mi programa ls
+
+	env -i ./pipex testing/txt.txt "grep 4" "/home/bishopvk/cursus/lvl2/pipex/ls" /dev/stdout
+	Devuelve mi programa ls
+
+	env -i ./pipex testing/txt.txt "grep 4" "/home/bishopvk/cursus/lvl2/pipex/dani" /dev/stdout
+	No devuelve nada
+
 
 ----RETURN----
 
