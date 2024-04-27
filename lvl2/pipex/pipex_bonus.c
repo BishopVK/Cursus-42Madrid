@@ -109,6 +109,7 @@ int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
 	pid_t	pid1;
+	int		fd;
 
 	if (argc < 5)
 	{
@@ -121,7 +122,12 @@ int	main(int argc, char **argv, char **env)
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 	{
 		ft_printf("DETECTADO\n");
-		here_doc(argv, env);
+		fd = here_doc(argv[2]);
+		system("cat tmp/tmp.txt");
+		ft_printf("Cerramos el fd\n");
+		close(fd);
+		ft_printf("Eliminamos el fd\n");
+		unlink("tmp/tmp.txt");
 		return (0);
 	}
 	if (pipe(p_fd) == -1)
