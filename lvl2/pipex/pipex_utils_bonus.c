@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/26 10:12:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:06:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,23 @@ char	*find_command_in_path(const char *command, char **path_list)
 
 	i = 0;
 	full_path = NULL;
-	while (path_list[i] != NULL)
+	if (path_list == NULL && access(command, 0) == 0)
+		return (ft_strdup(command));
+	else if (path_list[i] != NULL)
 	{
-		full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2);
-		if (full_path == NULL)
+		while (path_list[i] != NULL)
 		{
-			perror("malloc failed");
-			exit(1);
+			full_path = malloc(ft_strlen(path_list[i]) + ft_strlen(command) + 2);
+			if (full_path == NULL)
+				exit(1);
+			ft_strcpy(full_path, path_list[i]);
+			full_path[ft_strlen(path_list[i])] = '/';
+			ft_strcpy(full_path + ft_strlen(path_list[i]) + 1, command);
+			if (access(full_path, X_OK) == 0)
+				return (full_path);
+			free(full_path);
+			i++;
 		}
-		ft_strcpy(full_path, path_list[i]);
-		full_path[ft_strlen(path_list[i])] = '/';
-		ft_strcpy(full_path + ft_strlen(path_list[i]) + 1, command);
-		if (access(full_path, X_OK) == 0)
-			return (full_path);
-		free(full_path);
-		i++;
 	}
 	return (ft_strdup(command));
 }
@@ -61,6 +63,8 @@ char	**get_path(char **env)
 	char	**split_path;
 
 	i = 0;
+	if (env == NULL)
+		return (NULL);
 	while (env[i] != NULL)
 	{
 		path = ft_strnstr(env[i], "PATH=", ft_strlen(env[i]));
