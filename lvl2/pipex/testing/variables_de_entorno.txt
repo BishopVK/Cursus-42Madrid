@@ -1,0 +1,8 @@
+# Guarda el valor actual de la variable de entorno que deseas deshabilitar
+OLDPATH="$PATH"
+
+# Desactiva temporalmente la variable de entorno
+unset PATH
+
+# Restaura el valor original de la variable de entorno después de las pruebas
+export PATH="$OLDPATH"
