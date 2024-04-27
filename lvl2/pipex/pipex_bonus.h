@@ -65,7 +65,7 @@ int		open_fd(char *file_name, int stdin_stdout);
 /************************************/
 /*			here_doc_bonus.c		*/
 /************************************/
-int		here_doc(char **argv, char **env);
+int		here_doc(char *argv);
 
 /************************************/
 /*			ft_split_awk_bonus.c	*/
