@@ -128,7 +128,6 @@ int	main(int argc, char **argv, char **env)
 		close(fd);
 		ft_printf("Eliminamos el fd\n");
 		unlink("tmp/tmp.txt");
-		return (0);
 	}
 	if (pipe(p_fd) == -1)
 		exit(-1);
