@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/27 21:45:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:57:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	open_fd(char *file_name, int stdin_stdout)
 	if (stdin_stdout == 1)
 		fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (stdin_stdout == 11)
-		fd = open(file_name, O_WRONLY | O_APPEND | O_CREAT | O_TRUNC, 0777);
+		fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (fd < 0)
 	{
 		perror("open");
