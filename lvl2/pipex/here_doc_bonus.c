@@ -37,7 +37,7 @@
 	free_split(split_argv);
 } */
 
-void	here_doc_child2(char **argv, int *p_fd, char **env)
+/* void	here_doc_child2(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -59,7 +59,7 @@ void	here_doc_child2(char **argv, int *p_fd, char **env)
 	free_split(split_path);
 	execute(split_argv, full_path, env);
 	free_split(split_argv);
-}
+} */
 
 static void	create_fd(char *eof, int fd)
 {
@@ -104,7 +104,7 @@ void	here_doc(char **argv)
 			exit (1);
 		ft_strcpy(eof, limit);
 		eof[ft_strlen(limit)] = '\n';
-		fd = open_fd("tmp/tmp.txt", 11);
+		fd = open_fd("tmp/tmp.txt", 1);
 		//ft_printf("DETECTADO\n");
 		create_fd(eof, fd);
 		//system("cat tmp/tmp.txt");
