@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-void	here_doc_child1(char **argv, int *p_fd, char **env)
+/* void	here_doc_child1(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -35,7 +35,7 @@ void	here_doc_child1(char **argv, int *p_fd, char **env)
 	free_split(split_path);
 	execute(split_argv, full_path, env);
 	free_split(split_argv);
-}
+} */
 
 void	here_doc_child2(char **argv, int *p_fd, char **env)
 {
@@ -90,14 +90,14 @@ static void	create_fd(char *eof, int fd)
 	}
 }
 
-void	here_doc(char **argv)
+void	here_doc(char **argv, int *i)
 {
 	int		fd;
 	char	*eof;
 	char	*limit;
 
 	limit = argv[2];
-	if (ft_strcmp(argv[1], "here_doc") == 0)
+	if (ft_strcmp(argv[*i], "here_doc") == 0)
 	{
 		eof = (char *)ft_calloc((ft_strlen(limit) + 2), sizeof(char));
 		if (eof == NULL)
