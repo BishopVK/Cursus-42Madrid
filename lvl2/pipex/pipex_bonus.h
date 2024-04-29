@@ -48,15 +48,16 @@
 /************************************/
 /*			pipex_bonus.c			*/
 /************************************/
-void	execute(char **split_argv, char *full_path, char **env);
-void	child1(char **argv, int *p_fd, char **env);
-void	child2(char **argv, int *p_fd, char **env);
+void	fitst_child(char **argv, int *p_fd, char **env, int *i);
+//void	middle_child(char **argv, int *p_fd, char **env);
+void	last_child(char **argv, int *p_fd, char **env);
 int		second_fork(char **argv, char **env, int *p_fd, pid_t pid1);
 int		main(int argc, char **argv, char **env);
 
 /************************************/
 /*			pipex_utils_bonus.c		*/
 /************************************/
+void	execute(char **split_argv, char *full_path, char **env);
 void	free_split(char **split);
 char	*find_command_in_path(const char *command, char **path_list);
 char	**get_path(char **env);
@@ -66,7 +67,7 @@ int		open_fd(char *file_name, int stdin_stdout);
 /*			here_doc_bonus.c		*/
 /************************************/
 void	here_doc_child2(char **argv, int *p_fd, char **env);
-void	here_doc_child1(char **argv, int *p_fd, char **env);
+//void	here_doc_child1(char **argv, int *p_fd, char **env);
 void	here_doc(char **argv);
 
 /************************************/
