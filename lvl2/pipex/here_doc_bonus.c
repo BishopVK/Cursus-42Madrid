@@ -90,14 +90,14 @@ static void	create_fd(char *eof, int fd)
 	}
 }
 
-void	here_doc(char **argv, int *i)
+void	here_doc(char **argv)
 {
 	int		fd;
 	char	*eof;
 	char	*limit;
 
 	limit = argv[2];
-	if (ft_strcmp(argv[*i], "here_doc") == 0)
+	if (ft_strcmp(argv[1], "here_doc") == 0)
 	{
 		eof = (char *)ft_calloc((ft_strlen(limit) + 2), sizeof(char));
 		if (eof == NULL)
