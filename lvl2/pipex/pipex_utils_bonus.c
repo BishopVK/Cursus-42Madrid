@@ -6,11 +6,34 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/29 12:57:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:38:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+void	execute(char **split_argv, char *full_path, char **env)
+{
+	if (full_path != NULL && access(full_path, X_OK) == 0)
+	{
+		execve(full_path, split_argv, env);
+		perror("execve failed");
+		exit (127);
+	}
+	else
+	{
+		if (full_path == NULL)
+		{
+			ft_dprintf(2, "The full path of the command was not found\n");
+			exit (127);
+		}
+		else
+		{
+			ft_dprintf(2, "The command is not accessible\n");
+			exit (127);
+		}
+	}
+}
 
 void	free_split(char **split)
 {
