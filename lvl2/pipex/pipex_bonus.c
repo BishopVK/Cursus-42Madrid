@@ -93,6 +93,9 @@ int	second_fork(char **argv, char **env, int *p_fd, pid_t pid1)
 	if (pid2 == -1)
 		exit(-1);
 	if (pid2 == 0)
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		here_doc_child2(argv, p_fd, env);
+	else
 		child2(argv, p_fd, env);
 	else if (pid2 > 0)
 	{
@@ -109,32 +112,23 @@ int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
 	pid_t	pid1;
-	int		fd;
 
 	if (argc < 5)
 	{
-		ft_dprintf(2, "Correct use: %s infile \"cmd1\" \"cmd2\" outfile\n",
-			argv[0]);
-		ft_dprintf(2, "or: %s here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n",
-			argv[0]);
+		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
+			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
 		return (-1);
 	}
-	if (ft_strcmp(argv[1], "here_doc") == 0)
-	{
-		ft_printf("DETECTADO\n");
-		fd = here_doc(argv[2]);
-		system("cat tmp/tmp.txt");
-		ft_printf("Cerramos el fd\n");
-		close(fd);
-		ft_printf("Eliminamos el fd\n");
-		unlink("tmp/tmp.txt");
-	}
+	here_doc(argv);
 	if (pipe(p_fd) == -1)
 		exit(-1);
 	pid1 = fork();
 	if (pid1 == -1)
 		exit(-1);
 	if (pid1 == 0)
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		here_doc_child1(argv, p_fd, env);
+	else
 		child1(argv, p_fd, env);
 	else if (pid1 > 0)
 		return (second_fork(argv, env, p_fd, pid1));
