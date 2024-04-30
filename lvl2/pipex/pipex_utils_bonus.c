@@ -6,34 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/04/29 17:38:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/04/30 09:03:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	execute(char **split_argv, char *full_path, char **env)
-{
-	if (full_path != NULL && access(full_path, X_OK) == 0)
-	{
-		execve(full_path, split_argv, env);
-		perror("execve failed");
-		exit (127);
-	}
-	else
-	{
-		if (full_path == NULL)
-		{
-			ft_dprintf(2, "The full path of the command was not found\n");
-			exit (127);
-		}
-		else
-		{
-			ft_dprintf(2, "The command is not accessible\n");
-			exit (127);
-		}
-	}
-}
 
 void	free_split(char **split)
 {
@@ -49,6 +26,31 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+void	execute(char **split_argv, char *full_path, char **env)
+{
+	if (full_path != NULL && access(full_path, X_OK) == 0)
+	{
+		execve(full_path, split_argv, env);
+		perror("execve failed");
+		free(full_path);
+		free_split(split_argv);
+		exit (127);
+	}
+	else
+	{
+		if (full_path == NULL)
+		{
+			ft_dprintf(2, "The full path of the command was not found\n");
+			exit (127);
+		}
+		else
+		{
+			ft_dprintf(2, "The command is not accessible\n");
+			exit (127);
+		}
+	}
 }
 
 char	*find_command_in_path(const char *command, char **path_list)
