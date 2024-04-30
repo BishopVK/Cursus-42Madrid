@@ -41,29 +41,27 @@ void	fitst_child(char **argv, int *p_fd, char **env)
 	execute(split_argv, full_path, env);
 }
 
-/* void	middle_child(char **argv, int *p_fd, char **env)
+void	middle_child(char **argv, int *p_fd, int *next_p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
 	char	*full_path;
 	int		fd;
 
-	if (ft_strcmp(argv[i], "here_doc") == 0)
-	fd = open_fd(argv[1], 0);
+	close(p_fd[1]);
+	fd = p_fd[0];
 	dup2(fd, STDIN_FILENO);
 	close(fd);
-	close(p_fd[0]);
-	dup2(p_fd[1], STDOUT_FILENO);
-	close(p_fd[1]);
-	if (ft_strncmp(argv[2], "awk", 3) == 0)
-		split_argv = ft_split_awk(argv[2], ' ');
-	else
-		split_argv = ft_split(argv[2], ' ');
+	close(next_p_fd[0]);
+	fd = next_p_fd[1];
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
+	split_argv = ft_split_awk(argv[2], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
 	execute(split_argv, full_path, env);
-} */
+}
 
 void	last_child(char **argv, int *p_fd, char **env, int argc)
 {
@@ -90,7 +88,7 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 	execute(split_argv, full_path, env);
 }
 
-int	second_fork(char **argv, char **env, int *p_fd, int argc)
+/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
 {
 	pid_t	pid2;
 	int		status;
@@ -109,12 +107,66 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 		status = WEXITSTATUS(status);
 	}
 	return (status);
+} */
+
+int	second_fork(char **argv, char **env, int *p_fd, int argc)
+{
+	pid_t	pid;
+	int		status;
+	int		num_pipes;
+	int		i;
+	int		next_p_fd[2];
+
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		num_pipes = argc - 5;
+	else
+		num_pipes = argc - 4;
+
+	i = 0;
+	while (i < num_pipes)
+	{
+		if (pipe(p_fd) == -1)
+			exit (-1);
+		pid = fork();
+		if (pid == -1)
+			exit (-1);
+		if (pid == 0)
+		{
+			if (i = 0)
+				fitst_child(argv, p_fd, env);
+			else if (i == num_pipes - 1)
+				last_child(argv, p_fd, env, argc);
+			else
+				middle_child(argv, p_fd, next_p_fd, env, i);
+			exit (0);
+		}
+		else
+		{
+			if (i > 0)
+			{
+				close(next_p_fd[0]); // Cierra el extremo de lectura del pipe siguiente
+				close(next_p_fd[1]); // Cierra el extremo de escritura del pipe siguiente del proceso padre anterior
+			}
+			next_p_fd[0] = p_fd[0]; // Almacena el descriptor de archivo del extremo de lectura del pipe actual
+			next_p_fd[1] = p_fd[1]; // Almacena el descriptor de archivo del extremo de escritura del pipe actual
+		}
+		i++;
+	}
+	// Proceso padre
+	i = 0;
+	while (i < num_pipes)
+		close(p_fd[i++]);
+
+	i = -1;
+	while (++i < num_pipes)
+		wait(&status);
+	return (0);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
-	pid_t	pid1;
+	//pid_t	pid1;
 
 	if (argc < 5)
 	{
@@ -123,7 +175,8 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	}
 	here_doc(argv);
-	if (pipe(p_fd) == -1)
+	return (second_fork(argv, env, p_fd, argc));
+	/* if (pipe(p_fd) == -1)
 		exit(-1);
 	pid1 = fork();
 	if (pid1 == -1)
@@ -131,6 +184,6 @@ int	main(int argc, char **argv, char **env)
 	if (pid1 == 0)
 		fitst_child(argv, p_fd, env);
 	else if (pid1 > 0)
-		return (second_fork(argv, env, p_fd, argc));
+		return (second_fork(argv, env, p_fd, argc)); */
 	return (0);
 }
