@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/06 09:08:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/06 09:18:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	**get_path(char **env)
 		return (NULL);
 	while (env[i] != NULL)
 	{
-		path = ft_strnstr(env[i], "PATH=", ft_strlen(env[i]));
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 		{
 			path = env[i] + 5;
