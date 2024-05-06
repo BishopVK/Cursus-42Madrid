@@ -48,10 +48,6 @@
 /************************************/
 /*			pipex_bonus.c			*/
 /************************************/
-void	fitst_child(char **argv, int *p_fd, char **env);
-//void	middle_child(char **argv, int *p_fd, char **env);
-void	last_child(char **argv, int *p_fd, char **env, int argc);
-int		second_fork(char **argv, char **env, int *p_fd, int argc);
 int		main(int argc, char **argv, char **env);
 
 /************************************/
