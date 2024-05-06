@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-void	fitst_child(char **argv, int *p_fd, char **env)
+void	first_child(char **argv, int *p_fd, char **env)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -46,16 +46,13 @@ void	middle_child(char **argv, int *p_fd, int *next_p_fd, char **env)
 	char	**split_path;
 	char	**split_argv;
 	char	*full_path;
-	int		fd;
 
 	close(p_fd[1]);
-	fd = p_fd[0];
-	dup2(fd, STDIN_FILENO);
-	close(fd);
+	dup2(p_fd[0], STDIN_FILENO);
+	close(p_fd[0]);
 	close(next_p_fd[0]);
-	fd = next_p_fd[1];
-	dup2(fd, STDOUT_FILENO);
-	close(fd);
+	dup2(next_p_fd[1], STDOUT_FILENO);
+	close(next_p_fd[1]);
 	split_argv = ft_split_awk(argv[2], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
@@ -88,7 +85,7 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 	execute(split_argv, full_path, env);
 }
 
-/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
+int	second_fork(char **argv, char **env, int *p_fd, int argc)
 {
 	pid_t	pid2;
 	int		status;
@@ -107,9 +104,9 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 		status = WEXITSTATUS(status);
 	}
 	return (status);
-} */
+}
 
-int	second_fork(char **argv, char **env, int *p_fd, int argc)
+/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
 {
 	pid_t	pid;
 	int		status;
@@ -161,12 +158,12 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 	while (++i < num_pipes)
 		wait(&status);
 	return (0);
-}
+} */
 
 int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
-	//pid_t	pid1;
+	pid_t	pid1;
 
 	if (argc < 5)
 	{
@@ -175,15 +172,15 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	}
 	here_doc(argv);
-	return (second_fork(argv, env, p_fd, argc));
-	/* if (pipe(p_fd) == -1)
+	//return (second_fork(argv, env, p_fd, argc));
+	if (pipe(p_fd) == -1)
 		exit(-1);
 	pid1 = fork();
 	if (pid1 == -1)
 		exit(-1);
 	if (pid1 == 0)
-		fitst_child(argv, p_fd, env);
+		first_child(argv, p_fd, env);
 	else if (pid1 > 0)
-		return (second_fork(argv, env, p_fd, argc)); */
+		return (second_fork(argv, env, p_fd, argc));
 	return (0);
 }
