@@ -132,12 +132,12 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 			exit (-1);
 		if (pid == 0)
 		{
-			if (i = 0)
+			if (i == 0)
 				fitst_child(argv, p_fd, env);
 			else if (i == num_pipes - 1)
 				last_child(argv, p_fd, env, argc);
 			else
-				middle_child(argv, p_fd, next_p_fd, env, i);
+				middle_child(argv, p_fd, next_p_fd, env);
 			exit (0);
 		}
 		else
