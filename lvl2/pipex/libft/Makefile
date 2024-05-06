@@ -6,14 +6,14 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 08:22:03 by danjimen          #+#    #+#              #
-#    Updated: 2024/04/24 14:58:06 by danjimen         ###   ########.fr        #
+#    Updated: 2024/05/06 09:39:49 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Definición de colores
-COLOR_CYAN := "\x1b[36m"
-COLOR_GREEN := "\x1b[32m"
-COLOR_RESET := "\x1b[0m"
+COLOR_CYAN := "\033[36m"
+COLOR_GREEN := "\033[32m"
+COLOR_RESET := "\033[0m"
 
 # Macro para imprimir un mensaje en color cyan
 define print_cyan

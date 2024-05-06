@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 # Definición de colores
-COLOR_CYAN := "\x1b[36m"
-COLOR_GREEN := "\x1b[32m"
-COLOR_RESET := "\x1b[0m"
+COLOR_CYAN := "\033[36m"
+COLOR_GREEN := "\033[32m"
+COLOR_RESET := "\033[0m"
 
 # Macro para imprimir un mensaje en color cyan
 define print_cyan
