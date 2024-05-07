@@ -12,26 +12,17 @@
 
 #include "pipex_bonus.h"
 
-void	first_child(char **argv, int *p_fd, char **env)
+void	first_child(char **argv, int *p_fd, char **env, int cmd_idx)
 {
 	char	**split_path;
 	char	**split_argv;
 	char	*full_path;
 	int		fd;
 
-	if (ft_strcmp(argv[1], "here_doc") == 0)
-	{
-		fd = open_fd("tmp/tmp.txt", 0);
-		split_argv = ft_split_awk(argv[3], ' ');
-	}
-	else
-	{
-		fd = open_fd(argv[1], 0);
-		split_argv = ft_split_awk(argv[2], ' ');
-	}
+	fd = open_fd(argv[1], 0);
+	split_argv = ft_split_awk(argv[2 + cmd_idx], ' ');
 	dup2(fd, STDIN_FILENO);
 	close(fd);
-	unlink("tmp/tmp.txt");
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
@@ -41,7 +32,7 @@ void	first_child(char **argv, int *p_fd, char **env)
 	execute(split_argv, full_path, env);
 }
 
-void	middle_child(char **argv, int *p_fd, int *next_p_fd, char **env)
+void	middle_child(char **argv, int *p_fd, int *next_p_fd, char **env, int cmd_idx)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -53,7 +44,7 @@ void	middle_child(char **argv, int *p_fd, int *next_p_fd, char **env)
 	close(next_p_fd[0]);
 	dup2(next_p_fd[1], STDOUT_FILENO);
 	close(next_p_fd[1]);
-	split_argv = ft_split_awk(argv[2], ' ');
+	split_argv = ft_split_awk(argv[2 + cmd_idx], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
@@ -67,17 +58,12 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 	char	*full_path;
 	int		fd;
 
-	//ft_printf("argc - 1 = %d\n", argc - 1);
-	if (ft_strcmp(argv[1], "here_doc") == 0)
-		fd = open_fd(argv[argc - 1], 11);
-	else
-		fd = open_fd(argv[argc - 1], 1);
+	fd = open_fd(argv[argc - 1], 1);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	close(p_fd[1]);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[0]);
-	//ft_printf("argc - 2 = %d\n", argc - 2);
 	split_argv = ft_split_awk(argv[argc - 2], ' ');
 	split_path = get_path(env);
 	full_path = find_command_in_path(split_argv[0], split_path);
@@ -85,7 +71,7 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 	execute(split_argv, full_path, env);
 }
 
-int	second_fork(char **argv, char **env, int *p_fd, int argc)
+/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
 {
 	pid_t	pid2;
 	int		status;
@@ -104,7 +90,7 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 		status = WEXITSTATUS(status);
 	}
 	return (status);
-}
+} */
 
 /* int	second_fork(char **argv, char **env, int *p_fd, int argc)
 {
@@ -204,25 +190,51 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 
 int	main(int argc, char **argv, char **env)
 {
-	int		p_fd[2];
-	pid_t	pid1;
+	if (argc < 5) {
+        fprintf(stderr, "Usage: %s infile cmd1 cmd2 ... outfile\n", argv[0]);
+        return 1;
+    }
 
-	if (argc < 5)
-	{
-		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
-			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
-		return (-1);
-	}
-	here_doc(argv);
-	//return (second_fork(argv, env, p_fd, argc));
-	if (pipe(p_fd) == -1)
-		exit(-1);
-	pid1 = fork();
-	if (pid1 == -1)
-		exit(-1);
-	if (pid1 == 0)
-		first_child(argv, p_fd, env);
-	else if (pid1 > 0)
-		return (second_fork(argv, env, p_fd, argc));
-	return (0);
+    int num_cmds = argc - 3;
+    int pipefd[num_cmds - 1][2];
+
+    for (int i = 0; i < num_cmds; i++) {
+        if (i != num_cmds - 1 && pipe(pipefd[i]) == -1) {
+            perror("pipe");
+            return 1;
+        }
+
+        pid_t pid = fork();
+        if (pid == -1) {
+            perror("fork");
+            return 1;
+        }
+
+        if (pid == 0) {
+            if (i == 0) {
+                // First command
+                first_child(argv, pipefd[i], env, i);
+            } else if (i == num_cmds - 1) {
+                // Last command
+                last_child(argv, pipefd[i - 1], env, argc);
+            } else {
+                // Middle commands
+                middle_child(argv, pipefd[i - 1], pipefd[i], env, i);
+            }
+            exit(1);
+        }
+
+        // Parent: close both ends of the current pipe
+        if (i != 0) {
+            close(pipefd[i - 1][0]);
+            close(pipefd[i - 1][1]);
+        }
+    }
+
+    // Parent: wait for all children
+    for (int i = 0; i < num_cmds; i++) {
+        wait(NULL);
+    }
+
+    return 0;
 }

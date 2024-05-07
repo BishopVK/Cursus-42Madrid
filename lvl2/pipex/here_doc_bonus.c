@@ -63,7 +63,7 @@
 
 static void	create_fd(char *eof, int fd)
 {
-	char	buffer[1024];
+	char	buffer[BUFFER_SIZE];
 	ssize_t	bytes_read;
 
 	while (1)
