@@ -188,53 +188,98 @@ void	last_child(char **argv, int *p_fd, char **env, int argc)
 	return (0);
 } */
 
+void	free_pipefd(char **pipefd, int num_cmds)
+{
+	int	i;
+
+	i = 0;
+	for (i < num_cmds - 1)
+		free(pipefd[i++]);
+	free(pipefd);
+}
+
+char	**alloc_pipefd(int num_cmds)
+{
+	int	**pipefd;
+	int	i;
+
+	pipefd = malloc((num_cmds - 1) * sizeof(int *));
+	if (pipefd == NULL)
+		return (1);
+
+	i = 0;
+	while (i < num_cmds - 1)
+	{
+		pipefd[i] = malloc(2 * sizeof(int));
+		if (pipefd[i++] == NULL)
+			return (1);
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
-	if (argc < 5) {
-        fprintf(stderr, "Usage: %s infile cmd1 cmd2 ... outfile\n", argv[0]);
-        return 1;
-    }
+	t_child_args	args;
+	int				num_cmds;
+	int				**pipefd;
+	int				i;
+	pid_t			pid;
 
-    int num_cmds = argc - 3;
-    int pipefd[num_cmds - 1][2];
+	args = (t_child_args)malloc(sizeof(t_child_args))
+	if (!args)
+		return (-1);
 
-    for (int i = 0; i < num_cmds; i++) {
-        if (i != num_cmds - 1 && pipe(pipefd[i]) == -1) {
-            perror("pipe");
-            return 1;
-        }
+	args.argv = argv;
+	args.env = env;
+	// args.p_fd = p_fd;
+	// args.next_p_fd = next_p_fd;
+	// args.cmd_idx = cmd_idx;
 
-        pid_t pid = fork();
-        if (pid == -1) {
-            perror("fork");
-            return 1;
-        }
+	if (argc < 5)
+	{
+		fprintf(stderr, "Usage: %s infile cmd1 cmd2 ... outfile\n", argv[0]);
+		return (1);
+	}
 
-        if (pid == 0) {
-            if (i == 0) {
-                // First command
-                first_child(argv, pipefd[i], env, i);
-            } else if (i == num_cmds - 1) {
-                // Last command
-                last_child(argv, pipefd[i - 1], env, argc);
-            } else {
-                // Middle commands
-                middle_child(argv, pipefd[i - 1], pipefd[i], env, i);
-            }
-            exit(1);
-        }
+	num_cmds = argc - 3;
+	pipefd = alloc_pipefd(num_cmds);
 
-        // Parent: close both ends of the current pipe
-        if (i != 0) {
-            close(pipefd[i - 1][0]);
-            close(pipefd[i - 1][1]);
-        }
-    }
+	i = 0;
+	while (i < num_cmds)
+	{
+		if (i != num_cmds - 1 && pipe(pipefd[i]) == -1)
+		{
+			perror("pipe");
+			return (1);
+		}
 
-    // Parent: wait for all children
-    for (int i = 0; i < num_cmds; i++) {
-        wait(NULL);
-    }
+		pid = fork();
+		if (pid == -1)
+			return (1);
 
-    return 0;
+		if (pid == 0)
+		{
+			if (i == 0) // First command
+				first_child(argv, pipefd[i], env, i);
+			else if (i == num_cmds - 1) // Last command
+				last_child(argv, pipefd[i - 1], env, argc);
+			else // Middle commands
+				middle_child(argv, pipefd[i - 1], pipefd[i], env, i);
+			exit (1);
+		}
+
+		// Parent: close both ends of the current pipe
+		if (i != 0)
+		{
+			close(pipefd[i - 1][0]);
+			close(pipefd[i - 1][1]);
+		}
+		i++;
+	}
+
+	i = 0;
+	// Parent: wait for all children
+	while (i++ < num_cmds)
+		wait(NULL);
+
+	return (0);
 }
