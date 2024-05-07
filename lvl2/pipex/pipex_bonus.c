@@ -121,6 +121,23 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 
 	i = 0;
 	while (i < num_pipes)
+} */
+
+/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
+{
+	pid_t	pid;
+	int		status;
+	int		num_pipes;
+	int		i;
+	int		next_p_fd[2];
+
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		num_pipes = argc - 5;
+	else
+		num_pipes = argc - 4;
+
+	i = 0;
+	while (i < num_pipes)
 	{
 		if (pipe(p_fd) == -1)
 			exit (-1);
@@ -130,7 +147,7 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 		if (pid == 0)
 		{
 			if (i == 0)
-				fitst_child(argv, p_fd, env);
+				first_child(argv, p_fd, env);
 			else if (i == num_pipes - 1)
 				last_child(argv, p_fd, env, argc);
 			else
@@ -157,6 +174,31 @@ int	second_fork(char **argv, char **env, int *p_fd, int argc)
 	i = -1;
 	while (++i < num_pipes)
 		wait(&status);
+	return (0);
+} */
+
+/* int	main(int argc, char **argv, char **env)
+{
+	int		p_fd[2];
+	pid_t	pid1;
+
+	if (argc < 5)
+	{
+		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
+			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
+		return (-1);
+	}
+	here_doc(argv);
+	//return (second_fork(argv, env, p_fd, argc));
+	if (pipe(p_fd) == -1)
+		exit(-1);
+	pid1 = fork();
+	if (pid1 == -1)
+		exit(-1);
+	if (pid1 == 0)
+		first_child(argv, p_fd, env);
+	else if (pid1 > 0)
+		return (second_fork(argv, env, p_fd, argc));
 	return (0);
 } */
 
