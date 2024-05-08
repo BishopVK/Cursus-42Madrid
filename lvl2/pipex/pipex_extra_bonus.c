@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus_extra.c                                :+:      :+:    :+:   */
+/*   pipex_extra_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 13:08:57 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/08 21:51:23 by danjimen         ###   ########.fr       */
+/*   Created: 2024/05/08 22:09:31 by danjimen          #+#    #+#             */
+/*   Updated: 2024/05/08 22:09:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-int	define_and_validate_args(int argc, char **argv, char **env, t_child_args *args)
+int	define_and_validate_args(int argc, char **argv, char **env,
+		t_child_args *args)
 {
 	int	num_cmds;
 
