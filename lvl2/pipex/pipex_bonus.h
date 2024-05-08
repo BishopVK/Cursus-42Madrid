@@ -62,6 +62,7 @@ int		main(int argc, char **argv, char **env);
 /************************************/
 /*			pipex_utils_bonus.c		*/
 /************************************/
+void	free_split(char **split);
 void	execute(char **split_argv, char *full_path, char **env);
 char	*find_command_in_path(const char *command, char **path_list);
 char	**get_path(char **env);
@@ -76,5 +77,11 @@ void	here_doc(char **argv);
 /*			ft_split_awk_bonus.c	*/
 /************************************/
 char	**ft_split_awk(char const *s, char c);
+
+/************************************/
+/*			pipex_bonus_pipefd.c	*/
+/************************************/
+void	free_pipefd(char **pipefd, int num_cmds);
+int		**alloc_pipefd(int num_cmds);
 
 #endif
