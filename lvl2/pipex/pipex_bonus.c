@@ -188,34 +188,6 @@ void	last_child(t_child_args *args, int *p_fd, int argc)
 	return (0);
 } */
 
-void	free_pipefd(char **pipefd, int num_cmds)
-{
-	int	i;
-
-	i = 0;
-	while (i < num_cmds - 1)
-		free(pipefd[i++]);
-	free(pipefd);
-}
-
-char	**alloc_pipefd(int num_cmds)
-{
-	int	**pipefd;
-	int	i;
-
-	pipefd = malloc((num_cmds - 1) * sizeof(int *));
-	if (pipefd == NULL)
-		return (1);
-
-	i = 0;
-	while (i < num_cmds - 1)
-	{
-		pipefd[i] = malloc(2 * sizeof(int));
-		if (pipefd[i++] == NULL)
-			return (1);
-	}
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_child_args	args;
@@ -226,18 +198,13 @@ int	main(int argc, char **argv, char **env)
 	args.argv = argv;
 	args.env = env;
 	args.i = 0;
-	// args.p_fd = p_fd;
-	// args.next_p_fd = next_p_fd;
-
 	if (argc < 5)
 	{
 		fprintf(stderr, "Usage: %s infile cmd1 cmd2 ... outfile\n", argv[0]);
 		return (1);
 	}
-
 	num_cmds = argc - 3;
 	pipefd = alloc_pipefd(num_cmds);
-
 	while (args.i < num_cmds)
 	{
 		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1)
@@ -245,11 +212,9 @@ int	main(int argc, char **argv, char **env)
 			perror("pipe");
 			return (1);
 		}
-
 		pid = fork();
 		if (pid == -1)
 			return (1);
-
 		if (pid == 0)
 		{
 			if (args.i == 0)
@@ -260,7 +225,6 @@ int	main(int argc, char **argv, char **env)
 				mid_child(&args, pipefd[args.i - 1], pipefd[args.i], args.i); // Middle commands
 			exit (1);
 		}
-
 		// Parent: close both ends of the current pipe
 		if (args.i != 0)
 		{
@@ -269,11 +233,9 @@ int	main(int argc, char **argv, char **env)
 		}
 		args.i++;
 	}
-
 	args.i = 0;
 	// Parent: wait for all children
 	while (args.i++ < num_cmds)
 		wait(NULL);
-
 	return (0);
 }
