@@ -48,9 +48,8 @@
 typedef struct s_child_args
 {
 	char	**argv;
-	int		*p_fd;
-	int		*next_p_fd;
 	char	**env;
+	char	argc;
 	int		i;
 }	t_child_args;
 
