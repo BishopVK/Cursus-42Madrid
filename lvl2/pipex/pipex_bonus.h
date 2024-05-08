@@ -78,7 +78,7 @@ void	here_doc(char **argv);
 char	**ft_split_awk(char const *s, char c);
 
 /************************************/
-/*			pipex_bonus_extra.c		*/
+/*			pipex_extra_bonus.c		*/
 /************************************/
 int		define_and_validate_args(int argc, char **argv, char **env,
 			t_child_args *args);
