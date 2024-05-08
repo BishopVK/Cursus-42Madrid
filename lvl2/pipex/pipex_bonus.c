@@ -31,6 +31,7 @@ void	first_child(t_child_args *args, int *p_fd)
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
+	unlink("tmp/tmp.txt");
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
