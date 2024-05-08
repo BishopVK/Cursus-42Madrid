@@ -22,19 +22,19 @@ static void	create_fd(char *eof, int fd)
 		bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
 		if (bytes_read == -1)
 		{
-			perror("Error al leer de stdin");
+			perror("Error reading from stdin");
 			exit (1);
 		}
 		if (bytes_read == 0)
 			break ;
 		if (ft_memcmp(buffer, eof, bytes_read) == 0)
 		{
-			free(eof); // Se encontró EOF, termina el bucle
+			free(eof);
 			break ;
 		}
 		if (write(fd, buffer, bytes_read) != bytes_read)
 		{
-			perror("Error al escribir en el fd");
+			perror("Error writing to fd");
 			exit (1);
 		}
 	}
@@ -55,12 +55,7 @@ void	here_doc(char **argv)
 		ft_strcpy(eof, limit);
 		eof[ft_strlen(limit)] = '\n';
 		fd = open_fd("tmp/tmp.txt", 1);
-		//ft_printf("DETECTADO\n");
 		create_fd(eof, fd);
-		//system("cat tmp/tmp.txt");
-		//ft_printf("Cerramos el fd\n");
 		close(fd);
-		//ft_printf("Eliminamos el fd\n");
-		//unlink("tmp/tmp.txt");
 	}
 }
