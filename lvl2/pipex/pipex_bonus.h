@@ -79,7 +79,7 @@ void	here_doc(char **argv);
 char	**ft_split_awk(char const *s, char c);
 
 /************************************/
-/*			pipex_bonus_pipefd.c	*/
+/*			pipex_bonus_extra.c		*/
 /************************************/
 void	free_pipefd(char **pipefd, int num_cmds);
 int		**alloc_pipefd(int num_cmds);
