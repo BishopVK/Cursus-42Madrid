@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:08:57 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/08 19:42:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/08 21:51:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	define_and_validate_args(int argc, char **argv, char **env, t_child_args *ar
 
 	args->argv = argv;
 	args->env = env;
+	args->argc = argc;
 	args->i = 0;
-	if (argc < 5)
+	if (args->argc < 5)
 	{
 		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
 			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
@@ -27,9 +28,9 @@ int	define_and_validate_args(int argc, char **argv, char **env, t_child_args *ar
 	}
 	here_doc(argv);
 	if (ft_strcmp(args->argv[1], "here_doc") == 0)
-		num_cmds = argc - 4;
+		num_cmds = args->argc - 4;
 	else
-		num_cmds = argc - 3;
+		num_cmds = args->argc - 3;
 	return (num_cmds);
 }
 
