@@ -57,14 +57,13 @@ void	mid_child(t_child_args *args, int *p_fd, int *next_p_fd, int cmd_idx)
 		split_argv = ft_split_awk(args->argv[3 + cmd_idx], ' ');
 	else
 		split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
-	//split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
 	split_path = get_path(args->env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
 	execute(split_argv, full_path, args->env);
 }
 
-void	last_child(t_child_args *args, int *p_fd, int argc)
+void	last_child(t_child_args *args, int *p_fd)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -72,137 +71,41 @@ void	last_child(t_child_args *args, int *p_fd, int argc)
 	int		fd;
 
 	if (ft_strcmp(args->argv[1], "here_doc") == 0)
-		fd = open_fd(args->argv[argc - 1], 11);
+		fd = open_fd(args->argv[args->argc - 1], 11);
 	else
-		fd = open_fd(args->argv[argc - 1], 1);
+		fd = open_fd(args->argv[args->argc - 1], 1);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	close(p_fd[1]);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[0]);
-	split_argv = ft_split_awk(args->argv[argc - 2], ' ');
+	split_argv = ft_split_awk(args->argv[args->argc - 2], ' ');
 	split_path = get_path(args->env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
 	execute(split_argv, full_path, args->env);
 }
 
-/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
+void	childs_and_parent(t_child_args *args, pid_t pid, int **pipefd, int num_cmds)
 {
-	pid_t	pid2;
-	int		status;
-
-	status = 0;
-	pid2 = fork();
-	if (pid2 == -1)
-		exit(-1);
-	if (pid2 == 0)
-		last_child(argv, p_fd, env, argc);
-	else if (pid2 > 0)
+	if (pid == -1)
+		exit (1);
+	if (pid == 0)
 	{
-		close(p_fd[0]);
-		close(p_fd[1]);
-		wait(&status);
-		status = WEXITSTATUS(status);
-	}
-	return (status);
-} */
-
-/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
-{
-	pid_t	pid;
-	int		status;
-	int		num_pipes;
-	int		i;
-	int		next_p_fd[2];
-
-	if (ft_strcmp(argv[1], "here_doc") == 0)
-		num_pipes = argc - 5;
-	else
-		num_pipes = argc - 4;
-
-	i = 0;
-	while (i < num_pipes)
-} */
-
-/* int	second_fork(char **argv, char **env, int *p_fd, int argc)
-{
-	pid_t	pid;
-	int		status;
-	int		num_pipes;
-	int		i;
-	int		next_p_fd[2];
-
-	if (ft_strcmp(argv[1], "here_doc") == 0)
-		num_pipes = argc - 5;
-	else
-		num_pipes = argc - 4;
-
-	i = 0;
-	while (i < num_pipes)
-	{
-		if (pipe(p_fd) == -1)
-			exit (-1);
-		pid = fork();
-		if (pid == -1)
-			exit (-1);
-		if (pid == 0)
-		{
-			if (i == 0)
-				first_child(argv, p_fd, env);
-			else if (i == num_pipes - 1)
-				last_child(argv, p_fd, env, argc);
-			else
-				middle_child(argv, p_fd, next_p_fd, env);
-			exit (0);
-		}
+		if (args->i == 0)
+			first_child(args, pipefd[args->i]); // First command
+		else if (args->i == num_cmds - 1)
+			last_child(args, pipefd[args->i - 1]); // Last command
 		else
-		{
-			if (i > 0)
-			{
-				close(next_p_fd[0]); // Cierra el extremo de lectura del pipe siguiente
-				close(next_p_fd[1]); // Cierra el extremo de escritura del pipe siguiente del proceso padre anterior
-			}
-			next_p_fd[0] = p_fd[0]; // Almacena el descriptor de archivo del extremo de lectura del pipe actual
-			next_p_fd[1] = p_fd[1]; // Almacena el descriptor de archivo del extremo de escritura del pipe actual
-		}
-		i++;
+			mid_child(args, pipefd[args->i - 1], pipefd[args->i], args->i); // Middle commands
+		exit (1);
 	}
-	// Proceso padre
-	i = 0;
-	while (i < num_pipes)
-		close(p_fd[i++]);
-
-	i = -1;
-	while (++i < num_pipes)
-		wait(&status);
-	return (0);
-} */
-
-/* int	main(int argc, char **argv, char **env)
-{
-	int		p_fd[2];
-	pid_t	pid1;
-
-	if (argc < 5)
+	if (args->i != 0) // Parent: close both ends of the current pipe
 	{
-		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
-			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
-		return (-1);
+		close(pipefd[args->i - 1][0]);
+		close(pipefd[args->i - 1][1]);
 	}
-	here_doc(argv);
-	//return (second_fork(argv, env, p_fd, argc));
-	if (pipe(p_fd) == -1)
-		exit(-1);
-	pid1 = fork();
-	if (pid1 == -1)
-		exit(-1);
-	if (pid1 == 0)
-		first_child(argv, p_fd, env);
-	else if (pid1 > 0)
-		return (second_fork(argv, env, p_fd, argc));
-	return (0);
-} */
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -218,23 +121,7 @@ int	main(int argc, char **argv, char **env)
 		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1) //Error creating pipe
 			return (1);
 		pid = fork();
-		if (pid == -1)
-			return (1);
-		if (pid == 0)
-		{
-			if (args.i == 0)
-				first_child(&args, pipefd[args.i]); // First command
-			else if (args.i == num_cmds - 1)
-				last_child(&args, pipefd[args.i - 1], argc); // Last command
-			else
-				mid_child(&args, pipefd[args.i - 1], pipefd[args.i], args.i); // Middle commands
-			exit (1);
-		}
-		if (args.i != 0) // Parent: close both ends of the current pipe
-		{
-			close(pipefd[args.i - 1][0]);
-			close(pipefd[args.i - 1][1]);
-		}
+		childs_and_parent(&args, pid, pipefd, num_cmds);
 		args.i++;
 	}
 	args.i = 0;
