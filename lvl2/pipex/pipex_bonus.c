@@ -207,11 +207,8 @@ int	main(int argc, char **argv, char **env)
 	pipefd = alloc_pipefd(num_cmds);
 	while (args.i < num_cmds)
 	{
-		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1)
-		{
-			perror("pipe");
+		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1) //Error creating pipe
 			return (1);
-		}
 		pid = fork();
 		if (pid == -1)
 			return (1);
@@ -225,8 +222,7 @@ int	main(int argc, char **argv, char **env)
 				mid_child(&args, pipefd[args.i - 1], pipefd[args.i], args.i); // Middle commands
 			exit (1);
 		}
-		// Parent: close both ends of the current pipe
-		if (args.i != 0)
+		if (args.i != 0) // Parent: close both ends of the current pipe
 		{
 			close(pipefd[args.i - 1][0]);
 			close(pipefd[args.i - 1][1]);
