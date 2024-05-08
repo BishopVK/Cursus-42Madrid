@@ -19,8 +19,16 @@ void	first_child(t_child_args *args, int *p_fd, int cmd_idx)
 	char	*full_path;
 	int		fd;
 
-	fd = open_fd(args->argv[1], 0);
-	split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
+	if (ft_strcmp(args->argv[1], "here_doc") == 0)
+	{
+		fd = open_fd("tmp/tmp.txt", 0);
+		split_argv = ft_split_awk(args->argv[3], ' ');
+	}
+	else
+	{
+		fd = open_fd(args->argv[1], 0);
+		split_argv = ft_split_awk(args->argv[2], ' ');
+	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	close(p_fd[0]);
@@ -44,7 +52,11 @@ void	mid_child(t_child_args *args, int *p_fd, int *next_p_fd, int cmd_idx)
 	close(next_p_fd[0]);
 	dup2(next_p_fd[1], STDOUT_FILENO);
 	close(next_p_fd[1]);
-	split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
+	if (ft_strcmp(args->argv[1], "here_doc") == 0)
+		split_argv = ft_split_awk(args->argv[3 + cmd_idx], ' ');
+	else
+		split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
+	//split_argv = ft_split_awk(args->argv[2 + cmd_idx], ' ');
 	split_path = get_path(args->env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
@@ -58,7 +70,10 @@ void	last_child(t_child_args *args, int *p_fd, int argc)
 	char	*full_path;
 	int		fd;
 
-	fd = open_fd(args->argv[argc - 1], 1);
+	if (ft_strcmp(args->argv[1], "here_doc") == 0)
+		fd = open_fd(args->argv[argc - 1], 11);
+	else
+		fd = open_fd(args->argv[argc - 1], 1);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	close(p_fd[1]);
@@ -200,9 +215,11 @@ int	main(int argc, char **argv, char **env)
 	args.i = 0;
 	if (argc < 5)
 	{
-		fprintf(stderr, "Usage: %s infile cmd1 cmd2 ... outfile\n", argv[0]);
-		return (1);
+		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
+			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
+		return (-1);
 	}
+	//here_doc(argv);
 	num_cmds = argc - 3;
 	pipefd = alloc_pipefd(num_cmds);
 	while (args.i < num_cmds)
