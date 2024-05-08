@@ -86,21 +86,22 @@ void	last_child(t_child_args *args, int *p_fd)
 	execute(split_argv, full_path, args->env);
 }
 
-void	childs_and_parent(t_child_args *args, pid_t pid, int **pipefd, int num_cmds)
+void	childs_and_parent(t_child_args *args, pid_t pid, int **pipefd,
+			int num_cmds)
 {
 	if (pid == -1)
 		exit (1);
 	if (pid == 0)
 	{
 		if (args->i == 0)
-			first_child(args, pipefd[args->i]); // First command
+			first_child(args, pipefd[args->i]);
 		else if (args->i == num_cmds - 1)
-			last_child(args, pipefd[args->i - 1]); // Last command
+			last_child(args, pipefd[args->i - 1]);
 		else
-			mid_child(args, pipefd[args->i - 1], pipefd[args->i], args->i); // Middle commands
+			mid_child(args, pipefd[args->i - 1], pipefd[args->i], args->i);
 		exit (1);
 	}
-	if (args->i != 0) // Parent: close both ends of the current pipe
+	if (args->i != 0)
 	{
 		close(pipefd[args->i - 1][0]);
 		close(pipefd[args->i - 1][1]);
@@ -118,14 +119,13 @@ int	main(int argc, char **argv, char **env)
 	pipefd = alloc_pipefd(num_cmds);
 	while (args.i < num_cmds)
 	{
-		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1) //Error creating pipe
+		if (args.i != num_cmds - 1 && pipe(pipefd[args.i]) == -1)
 			return (1);
 		pid = fork();
 		childs_and_parent(&args, pid, pipefd, num_cmds);
 		args.i++;
 	}
 	args.i = 0;
-	// Parent: wait for all children
 	while (args.i++ < num_cmds)
 		wait(NULL);
 	return (0);
