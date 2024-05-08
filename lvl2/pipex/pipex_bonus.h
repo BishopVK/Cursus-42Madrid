@@ -51,7 +51,7 @@ typedef struct s_child_args
 	int		*p_fd;
 	int		*next_p_fd;
 	char	**env;
-	int		cmd_idx;
+	int		i;
 }	t_child_args;
 
 /************************************/
