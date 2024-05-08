@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-void	first_child(t_child_args *args, int *p_fd, int cmd_idx)
+void	first_child(t_child_args *args, int *p_fd)
 {
 	char	**split_path;
 	char	**split_argv;
@@ -210,17 +210,7 @@ int	main(int argc, char **argv, char **env)
 	int				**pipefd;
 	pid_t			pid;
 
-	args.argv = argv;
-	args.env = env;
-	args.i = 0;
-	if (argc < 5)
-	{
-		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
-			"Or: ./pipex here_doc LIMITADOR \"cmd\" \"cmd1\" outfile\n");
-		return (-1);
-	}
-	//here_doc(argv);
-	num_cmds = argc - 3;
+	num_cmds = define_and_validate_args(argc, argv, env, &args);
 	pipefd = alloc_pipefd(num_cmds);
 	while (args.i < num_cmds)
 	{
@@ -232,7 +222,7 @@ int	main(int argc, char **argv, char **env)
 		if (pid == 0)
 		{
 			if (args.i == 0)
-				first_child(&args, pipefd[args.i], args.i); // First command
+				first_child(&args, pipefd[args.i]); // First command
 			else if (args.i == num_cmds - 1)
 				last_child(&args, pipefd[args.i - 1], argc); // Last command
 			else
