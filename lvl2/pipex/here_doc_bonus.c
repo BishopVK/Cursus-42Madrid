@@ -19,6 +19,7 @@ static void	create_fd(char *eof, int fd)
 
 	while (1)
 	{
+		ft_printf("> ");
 		bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
 		if (bytes_read == -1)
 		{
