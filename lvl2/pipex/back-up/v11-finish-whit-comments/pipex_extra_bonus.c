@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:09:31 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/08 22:09:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/09 07:36:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	define_and_validate_args(int argc, char **argv, char **env,
 	return (num_cmds);
 }
 
-void	free_pipefd(char **pipefd, int num_cmds)
+void	free_pipefd(int **pipefd, int num_cmds)
 {
 	int	i;
 
