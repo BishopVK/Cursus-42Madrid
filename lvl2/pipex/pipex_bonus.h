@@ -82,7 +82,7 @@ char	**ft_split_awk(char const *s, char c);
 /************************************/
 int		define_and_validate_args(int argc, char **argv, char **env,
 			t_child_args *args);
-void	free_pipefd(char **pipefd, int num_cmds);
+void	free_pipefd(int **pipefd, int num_cmds);
 int		**alloc_pipefd(int num_cmds);
 
 #endif
