@@ -128,5 +128,6 @@ int	main(int argc, char **argv, char **env)
 	args.i = 0;
 	while (args.i++ < num_cmds)
 		wait(NULL);
+	free_pipefd(pipefd, num_cmds);
 	return (0);
 }
