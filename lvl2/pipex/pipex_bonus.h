@@ -51,6 +51,7 @@ typedef struct s_child_args
 	char	**env;
 	int		argc;
 	int		i;
+	int		status;
 }	t_child_args;
 
 /************************************/
