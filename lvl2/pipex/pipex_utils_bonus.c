@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/13 12:09:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:13:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	execute(char **split_argv, char *full_path, char **env)
 	{
 		if (full_path == NULL)
 		{
-			ft_dprintf(2, "The full path of the command was not found\n");
+			//ft_dprintf(2, "The full path of the command was not found\n");
+			perror("pipex");
 			exit (127);
 		}
 		else
 		{
-			ft_dprintf(2, "The command is not accessible\n");
+			//ft_dprintf(2, "The command is not accessible\n");
+			perror("pipex");
 			exit (127);
 		}
 	}
