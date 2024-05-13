@@ -55,7 +55,7 @@ void	here_doc(char **argv)
 			exit (1);
 		ft_strcpy(eof, limit);
 		eof[ft_strlen(limit)] = '\n';
-		fd = open_fd("tmp/tmp.txt", 1);
+		fd = open_fd("tmp.txt", 1);
 		create_fd(eof, fd);
 		close(fd);
 	}
