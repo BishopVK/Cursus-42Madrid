@@ -21,7 +21,7 @@ void	first_child(t_child_args *args, int *p_fd)
 
 	if (ft_strcmp(args->argv[1], "here_doc") == 0)
 	{
-		fd = open_fd("tmp/tmp.txt", 0);
+		fd = open_fd("tmp.txt", 0);
 		split_argv = ft_split_awk(args->argv[3], ' ');
 	}
 	else
@@ -31,7 +31,7 @@ void	first_child(t_child_args *args, int *p_fd)
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
-	unlink("tmp/tmp.txt");
+	unlink("tmp.txt");
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
