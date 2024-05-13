@@ -53,10 +53,10 @@ all: $(NAME)
 bonus: $(NAME)_bonus
 
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
 
 $(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -s -C $(PRINTF_DIR)
 
 $(NAME): $(LIBFT) $(PRINTF) $(OBJ)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
@@ -70,13 +70,13 @@ $(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Regla para compilar con objetos
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(PRINTF_DIR) fclean
 	@rm -f $(NAME)
 	$(call print_green,"Cleaned the executable pipex")
 
