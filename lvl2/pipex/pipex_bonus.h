@@ -49,7 +49,7 @@ typedef struct s_child_args
 {
 	char	**argv;
 	char	**env;
-	char	argc;
+	int		argc;
 	int		i;
 }	t_child_args;
 
