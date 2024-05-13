@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:09:31 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/09 07:33:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:51:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	define_and_validate_args(int argc, char **argv, char **env,
 	args->env = env;
 	args->argc = argc;
 	args->i = 0;
+	args->status = 0;
 	if (args->argc < 5)
 	{
 		ft_dprintf(2, "Correct use: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
