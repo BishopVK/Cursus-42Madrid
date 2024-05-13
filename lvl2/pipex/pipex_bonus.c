@@ -127,7 +127,8 @@ int	main(int argc, char **argv, char **env)
 	}
 	args.i = 0;
 	while (args.i++ < num_cmds)
-		wait(NULL);
+		waitpid(pid, &args.status, 0);
+	args.status = WEXITSTATUS(args.status);
 	free_pipefd(pipefd, num_cmds);
-	return (0);
+	return (args.status);
 }
