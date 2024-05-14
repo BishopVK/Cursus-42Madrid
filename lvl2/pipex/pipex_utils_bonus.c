@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:09:02 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/13 16:13:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/14 08:33:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	execute(char **split_argv, char *full_path, char **env)
 	if (full_path != NULL && access(full_path, X_OK) == 0)
 	{
 		execve(full_path, split_argv, env);
-		perror("execve failed");
+		perror("pipex => execve failed");
 		free(full_path);
 		free_split(split_argv);
 		exit (127);
@@ -42,14 +42,12 @@ void	execute(char **split_argv, char *full_path, char **env)
 	{
 		if (full_path == NULL)
 		{
-			//ft_dprintf(2, "The full path of the command was not found\n");
-			perror("pipex");
+			perror("pipex => The full path of the command was not found");
 			exit (127);
 		}
 		else
 		{
-			//ft_dprintf(2, "The command is not accessible\n");
-			perror("pipex");
+			perror("pipex => The command is not accessible");
 			exit (127);
 		}
 	}
@@ -119,7 +117,7 @@ int	open_fd(char *file_name, int stdin_stdout)
 		fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (fd < 0)
 	{
-		perror("open");
+		perror("pipex => Open error");
 		exit (1);
 	}
 	return (fd);
