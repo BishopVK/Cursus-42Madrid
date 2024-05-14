@@ -29,15 +29,15 @@ void	first_child(t_child_args *args, int *p_fd)
 		fd = open_fd(args->argv[1], 0);
 		split_argv = ft_split_awk(args->argv[2], ' ');
 	}
+	split_path = get_path(args->env);
+	full_path = find_command_in_path(split_argv[0], split_path);
+	free_split(split_path);
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	unlink("tmp.txt");
 	close(p_fd[0]);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[1]);
-	split_path = get_path(args->env);
-	full_path = find_command_in_path(split_argv[0], split_path);
-	free_split(split_path);
 	execute(split_argv, full_path, args->env);
 }
 
@@ -47,12 +47,6 @@ void	mid_child(t_child_args *args, int *p_fd, int *next_p_fd, int cmd_idx)
 	char	**split_argv;
 	char	*full_path;
 
-	close(p_fd[1]);
-	dup2(p_fd[0], STDIN_FILENO);
-	close(p_fd[0]);
-	close(next_p_fd[0]);
-	dup2(next_p_fd[1], STDOUT_FILENO);
-	close(next_p_fd[1]);
 	if (ft_strcmp(args->argv[1], "here_doc") == 0)
 		split_argv = ft_split_awk(args->argv[3 + cmd_idx], ' ');
 	else
@@ -60,6 +54,12 @@ void	mid_child(t_child_args *args, int *p_fd, int *next_p_fd, int cmd_idx)
 	split_path = get_path(args->env);
 	full_path = find_command_in_path(split_argv[0], split_path);
 	free_split(split_path);
+	close(p_fd[1]);
+	dup2(p_fd[0], STDIN_FILENO);
+	close(p_fd[0]);
+	close(next_p_fd[0]);
+	dup2(next_p_fd[1], STDOUT_FILENO);
+	close(next_p_fd[1]);
 	execute(split_argv, full_path, args->env);
 }
 
@@ -74,15 +74,15 @@ void	last_child(t_child_args *args, int *p_fd)
 		fd = open_fd(args->argv[args->argc - 1], 11);
 	else
 		fd = open_fd(args->argv[args->argc - 1], 1);
+	split_argv = ft_split_awk(args->argv[args->argc - 2], ' ');
+	split_path = get_path(args->env);
+	full_path = find_command_in_path(split_argv[0], split_path);
+	free_split(split_path);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	close(p_fd[1]);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[0]);
-	split_argv = ft_split_awk(args->argv[args->argc - 2], ' ');
-	split_path = get_path(args->env);
-	full_path = find_command_in_path(split_argv[0], split_path);
-	free_split(split_path);
 	execute(split_argv, full_path, args->env);
 }
 
