@@ -23,7 +23,7 @@ static void	create_fd(char *eof, int fd)
 		bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
 		if (bytes_read == -1)
 		{
-			perror("Error reading from stdin");
+			perror("pipex => Error reading from stdin");
 			exit (1);
 		}
 		if (bytes_read == 0)
@@ -35,7 +35,7 @@ static void	create_fd(char *eof, int fd)
 		}
 		if (write(fd, buffer, bytes_read) != bytes_read)
 		{
-			perror("Error writing to fd");
+			perror("pipex => Error writing to fd");
 			exit (1);
 		}
 	}
