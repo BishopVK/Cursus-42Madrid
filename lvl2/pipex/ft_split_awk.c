@@ -118,38 +118,3 @@ char	**ft_split_awk(char const *s, char c)
 	}
 	return (split);
 }
-
-// cc ft_split_awk.c libft/ft_strlcpy.c libft/ft_strlen.c
-/* int	main(void)
-{
-	char const	*s = "awk -F',' '{suma += $2} END {print suma}' archivo.csv";
-	char		c = ' ';
-	char		**split;
-	int			i;
-	int			numStrings = 0;
-
-	i = 0;
-	split = ft_split_awk(s, c);
-
-	// Contar cuántos elementos no nulos hay en frases
-	while (split[numStrings] != NULL) {
-		numStrings++;
-	}
-
-	// Imprimir el número de frases almacenadas
-	printf("Número de frases almacenadas: %d\n", numStrings);
-
-	// Imprimir las frases almacenadas
-	for (i = 0; i < numStrings; i++) {
-		printf("split[%d]: %s\n", i, split[i]);
-	}
-
-	// Liberar la memoria asignada
-	for (i = 0; i < numStrings; i++) {
-		free(split[i]);
-	}
-
-	free(split);
-
-	return (0);
-} */
