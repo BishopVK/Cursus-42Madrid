@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:50:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/13 12:09:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/14 08:28:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	open_fd(char *file_name, int stdin_stdout)
 		fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
 	{
-		perror("open");
+		perror("pipex => Open error");
 		exit (1);
 	}
 	return (fd);
