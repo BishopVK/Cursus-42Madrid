@@ -37,6 +37,11 @@ BONUS_SRC	=	so_long_bonus.c
 
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
+GNL_SRC		=	get_next_line/get_next_line.c \
+				get_next_line/get_next_line_utils.c \
+
+GNL_OBJ		=	$(GNL_SRC:.c=.o)
+
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
@@ -65,12 +70,12 @@ $(MINILIBX):
 #$(OPENGL):
 #	@$(MAKE) -C $(OPENGL_DIR)
 
-$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJ)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
+$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJ) $(GNL_OBJ)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
 	$(call print_cyan,"Compiled so_long")
 
 #$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Rule for compiling with bonus items
-#	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
+#	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
 #	$(call print_cyan,"Compiled so_long (bonus)")
 
 %.o: %.c
@@ -80,7 +85,7 @@ clean:
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(PRINTF_DIR) clean
 	@$(MAKE) -s -C $(MINILIBX_DIR) clean
-	@rm -f $(OBJ) $(BONUS_OBJ)
+	@rm -f $(OBJ) $(GNL_OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
