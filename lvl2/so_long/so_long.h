@@ -49,6 +49,7 @@
 /****************************************/
 /*				parse.c					*/
 /****************************************/
+void	read_map(char *map);
 void	check_arg_extension(char *map);
 
 #endif
