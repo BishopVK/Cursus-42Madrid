@@ -19,6 +19,9 @@
 //ft_printf, ft_dprintf
 # include "printf/ft_printf.h"
 
+//get_next_line
+# include "get_next_line/get_next_line.h"
+
 //mlx
 # include "minilibx-linux/mlx.h"
 
