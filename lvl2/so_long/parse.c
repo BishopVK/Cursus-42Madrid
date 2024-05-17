@@ -6,11 +6,46 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/17 09:32:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:07:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	read_map(char *map)
+{
+	char	*buffer;
+	int		fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+	buffer = get_next_line(fd);
+	while (buffer != NULL)
+	{
+		// Verificar si se asignó memoria correctamente
+		if (buffer == NULL)
+		{
+			fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+			break;
+		}
+		// Mostrar la línea leída
+		printf("RECIBIDO: %s", buffer);
+		// Liberar la memoria asignada a la línea
+		free(buffer);
+
+		buffer = get_next_line(fd);
+	}
+	// Cerrar el descriptor de archivo
+	if (close(fd) == -1)
+	{
+		perror("close");
+		exit(EXIT_FAILURE);
+	}
+}
 
 void	check_arg_extension(char *map)
 {
