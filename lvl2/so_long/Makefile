@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Definición de colores
+# Colors definition
 COLOR_CYAN := "\033[36m"
 COLOR_GREEN := "\033[32m"
 COLOR_RESET := "\033[0m"
@@ -28,7 +28,8 @@ endef
 NAME		=	so_long
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
-SRC			=	so_long.c
+SRC			=	so_long.c \
+				parse.c
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -43,10 +44,10 @@ PRINTF_DIR	=	printf
 PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
 MINILIBX_DIR	=	minilibx-linux
-MINILIBX		=	$(MINILIBX_DIR)/libmlx.a
+MINILIBX		=	$(MINILIBX_DIR)/libmlx_Linux.a
 
-OPENGL_DIR	=	printf
-OPENGL		=	$(OPENGL_DIR)/libftprintf.a
+#OPENGL_DIR	=	printf
+#OPENGL		=	$(OPENGL_DIR)/libftprintf.a
 
 all: $(NAME)
 
@@ -59,32 +60,34 @@ $(PRINTF):
 	@$(MAKE) -s -C $(PRINTF_DIR)
 
 $(MINILIBX):
-	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(MINILIBX_DIR)
 
-$(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+#$(OPENGL):
+#	@$(MAKE) -C $(OPENGL_DIR)
 
-$(NAME): $(LIBFT) $(PRINTF) $(OBJ)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
-	$(call print_cyan,"Compiled pipex")
+$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJ)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
+	$(call print_cyan,"Compiled so_long")
 
-$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Rule for compiling with bonus items
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(BONUS_OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
-	$(call print_cyan,"Compiled pipex (bonus)")
+#$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Rule for compiling with bonus items
+#	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
+#	$(call print_cyan,"Compiled so_long (bonus)")
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) -c $< -o $@
 
 clean:
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(PRINTF_DIR) clean
+	@$(MAKE) -s -C $(MINILIBX_DIR) clean
 	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 	@$(MAKE) -s -C $(PRINTF_DIR) fclean
+	@$(MAKE) -s -C $(MINILIBX_DIR) clean
 	@rm -f $(NAME)
-	$(call print_green,"Cleaned the executable pipex")
+	$(call print_green,"Cleaned the executable so_long")
 
 re: fclean all
 
