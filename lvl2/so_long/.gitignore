@@ -1,0 +1,8 @@
+#Compiled files
+so_long
+*.out
+*.o
+*.a
+
+# directory
+/.vscode
