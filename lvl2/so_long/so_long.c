@@ -20,6 +20,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	}
 	check_arg_extension(argv[1]);
+	read_map(argv[1]);
 	return (0);
 }
 
