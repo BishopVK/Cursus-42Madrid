@@ -6,11 +6,19 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/17 14:07:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:03:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	count_buffer_len(char *buffer)
+{
+	static int	buffer_len;
+
+	buffer_len = ft_strlen(buffer);
+	ft_printf("buffer_len => %i\n", buffer_len);
+}
 
 void	read_map(char *map)
 {
@@ -29,11 +37,13 @@ void	read_map(char *map)
 		// Verificar si se asignó memoria correctamente
 		if (buffer == NULL)
 		{
-			fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+			fprintf(stderr, "Failed to allocate memory for buffer\n");
 			break;
 		}
 		// Mostrar la línea leída
 		printf("RECIBIDO: %s", buffer);
+		// Contar la longitud del buffer
+		count_buffer_len(buffer);
 		// Liberar la memoria asignada a la línea
 		free(buffer);
 
