@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:06:24 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/30 09:11:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:36:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	count;
 
+	if (str == NULL)
+		return (0);
 	count = 0;
 	while (str[count])
 		count++;
