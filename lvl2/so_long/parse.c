@@ -6,11 +6,27 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/17 17:43:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:06:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	exit_map_error(char *buffer, int error_nbr)
+{
+	if (error_nbr == 0)
+	{
+		ft_dprintf(2, "Void map file\n");
+		free(buffer);
+		exit (-1);
+	}
+	if (error_nbr == 1)
+	{
+		ft_dprintf(2, "Wrong map size\n");
+		free(buffer);
+		exit (-1);
+	}
+}
 
 static void	count_buffer_len(char *buffer)
 {
@@ -18,28 +34,27 @@ static void	count_buffer_len(char *buffer)
 
 	if (buffer_len == 0)
 	{
-		ft_dprintf(2, "ESTO SOLO DEBERIA SALIR 1 VEZ\n");
-		//if (buffer[ft_strlen(buffer) - 1] == '\n')
+		//ft_dprintf(2, "ESTO SOLO DEBERIA SALIR 1 VEZ\n");
+		if (buffer[ft_strlen(buffer) - 1] != '\n')
+			exit_map_error(buffer, 1); // 1 line map
 		buffer_len = (ft_strlen(buffer) - 1);
 		ft_printf("buffer_len => %i\n", buffer_len);
-		//else
-		//	buffer_len = ft_strlen(buffer);
 	}
 	else if (buffer[ft_strlen(buffer) - 1] == '\n')
 	{
-		ft_dprintf(2, "SI hay salto de línea\n");
+		//ft_dprintf(2, "SI hay salto de línea\n");
 		if ((buffer_len - (ft_strlen(buffer) - 1)) == 0)
 			ft_dprintf(2, "Líneas de la misma lóngitud\n");
 		else
-			ft_dprintf(2, "Líneas de diferente lóngitud\n");
+			exit_map_error(buffer, 1); //Different line len
 	}
 	else
 	{
-		ft_dprintf(2, "NO hay salto de línea\n");
+		//ft_dprintf(2, "NO hay salto de línea\n");
 		if ((buffer_len - ft_strlen(buffer)) == 0)
-			ft_dprintf(2, "Líneas de la misma lóngitud\n");
+			ft_dprintf(2, "\nLíneas de la misma lóngitud\n");
 		else
-			ft_dprintf(2, "Líneas de diferente lóngitud\n");
+			exit_map_error(buffer, 1); //Different line len
 	}
 }
 
@@ -55,6 +70,8 @@ void	read_map(char *map)
 		exit(EXIT_FAILURE);
 	}
 	buffer = get_next_line(fd);
+	if (ft_strlen(buffer) == 0)
+		exit_map_error(buffer, 0); //Void map
 	while (buffer != NULL)
 	{
 		// Verificar si se asignó memoria correctamente
@@ -64,7 +81,7 @@ void	read_map(char *map)
 			break;
 		}
 		// Mostrar la línea leída
-		ft_printf("\nRECIBIDO: %s", buffer);
+		ft_printf("\n%s", buffer);
 		// Contar la longitud del buffer
 		count_buffer_len(buffer);
 		// Liberar la memoria asignada a la línea
