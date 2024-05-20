@@ -6,23 +6,28 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/19 18:06:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/20 09:50:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	exit_map_error(char *buffer, int error_nbr)
+static void	exit_map_error(char *buffer, int error_nbr, char *message)
 {
 	if (error_nbr == 0)
 	{
-		ft_dprintf(2, "Void map file\n");
-		free(buffer);
-		exit (-1);
+		perror(message);
+		exit (EXIT_FAILURE);
 	}
 	if (error_nbr == 1)
 	{
-		ft_dprintf(2, "Wrong map size\n");
+		ft_dprintf(2, "%s\n", message);
+		free(buffer);
+		exit (-1);
+	}
+	if (error_nbr == 2)
+	{
+		ft_dprintf(2, "%s\n", message);
 		free(buffer);
 		exit (-1);
 	}
@@ -36,7 +41,7 @@ static void	count_buffer_len(char *buffer)
 	{
 		//ft_dprintf(2, "ESTO SOLO DEBERIA SALIR 1 VEZ\n");
 		if (buffer[ft_strlen(buffer) - 1] != '\n')
-			exit_map_error(buffer, 1); // 1 line map
+			exit_map_error(buffer, 2, "Wrong map size"); // 1 line map
 		buffer_len = (ft_strlen(buffer) - 1);
 		ft_printf("buffer_len => %i\n", buffer_len);
 	}
@@ -46,7 +51,7 @@ static void	count_buffer_len(char *buffer)
 		if ((buffer_len - (ft_strlen(buffer) - 1)) == 0)
 			ft_dprintf(2, "Líneas de la misma lóngitud\n");
 		else
-			exit_map_error(buffer, 1); //Different line len
+			exit_map_error(buffer, 2, "Wrong map size"); //Different line len
 	}
 	else
 	{
@@ -54,7 +59,7 @@ static void	count_buffer_len(char *buffer)
 		if ((buffer_len - ft_strlen(buffer)) == 0)
 			ft_dprintf(2, "\nLíneas de la misma lóngitud\n");
 		else
-			exit_map_error(buffer, 1); //Different line len
+			exit_map_error(buffer, 2, "Wrong map size"); //Different line len
 	}
 }
 
@@ -65,19 +70,16 @@ void	read_map(char *map)
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Open");
-		exit(EXIT_FAILURE);
-	}
+		exit_map_error(buffer, 0, "Open");
 	buffer = get_next_line(fd);
 	if (ft_strlen(buffer) == 0)
-		exit_map_error(buffer, 0); //Void map
+		exit_map_error(buffer, 1, "Void map file"); //Void map
 	while (buffer != NULL)
 	{
 		// Verificar si se asignó memoria correctamente
 		if (buffer == NULL)
 		{
-			fprintf(stderr, "Failed to allocate memory for buffer\n");
+			ft_dprintf(2, "Failed to allocate memory for buffer\n");
 			break;
 		}
 		// Mostrar la línea leída
@@ -91,10 +93,7 @@ void	read_map(char *map)
 	}
 	// Cerrar el descriptor de archivo
 	if (close(fd) == -1)
-	{
-		perror("Close");
-		exit(EXIT_FAILURE);
-	}
+		exit_map_error(buffer, 0, "Close");
 }
 
 void	check_arg_extension(char *map)
