@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/20 12:14:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:24:02 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,9 @@ int	read_map_lines(char *buffer, char *map)
 			ft_dprintf(2, "Failed to allocate memory for buffer\n");
 			break;
 		}
-		// Mostrar la línea leída
-		ft_printf("\n%s", buffer);
-		// Contar la longitud del buffer
-		count_buffer_len(buffer);
-		// Liberar la memoria asignada a la línea
-		free(buffer);
+		ft_printf("\n%s", buffer); // Mostrar la línea leída
+		count_buffer_len(buffer); // Contar la longitud del buffer
+		free(buffer); // Liberar la memoria asignada a la línea
 		buffer = get_next_line(fd);
 		map_lines++;
 	}
