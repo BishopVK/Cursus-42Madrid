@@ -29,7 +29,8 @@ NAME		=	so_long
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	so_long.c \
-				parse.c
+				parse.c \
+				check_map_character.c
 
 OBJ			=	$(SRC:.c=.o)
 
