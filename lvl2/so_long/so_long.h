@@ -53,6 +53,6 @@ void	check_arg_extension(char *map);
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
-void	check_map_characters(char *buffer, char *map, int map_lines);
+void	check_map_characters(char *buffer, char *allowed);
 
 #endif
