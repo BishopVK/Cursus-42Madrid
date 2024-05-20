@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/20 22:58:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:17:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	count_buffer_len(char *buffer)
 		if (buffer[ft_strlen(buffer) - 1] != '\n')
 			exit_map_error(buffer, 1, "Wrong map size"); // 1 line map
 		buffer_len = (ft_strlen(buffer) - 1);
+		if (buffer_len < 3)
+			exit_map_error(buffer, 1, "Wrong map size"); // At least 3 cols
 		ft_printf("buffer_len => %i\n", buffer_len);
 	}
 	else if (buffer[ft_strlen(buffer) - 1] == '\n')
