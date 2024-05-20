@@ -42,14 +42,17 @@
 
 
 /****************************************/
-/*				so_long.c				*/
-/****************************************/
-
-
-/****************************************/
 /*				parse.c					*/
 /****************************************/
+void	exit_map_error(char *buffer, int error_nbr, char *message);
+void	count_buffer_len(char *buffer);
+int		read_map_lines(char *buffer, char *map);
 void	read_map(char *map);
 void	check_arg_extension(char *map);
+
+/****************************************/
+/*		check_map_characters.c			*/
+/****************************************/
+void	check_map_characters(char *buffer, char *map, int map_lines);
 
 #endif
