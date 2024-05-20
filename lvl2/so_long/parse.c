@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/20 13:24:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:15:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	exit_map_error(char *buffer, int error_nbr, char *message)
+void	exit_map_error(char *buffer, int error_nbr, char *message)
 {
 	if (error_nbr == 0)
 	{
@@ -33,7 +33,7 @@ static void	exit_map_error(char *buffer, int error_nbr, char *message)
 	}
 }
 
-static void	count_buffer_len(char *buffer)
+void	count_buffer_len(char *buffer)
 {
 	static size_t	buffer_len;
 
@@ -79,14 +79,11 @@ int	read_map_lines(char *buffer, char *map)
 		exit_map_error(buffer, 1, "Void map file"); //Void map
 	while (buffer != NULL)
 	{
-		// Verificar si se asignó memoria correctamente
-		if (buffer == NULL)
-		{
-			ft_dprintf(2, "Failed to allocate memory for buffer\n");
-			break;
-		}
+		if (buffer == NULL) // Verificar si se asignó memoria correctamente
+			exit_map_error(buffer, 0, "Failed to allocate memory for buffer"); //Void map
 		ft_printf("\n%s", buffer); // Mostrar la línea leída
 		count_buffer_len(buffer); // Contar la longitud del buffer
+		check_map_characters(buffer, map_lines);
 		free(buffer); // Liberar la memoria asignada a la línea
 		buffer = get_next_line(fd);
 		map_lines++;
@@ -104,6 +101,7 @@ void	read_map(char *map)
 	buffer = NULL;
 	map_lines = read_map_lines(buffer, map);
 	ft_printf("map_lines => %i\n", map_lines);
+	//check_map_characters(buffer, map, map_lines);
 	/*
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
