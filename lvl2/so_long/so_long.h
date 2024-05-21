@@ -61,6 +61,7 @@ void	check_arg_extension(char *map);
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
+void	check_nbr_chars(char *buffer, t_map_chars *map_chars);
 void	check_borders(char *buffer, int total_lines, int map_line);
 void	read_for_check_borders(char *buffer, char *map, int map_lines, t_map_chars *map_chars);
 void	check_map_characters(char *buffer, char *allowed);
