@@ -40,20 +40,29 @@
 //strerror
 # include <string.h>
 
+typedef struct s_map_chars
+{
+	int	empty;
+	int	wall;
+	int	collectible;
+	int	exit;
+	int	player;
+}	t_map_chars;
+
 /****************************************/
 /*				parse.c					*/
 /****************************************/
 void	exit_map_error(char *buffer, int error_nbr, char *message);
 void	count_buffer_len(char *buffer);
 int		read_map_lines(char *buffer, char *map);
-void	read_map(char *map);
+void	read_map(char *map, t_map_chars *map_chars);
 void	check_arg_extension(char *map);
 
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
 void	check_borders(char *buffer, int total_lines, int map_line);
-void	read_for_check_borders(char *buffer, char *map, int map_lines);
+void	read_for_check_borders(char *buffer, char *map, int map_lines, t_map_chars *map_chars);
 void	check_map_characters(char *buffer, char *allowed);
 
 #endif
