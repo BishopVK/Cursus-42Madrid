@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 10:17:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:29:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ void	check_nbr_chars(t_map_chars *map_chars)
 	ft_printf("map_chars->collectible ==> %i\n", map_chars->collectible);
 	ft_printf("map_chars->exit ==> %i\n", map_chars->exit);
 	ft_printf("map_chars->player ==> %i\n", map_chars->player);
-	if (map_chars->exit != 1 || map_chars->player != 1)
-		exit_map_error("buffer", 0, "Incorrect number of players or exits");
+	if (map_chars->exit != 1 || map_chars->player != 1
+		|| map_chars->collectible < 1)
+		exit_map_error("buffer", 0,
+			"Incorrect number of players, exits or collectibles");
 }
+
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
 {
 	int	i;
@@ -71,7 +74,8 @@ void	check_borders(char *buffer, int total_lines, int map_line)
 	}
 }
 
-void	read_for_check_borders(char *buffer, char *map, int total_lines, t_map_chars *map_chars)
+void	read_for_check_borders(char *buffer, char *map, int total_lines,
+	t_map_chars *map_chars)
 {
 	int	fd;
 	int	map_line;
