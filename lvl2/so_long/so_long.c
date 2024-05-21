@@ -16,11 +16,7 @@ int	main(int argc, char *argv[])
 {
 	t_map_chars	map_chars;
 
-	map_chars.empty = 0;
-	map_chars.wall = 0;
-	map_chars.collectible = 0;
-	map_chars.exit = 0;
-	map_chars.player = 0;
+	ft_memset(&map_chars, 0, sizeof(t_map_chars));
 	if (argc != 2)
 	{
 		ft_dprintf(2, "Correct use: %s map.ber\n", argv[0]);
@@ -31,6 +27,12 @@ int	main(int argc, char *argv[])
 	ft_printf("\n¡¡THE MAP IS CORRECT!!\n");
 	return (0);
 }
+
+	/* map_chars.empty = 0;
+	map_chars.wall = 0;
+	map_chars.collectible = 0;
+	map_chars.exit = 0;
+	map_chars.player = 0; */
 
 // cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx
 // -framework OpenGL -framework AppKit
