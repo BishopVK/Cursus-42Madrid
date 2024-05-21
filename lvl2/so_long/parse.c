@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 09:14:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:32:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	read_map(char *map, t_map_chars *map_chars)
 	if (total_lines < 3)
 		exit_map_error(buffer, 0, "The map must have at least 3 lines");
 	read_for_check_borders(buffer, map, total_lines, map_chars); // Check borders
-	ft_printf("\n¡¡THE MAP IS CORRECT!!\n");
 }
 
 void	check_arg_extension(char *map)
