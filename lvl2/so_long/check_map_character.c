@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 09:30:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:35:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_nbr_chars(char *buffer, t_map_chars *map_chars)
+void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ void	read_for_check_borders(char *buffer, char *map, int total_lines, t_map_char
 		ft_printf("-----------\n"); // Mostrar separador (BORRAR)
 		ft_printf("\n%s", buffer); // Mostrar la línea leída (BORRAR)
 		check_borders(buffer, total_lines, map_line);
-		check_nbr_chars(buffer, map_chars);
+		count_nbr_chars(buffer, map_chars);
 		free(buffer); // Liberar la memoria asignada a la línea
 		buffer = get_next_line(fd);
 		map_line++;
