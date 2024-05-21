@@ -14,13 +14,20 @@
 
 int	main(int argc, char *argv[])
 {
+	t_map_chars	map_chars;
+
+	map_chars.empty = 0;
+	map_chars.wall = 0;
+	map_chars.collectible = 0;
+	map_chars.exit = 0;
+	map_chars.player = 0;
 	if (argc != 2)
 	{
 		ft_dprintf(2, "Correct use: %s map.ber\n", argv[0]);
 		return (-1);
 	}
 	check_arg_extension(argv[1]);
-	read_map(argv[1]);
+	read_map(argv[1], &map_chars);
 	return (0);
 }
 
