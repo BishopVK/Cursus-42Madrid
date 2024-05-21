@@ -24,8 +24,8 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-
-//cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+// cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx
+// -framework OpenGL -framework AppKit
 /* int	main(void)
 {
 	void	*mlx_ptr;
