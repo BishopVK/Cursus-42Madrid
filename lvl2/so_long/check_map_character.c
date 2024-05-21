@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 09:12:36 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:30:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	check_nbr_chars(char *buffer, t_map_chars *map_chars)
 	int	i;
 
 	i = 0;
-	while (buffer)
+	while (buffer[i] != '\0')
 	{
 		if (buffer[i] == '0')
 			map_chars->empty++;
-		if (buffer[i] == '1')
+		else if (buffer[i] == '1')
 			map_chars->wall++;
-		if (buffer[i] == 'C')
+		else if (buffer[i] == 'C')
 			map_chars->collectible++;
-		if (buffer[i] == 'E')
+		else if (buffer[i] == 'E')
 			map_chars->exit++;
-		if (buffer[i] == 'P')
+		else if (buffer[i] == 'P')
 			map_chars->player++;
 		i++;
 	}
