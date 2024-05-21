@@ -13,4 +13,5 @@ This is my current progress on the 42Madrid Cursus
 | [get_next_line](/lvl1/get_next_line) | **125/100**   |
 | Born2beroot           | **125/100**   |
 | [push_swap](/lvl2/push_swap) | **108/100**   |
-
+| [pipex](/lvl2/pipex) | **125/100**   |
+| [so_long](/lvl2/so_long) | **in progress**   |
