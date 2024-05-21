@@ -2,6 +2,7 @@
 	"files.associations": {
 		"stdio.h": "c",
 		"ft_printf.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"stdlib.h": "c"
 	}
 }
