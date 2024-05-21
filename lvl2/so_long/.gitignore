@@ -4,5 +4,8 @@ so_long
 *.o
 *.a
 
+# files
+.json
+
 # directory
 /.vscode
