@@ -49,6 +49,15 @@ typedef struct s_map_chars
 	int	player;
 }	t_map_chars;
 
+typedef struct s_map_array
+{
+	int	width;
+	int	height;
+	int	x;
+	int	y;
+	int	**map;
+}	t_map_array;
+
 /****************************************/
 /*				parse.c					*/
 /****************************************/
