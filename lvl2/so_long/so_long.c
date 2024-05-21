@@ -28,11 +28,11 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-	/* map_chars.empty = 0;
-	map_chars.wall = 0;
-	map_chars.collectible = 0;
-	map_chars.exit = 0;
-	map_chars.player = 0; */
+/* map_chars.empty = 0;
+map_chars.wall = 0;
+map_chars.collectible = 0;
+map_chars.exit = 0;
+map_chars.player = 0; */
 
 // cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx
 // -framework OpenGL -framework AppKit
