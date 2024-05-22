@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 15:00:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:27:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_nbr_chars(t_map_chars *map_chars)
+void	check_nbr_chars(char *buffer, t_map_chars *map_chars)
 {
 	ft_printf("map_chars->empty ==> %i\n", map_chars->empty);
 	ft_printf("map_chars->wall ==> %i\n", map_chars->wall);
@@ -21,10 +21,8 @@ void	check_nbr_chars(t_map_chars *map_chars)
 	ft_printf("map_chars->player ==> %i\n", map_chars->player);
 	if (map_chars->exit != 1 || map_chars->player != 1
 		|| map_chars->collectible < 1)
-	{
-		ft_dprintf(2, "Incorrect number of players, exits or collectibles");
-		exit (EXIT_FAILURE);
-	}
+		exit_map_error(buffer,
+			"Incorrect number of players, exits or collectibles");
 }
 
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
@@ -104,7 +102,7 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 		buffer = get_next_line(fd);
 		map_line++;
 	}
-	check_nbr_chars(map_chars);
+	check_nbr_chars(buffer, map_chars);
 	if (close(fd) == -1)
 		exit_map_error(buffer, "Close error");
 	return (buffer_len);
