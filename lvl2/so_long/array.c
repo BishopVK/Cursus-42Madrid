@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:41:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:34:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,26 @@ void	read_to_create_array(char *map, t_map_array *map_array)
 	char	*buffer;
 
 	map_lines = 0;
+	buffer = NULL;
 	create_array(map_array);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		exit_map_error("buffer", 0, "Open error");
+		exit_map_error(buffer, "Open error");
 	buffer = get_next_line(fd);
 	if (buffer == NULL)
-		exit_map_error(buffer, 0, "Failed to allocate memory for buffer");
+		exit_map_error(buffer, "Failed to allocate memory for buffer");
 	while (buffer != NULL)
 	{
 		if (buffer == NULL) // Check if memory was allocated correctly
-			exit_map_error(buffer, 0, "Failed to allocate memory for buffer");
+			exit_map_error(buffer, "Failed to allocate memory for buffer");
 		initialize_array(buffer, map_array, map_lines);
-		free(buffer); // Release the memory allocated to the line
+		if (buffer != NULL)
+			free(buffer); // Release the memory allocated to the line
 		buffer = get_next_line(fd);
 		map_lines++;
 	}
 	display_array(map_array);
 	free_array(map_array);
 	if (close(fd) == -1)
-		exit_map_error(buffer, 0, "Close error");
+		exit_map_error(buffer, "Close error");
 }
