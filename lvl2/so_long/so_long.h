@@ -62,9 +62,9 @@ typedef struct s_map_array
 /*				parse.c					*/
 /****************************************/
 void	exit_map_error(char *buffer, int error_nbr, char *message);
-void	count_buffer_len(char *buffer);
+int		count_buffer_len(char *buffer);
 int		read_map_lines(char *buffer, char *map);
-void	read_map(char *map, t_map_chars *map_chars);
+void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array);
 void	check_arg_extension(char *map);
 
 /****************************************/
@@ -73,7 +73,7 @@ void	check_arg_extension(char *map);
 void	check_nbr_chars(t_map_chars *map_chars);
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars);
 void	check_borders(char *buffer, int total_lines, int map_line);
-void	read_for_check_borders(char *buffer, char *map, int map_lines,
+int		read_for_check_borders(char *buffer, char *map, int map_lines,
 			t_map_chars *map_chars);
 void	check_map_characters(char *buffer, char *allowed);
 

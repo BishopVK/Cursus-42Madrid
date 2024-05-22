@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 11:29:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:36:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ void	check_borders(char *buffer, int total_lines, int map_line)
 	}
 }
 
-void	read_for_check_borders(char *buffer, char *map, int total_lines,
+int	read_for_check_borders(char *buffer, char *map, int total_lines,
 	t_map_chars *map_chars)
 {
 	int	fd;
 	int	map_line;
+	int	buffer_len;
 
 	map_line = 0;
 	fd = open(map, O_RDONLY);
@@ -95,6 +96,7 @@ void	read_for_check_borders(char *buffer, char *map, int total_lines,
 		ft_printf("\n%s", buffer); // Mostrar la línea leída (BORRAR)
 		check_borders(buffer, total_lines, map_line);
 		count_nbr_chars(buffer, map_chars);
+		buffer_len = count_buffer_len(buffer);
 		free(buffer); // Liberar la memoria asignada a la línea
 		buffer = get_next_line(fd);
 		map_line++;
@@ -102,6 +104,7 @@ void	read_for_check_borders(char *buffer, char *map, int total_lines,
 	check_nbr_chars(map_chars);
 	if (close(fd) == -1)
 		exit_map_error(buffer, 0, "Close error");
+	return (buffer_len);
 }
 
 void	check_map_characters(char *buffer, char *allowed)

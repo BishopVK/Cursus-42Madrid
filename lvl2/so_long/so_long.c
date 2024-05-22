@@ -15,15 +15,19 @@
 int	main(int argc, char *argv[])
 {
 	t_map_chars	map_chars;
+	t_map_array	map_array;
 
 	ft_memset(&map_chars, 0, sizeof(t_map_chars));
+	ft_memset(&map_array, 0, sizeof(t_map_array));
 	if (argc != 2)
 	{
 		ft_dprintf(2, "Correct use: %s map.ber\n", argv[0]);
 		return (-1);
 	}
 	check_arg_extension(argv[1]);
-	read_map(argv[1], &map_chars);
+	read_map(argv[1], &map_chars, &map_array);
+	ft_printf("map_array.width ==> %i\n", map_array.width);
+	ft_printf("map_array.height ==> %i\n", map_array.height);
 	ft_printf("\n¡¡THE MAP IS CORRECT!!\n");
 	return (0);
 }

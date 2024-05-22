@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/21 12:49:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:36:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exit_map_error(char *buffer, int error_nbr, char *message)
 	}
 }
 
-void	count_buffer_len(char *buffer)
+int	count_buffer_len(char *buffer)
 {
 	static size_t	buffer_len;
 
@@ -59,6 +59,7 @@ void	count_buffer_len(char *buffer)
 		else
 			exit_map_error(buffer, 1, "Wrong map size"); //Different line len
 	}
+	return (buffer_len);
 }
 
 int	read_map_lines(char *buffer, char *map)
@@ -89,17 +90,16 @@ int	read_map_lines(char *buffer, char *map)
 	return (map_lines);
 }
 
-void	read_map(char *map, t_map_chars *map_chars)
+void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array)
 {
 	char	*buffer;
-	int		total_lines;
 
 	buffer = NULL;
-	total_lines = read_map_lines(buffer, map);
-	ft_printf("map_lines => %i\n", total_lines);
-	if (total_lines < 3)
+	map_array->height = read_map_lines(buffer, map);
+	ft_printf("map_lines => %i\n", map_array->height);
+	if (map_array->height < 3)
 		exit_map_error(buffer, 0, "The map must have at least 3 lines");
-	read_for_check_borders(buffer, map, total_lines, map_chars); // Check borders
+	map_array->width = read_for_check_borders(buffer, map, map_array->height, map_chars); // Check borders
 }
 
 void	check_arg_extension(char *map)
