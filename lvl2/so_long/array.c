@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   array.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
+/*   Updated: 2024/05/22 13:21:01 by danjimen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+void	free_array(t_map_array *map_array)
+{
+	int	i;
+
+	i = 0;
+	while (i < map_array->height)
+	{
+		free(map_array->map[i]);
+		i++;
+	}
+	free(map_array->map);
+}
+
+void	display_array(t_map_array *map_array)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map_array->height)
+	{
+		j = 0;
+		while (j < map_array->width)
+		{
+			ft_printf("%c ", map_array->map[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+void	create_array(t_map_array *map_array)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	map_array->map = (char **)malloc(map_array->height * sizeof(char *));
+	while (i < map_array->height)
+	{
+		map_array->map[i] = (char *)malloc(map_array->width * sizeof(char));
+		j = 0;
+		while (j < map_array->width)
+		{
+			map_array->map[i][j] = 'X';
+			j++;
+		}
+		i++;
+	}
+}
+
+void	read_to_create_array(char *map, t_map_array *map_array)
+{
+	int		fd;
+	int		map_lines;
+	char	*buffer;
+
+	map_lines = 0;
+	create_array(map_array);
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		exit_map_error("buffer", 0, "Open error");
+	buffer = get_next_line(fd);
+	if (buffer == NULL)
+		exit_map_error(buffer, 0, "Failed to allocate memory for buffer");
+	while (buffer != NULL)
+	{
+		if (buffer == NULL) // Check if memory was allocated correctly
+			exit_map_error(buffer, 0, "Failed to allocate memory for buffer");
+		//initialize_array(buffer, map_array);
+		free(buffer); // Release the memory allocated to the line
+		buffer = get_next_line(fd);
+		map_lines++;
+	}
+	display_array(map_array);
+	free_array(map_array);
+	if (close(fd) == -1)
+		exit_map_error(buffer, 0, "Close error");
+}
