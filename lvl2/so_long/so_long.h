@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 14:58:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:26:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	check_arg_extension(char *map);
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
-void	check_nbr_chars(t_map_chars *map_chars);
+void	check_nbr_chars(char *buffer, t_map_chars *map_chars);
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars);
 void	check_borders(char *buffer, int total_lines, int map_line);
 int		read_for_check_borders(char *buffer, char *map, int map_lines,
