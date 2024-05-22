@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:07:54 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:33:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	check_map_characters(char *buffer, char *allowed);
 /****************************************/
 void	free_array(t_map_array *s_map_array);
 void	display_array(t_map_array *map_array);
+void	initialize_array(char *buffer, t_map_array *map_array, int map_lines);
 void	create_array(t_map_array *map_array);
 void	read_to_create_array(char *map, t_map_array *map_array);
 
