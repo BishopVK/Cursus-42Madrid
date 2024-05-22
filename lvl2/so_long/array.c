@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:21:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:41:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	display_array(t_map_array *map_array)
 		}
 		ft_printf("\n");
 		i++;
+	}
+}
+
+void	initialize_array(char *buffer, t_map_array *map_array, int map_lines)
+{
+	int	j;
+
+	j = 0;
+	while (j < map_array->width)
+	{
+		map_array->map[map_lines][j] = buffer[j];
+		j++;
 	}
 }
 
@@ -82,7 +94,7 @@ void	read_to_create_array(char *map, t_map_array *map_array)
 	{
 		if (buffer == NULL) // Check if memory was allocated correctly
 			exit_map_error(buffer, 0, "Failed to allocate memory for buffer");
-		//initialize_array(buffer, map_array);
+		initialize_array(buffer, map_array, map_lines);
 		free(buffer); // Release the memory allocated to the line
 		buffer = get_next_line(fd);
 		map_lines++;
