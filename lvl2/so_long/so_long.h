@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:33:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:58:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map_array
 /****************************************/
 /*				parse.c					*/
 /****************************************/
-void	exit_map_error(char *buffer, int error_nbr, char *message);
+void	exit_map_error(char *buffer, char *message);
 int		count_buffer_len(char *buffer);
 int		read_map_lines(char *buffer, char *map);
 void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array);
