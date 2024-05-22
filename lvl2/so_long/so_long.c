@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:29:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 23:27:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	main(int argc, char *argv[])
 {
 	t_map_chars	map_chars;
 	t_map_array	map_array;
+	t_map_array	copy_array;
 
 	ft_memset(&map_chars, 0, sizeof(t_map_chars));
 	ft_memset(&map_array, 0, sizeof(t_map_array));
+	ft_memset(&copy_array, 0, sizeof(t_map_array));
 	if (argc != 2)
 	{
 		ft_dprintf(2, "Correct use: %s map.ber\n", argv[0]);
@@ -29,9 +31,18 @@ int	main(int argc, char *argv[])
 	ft_printf("map_array.width ==> %i\n", map_array.width);
 	ft_printf("map_array.height ==> %i\n", map_array.height);
 	read_to_create_array(argv[1], &map_array);
-	ft_printf("\n¡¡THE MAP IS CORRECT!!\n");
-	
-	return (0);
+	ft_printf("\n>>>> ¡¡THE MAP IS CORRECT!! <<<<\n\n");
+	ft_printf("Array:\n");
+	display_array(&map_array);
+	free_array(&map_array);
+	ft_printf("-----------\n");
+	copy_array.height = map_array.height;
+	copy_array.width = map_array.width;
+	read_to_create_array(argv[1], &copy_array);
+	ft_printf("Copy_Array:\n");
+	display_array(&copy_array);
+	free_array(&copy_array);
+	return (EXIT_SUCCESS);
 }
 
 /* map_chars.empty = 0;
