@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 11:43:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:07:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_map_chars
 
 typedef struct s_map_array
 {
-	int	width;
-	int	height;
-	int	x;
-	int	y;
-	int	**map;
+	int		width;
+	int		height;
+	int		x;
+	int		y;
+	char	**map;
 }	t_map_array;
 
 /****************************************/
@@ -76,5 +76,13 @@ void	check_borders(char *buffer, int total_lines, int map_line);
 int		read_for_check_borders(char *buffer, char *map, int map_lines,
 			t_map_chars *map_chars);
 void	check_map_characters(char *buffer, char *allowed);
+
+/****************************************/
+/*				array.c					*/
+/****************************************/
+void	free_array(t_map_array *s_map_array);
+void	display_array(t_map_array *map_array);
+void	create_array(t_map_array *map_array);
+void	read_to_create_array(char *map, t_map_array *map_array);
 
 #endif
