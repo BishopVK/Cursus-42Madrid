@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 14:48:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:00:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 		map_line++;
 	}
 	check_nbr_chars(map_chars);
-	ft_printf("LLEGUE\n"); // Mostrar separador (BORRAR)
 	if (close(fd) == -1)
 		exit_map_error(buffer, "Close error");
 	return (buffer_len);
