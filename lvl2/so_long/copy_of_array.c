@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/23 09:12:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/23 09:14:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**create_array_copy(char **originalMap, int width, int height)
 	return (copy);
 }
 
-void	free_map_copy(char **map, int height)
+/* void	free_map_copy(char **map, int height)
 {
 	int	i;
 
@@ -39,4 +39,4 @@ void	free_map_copy(char **map, int height)
 		i++;
 	}
 	free(map);
-}
+} */
