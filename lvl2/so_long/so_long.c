@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 23:27:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:19:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ int	main(int argc, char *argv[])
 	ft_printf("map_array.height ==> %i\n", map_array.height);
 	read_to_create_array(argv[1], &map_array);
 	ft_printf("\n>>>> ¡¡THE MAP IS CORRECT!! <<<<\n\n");
-	ft_printf("Array:\n");
+	ft_printf("map_array:\n");
 	display_array(&map_array);
-	free_array(&map_array);
+
 	ft_printf("-----------\n");
 	copy_array.height = map_array.height;
 	copy_array.width = map_array.width;
-	read_to_create_array(argv[1], &copy_array);
-	ft_printf("Copy_Array:\n");
+	copy_array.map = create_array_copy(&map_array);
+	ft_printf("copy:\n");
 	display_array(&copy_array);
+	free_array(&map_array);
 	free_array(&copy_array);
 	return (EXIT_SUCCESS);
 }
