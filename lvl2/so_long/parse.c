@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 18:19:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:00:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void	check_arg_extension(char *map)
 
 	map_len = ft_strlen(map);
 	map_name_len = map_len - 4;
-	if (ft_strncmp(map + map_name_len, ".ber", 4) == 0)
+	if (ft_strncmp(map + map_name_len, ".ber", 4) == 0 && map_len > 4
+		&& map[map_len - 5] != '/')
 		ft_printf("Correct \"%s\" file extension\n", map + map_name_len);
 	else
 	{
