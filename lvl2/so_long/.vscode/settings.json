@@ -3,6 +3,7 @@
 		"stdio.h": "c",
 		"ft_printf.h": "c",
 		"get_next_line.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"so_long.h": "c"
 	}
 }
