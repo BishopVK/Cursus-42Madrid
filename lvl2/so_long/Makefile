@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/05/22 13:06:14 by danjimen         ###   ########.fr        #
+#    Updated: 2024/05/23 09:32:50 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	so_long.c \
 				parse.c \
 				check_map_character.c \
-				array.c
+				array.c \
+				copy_of_array.c
 
 OBJ			=	$(SRC:.c=.o)
 
