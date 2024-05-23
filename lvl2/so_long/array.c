@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/22 19:11:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:46:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,20 @@ void	create_array(t_map_array *map_array)
 	int	j;
 
 	i = 0;
-	map_array->map = (char **)malloc(map_array->height * sizeof(char *));
+	map_array->map = (char **)malloc((map_array->height + 1) * sizeof(char *));
 	while (i < map_array->height)
 	{
-		map_array->map[i] = (char *)malloc(map_array->width * sizeof(char));
+		map_array->map[i] = (char *)malloc((map_array->width + 1) * sizeof(char));
 		j = 0;
 		while (j < map_array->width)
 		{
 			map_array->map[i][j] = 'X';
 			j++;
 		}
+		map_array->map[i][j] = '\0';
 		i++;
 	}
+	map_array->map[i] = NULL;
 }
 
 void	read_to_create_array(char *map, t_map_array *map_array)
