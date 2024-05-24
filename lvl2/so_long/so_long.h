@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:08:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:10:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	read_to_create_array(char *map, t_map_array *map_array);
 /****************************************/
 /*			copy_of_array.c				*/
 /****************************************/
-char	**create_array_copy(t_map_array *map_array);
+void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array);
+void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 
 /****************************************/
 /*			flood_fill.c				*/
