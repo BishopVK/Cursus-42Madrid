@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/05/23 09:32:50 by danjimen         ###   ########.fr        #
+#    Updated: 2024/05/24 08:47:00 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC			=	so_long.c \
 				parse.c \
 				check_map_character.c \
 				array.c \
-				copy_of_array.c
+				copy_of_array.c \
+				flood_fill.c
 
 OBJ			=	$(SRC:.c=.o)
 
