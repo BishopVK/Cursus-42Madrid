@@ -6,37 +6,42 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:27:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:19:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**create_array_copy(t_map_array *map_array)
+void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array)
+{
+	copy_array->height = map_array->height;
+	copy_array->width = map_array->width;
+	copy_array->startX = map_array->startX;
+	copy_array->startY = map_array->startY;
+}
+
+void	create_array_copy(t_map_array *map_array, t_map_array *copy_array)
 {
 	int		i;
 	int		j;
-	char	**copy;
 
+	initialize_copy_array(map_array, copy_array);
+	copy_array->map = (char **)malloc((copy_array->height + 1) * sizeof(char *));
 	i = 0;
-	copy = (char **)malloc((map_array->height + 1) * sizeof(char *));
-	while (i < map_array->height)
+	while (i < copy_array->height)
 	{
-		copy[i] = (char *)malloc(map_array->width + 1);
-		if (!copy[i])
+		copy_array->map[i] = (char *)malloc(copy_array->width + 1);
+		if (!copy_array->map[i])
 		{
 			j = 0;
 			while (j < i)
-			{
-				free(copy[j]);
-				j++;
-			}
-			free(copy);
-			return (NULL);
+				free(copy_array->map[j++]);
+			free(copy_array->map);
+			ft_dprintf(2, "Failed to allocate memory for buffer\n");
+			exit (EXIT_FAILURE);
 		}
-		ft_strcpy(copy[i], map_array->map[i]);
+		ft_strcpy(copy_array->map[i], map_array->map[i]);
 		i++;
 	}
-	copy[i] = NULL;
-	return (copy);
+	copy_array->map[i] = NULL;
 }
