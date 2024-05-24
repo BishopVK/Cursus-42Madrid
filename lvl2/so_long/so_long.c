@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/23 13:19:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/24 09:43:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int	main(int argc, char *argv[])
 	copy_array.map = create_array_copy(&map_array);
 	ft_printf("copy:\n");
 	display_array(&copy_array);
+
+
+	flood_fill(&copy_array);
+
 	free_array(&map_array);
 	free_array(&copy_array);
 	return (EXIT_SUCCESS);
