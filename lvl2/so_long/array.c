@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/23 12:46:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:19:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	read_to_create_array(char *map, t_map_array *map_array)
 		if (buffer == NULL) // Check if memory was allocated correctly
 			exit_map_error(buffer, "Failed to allocate memory for buffer");
 		initialize_array(buffer, map_array, map_lines);
+		detect_player(buffer, map_array, map_lines); // POSIBLEMENTE IRÁ AQUÍ!
 		if (buffer != NULL)
 			free(buffer); // Release the memory allocated to the line
 		buffer = get_next_line(fd);
