@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 15:10:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:00:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	read_to_create_array(char *map, t_map_array *map_array);
 /****************************************/
 /*			copy_of_array.c				*/
 /****************************************/
+void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars);
 void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array);
 void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 
@@ -96,6 +97,6 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 /*			flood_fill.c				*/
 /****************************************/
 void	detect_player(char *buffer, t_map_array *map_array, int map_lines);
-void	flood_fill(t_map_array	copy_array);
+void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
 
 #endif
