@@ -6,11 +6,20 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 15:19:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:59:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars)
+{
+	copy_chars->collectible = map_chars->collectible;
+	copy_chars->empty = map_chars->empty;
+	copy_chars->exit = map_chars->exit;
+	copy_chars->player = map_chars->player;
+	copy_chars->wall = map_chars->wall;
+}
 
 void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array)
 {
