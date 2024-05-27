@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:11:52 by danjimen          #+#    #+#             */
-/*   Updated: 2024/03/12 20:11:42 by bishopvk         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:28:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char	*get_line_and_update_result(char **result, char *line)
 {
 	char	*tmp;
 
+	if (!result || !*result)
+		return (NULL);
 	ft_strlcpy(line, *result, (ft_strchr(*result, '\n') - *result) + 2);
 	tmp = *result;
 	*result = ft_strdup(ft_strchr(*result, '\n') + 1);
@@ -27,6 +29,8 @@ static char	*process_result(char **result)
 {
 	char	*line;
 
+	if (!result || !*result)
+		return (NULL);
 	if (ft_strchr(*result, '\n'))
 	{
 		line = (char *)malloc(ft_strchr(*result, '\n') - *result + 2);
@@ -39,12 +43,9 @@ static char	*process_result(char **result)
 		line = (char *)malloc(ft_strlen(*result) + 1);
 		if (line == NULL)
 			return (NULL);
-		if (line)
-		{
-			ft_strlcpy(line, *result, ft_strlen(*result) + 1);
-			free(*result);
-			*result = (NULL);
-		}
+		ft_strlcpy(line, *result, ft_strlen(*result) + 1);
+		free(*result);
+		*result = (NULL);
 	}
 	return (line);
 }
