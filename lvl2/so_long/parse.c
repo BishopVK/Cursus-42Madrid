@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:44:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:20:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ int	read_map_lines(char *buffer, char *map)
 		exit_map_error(buffer, "Void map file"); //Void map
 	while (buffer != NULL)
 	{
-		if (buffer == NULL) // Check if memory was allocated correctly
-			exit_map_error(buffer, "Failed to allocate memory for buffer"); //Void map
+		// if (buffer == NULL) // Check if memory was allocated correctly
+		// 	exit_map_error(buffer, "Failed to allocate memory for buffer"); //Void map
 		if (buffer[0] == '\n')
 			exit_map_error(buffer, "Only new line detected"); // First line void
 		ft_printf("\n%s", buffer); // Show the line read (DELETE)
 		count_buffer_len(buffer); // Count buffer length
 		check_map_characters(buffer, "01CEP"); // Check characters
-		if (buffer != NULL)
-			free(buffer); // Release the memory allocated to the line
+		// if (buffer != NULL)
+		free(buffer); // Release the memory allocated to the line
 		buffer = get_next_line(fd);
 		map_lines++;
 	}
