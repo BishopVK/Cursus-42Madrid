@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/05/24 08:47:00 by danjimen         ###   ########.fr        #
+#    Updated: 2024/05/27 13:40:51 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ endef
 
 NAME		=	so_long
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3
 SRC			=	so_long.c \
 				parse.c \
 				check_map_character.c \
