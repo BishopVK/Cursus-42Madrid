@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/05/27 13:40:51 by danjimen         ###   ########.fr        #
+#    Updated: 2024/05/27 21:14:59 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC			=	so_long.c \
 				check_map_character.c \
 				array.c \
 				copy_of_array.c \
-				flood_fill.c
+				flood_fill.c \
+				game.c
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -75,7 +76,7 @@ $(MINILIBX):
 #	@$(MAKE) -C $(OPENGL_DIR)
 
 $(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJ) $(GNL_OBJ)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -L$(MINILIBX_DIR) -lX11 -lXext -lbsd -o $(NAME)
 	$(call print_cyan,"Compiled so_long")
 
 #$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Rule for compiling with bonus items
