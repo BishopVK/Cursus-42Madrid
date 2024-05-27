@@ -6,21 +6,48 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/27 21:23:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:00:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
+int on_destroy(t_data *data)
 {
-	void	*mlx;
-	void	*mlx_win;
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+	exit(0);
+	return (0);
+}
+ 
+int on_keypress(int keysym, t_data *data)
+{
+	(void)data;
+	printf("Pressed key: %d\\n", keysym);
+	return (0);
+}
 
-	(void)map_chars;
+int	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
+{
+	t_data data;
+ 
 	(void)map_array;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 640, 480, "danjimen's game!");
-	mlx_loop(mlx);
-	(void)mlx_win;
+	(void)map_chars;
+	data.mlx_ptr = mlx_init();
+	if (!data.mlx_ptr)
+		return (1);
+	data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 400, "hi :)");
+	if (!data.win_ptr)
+		return (free(data.mlx_ptr), 1);
+ 
+	// Register key release hook
+	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
+ 
+	// Register destroy hook
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+ 
+	// Loop over the MLX pointer
+	mlx_loop(data.mlx_ptr);
+	return (0);
 }
