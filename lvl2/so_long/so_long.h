@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/27 22:36:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:38:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
 /****************************************/
 /*				game.c					*/
 /****************************************/
-void		initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
+void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
 
 #endif
