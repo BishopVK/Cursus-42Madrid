@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 16:00:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:09:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 //strerror
 # include <string.h>
 
+//Chars in map
 typedef struct s_map_chars
 {
 	int	empty;
@@ -49,6 +50,7 @@ typedef struct s_map_chars
 	int	player;
 }	t_map_chars;
 
+//Array
 typedef struct s_map_array
 {
 	int		width;
@@ -57,6 +59,16 @@ typedef struct s_map_array
 	int		startY;
 	char	**map;
 }	t_map_array;
+
+//Game
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 /****************************************/
 /*				parse.c					*/
@@ -98,5 +110,10 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 /****************************************/
 void	detect_player(char *buffer, t_map_array *map_array, int map_lines);
 void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
+
+/****************************************/
+/*				game.c					*/
+/****************************************/
+void	initialize_game();
 
 #endif
