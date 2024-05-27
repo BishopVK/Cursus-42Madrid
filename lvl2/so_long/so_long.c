@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 16:06:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:11:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[])
 	create_array_copy(&map_array, &copy_array);
 	ft_printf("copy:\n");
 	display_array(&copy_array);
-	ft_printf("copy_array->map[x][y] ==> %c\n", copy_array.map[3][1]);
+	//ft_printf("copy_array->map[x][y] ==> %c\n", copy_array.map[3][1]);
 	ft_printf("Player_copy = (%i,%i)\n", copy_array.startX, copy_array.startY);
 
 
