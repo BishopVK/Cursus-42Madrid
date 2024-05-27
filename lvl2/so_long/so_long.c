@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/27 15:11:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:24:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char *argv[])
 
 	ft_memset(&map_chars, 0, sizeof(t_map_chars));
 	ft_memset(&map_array, 0, sizeof(t_map_array));
-	ft_memset(&copy_chars, 0, sizeof(t_map_chars));
 	ft_memset(&copy_array, 0, sizeof(t_map_array));
 	if (argc != 2)
 	{
@@ -56,6 +55,9 @@ int	main(int argc, char *argv[])
 	ft_printf("copy_chars.collectible = %i\n", copy_chars.collectible);
 	ft_printf("copy_chars.player = %i\n", copy_chars.player);
 	ft_printf("copy_chars.exit = %i\n", copy_chars.exit);
+
+	//Initialize minilibx
+	initialize_game(&map_chars, &map_array);
 
 	free_array(&map_array);
 	free_array(&copy_array);
