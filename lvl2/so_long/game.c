@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/27 22:00:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:37:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int on_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
+void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
 {
 	t_data data;
  
@@ -36,10 +36,13 @@ int	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
 	(void)map_chars;
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
-		return (1);
+		exit (1);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 400, "hi :)");
 	if (!data.win_ptr)
-		return (free(data.mlx_ptr), 1);
+	{
+		free(data.mlx_ptr);
+		exit (1);
+	}
  
 	// Register key release hook
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
@@ -49,5 +52,4 @@ int	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
  
 	// Loop over the MLX pointer
 	mlx_loop(data.mlx_ptr);
-	return (0);
 }
