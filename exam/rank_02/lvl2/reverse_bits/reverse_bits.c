@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_bits.c                                       :+:      :+:    :+:   */
+/*   reverse_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 08:07:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/30 08:31:40 by danjimen         ###   ########.fr       */
+/*   Created: 2024/05/30 08:39:28 by danjimen          #+#    #+#             */
+/*   Updated: 2024/05/30 14:16:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,30 @@ void	print_bits(unsigned char octet)
 	}
 }
 
+/* unsigned char	reverse_bits(unsigned char octet)
+{
+	unsigned char	swap;
+
+	swap = octet << 4;
+	octet >>= 4;
+	octet |= swap;
+	return (octet);
+} */
+
+unsigned char	reverse_bits(unsigned char octet)
+{
+	return ((octet >> 4) | (octet << 4));
+}
+
 int	main(void)
 {
 	unsigned char	octet;
 
-	octet = 2;
+	octet = 65;
 	print_bits(octet);
+	write(1, "\n", 1);
+	octet = reverse_bits(octet);
+	print_bits(octet);
+	write(1, "\n", 1);
 	return (0);
 }
