@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 16:00:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_map_array
 {
 	int		width;
 	int		height;
-	int		startX;
-	int		startY;
+	int		start_x;
+	int		start_y;
 	char	**map;
 }	t_map_array;
 

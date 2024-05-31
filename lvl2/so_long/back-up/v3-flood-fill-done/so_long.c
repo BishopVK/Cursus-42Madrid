@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 16:06:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	ft_printf("\n>>>> ¡¡THE MAP IS CORRECT!! <<<<\n\n");
 	ft_printf("map_array:\n");
 	display_array(&map_array);
-	ft_printf("Player = (%i,%i)\n", map_array.startX, map_array.startY);
+	ft_printf("Player = (%i,%i)\n", map_array.start_x, map_array.start_y);
 
 	ft_printf("-----------\n");
 	create_copy_map_chars(&map_chars, &copy_chars);
@@ -44,13 +44,13 @@ int	main(int argc, char *argv[])
 	ft_printf("copy:\n");
 	display_array(&copy_array);
 	ft_printf("copy_array->map[x][y] ==> %c\n", copy_array.map[3][1]);
-	ft_printf("Player_copy = (%i,%i)\n", copy_array.startX, copy_array.startY);
+	ft_printf("Player_copy = (%i,%i)\n", copy_array.start_x, copy_array.start_y);
 
 
 	ft_printf("copy_chars.collectible = %i\n", copy_chars.collectible);
 	ft_printf("copy_chars.player = %i\n", copy_chars.player);
 	ft_printf("copy_chars.exit = %i\n", copy_chars.exit);
-	flood_fill(&copy_chars, &copy_array, copy_array.startY, copy_array.startX);
+	flood_fill(&copy_chars, &copy_array, copy_array.start_y, copy_array.start_x);
 	ft_printf("flood_fill:\n");
 	display_array(&copy_array);
 	ft_printf("copy_chars.collectible = %i\n", copy_chars.collectible);

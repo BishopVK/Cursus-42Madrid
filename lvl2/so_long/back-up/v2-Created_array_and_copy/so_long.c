@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:22:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char *argv[])
 	ft_printf("\n>>>> ¡¡THE MAP IS CORRECT!! <<<<\n\n");
 	ft_printf("map_array:\n");
 	display_array(&map_array);
-	ft_printf("Player = (%i,%i)\n", map_array.startX, map_array.startY);
+	ft_printf("Player = (%i,%i)\n", map_array.start_x, map_array.start_y);
 
 	ft_printf("-----------\n");
 	copy_array.height = map_array.height;
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 	copy_array.map = create_array_copy(&map_array);
 	ft_printf("copy:\n");
 	display_array(&copy_array);
-	ft_printf("Player_copy = (%i,%i)\n", copy_array.startX, copy_array.startY);
+	ft_printf("Player_copy = (%i,%i)\n", copy_array.start_x, copy_array.start_y);
 
 
 	//flood_fill(&copy_array);

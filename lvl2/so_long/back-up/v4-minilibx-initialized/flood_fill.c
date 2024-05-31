@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 08:46:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 16:05:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	detect_player(char *buffer, t_map_array *map_array, int map_lines)
 	{
 		if (buffer[i] == 'P')
 		{
-			map_array->startX = i;
-			map_array->startY = map_lines;
+			map_array->start_x = i;
+			map_array->start_y = map_lines;
 			break ;
 		}
 		i++;
