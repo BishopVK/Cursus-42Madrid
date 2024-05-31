@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/26 15:59:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array)
 {
 	copy_array->height = map_array->height;
 	copy_array->width = map_array->width;
-	copy_array->startX = map_array->startX;
-	copy_array->startY = map_array->startY;
+	copy_array->start_x = map_array->start_x;
+	copy_array->start_y = map_array->start_y;
 }
 
 void	create_array_copy(t_map_array *map_array, t_map_array *copy_array)
