@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/31 12:58:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:56:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include "minilibx-linux/mlx.h"
 
 //X11
-#include <X11/X.h>
-#include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 //open
 # include <sys/types.h>
