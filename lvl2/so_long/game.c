@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/01 22:49:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/01 23:17:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	on_keypress(int keysym, t_data *data)
 
 void	get_images_and_paths(t_data *data)
 {
-	data->img->player_path = "./sprites/xpm/color/PP.xpm";
-	data->img->collec_path = "./sprites/xpm/color/CC.xpm";
-	data->img->wall_path = "./sprites/xpm/color/11.xpm";
-	data->img->back_path = "./sprites/xpm/color/00.xpm";
-	data->img->exit_path = "./sprites/xpm/color/EE.xpm";
-	data->img->enemy_path = "./sprites/xpm/color/KK.xpm";
+	data->img->player_path = "./sprites/xpm/game/player/player_idle_1.xpm";
+	data->img->collec_path = "./sprites/xpm/game/collectible/M_Idle.xpm";
+	data->img->wall_path = "./sprites/xpm/game/water/Water.xpm";
+	data->img->back_path = "./sprites/xpm/game/background/middle.xpm";
+	data->img->exit_path = "./sprites/xpm/game/exit/stairs_4.xpm";
+	data->img->enemy_path = "./sprites/xpm/game/sheep/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 	data->img->player = mlx_xpm_file_to_image(data->mlx_ptr,
 		data->img->player_path, &data->img->img_px, &data->img->img_px);
