@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 08:46:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:01:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,20 @@ void	detect_player(char *buffer, t_map_array *map_array, int map_lines)
 	}
 }
 
-void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y)
+void	verify_flood_fill_result(t_map_chars *copy_chars,
+			t_map_array *map_array)
+{
+	if (copy_chars->player != 0 || copy_chars->exit != 0
+		|| copy_chars->collectible != 0)
+	{
+		dprintf(2, "Map imposible to solve\n");
+		free_array(map_array);
+		exit (EXIT_FAILURE);
+	}
+}
+
+void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
+			int x, int y)
 {
 	// ft_printf("x ==> %i\n", x);
 	// ft_printf("y ==> %i\n", y);
@@ -38,8 +51,6 @@ void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y)
 	if (x < 1 || x >= copy_array->height || y < 1 || y >= copy_array->width
 			|| copy_array->map[x][y] == '1' || copy_array->map[x][y] == 'V')
 	{
-		// ft_printf("Entré!:\n");
-		// ft_printf("copy_array->map[x][y] ==> %c\n", copy_array->map[3][1]);
 		return ;
 	}
 
