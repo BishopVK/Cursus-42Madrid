@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:19:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:04:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	read_to_create_array(char *map, t_map_array *map_array)
 		buffer = get_next_line(fd);
 		map_lines++;
 	}
-	if (close(fd) == -1)
-		exit_map_error(buffer, "Close error");
+	close(fd);
+	// if (close(fd) == -1)
+	// 	exit_map_error(buffer, "Close error");
 }
