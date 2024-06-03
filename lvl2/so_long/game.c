@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 09:51:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:52:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,31 @@ void	put_images(t_data *data, t_map_array *map_array)
 	}
 }
 
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
+void	verify_map_size(t_map_array *map_array, t_data *data)
+{
+	if (map_array->width * 64 > data->screen_width
+		|| map_array->height * 64 > data->screen_height)
+	{
+		free_array(map_array);
+		ft_dprintf(2, "The map is higger than screen resolution\n");
+		exit (EXIT_FAILURE);
+	}
+}
+
+void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 {
 	t_data	data;
 
 	(void)map_chars;
+	ft_printf("map_array->width ==> %i\n", map_array->width);
+	ft_printf("map_array->height ==> %i\n", map_array->height);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		exit (1);
 	//img = mlx_xpm_file_to_image(data.mlx_ptr, relative_path, &img_width, &img_height);
 	mlx_get_screen_size(data.mlx_ptr, &data.screen_width, &data.screen_height);
 	ft_printf("Screen: %dx%d\n", data.screen_width, data.screen_height);
+	verify_map_size(map_array, &data);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 832, 320, "danjimen's game!");
 	if (!data.win_ptr)
 	{
@@ -102,8 +116,8 @@ void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
 		exit (1);
 	}
 
-	put_images(&data, map_array);
 	// Put the image to the window
+	put_images(&data, map_array);
 	//mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img, 0, 0);
 
 	// Register key release hook
