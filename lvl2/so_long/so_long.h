@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/31 14:50:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:42:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct s_data
 /****************************************/
 /*				parse.c					*/
 /****************************************/
-void	exit_map_error(char *buffer, char *message);
-int		count_buffer_len(char *buffer);
+void	exit_map_error(char *buffer, char *message, int fd);
+int		count_buffer_len(char *buffer, int fd);
 int		read_map_lines(char *buffer, char *map);
 void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array);
 void	check_arg_extension(char *map);
@@ -105,12 +105,12 @@ void	check_arg_extension(char *map);
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
-void	check_nbr_chars(char *buffer, t_map_chars *map_chars);
+void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd);
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars);
-void	check_borders(char *buffer, int total_lines, int map_line);
+void	check_borders(char *buffer, int total_lines, int map_line, int fd);
 int		read_for_check_borders(char *buffer, char *map, int map_lines,
 			t_map_chars *map_chars);
-void	check_map_characters(char *buffer, char *allowed);
+void	check_map_characters(char *buffer, char *allowed, int fd);
 
 /****************************************/
 /*				array.c					*/
