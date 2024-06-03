@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/01 23:44:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:51:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,6 @@ void	put_images(t_data *data, t_map_array *map_array)
 		}
 		i++;
 	}
-
-	/*
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player, 0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->collec, 64, 64);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall, 128, 128);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back, 192, 192);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, 256, 256);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->enemy, 320, 320);
-	*/
 }
 
 void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
