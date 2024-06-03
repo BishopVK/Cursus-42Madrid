@@ -6,27 +6,33 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:10:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:38:47 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	exit_map_error(char *buffer, char *message)
+void	exit_map_error(char *buffer, char *message, int fd)
 {
 	if (buffer != NULL)
 	{
 		ft_dprintf(2, "Buffer before free: %s\n", buffer);
 		free(buffer);
 	}
-	// Final cleanup: read until get_next_line returns NULL
-	while ((buffer = get_next_line(fd)) != NULL)
-		free(buffer);
+	if (fd > 2)
+	{
+		buffer = get_next_line(fd);
+		while (buffer != NULL) // Final cleanup: read until get_next_line returns NULL
+		{
+			free(buffer);
+			buffer = get_next_line(fd);
+		}
+	}
 	ft_dprintf(2, "%s\n", message);
 	exit (EXIT_FAILURE);
 }
 
-int	count_buffer_len(char *buffer)
+int	count_buffer_len(char *buffer, int fd)
 {
 	static size_t	buffer_len;
 
@@ -35,10 +41,10 @@ int	count_buffer_len(char *buffer)
 		ft_printf("ft_strlen(buffer) => %i\n", ft_strlen(buffer));
 		//ft_dprintf(2, "THIS SHOULD ONLY COME ONE TIME\n");
 		if (buffer[ft_strlen(buffer) - 1] != '\n')
-			exit_map_error(buffer, "Wrong map size"); // 1 line map
+			exit_map_error(buffer, "Wrong map size", fd); // 1 line map
 		buffer_len = (ft_strlen(buffer) - 1);
 		if (buffer_len < 3)
-			exit_map_error(buffer, "The map must have at least 3 columns"); // At least 3 cols
+			exit_map_error(buffer, "The map must have at least 3 columns", fd); // At least 3 cols
 		ft_printf("buffer_len => %i\n", buffer_len);
 	}
 	else if (buffer[ft_strlen(buffer) - 1] == '\n')
@@ -47,7 +53,7 @@ int	count_buffer_len(char *buffer)
 		if ((ft_strlen(buffer) - 1) == buffer_len)
 			ft_dprintf(2, "Lines of the same length\n");
 		else
-			exit_map_error(buffer, "Wrong map size"); //Different line len
+			exit_map_error(buffer, "Wrong map size", fd); //Different line len
 	}
 	else
 	{
@@ -56,7 +62,7 @@ int	count_buffer_len(char *buffer)
 		if (ft_strlen(buffer) == buffer_len)
 			ft_dprintf(2, "\nLines of the same length\n");
 		else
-			exit_map_error(buffer, "Wrong map size"); //Different line len
+			exit_map_error(buffer, "Wrong map size", fd); //Different line len
 	}
 	return (buffer_len);
 }
@@ -69,19 +75,19 @@ int	read_map_lines(char *buffer, char *map)
 	map_lines = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		exit_map_error(buffer, "Open error");
+		exit_map_error(buffer, "Open error", fd);
 	buffer = get_next_line(fd);
 	if (buffer == NULL || ft_strlen(buffer) == 0)
-		exit_map_error(buffer, "Void map file"); //Void map
+		exit_map_error(buffer, "Void map file", fd); //Void map
 	while (buffer != NULL)
 	{
 		// if (buffer == NULL) // Check if memory was allocated correctly
 		// 	exit_map_error(buffer, "Failed to allocate memory for buffer"); //Void map
 		if (buffer[0] == '\n')
-			exit_map_error(buffer, "Only new line detected"); // First line void
+			exit_map_error(buffer, "Only new line detected", fd); // First line void
 		ft_printf("buffer[%i] = %s\n", map_lines, buffer); // Show the line read (DELETE)
-		count_buffer_len(buffer); // Count buffer length
-		check_map_characters(buffer, "01CEP"); // Check characters
+		count_buffer_len(buffer, fd); // Count buffer length
+		check_map_characters(buffer, "01CEP", fd); // Check characters
 		// if (buffer != NULL)
 		free(buffer); // Release the memory allocated to the line
 		buffer = get_next_line(fd);
@@ -101,7 +107,7 @@ void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array)
 	map_array->height = read_map_lines(buffer, map);
 	ft_printf("map_lines => %i\n", map_array->height);
 	if (map_array->height < 3)
-		exit_map_error(buffer, "The map must have at least 3 lines");
+		exit_map_error(buffer, "The map must have at least 3 lines", -1);
 	map_array->width = read_for_check_borders(buffer, map, map_array->height, map_chars); // Check borders
 }
 
