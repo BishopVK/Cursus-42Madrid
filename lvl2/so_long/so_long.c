@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:15:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int	main(int argc, char *argv[])
 	ft_printf("copy_chars.collectible = %i\n", copy_chars.collectible);
 	ft_printf("copy_chars.player = %i\n", copy_chars.player);
 	ft_printf("copy_chars.exit = %i\n", copy_chars.exit);
+
+	ft_printf(">>player X = %i\n", copy_array.start_x);
+	ft_printf(">>player Y = %i\n", copy_array.start_y);
 	flood_fill(&copy_chars, &copy_array, copy_array.start_y, copy_array.start_x);
 	ft_printf("flood_fill:\n");
 	display_array(&copy_array);
@@ -57,7 +60,7 @@ int	main(int argc, char *argv[])
 	ft_printf("copy_chars.exit = %i\n", copy_chars.exit);
 
 	//Initialize minilibx
-	initialize_game(&map_chars, &map_array);
+	//initialize_game(&map_chars, &map_array);
 
 	free_array(&map_array);
 	free_array(&copy_array);
