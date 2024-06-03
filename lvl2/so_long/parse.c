@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:38:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:12:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array)
 	if (map_array->height < 3)
 		exit_map_error(buffer, "The map must have at least 3 lines", -1);
 	map_array->width = read_for_check_borders(buffer, map, map_array->height, map_chars); // Check borders
+	if (map_array->height > 256 || map_array->width > 256)
+		exit_map_error(NULL, "The map is too big", -1);
 }
 
 void	check_arg_extension(char *map)
