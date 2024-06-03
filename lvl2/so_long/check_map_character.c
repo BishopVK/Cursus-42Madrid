@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:09:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:42:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_nbr_chars(char *buffer, t_map_chars *map_chars)
+void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd)
 {
 	ft_printf("map_chars->empty ==> %i\n", map_chars->empty);
 	ft_printf("map_chars->wall ==> %i\n", map_chars->wall);
@@ -22,7 +22,7 @@ void	check_nbr_chars(char *buffer, t_map_chars *map_chars)
 	if (map_chars->exit != 1 || map_chars->player != 1
 		|| map_chars->collectible < 1)
 		exit_map_error(buffer,
-			"Incorrect number of players, exits or collectibles");
+			"Incorrect number of players, exits or collectibles", fd);
 }
 
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
@@ -46,7 +46,7 @@ void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
 	}
 }
 
-void	check_borders(char *buffer, int total_lines, int map_line)
+void	check_borders(char *buffer, int total_lines, int map_line, int fd)
 {
 	int	i;
 
@@ -57,19 +57,19 @@ void	check_borders(char *buffer, int total_lines, int map_line)
 	{
 		while (buffer[i] != '\n' && buffer[i] != '\0')
 			if (buffer[i++] != '1')
-				exit_map_error(buffer, "Incorrect first or last border");
+				exit_map_error(buffer, "Incorrect first or last border", fd);
 	}
 	else
 	{
 		if (buffer[ft_strlen(buffer) - 1] == '\n')
 		{
 			if (buffer[0] != '1' || buffer[ft_strlen(buffer) - 2] != '1')
-				exit_map_error(buffer, "Incorrect left or right border");
+				exit_map_error(buffer, "Incorrect left or right border", fd);
 		}
 		else
 		{
 			if (buffer[0] != '1' || buffer[ft_strlen(buffer) - 1] != '1')
-				exit_map_error(buffer, "Incorrect left or right border");
+				exit_map_error(buffer, "Incorrect left or right border", fd);
 		}
 	}
 }
@@ -84,32 +84,30 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 	map_line = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		exit_map_error(buffer, "Open error");
+		exit_map_error(buffer, "Open error", fd);
 	buffer = get_next_line(fd);
 	if (buffer == NULL)
-		exit_map_error(buffer, "Failed to allocate memory for buffer"); //Void map
+		exit_map_error(buffer, "Failed to allocate memory for buffer", fd); //Void map
 	while (buffer != NULL)
 	{
-		if (buffer == NULL) // Verificar si se asignó memoria correctamente
-			exit_map_error(buffer, "Failed to allocate memory for buffer"); //Void map
 		ft_printf("-----------\n"); // Mostrar separador (BORRAR)
 		ft_printf("\n%s", buffer); // Mostrar la línea leída (BORRAR)
-		check_borders(buffer, total_lines, map_line);
+		check_borders(buffer, total_lines, map_line, fd);
 		count_nbr_chars(buffer, map_chars);
-		buffer_len = count_buffer_len(buffer);
+		buffer_len = count_buffer_len(buffer, fd);
 		if (buffer != NULL)
 			free(buffer); // Liberar la memoria asignada a la línea
 		buffer = get_next_line(fd);
 		map_line++;
 	}
-	check_nbr_chars(buffer, map_chars);
+	check_nbr_chars(buffer, map_chars, fd);
 	close(fd);
 	// if (close(fd) == -1)
 	// 	exit_map_error(buffer, "Close error");
 	return (buffer_len);
 }
 
-void	check_map_characters(char *buffer, char *allowed)
+void	check_map_characters(char *buffer, char *allowed, int fd)
 {
 	int	i;
 	int	j;
@@ -130,7 +128,7 @@ void	check_map_characters(char *buffer, char *allowed)
 			j++;
 		}
 		if (found == 0)
-			exit_map_error(buffer, "Not allowed map characters");
+			exit_map_error(buffer, "Not allowed map characters", fd);
 		i++;
 	}
 }
