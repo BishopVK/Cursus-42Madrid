@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 17:12:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:43:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,7 @@ void	exit_map_error(char *buffer, char *message, int fd)
 		ft_dprintf(2, "Buffer before free: %s\n", buffer);
 		free(buffer);
 	}
-	if (fd > 2)
-	{
-		buffer = get_next_line(fd);
-		while (buffer != NULL) // Final cleanup: read until get_next_line returns NULL
-		{
-			free(buffer);
-			buffer = get_next_line(fd);
-		}
-	}
+	get_next_line(fd, TRUE);
 	ft_dprintf(2, "%s\n", message);
 	exit (EXIT_FAILURE);
 }
@@ -76,7 +68,7 @@ int	read_map_lines(char *buffer, char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		exit_map_error(buffer, "Open error", fd);
-	buffer = get_next_line(fd);
+	buffer = get_next_line(fd, FALSE);
 	if (buffer == NULL || ft_strlen(buffer) == 0)
 		exit_map_error(buffer, "Void map file", fd); //Void map
 	while (buffer != NULL)
@@ -90,7 +82,7 @@ int	read_map_lines(char *buffer, char *map)
 		check_map_characters(buffer, "01CEP", fd); // Check characters
 		// if (buffer != NULL)
 		free(buffer); // Release the memory allocated to the line
-		buffer = get_next_line(fd);
+		buffer = get_next_line(fd, FALSE);
 		map_lines++;
 	}
 	close(fd);

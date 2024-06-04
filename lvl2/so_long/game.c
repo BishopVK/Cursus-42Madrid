@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 16:52:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:01:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ void	verify_map_size(t_map_array *map_array, t_data *data)
 		|| map_array->height * 64 > data->screen_height)
 	{
 		free_array(map_array);
+		//free(data->img);
 		ft_dprintf(2, "The map is higger than screen resolution\n");
+		//on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
 }

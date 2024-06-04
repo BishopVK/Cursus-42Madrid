@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:11:52 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:09:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:44:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,15 @@ int	read_file(int fd, char **result, char *buffer)
 	return (bytes_read);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_bool free_static)
 {
 	char		*buffer;
 	static char	*result;
 	char		*line;
 	int			bytes_read;
 
+	if (free_static == TRUE && result != NULL)
+		return (free(result), NULL);
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	if (!result)
