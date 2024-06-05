@@ -6,17 +6,76 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/04 15:01:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:11:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	on_destroy(t_data *data)
+/* void	clean_up(t_data *data)
+{
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
+} */
+
+/* int	on_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	exit(0);
+	return (0);
+} */
+
+void	clean_up(t_data *data)
+{
+	if (data->img)
+	{
+		if (data->img->player)
+			mlx_destroy_image(data->mlx_ptr, data->img->player);
+		if (data->img->collec)
+			mlx_destroy_image(data->mlx_ptr, data->img->collec);
+		if (data->img->wall)
+			mlx_destroy_image(data->mlx_ptr, data->img->wall);
+		if (data->img->back)
+			mlx_destroy_image(data->mlx_ptr, data->img->back);
+		if (data->img->exit)
+			mlx_destroy_image(data->mlx_ptr, data->img->exit);
+		if (data->img->enemy)
+			mlx_destroy_image(data->mlx_ptr, data->img->enemy);
+		free(data->img);
+		data->img = NULL;
+	}
+}
+
+void	free_mlx_resources(t_data *data)
+{
+	if (data->win_ptr)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		data->mlx_ptr = NULL;
+	}
+	if (data->img != NULL)
+		clean_up(data);
+}
+
+int	on_destroy(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	clean_up(data);
 	exit(0);
 	return (0);
 }
@@ -90,9 +149,13 @@ void	verify_map_size(t_map_array *map_array, t_data *data)
 		|| map_array->height * 64 > data->screen_height)
 	{
 		free_array(map_array);
-		//free(data->img);
+		if (data->mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx_ptr);
+			free(data->mlx_ptr);
+			data->mlx_ptr = NULL;
+		}
 		ft_dprintf(2, "The map is higger than screen resolution\n");
-		//on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
 }
@@ -111,7 +174,7 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	mlx_get_screen_size(data.mlx_ptr, &data.screen_width, &data.screen_height);
 	ft_printf("Screen: %dx%d\n", data.screen_width, data.screen_height);
 	verify_map_size(map_array, &data);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 832, 320, "danjimen's game!");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64, map_array->height * 64, "danjimen's game!");
 	if (!data.win_ptr)
 	{
 		free(data.mlx_ptr);
@@ -131,6 +194,7 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	// Loop over the MLX pointer
 	mlx_loop(data.mlx_ptr);
 
-	// AT END
-	free(data.img);
+	// AT END: Clean up
+	//clean_up(&data);
+	free_mlx_resources(&data);
 }
