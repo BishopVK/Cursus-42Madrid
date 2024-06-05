@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/05 10:04:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:36:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exit_map_error(char *buffer, char *message, int fd)
 		free(buffer);
 	}
 	get_next_line(fd, TRUE);
-	ft_dprintf(2, "Error\n>%s\n", message);
+	ft_dprintf(2, "Error\n> %s\n", message);
 	exit (EXIT_FAILURE);
 }
 
