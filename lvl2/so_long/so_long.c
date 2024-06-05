@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 16:19:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:16:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char *argv[])
 	//Initialize minilibx
 	initialize_game(&map_chars, &map_array);
 
-	free_array(&map_array);
+	//free_array(&map_array);
 	return (EXIT_SUCCESS);
 }
 
