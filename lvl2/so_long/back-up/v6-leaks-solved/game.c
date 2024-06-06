@@ -6,17 +6,59 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 09:51:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:44:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	on_destroy(t_data *data)
+void	clean_up(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	if (data->img)
+	{
+		if (data->img->player)
+			mlx_destroy_image(data->mlx_ptr, data->img->player);
+		if (data->img->collec)
+			mlx_destroy_image(data->mlx_ptr, data->img->collec);
+		if (data->img->wall)
+			mlx_destroy_image(data->mlx_ptr, data->img->wall);
+		if (data->img->back)
+			mlx_destroy_image(data->mlx_ptr, data->img->back);
+		if (data->img->exit)
+			mlx_destroy_image(data->mlx_ptr, data->img->exit);
+		if (data->img->enemy)
+			mlx_destroy_image(data->mlx_ptr, data->img->enemy);
+		free(data->img);
+		data->img = NULL;
+	}
+}
+
+void	free_mlx_resources(t_data *data)
+{
+	if (data->img != NULL)
+	{
+		clean_up(data);
+	}
+	if (data->win_ptr)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	if (data->mlx_ptr)
+	{
+		mlx_loop_end(data->mlx_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		data->mlx_ptr = NULL;
+	}
+}
+
+int	on_destroy(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	free_mlx_resources(data);
 	exit(0);
 	return (0);
 }
@@ -84,27 +126,49 @@ void	put_images(t_data *data, t_map_array *map_array)
 	}
 }
 
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
+void	verify_map_size(t_map_array *map_array, t_data *data)
+{
+	if (map_array->width * 64 > data->screen_width
+		|| map_array->height * 64 > data->screen_height)
+	{
+		free_array(map_array);
+		free_mlx_resources(data);
+		ft_dprintf(2, "The map is higger than screen resolution\n");
+		exit (EXIT_FAILURE);
+	}
+}
+
+void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 {
 	t_data	data;
 
 	(void)map_chars;
+	ft_printf("map_array->width ==> %i\n", map_array->width);
+	ft_printf("map_array->height ==> %i\n", map_array->height);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		exit (1);
 	//img = mlx_xpm_file_to_image(data.mlx_ptr, relative_path, &img_width, &img_height);
 	mlx_get_screen_size(data.mlx_ptr, &data.screen_width, &data.screen_height);
 	ft_printf("Screen: %dx%d\n", data.screen_width, data.screen_height);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 832, 320, "danjimen's game!");
+	data.img = NULL;
+	data.win_ptr = NULL;
+	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64, map_array->height * 64, "danjimen's game!");
 	if (!data.win_ptr)
 	{
 		free(data.mlx_ptr);
 		exit (1);
 	}
+	
+	// Verify if map fits in the screen resolution
+	verify_map_size(map_array, &data);
 
-	put_images(&data, map_array);
 	// Put the image to the window
+	put_images(&data, map_array);
 	//mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img, 0, 0);
+	
+	// Use when map_array is not necesary
+	free_array(map_array);
 
 	// Register key release hook
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
@@ -115,6 +179,6 @@ void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array)
 	// Loop over the MLX pointer
 	mlx_loop(data.mlx_ptr);
 
-	// AT END
-	free(data.img);
+	// AT END: Clean all
+	free_mlx_resources(&data);
 }

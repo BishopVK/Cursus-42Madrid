@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:42:54 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:43:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		exit_map_error(buffer, "Open error", fd);
-	buffer = get_next_line(fd);
+	buffer = get_next_line(fd, FALSE);
 	if (buffer == NULL)
 		exit_map_error(buffer, "Failed to allocate memory for buffer", fd); //Void map
 	while (buffer != NULL)
@@ -97,7 +97,7 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 		buffer_len = count_buffer_len(buffer, fd);
 		if (buffer != NULL)
 			free(buffer); // Liberar la memoria asignada a la línea
-		buffer = get_next_line(fd);
+		buffer = get_next_line(fd, FALSE);
 		map_line++;
 	}
 	check_nbr_chars(buffer, map_chars, fd);

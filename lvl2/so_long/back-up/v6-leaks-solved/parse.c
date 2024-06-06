@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 12:38:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:36:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,8 @@ void	exit_map_error(char *buffer, char *message, int fd)
 		ft_dprintf(2, "Buffer before free: %s\n", buffer);
 		free(buffer);
 	}
-	if (fd > 2)
-	{
-		buffer = get_next_line(fd);
-		while (buffer != NULL) // Final cleanup: read until get_next_line returns NULL
-		{
-			free(buffer);
-			buffer = get_next_line(fd);
-		}
-	}
-	ft_dprintf(2, "%s\n", message);
+	get_next_line(fd, TRUE);
+	ft_dprintf(2, "Error\n> %s\n", message);
 	exit (EXIT_FAILURE);
 }
 
@@ -76,7 +68,7 @@ int	read_map_lines(char *buffer, char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		exit_map_error(buffer, "Open error", fd);
-	buffer = get_next_line(fd);
+	buffer = get_next_line(fd, FALSE);
 	if (buffer == NULL || ft_strlen(buffer) == 0)
 		exit_map_error(buffer, "Void map file", fd); //Void map
 	while (buffer != NULL)
@@ -89,13 +81,13 @@ int	read_map_lines(char *buffer, char *map)
 		count_buffer_len(buffer, fd); // Count buffer length
 		check_map_characters(buffer, "01CEP", fd); // Check characters
 		// if (buffer != NULL)
+		if (ft_strlen(buffer) > 256 || map_lines > 256)
+			exit_map_error(buffer, "The map is too big", fd);
 		free(buffer); // Release the memory allocated to the line
-		buffer = get_next_line(fd);
+		buffer = get_next_line(fd, FALSE);
 		map_lines++;
 	}
 	close(fd);
-	// if (close(fd) == -1)
-	// 	exit_map_error(buffer, "Close error");
 	return (map_lines);
 }
 
@@ -109,6 +101,8 @@ void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array)
 	if (map_array->height < 3)
 		exit_map_error(buffer, "The map must have at least 3 lines", -1);
 	map_array->width = read_for_check_borders(buffer, map, map_array->height, map_chars); // Check borders
+	/* if (map_array->height > 256 || map_array->width > 256)
+		exit_map_error(NULL, "The map is too big", -1); */
 }
 
 void	check_arg_extension(char *map)
