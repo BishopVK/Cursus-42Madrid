@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 18:29:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:43:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,17 @@ int	on_destroy(void *param)
 int	on_keypress(int keysym, t_data *data)
 {
 	(void)data;
-	printf("Pressed key: %d\\n", keysym);
+	if (keysym == UP_KEY || keysym == W_KEY)
+		ft_printf("Moved Up\n");
+	else if (keysym == DOWN_KEY || keysym == S_KEY)
+		ft_printf("Moved Down\n");
+	else if (keysym == RIGHT_KEY || keysym == D_KEY)
+		ft_printf("Moved Right\n");
+	else if (keysym == LEFT_KEY || keysym == A_KEY)
+		ft_printf("Moved Left\n");
+	else if (keysym == ESC_KEY)
+		ft_printf("Pressed ESC key\n");
+	//ft_printf("Pressed key: %d\\n", keysym);
 	return (0);
 }
 
