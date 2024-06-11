@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/06 21:10:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:59:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,19 @@ void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
 
 void	get_images_and_paths(t_data *data, t_map_array *map_array)
 {
-	data->img->player_path = "./sprites/xpm/game/player/player_idle_1.xpm";
-	data->img->collec_path = "./sprites/xpm/game/collectible/M_Idle.xpm";
-	data->img->wall_path = "./sprites/xpm/game/water/Water.xpm";
-	data->img->back_path = "./sprites/xpm/game/background/middle.xpm";
-	data->img->exit_path = "./sprites/xpm/game/exit/stairs_4.xpm";
-	data->img->enemy_path = "./sprites/xpm/game/sheep/sheep_idle_1.xpm";
+	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
+	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
+	data->img->wall_path = "./sprites/xpm/TinyRanch/Tileset/water_2.xpm";
+	data->img->wall_border_path = "./sprites/xpm/TinyRanch/Tileset/water_border_1.xpm";
+	data->img->back_path = "./sprites/xpm/TinyRanch/Tileset/background.xpm";
+	data->img->exit_path = "./sprites/xpm/TinyRanch/Exit/stairs_4.xpm";
+	data->img->enemy_path = "./sprites/xpm/TinyRanch/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 
 	data->img->player = new_file_img(data->img->player_path, data, map_array);
 	data->img->collec = new_file_img(data->img->collec_path, data, map_array);
 	data->img->wall = new_file_img(data->img->wall_path, data, map_array);
+	data->img->wall_border = new_file_img(data->img->wall_border_path, data, map_array);
 	data->img->back = new_file_img(data->img->back_path, data, map_array);
 	data->img->exit = new_file_img(data->img->exit_path, data, map_array);
 	data->img->enemy = new_file_img(data->img->enemy_path, data, map_array);
@@ -119,35 +121,35 @@ void	get_images_and_paths(t_data *data, t_map_array *map_array)
 
 void	put_images(t_data *data, t_map_array *map_array)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
 	data->img = (t_img *)malloc(sizeof(t_img));
 	ft_memset(data->img, 0, sizeof(t_img));
 	get_images_and_paths(data, map_array);
-	i = 0;
-	while (map_array->map[i])
+	y = 0;
+	while (map_array->map[y])
 	{
-		j = 0;
-		while (map_array->map[i][j])
+		x = 0;
+		while (map_array->map[y][x])
 		{
-			if (map_array->map[i][j] == '0' && map_array->map[i + 1][j] == '1' && map_array->map[i - 1][j] == '1' && map_array->map[i][j + 1] == '1' && map_array->map[i][j - 1] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->enemy, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->collec, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, (j * 64), (i * 64));
-			else if (map_array->map[i][j] == 'K')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->enemy, (j * 64), (i * 64));
-			j++;
+			if (y > 0 && map_array->map[y][x] == '1' && map_array->map[y - 1][x] != '1')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall_border, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == 'P')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == 'C')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->collec, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == '1')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == '0')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, (x * 64), (y * 64));
+			else if (map_array->map[y][x] == 'K')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->enemy, (x * 64), (y * 64));
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
