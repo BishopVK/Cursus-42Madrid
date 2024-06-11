@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 22:39:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 22:46:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
 		path, &data->img->img_px, &data->img->img_px);
 	if (img == 0)
 	{
-		free_array(map_array);
-		free_mlx_resources(data);
 		ft_dprintf(2, "Error\n> Creating img whit %s\n", path);
+		free_array(map_array);
+		on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
 	return (img);
@@ -105,7 +105,7 @@ void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
 
 void	get_images_and_paths(t_data *data, t_map_array *map_array)
 {
-	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
+	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_11.xpm";
 	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
 	data->img->wall_path = "./sprites/xpm/TinyRanch/Tileset/water_2.xpm";
 	data->img->wall_border_path = "./sprites/xpm/TinyRanch/Tileset/water_border_1.xpm";
@@ -175,9 +175,9 @@ void	verify_map_size(t_map_array *map_array, t_data *data)
 	if (map_array->width * 64 > data->screen_width
 		|| map_array->height * 64 > data->screen_height)
 	{
-		free_array(map_array);
-		free_mlx_resources(data);
 		ft_dprintf(2, "Error\n> The map is higger than screen resolution\n");
+		free_array(map_array);
+		on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
 }
