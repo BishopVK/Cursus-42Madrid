@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/06 18:40:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:00:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_img
 	char	*collec_path;
 	void	*wall;
 	char	*wall_path;
+	void	*wall_border;
+	char	*wall_border_path;
 	void	*back;
 	char	*back_path;
 	void	*exit;
