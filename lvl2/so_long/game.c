@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 19:43:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 22:39:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	clean_up(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->img->collec);
 		if (data->img->wall)
 			mlx_destroy_image(data->mlx_ptr, data->img->wall);
+		if (data->img->wall_border)
+			mlx_destroy_image(data->mlx_ptr, data->img->wall_border);
 		if (data->img->back)
 			mlx_destroy_image(data->mlx_ptr, data->img->back);
 		if (data->img->exit)
@@ -65,9 +67,10 @@ int	on_destroy(void *param)
 
 int	on_keypress(int keysym, t_data *data)
 {
-	(void)data;
 	if (keysym == UP_KEY || keysym == W_KEY)
+	{
 		ft_printf("Moved Up\n");
+	}
 	else if (keysym == DOWN_KEY || keysym == S_KEY)
 		ft_printf("Moved Down\n");
 	else if (keysym == RIGHT_KEY || keysym == D_KEY)
@@ -75,8 +78,12 @@ int	on_keypress(int keysym, t_data *data)
 	else if (keysym == LEFT_KEY || keysym == A_KEY)
 		ft_printf("Moved Left\n");
 	else if (keysym == ESC_KEY)
+	{
 		ft_printf("Pressed ESC key\n");
-	//ft_printf("Pressed key: %d\\n", keysym);
+		on_destroy(data);
+	}
+	else
+		ft_printf("Pressed key: %d\n", keysym);
 	return (0);
 }
 
@@ -204,12 +211,12 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 
 	// Put text to the window
 	mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 25, 0x000000, "Hola!");
-	
-	// Use when map_array is not necesary
-	free_array(map_array);
 
 	// Register key release hook
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
+
+	// Use when map_array is not necesary
+	free_array(map_array);
 
 	// Register destroy hook
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
