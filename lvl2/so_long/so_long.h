@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 19:44:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:00:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ typedef enum s_key_codes
 	W_KEY = 119,
 	A_KEY = 97,
 	S_KEY = 115,
-	D_KEY = 100
+	D_KEY = 100,
+	X_BUTTON = 65293,
+	SPACE_KEY = 32
 } t_key_codes;
 
 
