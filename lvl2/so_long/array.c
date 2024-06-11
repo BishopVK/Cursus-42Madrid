@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/04 12:43:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 22:11:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	free_array(t_map_array *map_array)
 	int	i;
 
 	i = 0;
-	while (i < map_array->height)
+	if (map_array->map[i])
 	{
-		free(map_array->map[i]);
-		i++;
+		while (i < map_array->height)
+		{
+			free(map_array->map[i]);
+			i++;
+		}
+		free(map_array->map);
 	}
-	free(map_array->map);
 }
 
 void	display_array(t_map_array *map_array)
