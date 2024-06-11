@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 15:00:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:44:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,19 @@ typedef struct s_data
 	int		screen_height;
 	t_img	*img;
 }	t_data;
+
+typedef enum s_key_codes
+{
+	UP_KEY = 65362,
+	LEFT_KEY = 65361,
+	DOWN_KEY = 65364,
+	RIGHT_KEY = 65363,
+	ESC_KEY = 65307,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100
+} t_key_codes;
 
 
 /****************************************/
