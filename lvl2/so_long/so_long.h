@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 12:11:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:54:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,11 @@ void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
 /****************************************/
 /*			movements.c					*/
 /****************************************/
-void	move_up(t_data *data);
-void	move_left(t_data *data);
-void	move_down(t_data *data);
-void	move_right(t_data *data);
+void	move_player(t_data *data, int dir);
+// void	move_up(t_data *data);
+// void	move_left(t_data *data);
+// void	move_down(t_data *data);
+// void	move_right(t_data *data);
 
 
 #endif
