@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 00:58:35 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 09:32:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:43:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	move_resume(t_map_array *map_array, int x, int y, int dir)
 		x -= 1;
 	if (dir == RIGHT_KEY)
 		x += 1;
-	if (map_array->map[y][x] == 'E' && map_array->chars->collectible == 0)
-		return (ft_win(map_array));
+	/* if (map_array->map[y][x] == 'E' && map_array->chars->collectible == 0)
+		return (ft_win(map_array)); */
 	if (map_array->map[y][x] == 'C')
 	{
 		map_array->map[y][x] = '0';
@@ -31,7 +31,7 @@ static void	move_resume(t_map_array *map_array, int x, int y, int dir)
 	}
 }
 
-void	move_up(t_data	*data)
+void	move_up(t_data *data)
 {
 	int	x;
 	int	y;
@@ -40,7 +40,7 @@ void	move_up(t_data	*data)
 	y = data->map_array->start_y;
 	if (y > 0 && data->map_array->map[y - 1][x] != '1')
 	{
-		move_resume(data->map_array, x, y, UP_KEY);
+		//move_resume(data->map_array, x, y, UP_KEY);
 		if (data->map_array->map[y - 1][x] == 'E' && (data->map_array->chars->collectible != 0 || data->map_array->chars->exit == 1))
 			return ;
 		data->map_array->moves++;
@@ -48,7 +48,7 @@ void	move_up(t_data	*data)
 			x * data->img->img_px, y * data->img->img_px);
 		data->map_array->map[y][x] = '0';
 		y--;
-		print_movements(data->map_array);
+		//print_movements(data->map_array);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
 			x * data->img->img_px, y * data->img->img_px);
 		// Put player_back_idle
@@ -59,7 +59,7 @@ void	move_up(t_data	*data)
 	}
 }
 
-void	move_left(t_data	*data)
+void	move_left(t_data *data)
 {
 	int	x;
 	int	y;
@@ -68,7 +68,7 @@ void	move_left(t_data	*data)
 	y = data->map_array->start_y;
 	if (x > 0 && data->map_array->map[y][x - 1] != '1')
 	{
-		move_resume(data->map_array, x, y, LEFT_KEY);
+		//move_resume(data->map_array, x, y, LEFT_KEY);
 		if (data->map_array->map[y][x - 1] == 'E' && (data->map_array->chars->collectible != 0 || data->map_array->chars->exit == 1))
 			return ;
 		data->map_array->moves++;
@@ -76,7 +76,7 @@ void	move_left(t_data	*data)
 			x * data->img->img_px, y * data->img->img_px);
 		data->map_array->map[y][x] = '0';
 		x--;
-		print_movements(data->map_array);
+		//print_movements(data->map_array);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
 			x * data->img->img_px, y * data->img->img_px);
 		// Put player_left_idle
@@ -87,7 +87,7 @@ void	move_left(t_data	*data)
 	}
 }
 
-void	move_down(t_data	*data)
+void	move_down(t_data *data)
 {
 	int	x;
 	int	y;
@@ -110,12 +110,12 @@ void	move_down(t_data	*data)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 			x * data->img->img_px, y * data->img->img_px);
 		data->map_array->map[y][x] = 'P';
-		print_movements(data->map_array);
+		//print_movements(data->map_array);
 		data->map_array->start_y = y;
 	}
 }
 
-void	move_right(t_data	*data)
+void	move_right(t_data *data)
 {
 	int	x;
 	int	y;
@@ -138,7 +138,7 @@ void	move_right(t_data	*data)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 			x * data->img->img_px, y * data->img->img_px);
 		data->map_array->map[y][x] = 'P';
-		print_movements(data->map_array);
+		//print_movements(data->map_array);
 	}
 	data->map_array->start_x = x;
 }
