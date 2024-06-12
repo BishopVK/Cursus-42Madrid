@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 14:05:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:47:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,17 @@ void	move_player(t_data *data, int dir)
 		data->map_array->map[new_y][new_x] != '1')
 	{
 		if (data->map_array->map[new_y][new_x] == 'E' &&
-			(data->map_array->chars->collectible != 0 || data->map_array->chars->exit == 1))
+			data->map_array->chars->collectible != 0)
+		{
+			ft_printf("Has llegado a la salida!\n");
+			return ;
+		}
+		if (data->map_array->map[new_y][new_x] == 'E' &&
+			data->map_array->chars->collectible == 0)
+		{
+			ft_printf("Has Ganado!\n");
 			return;
+		}
 
 		data->map_array->moves++;
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
