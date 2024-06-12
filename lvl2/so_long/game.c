@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 18:38:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:23:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,49 +56,7 @@ void	free_mlx_resources(t_data *data)
 	}
 }
 
-int	on_destroy(void *param)
-{
-	t_data	*data;
-
-	data = (t_data *)param;
-	free_mlx_resources(data);
-	exit(0);
-	return (0);
-}
-
-int	on_keypress(int keysym, t_data *data)
-{
-	if (keysym == UP_KEY || keysym == W_KEY)
-	{
-		ft_printf("Moved Up\n");
-		move_player(data, UP_KEY);
-	}
-	else if (keysym == DOWN_KEY || keysym == S_KEY)
-	{
-		ft_printf("Moved Down\n");
-		move_player(data, DOWN_KEY);
-	}
-	else if (keysym == RIGHT_KEY || keysym == D_KEY)
-	{
-		ft_printf("Moved Right\n");
-		move_player(data, RIGHT_KEY);
-	}
-	else if (keysym == LEFT_KEY || keysym == A_KEY)
-	{
-		ft_printf("Moved Left\n");
-		move_player(data, LEFT_KEY);
-	}
-	else if (keysym == ESC_KEY)
-	{
-		ft_printf("Pressed ESC key\n");
-		on_destroy(data);
-	}
-	else
-		ft_printf("Pressed key: %d\n", keysym);
-	return (0);
-}
-
-void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
+void	*new_file_img(char *path, t_data *data)
 {
 	void	*img;
 
@@ -107,14 +65,14 @@ void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
 	if (img == 0)
 	{
 		ft_dprintf(2, "Error\n> Creating img whit %s\n", path);
-		free_array(map_array);
+		//free_array(map_array);
 		on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
 	return (img);
 }
 
-void	get_images_and_paths(t_data *data, t_map_array *map_array)
+void	get_images_and_paths(t_data *data)
 {
 	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
 	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
@@ -125,13 +83,13 @@ void	get_images_and_paths(t_data *data, t_map_array *map_array)
 	data->img->enemy_path = "./sprites/xpm/TinyRanch/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 
-	data->img->player = new_file_img(data->img->player_path, data, map_array);
-	data->img->collec = new_file_img(data->img->collec_path, data, map_array);
-	data->img->wall = new_file_img(data->img->wall_path, data, map_array);
-	data->img->wall_border = new_file_img(data->img->wall_border_path, data, map_array);
-	data->img->back = new_file_img(data->img->back_path, data, map_array);
-	data->img->exit = new_file_img(data->img->exit_path, data, map_array);
-	data->img->enemy = new_file_img(data->img->enemy_path, data, map_array);
+	data->img->player = new_file_img(data->img->player_path, data);
+	data->img->collec = new_file_img(data->img->collec_path, data);
+	data->img->wall = new_file_img(data->img->wall_path, data);
+	data->img->wall_border = new_file_img(data->img->wall_border_path, data);
+	data->img->back = new_file_img(data->img->back_path, data);
+	data->img->exit = new_file_img(data->img->exit_path, data);
+	data->img->enemy = new_file_img(data->img->enemy_path, data);
 
 	/* data->img->player = mlx_xpm_file_to_image(data->mlx_ptr,
 		data->img->player_path, &data->img->img_px, &data->img->img_px);
@@ -154,7 +112,7 @@ void	put_images(t_data *data, t_map_array *map_array)
 
 	data->img = (t_img *)malloc(sizeof(t_img));
 	ft_memset(data->img, 0, sizeof(t_img));
-	get_images_and_paths(data, map_array);
+	get_images_and_paths(data);
 	y = 0;
 	while (map_array->map[y])
 	{
@@ -187,7 +145,7 @@ void	verify_map_size(t_map_array *map_array, t_data *data)
 		|| map_array->height * 64 > data->screen_height)
 	{
 		ft_dprintf(2, "Error\n> The map is higger than screen resolution\n");
-		free_array(map_array);
+		//free_array(map_array);
 		on_destroy(data);
 		exit (EXIT_FAILURE);
 	}
