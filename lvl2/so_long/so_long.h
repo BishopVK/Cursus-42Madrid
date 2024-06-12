@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 13:54:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:25:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,19 @@ void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
 /****************************************/
 /*				game.c					*/
 /****************************************/
+void	clean_up(t_data *data);
+void	free_mlx_resources(t_data *data);
+void	*new_file_img(char *path, t_data *data);
+void	get_images_and_paths(t_data *data);
+void	put_images(t_data *data, t_map_array *map_array);
+void	verify_map_size(t_map_array *map_array, t_data *data);
 void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
+
+/****************************************/
+/*				hooks.c					*/
+/****************************************/
+int		on_destroy(void *param);
+int		on_keypress(int keysym, t_data *data);
 
 /****************************************/
 /*			movements.c					*/
