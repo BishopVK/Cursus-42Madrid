@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 08:51:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:13:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,23 @@ int	on_keypress(int keysym, t_data *data)
 	if (keysym == UP_KEY || keysym == W_KEY)
 	{
 		ft_printf("Moved Up\n");
+		move_up(data);
 	}
 	else if (keysym == DOWN_KEY || keysym == S_KEY)
+	{
 		ft_printf("Moved Down\n");
+		move_down(data);
+	}
 	else if (keysym == RIGHT_KEY || keysym == D_KEY)
+	{
 		ft_printf("Moved Right\n");
+		move_right(data);
+	}
 	else if (keysym == LEFT_KEY || keysym == A_KEY)
+	{
 		ft_printf("Moved Left\n");
+		move_left(data);
+	}
 	else if (keysym == ESC_KEY)
 	{
 		ft_printf("Pressed ESC key\n");
