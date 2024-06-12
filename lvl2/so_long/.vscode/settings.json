@@ -4,6 +4,9 @@
 		"ft_printf.h": "c",
 		"get_next_line.h": "c",
 		"stdlib.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"ranges": "c"
 	}
 }
