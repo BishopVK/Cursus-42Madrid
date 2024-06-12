@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 22:46:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 08:51:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	*new_file_img(char *path, t_data *data, t_map_array *map_array)
 
 void	get_images_and_paths(t_data *data, t_map_array *map_array)
 {
-	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_11.xpm";
+	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
 	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
 	data->img->wall_path = "./sprites/xpm/TinyRanch/Tileset/water_2.xpm";
 	data->img->wall_border_path = "./sprites/xpm/TinyRanch/Tileset/water_border_1.xpm";
@@ -186,7 +186,15 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 {
 	t_data	data;
 
-	(void)map_chars;
+	map_array->chars = map_chars;
+	data.map_array = map_array;
+	ft_printf("<<<<<>>>>>\n");
+	ft_printf("collectibles = %i\n", map_array->chars->collectible);
+	ft_printf("player = %i\n", map_array->chars->player);
+	ft_printf("exit = %i\n", map_array->chars->exit);
+	ft_printf("wall = %i\n", map_array->chars->wall);
+	ft_printf("empty = %i\n", map_array->chars->empty);
+	ft_printf("<<<<<>>>>>\n");
 	ft_printf("map_array->width ==> %i\n", map_array->width);
 	ft_printf("map_array->height ==> %i\n", map_array->height);
 	data.mlx_ptr = mlx_init();
