@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 19:22:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:11:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ void	move_player(t_data *data, int dir)
 
 		data->map_array->start_x = new_x;
 		data->map_array->start_y = new_y;
+		ft_printf("Counter: %i\n", data->map_array->moves);
+		// ON BONUS
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall,
+			0 * data->img->img_px, 0 * data->img->img_px);
+		char	*moves = ft_itoa(data->map_array->moves);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 25, 0x000000, moves);
+		free(moves);
 	}
 }
 
