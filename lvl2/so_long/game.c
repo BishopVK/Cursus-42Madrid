@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 12:13:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:05:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ int	on_keypress(int keysym, t_data *data)
 	if (keysym == UP_KEY || keysym == W_KEY)
 	{
 		ft_printf("Moved Up\n");
-		move_up(data);
+		move_player(data, UP_KEY);
 	}
 	else if (keysym == DOWN_KEY || keysym == S_KEY)
 	{
 		ft_printf("Moved Down\n");
-		move_down(data);
+		move_player(data, DOWN_KEY);
 	}
 	else if (keysym == RIGHT_KEY || keysym == D_KEY)
 	{
 		ft_printf("Moved Right\n");
-		move_right(data);
+		move_player(data, RIGHT_KEY);
 	}
 	else if (keysym == LEFT_KEY || keysym == A_KEY)
 	{
 		ft_printf("Moved Left\n");
-		move_left(data);
+		move_player(data, LEFT_KEY);
 	}
 	else if (keysym == ESC_KEY)
 	{
@@ -234,7 +234,7 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
 
 	// Use when map_array is not necesary
-	free_array(map_array);
+	//free_array(map_array);
 
 	// Register destroy hook
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
