@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 19:23:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:43:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,14 +186,15 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	// Put the image to the window
 	put_images(&data, map_array);
 
-	// Put text to the window
-	mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 25, 0x000000, "Hola!");
+	// Put text to the window on BONUS
+	//mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 100, 0x000000, "Hola!");
+	char	*moves;
+	moves = ft_itoa(data.map_array->moves);
+	mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 25, 0x000000, moves);
+	free(moves);
 
 	// Register key release hook
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-
-	// Use when map_array is not necesary
-	//free_array(map_array);
 
 	// Register destroy hook
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
