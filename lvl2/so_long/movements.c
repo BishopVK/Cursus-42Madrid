@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 20:11:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:05:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	move_player(t_data *data, int dir)
 		if (data->map_array->map[new_y][new_x] == 'E' &&
 			data->map_array->chars->collectible != 0)
 		{
-			ft_printf("Has llegado a la salida!\n");
+			//ft_printf("Has llegado a la salida!\n");
 			return ;
 		}
 		if (data->map_array->map[new_y][new_x] == 'E' &&
