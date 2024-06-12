@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 14:47:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:22:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static void	move_resume(t_map_array *map_array, int *x, int *y, int dir)
 		*x -= 1;
 	if (dir == RIGHT_KEY)
 		*x += 1;
-
 	if (map_array->map[*y][*x] == 'C')
 	{
 		map_array->map[*y][*x] = '0';
 		map_array->chars->collectible--;
+		ft_printf("Items remeaning: %i\n", map_array->chars->collectible);
 	}
 }
 
@@ -57,7 +57,7 @@ void	move_player(t_data *data, int dir)
 			data->map_array->chars->collectible == 0)
 		{
 			ft_printf("Has Ganado!\n");
-			return;
+			on_destroy(data);
 		}
 
 		data->map_array->moves++;
