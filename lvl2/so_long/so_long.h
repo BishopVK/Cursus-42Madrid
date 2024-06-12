@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/11 20:00:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 08:50:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ typedef struct s_map_chars
 //Array
 typedef struct s_map_array
 {
-	int		width;
-	int		height;
-	int		start_x;
-	int		start_y;
-	char	**map;
+	int			width;
+	int			height;
+	int			start_x;
+	int			start_y;
+	int			moves;
+	char		**map;
+	t_map_chars	*chars;
 }	t_map_array;
 
 //XPM
@@ -87,11 +89,12 @@ typedef struct s_img
 //Game
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		screen_width;
-	int		screen_height;
-	t_img	*img;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			screen_width;
+	int			screen_height;
+	t_img		*img;
+	t_map_array	*map_array;
 }	t_data;
 
 typedef enum s_key_codes
