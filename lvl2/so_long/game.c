@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 14:05:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:38:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	clean_up(t_data *data)
 
 void	free_mlx_resources(t_data *data)
 {
+	free_array(data->map_array);
 	if (data->img != NULL)
 	{
 		clean_up(data);
