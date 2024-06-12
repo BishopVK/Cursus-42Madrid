@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/12 12:11:34 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/12 19:26:05 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=	so_long.c \
 				copy_of_array.c \
 				flood_fill.c \
 				game.c \
+				hooks.c \
 				movements.c
 
 OBJ			=	$(SRC:.c=.o)
