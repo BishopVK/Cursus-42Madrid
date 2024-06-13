@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 08:26:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:29:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,54 @@ void	move_player(t_data *data, int dir)
 		}
 
 		data->map_array->moves++;
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
-			x * data->img->img_px, y * data->img->img_px);
-		data->map_array->map[y][x] = '0';
+		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
+			x * data->img->img_px, y * data->img->img_px); */
+		if (y == data->map_array->exit_y && x == data->map_array->exit_x)
+		{
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit,
+				x * data->img->img_px, y * data->img->img_px);
+			data->map_array->map[y][x] = 'E';
+		}
+		else
+		{
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
+				x * data->img->img_px, y * data->img->img_px);
+			data->map_array->map[y][x] = '0';
+		}
 
 		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
 			new_x * data->img->img_px, new_y * data->img->img_px); */
 
-		// Coloca la imagen del jugador en la nueva posición
+		// Coloca la imagen del jugador en la nueva posición >MANDATORY PART<
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-			new_x * data->img->img_px, new_y * data->img->img_px);
+				new_x * data->img->img_px, new_y * data->img->img_px);
+		data->map_array->map[new_y][new_x] = 'P';
+
+		// Coloca la imagen del jugador en la nueva posición >BONUS PART<
+		if (dir == DOWN_KEY)
+		{
+			data->img->player = new_file_img(data->img->player_path, data);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+				new_x * data->img->img_px, new_y * data->img->img_px);
+		}
+		if (dir == UP_KEY)
+		{
+			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_back_idle_1.xpm", data);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+				new_x * data->img->img_px, new_y * data->img->img_px);
+		}
+		if (dir == LEFT_KEY)
+		{
+			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm", data);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+				new_x * data->img->img_px, new_y * data->img->img_px);
+		}
+		if (dir == RIGHT_KEY)
+		{
+			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm", data);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+				new_x * data->img->img_px, new_y * data->img->img_px);
+		}
 		data->map_array->map[new_y][new_x] = 'P';
 
 		data->map_array->start_x = new_x;
