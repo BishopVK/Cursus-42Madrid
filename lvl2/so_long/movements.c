@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 09:29:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:32:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	move_player(t_data *data, int dir)
 			new_x * data->img->img_px, new_y * data->img->img_px); */
 
 		// Coloca la imagen del jugador en la nueva posición >MANDATORY PART<
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
-		data->map_array->map[new_y][new_x] = 'P';
+		data->map_array->map[new_y][new_x] = 'P'; */
 
 		// Coloca la imagen del jugador en la nueva posición >BONUS PART<
 		if (dir == DOWN_KEY)
