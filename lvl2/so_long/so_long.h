@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 20:44:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:05:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_map_array
 	int			height;
 	int			start_x;
 	int			start_y;
+	int			exit_x;
+	int			exit_y;
 	int			moves;
 	char		**map;
 	t_map_chars	*chars;
@@ -151,7 +153,7 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 /****************************************/
 /*			flood_fill.c				*/
 /****************************************/
-void	detect_player(char *buffer, t_map_array *map_array, int map_lines);
+void	detect_player_and_exit(char *buffer, t_map_array *map_array, int map_lines);
 void	verify_flood_fill_result(t_map_chars *copy_chars, t_map_array *map_array);
 void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
 
