@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 08:46:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/03 14:01:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:04:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	detect_player(char *buffer, t_map_array *map_array, int map_lines)
+void	detect_player_and_exit(char *buffer, t_map_array *map_array, int map_lines)
 {
 	int	i;
 
@@ -23,6 +23,17 @@ void	detect_player(char *buffer, t_map_array *map_array, int map_lines)
 		{
 			map_array->start_x = i;
 			map_array->start_y = map_lines;
+			break ;
+		}
+		i++;
+	}
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == 'E')
+		{
+			map_array->exit_x = i;
+			map_array->exit_y = map_lines;
 			break ;
 		}
 		i++;
