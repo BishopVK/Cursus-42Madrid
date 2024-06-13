@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 09:32:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:53:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,32 +80,36 @@ void	move_player(t_data *data, int dir)
 			new_x * data->img->img_px, new_y * data->img->img_px); */
 
 		// Coloca la imagen del jugador en la nueva posición >MANDATORY PART<
-		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[0],
 				new_x * data->img->img_px, new_y * data->img->img_px);
 		data->map_array->map[new_y][new_x] = 'P'; */
 
 		// Coloca la imagen del jugador en la nueva posición >BONUS PART<
 		if (dir == DOWN_KEY)
 		{
-			data->img->player = new_file_img(data->img->player_path, data);
+			//free(data->img->player);
+			data->img->player = new_file_img(data->img->player_path[0], data);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
 		}
 		if (dir == UP_KEY)
 		{
-			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_back_idle_1.xpm", data);
+			//free(data->img->player);
+			data->img->player = new_file_img(data->img->player_path[1], data);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
 		}
 		if (dir == LEFT_KEY)
 		{
-			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm", data);
+			//free(data->img->player);
+			data->img->player = new_file_img(data->img->player_path[2], data);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
 		}
 		if (dir == RIGHT_KEY)
 		{
-			data->img->player = new_file_img("./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm", data);
+			//free(data->img->player);
+			data->img->player = new_file_img(data->img->player_path[3], data);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
 		}
