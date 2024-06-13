@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 21:05:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 08:26:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	move_player(t_data *data, int dir)
 		new_y >= 0 && new_y < data->map_array->height &&
 		data->map_array->map[new_y][new_x] != '1')
 	{
-		if (data->map_array->map[new_y][new_x] == 'E' &&
+		/* if (data->map_array->map[new_y][new_x] == 'E' &&
 			data->map_array->chars->collectible != 0)
 		{
 			//ft_printf("Has llegado a la salida!\n");
 			return ;
-		}
+		} */
 		if (data->map_array->map[new_y][new_x] == 'E' &&
 			data->map_array->chars->collectible == 0)
 		{
@@ -65,8 +65,8 @@ void	move_player(t_data *data, int dir)
 			x * data->img->img_px, y * data->img->img_px);
 		data->map_array->map[y][x] = '0';
 
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
-			new_x * data->img->img_px, new_y * data->img->img_px);
+		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
+			new_x * data->img->img_px, new_y * data->img->img_px); */
 
 		// Coloca la imagen del jugador en la nueva posición
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
@@ -82,6 +82,9 @@ void	move_player(t_data *data, int dir)
 		char	*moves = ft_itoa(data->map_array->moves);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 25, 0x000000, moves);
 		free(moves);
+
+		// Display Array for Debugging
+		display_array(data->map_array);
 	}
 }
 
