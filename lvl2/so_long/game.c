@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/12 20:43:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:48:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	*new_file_img(char *path, t_data *data)
 {
 	void	*img;
 
+	img = NULL;
+	if (img != NULL)
+		free(img);
 	img = mlx_xpm_file_to_image(data->mlx_ptr,
 		path, &data->img->img_px, &data->img->img_px);
 	if (img == 0)
@@ -74,16 +77,19 @@ void	*new_file_img(char *path, t_data *data)
 
 void	get_images_and_paths(t_data *data)
 {
-	data->img->player_path = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
+	data->img->player_path[0] = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
+	data->img->player_path[1] = "./sprites/xpm/TinyRanch/Player/char_back_idle_1.xpm";
+	data->img->player_path[2] = "./sprites/xpm/TinyRanch/Player/char_left_idle_1.xpm";
+	data->img->player_path[3] = "./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm";
 	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
 	data->img->wall_path = "./sprites/xpm/TinyRanch/Tileset/water_2.xpm";
 	data->img->wall_border_path = "./sprites/xpm/TinyRanch/Tileset/water_border_1.xpm";
 	data->img->back_path = "./sprites/xpm/TinyRanch/Tileset/background.xpm";
-	data->img->exit_path = "./sprites/xpm/TinyRanch/Exit/stairs_4.xpm";
+	data->img->exit_path = "./sprites/xpm/TinyRanch/Exit/exit_4.xpm";
 	data->img->enemy_path = "./sprites/xpm/TinyRanch/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 
-	data->img->player = new_file_img(data->img->player_path, data);
+	data->img->player = new_file_img(data->img->player_path[0], data);
 	data->img->collec = new_file_img(data->img->collec_path, data);
 	data->img->wall = new_file_img(data->img->wall_path, data);
 	data->img->wall_border = new_file_img(data->img->wall_border_path, data);
