@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 09:20:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:35:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_map_array
 typedef struct s_img
 {
 	void	*player;
-	char	*player_path;
+	char	*player_path[4];
 	void	*collec;
 	char	*collec_path;
 	void	*wall;
