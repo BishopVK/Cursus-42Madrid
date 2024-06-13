@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 22:48:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:00:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	*new_file_img(char *path, t_data *data)
 {
 	void	*img;
 
-	img = NULL;
-	if (img != NULL)
-		free(img);
 	img = mlx_xpm_file_to_image(data->mlx_ptr,
 		path, &data->img->img_px, &data->img->img_px);
 	if (img == 0)
