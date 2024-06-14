@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 18:49:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:07:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	verify_map_size(t_map_array *map_array, t_data *data)
 void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 {
 	t_data	data;
-	char	*moves;
 
 	map_array->chars = map_chars;
 	data.map_array = map_array;
@@ -104,9 +103,7 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	}
 	verify_map_size(map_array, &data);
 	put_images(&data, map_array);
-	moves = ft_itoa(data.map_array->moves);
-	mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 25, 0x000000, moves);
-	free(moves);
+	initialize_screen_counter(&data);
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
