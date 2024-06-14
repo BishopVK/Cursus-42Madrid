@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/05/31 09:38:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:35:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array)
 	int		j;
 
 	initialize_copy_array(map_array, copy_array);
-	copy_array->map = (char **)malloc((copy_array->height + 1) * sizeof(char *));
+	copy_array->map = (char **)malloc((copy_array->height + 1)
+			* sizeof(char *));
 	i = 0;
 	while (i < copy_array->height)
 	{
@@ -46,7 +47,7 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array)
 			while (j < i)
 				free(copy_array->map[j++]);
 			free(copy_array->map);
-			ft_dprintf(2, "Failed to allocate memory for buffer\n");
+			ft_dprintf(2, "Error\n> Failed to allocate memory for buffer\n");
 			exit (EXIT_FAILURE);
 		}
 		ft_strcpy(copy_array->map[i], map_array->map[i]);
