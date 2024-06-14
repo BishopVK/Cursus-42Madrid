@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 22:35:36 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:53:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@ typedef enum s_key_codes
 	D_KEY = 100,
 	X_BUTTON = 65293,
 	SPACE_KEY = 32
-} t_key_codes;
-
+}	t_key_codes;
 
 /****************************************/
 /*				parse.c					*/
@@ -153,9 +152,12 @@ void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
 /****************************************/
 /*			flood_fill.c				*/
 /****************************************/
-void	detect_player_and_exit(char *buffer, t_map_array *map_array, int map_lines);
-void	verify_flood_fill_result(t_map_chars *copy_chars, t_map_array *map_array);
-void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array, int x, int y);
+void	detect_player_and_exit(char *buffer, t_map_array *map_array,
+			int map_lines);
+void	verify_flood_fill_result(t_map_chars *copy_chars,
+			t_map_array *map_array);
+void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
+			int x, int y);
 
 /****************************************/
 /*				game.c					*/
@@ -178,10 +180,5 @@ int		on_keypress(int keysym, t_data *data);
 /*			movements.c					*/
 /****************************************/
 void	move_player(t_data *data, int dir);
-// void	move_up(t_data *data);
-// void	move_left(t_data *data);
-// void	move_down(t_data *data);
-// void	move_right(t_data *data);
-
 
 #endif
