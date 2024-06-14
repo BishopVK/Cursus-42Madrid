@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:03:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:03:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:09:02 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	count_nbr_chars(char *buffer, t_map_chars *map_chars)
 			map_chars->exit++;
 		else if (buffer[i] == 'P')
 			map_chars->player++;
+		else if (buffer[i] == 'K')
+			map_chars->enemy++;
 		i++;
 	}
 }
