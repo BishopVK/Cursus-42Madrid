@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 12:37:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:47:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd)
 {
-	ft_printf("map_chars->empty ==> %i\n", map_chars->empty);
-	ft_printf("map_chars->wall ==> %i\n", map_chars->wall);
-	ft_printf("map_chars->collectible ==> %i\n", map_chars->collectible);
-	ft_printf("map_chars->exit ==> %i\n", map_chars->exit);
-	ft_printf("map_chars->player ==> %i\n", map_chars->player);
 	if (map_chars->exit != 1 || map_chars->player != 1
 		|| map_chars->collectible < 1)
 		exit_map_error(buffer,
