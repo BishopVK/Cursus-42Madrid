@@ -6,18 +6,45 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:04:47 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 13:06:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:30:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	put_images_on_window(t_data *data, t_map_array *map_array,
+			int *x, int *y)
+{
+	if (*y > 0 && map_array->map[*y][*x] == '1' &&
+		map_array->map[*y - 1][*x] != '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->wall_border, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == 'P')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->player, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == 'C')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->collec, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->wall, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == '0')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->back, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == 'E')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->exit, (*x * 64), (*y * 64));
+	else if (map_array->map[*y][*x] == 'K')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->enemy, (*x * 64), (*y * 64));
+}
 
 void	*new_file_img(char *path, t_data *data)
 {
 	void	*img;
 
 	img = mlx_xpm_file_to_image(data->mlx_ptr,
-		path, &data->img->img_px, &data->img->img_px);
+			path, &data->img->img_px, &data->img->img_px);
 	if (img == 0)
 	{
 		ft_dprintf(2, "Error\n> Creating img whit %s\n", path);
@@ -29,24 +56,22 @@ void	*new_file_img(char *path, t_data *data)
 
 void	get_images_and_paths(t_data *data)
 {
-	data->img->player_path[0] = "./sprites/xpm/TinyRanch/Player/char_front_idle_1.xpm";
-	data->img->player_path[1] = "./sprites/xpm/TinyRanch/Player/char_back_idle_1.xpm";
-	data->img->player_path[2] = "./sprites/xpm/TinyRanch/Player/char_left_idle_1.xpm";
-	data->img->player_path[3] = "./sprites/xpm/TinyRanch/Player/char_right_idle_1.xpm";
-	data->img->collec_path = "./sprites/xpm/TinyRanch/Item/tomato.xpm";
-	data->img->wall_path = "./sprites/xpm/TinyRanch/Tileset/water_2.xpm";
-	data->img->wall_border_path = "./sprites/xpm/TinyRanch/Tileset/water_border_1.xpm";
-	data->img->back_path = "./sprites/xpm/TinyRanch/Tileset/background.xpm";
-	data->img->exit_path = "./sprites/xpm/TinyRanch/Exit/exit_4.xpm";
-	data->img->enemy_path = "./sprites/xpm/TinyRanch/Enemy/sheep_idle_1.xpm";
+	data->img->player_path = "./sprites/xpm/Player/char_front_idle_1.xpm";
+	data->img->collec_path = "./sprites/xpm/Item/tomato.xpm";
+	data->img->wall_path = "./sprites/xpm/Tileset/water_2.xpm";
+	data->img->wall_border_path = "./sprites/xpm/Tileset/water_border_1.xpm";
+	data->img->back_path = "./sprites/xpm/Tileset/background.xpm";
+	data->img->exit_path = "./sprites/xpm/Exit/exit_0.xpm";
+	data->img->exit_path_2 = "./sprites/xpm/Exit/exit_4.xpm";
+	data->img->enemy_path = "./sprites/xpm/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
-
-	data->img->player = new_file_img(data->img->player_path[0], data);
+	data->img->player = new_file_img(data->img->player_path, data);
 	data->img->collec = new_file_img(data->img->collec_path, data);
 	data->img->wall = new_file_img(data->img->wall_path, data);
 	data->img->wall_border = new_file_img(data->img->wall_border_path, data);
 	data->img->back = new_file_img(data->img->back_path, data);
 	data->img->exit = new_file_img(data->img->exit_path, data);
+	data->img->exit_2 = new_file_img(data->img->exit_path_2, data);
 	data->img->enemy = new_file_img(data->img->enemy_path, data);
 }
 
@@ -64,20 +89,7 @@ void	put_images(t_data *data, t_map_array *map_array)
 		x = 0;
 		while (map_array->map[y][x])
 		{
-			if (y > 0 && map_array->map[y][x] == '1' && map_array->map[y - 1][x] != '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall_border, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == 'P')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->collec, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, (x * 64), (y * 64));
-			else if (map_array->map[y][x] == 'K')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->enemy, (x * 64), (y * 64));
+			put_images_on_window(data, map_array, &x, &y);
 			x++;
 		}
 		y++;
