@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_character.c                              :+:      :+:    :+:   */
+/*   check_map_character_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 12:47:06 by danjimen         ###   ########.fr       */
+/*   Created: 2024/06/14 14:03:37 by danjimen          #+#    #+#             */
+/*   Updated: 2024/06/14 14:03:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_of_array.c                                    :+:      :+:    :+:   */
+/*   copy_of_array_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 18:53:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 12:35:32 by danjimen         ###   ########.fr       */
+/*   Created: 2024/06/14 14:03:48 by danjimen          #+#    #+#             */
+/*   Updated: 2024/06/14 14:03:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars)
 {

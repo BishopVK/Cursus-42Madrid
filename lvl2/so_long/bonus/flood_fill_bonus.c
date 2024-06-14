@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 08:46:25 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 12:33:20 by danjimen         ###   ########.fr       */
+/*   Created: 2024/06/14 14:03:58 by danjimen          #+#    #+#             */
+/*   Updated: 2024/06/14 14:03:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	detect_player_and_exit(char *buffer, t_map_array *map_array,
 			int map_lines)

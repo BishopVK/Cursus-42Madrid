@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   sprites_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 13:04:47 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 13:06:18 by danjimen         ###   ########.fr       */
+/*   Created: 2024/06/14 14:04:48 by danjimen          #+#    #+#             */
+/*   Updated: 2024/06/14 14:04:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	*new_file_img(char *path, t_data *data)
 {
