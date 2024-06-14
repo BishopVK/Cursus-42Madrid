@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:48 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 20:09:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:24:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*new_file_img(char *path, t_data *data)
 	void	*img;
 
 	img = mlx_xpm_file_to_image(data->mlx_ptr,
-		path, &data->img->img_px, &data->img->img_px);
+			path, &data->img->img_px, &data->img->img_px);
 	if (img == 0)
 	{
 		ft_dprintf(2, "Error\n> Creating img whit %s\n", path);
