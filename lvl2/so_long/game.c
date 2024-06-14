@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:26:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:56:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 		exit (1);
 	mlx_get_screen_size(data.mlx_ptr, &data.screen_width, &data.screen_height);
 	data.img = NULL;
-	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64, map_array->height * 64, "danjimen's game!");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64,
+			map_array->height * 64, "danjimen's game!");
 	if (!data.win_ptr)
 	{
 		free(data.mlx_ptr);
@@ -88,13 +89,9 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	}
 	verify_map_size(map_array, &data);
 	put_images(&data, map_array);
-	// Put text to the window on BONUS
-	/* char	*moves;
-	moves = ft_itoa(data.map_array->moves);
-	mlx_string_put(data.mlx_ptr, data.win_ptr, 10, 25, 0x000000, moves);
-	free(moves); */
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
+		&on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
 	free_mlx_resources(&data);
 }
