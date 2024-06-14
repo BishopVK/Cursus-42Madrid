@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:59:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 13:08:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:26:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	clean_up(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->img->back);
 		if (data->img->exit)
 			mlx_destroy_image(data->mlx_ptr, data->img->exit);
+		if (data->img->exit_2)
+			mlx_destroy_image(data->mlx_ptr, data->img->exit_2);
 		if (data->img->enemy)
 			mlx_destroy_image(data->mlx_ptr, data->img->enemy);
 		free(data->img);
