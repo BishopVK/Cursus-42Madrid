@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:46:26 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/04 12:43:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:37:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	check_borders(char *buffer, int total_lines, int map_line, int fd)
 	int	i;
 
 	i = 0;
-	ft_printf("total_lines ==> %i\n", total_lines);
-	ft_printf("map_line ==> %i\n", map_line);
-	if (map_line == 0 || map_line == total_lines - 1) // First or last line
+	if (map_line == 0 || map_line == total_lines - 1)
 	{
 		while (buffer[i] != '\n' && buffer[i] != '\0')
 			if (buffer[i++] != '1')
@@ -87,23 +85,19 @@ int	read_for_check_borders(char *buffer, char *map, int total_lines,
 		exit_map_error(buffer, "Open error", fd);
 	buffer = get_next_line(fd, FALSE);
 	if (buffer == NULL)
-		exit_map_error(buffer, "Failed to allocate memory for buffer", fd); //Void map
+		exit_map_error(buffer, "Failed to allocate memory for buffer", fd);
 	while (buffer != NULL)
 	{
-		ft_printf("-----------\n"); // Mostrar separador (BORRAR)
-		ft_printf("\n%s", buffer); // Mostrar la línea leída (BORRAR)
 		check_borders(buffer, total_lines, map_line, fd);
 		count_nbr_chars(buffer, map_chars);
 		buffer_len = count_buffer_len(buffer, fd);
 		if (buffer != NULL)
-			free(buffer); // Liberar la memoria asignada a la línea
+			free(buffer);
 		buffer = get_next_line(fd, FALSE);
 		map_line++;
 	}
 	check_nbr_chars(buffer, map_chars, fd);
 	close(fd);
-	// if (close(fd) == -1)
-	// 	exit_map_error(buffer, "Close error");
 	return (buffer_len);
 }
 
