@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:03:58 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:03:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:19:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
 			int x, int y)
 {
 	if (x < 1 || x >= copy_array->height || y < 1 || y >= copy_array->width
-		|| copy_array->map[x][y] == '1' || copy_array->map[x][y] == 'V')
+		|| copy_array->map[x][y] == '1' || copy_array->map[x][y] == 'V'
+		|| copy_array->map[x][y] == 'K')
 		return ;
 	if (copy_array->map[x][y] == 'P')
 		copy_chars->player--;
