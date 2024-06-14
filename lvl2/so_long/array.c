@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 09:04:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:39:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	create_array(t_map_array *map_array)
 	map_array->map = (char **)malloc((map_array->height + 1) * sizeof(char *));
 	while (i < map_array->height)
 	{
-		map_array->map[i] = (char *)malloc((map_array->width + 1) * sizeof(char));
+		map_array->map[i] = (char *)malloc((map_array->width + 1)
+				* sizeof(char));
 		j = 0;
 		while (j < map_array->width)
 		{
@@ -98,16 +99,14 @@ void	read_to_create_array(char *map, t_map_array *map_array)
 		exit_map_error(buffer, "Failed to allocate memory for buffer", fd);
 	while (buffer != NULL)
 	{
-		if (buffer == NULL) // Check if memory was allocated correctly
+		if (buffer == NULL)
 			exit_map_error(buffer, "Failed to allocate memory for buffer", fd);
 		initialize_array(buffer, map_array, map_lines);
-		detect_player_and_exit(buffer, map_array, map_lines); // POSIBLEMENTE IRÁ AQUÍ!
+		detect_player_and_exit(buffer, map_array, map_lines);
 		if (buffer != NULL)
-			free(buffer); // Release the memory allocated to the line
+			free(buffer);
 		buffer = get_next_line(fd, FALSE);
 		map_lines++;
 	}
 	close(fd);
-	// if (close(fd) == -1)
-	// 	exit_map_error(buffer, "Close error");
 }
