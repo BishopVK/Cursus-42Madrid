@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 19:07:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:11:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	player_animation(t_data *data, int new_x, int new_y, int dir)
 {
-	// Coloca la imagen del jugador en la nueva posición >BONUS PART<
 	if (dir == DOWN_KEY)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[0],
 			new_x * data->img->img_px, new_y * data->img->img_px);
@@ -98,7 +97,6 @@ void	move_player(t_data *data, int dir)
 	new_x = x;
 	new_y = y;
 	move_resume(data->map_array, &new_x, &new_y, dir);
-
 	if (new_x >= 0 && new_x < data->map_array->width &&
 		new_y >= 0 && new_y < data->map_array->height &&
 		data->map_array->map[new_y][new_x] != '1')
@@ -107,13 +105,6 @@ void	move_player(t_data *data, int dir)
 		update_window_sprites(data, x, y);
 		player_animation(data, new_x, new_y, dir);
 		counter_on_screen(data);
-		/* // ON BONUS
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall,
-			0 * data->img->img_px, 0 * data->img->img_px);
-		char	*moves = ft_itoa(data->map_array->moves);
-		mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 25, 0x000000, moves);
-		free(moves); */
-
 		data->map_array->map[new_y][new_x] = 'P';
 		data->map_array->start_x = new_x;
 		data->map_array->start_y = new_y;
