@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 20:09:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:23:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 static void	player_animation(t_data *data, int new_x, int new_y, int dir)
 {
 	if (dir == DOWN_KEY)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[0],
+		mlx_put_image_to_window(data->mlx_ptr,
+			data->win_ptr, data->img->player[0],
 			new_x * data->img->img_px, new_y * data->img->img_px);
 	if (dir == UP_KEY)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[1],
+		mlx_put_image_to_window(data->mlx_ptr,
+			data->win_ptr, data->img->player[1],
 			new_x * data->img->img_px, new_y * data->img->img_px);
 	if (dir == LEFT_KEY)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[2],
+		mlx_put_image_to_window(data->mlx_ptr,
+			data->win_ptr, data->img->player[2],
 			new_x * data->img->img_px, new_y * data->img->img_px);
 	if (dir == RIGHT_KEY)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[3],
+		mlx_put_image_to_window(data->mlx_ptr,
+			data->win_ptr, data->img->player[3],
 			new_x * data->img->img_px, new_y * data->img->img_px);
 }
 
@@ -97,9 +101,9 @@ void	move_player(t_data *data, int dir)
 	new_x = x;
 	new_y = y;
 	move_resume(data->map_array, &new_x, &new_y, dir);
-	if (new_x >= 0 && new_x < data->map_array->width &&
-		new_y >= 0 && new_y < data->map_array->height &&
-		data->map_array->map[new_y][new_x] != '1')
+	if (new_x >= 0 && new_x < data->map_array->width
+		&& new_y >= 0 && new_y < data->map_array->height
+		&& data->map_array->map[new_y][new_x] != '1')
 	{
 		win_and_lose_game(data, new_x, new_y);
 		update_window_sprites(data, x, y);
