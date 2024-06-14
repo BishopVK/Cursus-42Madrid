@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:48 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 19:25:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:09:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	create_paths(t_data *data)
 	data->img->exit_path[4] = "./sprites/xpm/Exit/exit_4.xpm";
 	data->img->enemy_path = "./sprites/xpm/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
-	data->img->display_exit = TRUE;
 }
 
 void	*new_file_img(char *path, t_data *data)
