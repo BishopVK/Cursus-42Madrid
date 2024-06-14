@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 20:07:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:20:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static void	clean_up_img_arrays(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i < 4)
+	while (i < 4)
 	{
 		if (data->img->player[i])
 			mlx_destroy_image(data->mlx_ptr, data->img->player[i]);
 		i++;
 	}
 	i = 0;
-	while(i < 5)
+	while (i < 5)
 	{
 		if (data->img->exit[i])
 			mlx_destroy_image(data->mlx_ptr, data->img->exit[i]);
@@ -95,7 +95,8 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 		exit (1);
 	mlx_get_screen_size(data.mlx_ptr, &data.screen_width, &data.screen_height);
 	data.img = NULL;
-	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64, map_array->height * 64, "danjimen's game!");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, map_array->width * 64,
+			map_array->height * 64, "danjimen's game!");
 	if (!data.win_ptr)
 	{
 		free(data.mlx_ptr);
@@ -105,7 +106,8 @@ void	initialize_game(t_map_chars *map_chars, t_map_array *map_array)
 	put_images(&data, map_array);
 	initialize_screen_counter(&data);
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
+		&on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
 	free_mlx_resources(&data);
 }
