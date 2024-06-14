@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:30 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:04:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:59:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	read_map_lines(char *buffer, char *map)
 		if (buffer[0] == '\n')
 			exit_map_error(buffer, "Only new line detected", fd);
 		count_buffer_len(buffer, fd);
-		check_map_characters(buffer, "01CEP", fd);
+		check_map_characters(buffer, "01CEPK", fd);
 		if (ft_strlen(buffer) > 256 || map_lines > 256)
 			exit_map_error(buffer, "The map is too big", fd);
 		free(buffer);
