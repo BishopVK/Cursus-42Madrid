@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 11:53:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:11:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,15 @@ void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
 /****************************************/
 void	clean_up(t_data *data);
 void	free_mlx_resources(t_data *data);
+void	verify_map_size(t_map_array *map_array, t_data *data);
+void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
+
+/****************************************/
+/*				sprites.c				*/
+/****************************************/
 void	*new_file_img(char *path, t_data *data);
 void	get_images_and_paths(t_data *data);
 void	put_images(t_data *data, t_map_array *map_array);
-void	verify_map_size(t_map_array *map_array, t_data *data);
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
 
 /****************************************/
 /*				hooks.c					*/
