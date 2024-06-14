@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/14 14:09:43 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/14 19:07:38 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ BONUS_SRC	=	$(BONUS_DIR)/so_long_bonus.c \
 				$(BONUS_DIR)/game_bonus.c \
 				$(BONUS_DIR)/sprites_bonus.c \
 				$(BONUS_DIR)/hooks_bonus.c \
-				$(BONUS_DIR)/movements_bonus.c
+				$(BONUS_DIR)/movements_bonus.c \
+				$(BONUS_DIR)/movements_extra_bonus.c
 
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 

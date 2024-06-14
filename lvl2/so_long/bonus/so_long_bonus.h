@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 18:22:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:07:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,10 @@ int		on_keypress(int keysym, t_data *data);
 /*			movements.c					*/
 /****************************************/
 void	move_player(t_data *data, int dir);
+
+/****************************************/
+/*		movements_extra_bonus.c			*/
+/****************************************/
+void	counter_on_screen(t_data *data);
 
 #endif
