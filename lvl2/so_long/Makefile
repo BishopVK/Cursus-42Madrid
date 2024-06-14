@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/13 09:01:12 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/14 13:08:33 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=	so_long.c \
 				copy_of_array.c \
 				flood_fill.c \
 				game.c \
+				sprites.c \
 				hooks.c \
 				movements.c
 
