@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 19:24:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:13:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,6 @@
 
 //strerror
 # include <string.h>
-
-//Define boolean
-typedef enum s_bool
-{
-	FALSE,
-	TRUE,
-}	t_bool;
 
 //Chars in map
 typedef struct s_map_chars
@@ -94,7 +87,6 @@ typedef struct s_img
 	void	*enemy;
 	char	*enemy_path;
 	int		img_px;
-	t_bool	display_exit;
 }	t_img;
 
 //Game
@@ -197,6 +189,7 @@ void	move_player(t_data *data, int dir);
 /****************************************/
 /*		movements_extra_bonus.c			*/
 /****************************************/
+void	initialize_screen_counter(t_data *data);
 void	counter_on_screen(t_data *data);
 
 #endif
