@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 18:46:54 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:55:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static void	win_game(t_data *data, int new_x, int new_y)
+static void	win_and_lose_game(t_data *data, int new_x, int new_y)
 {
 	if (data->map_array->map[new_y][new_x] == 'E' &&
 		data->map_array->chars->collectible == 0)
@@ -20,9 +20,14 @@ static void	win_game(t_data *data, int new_x, int new_y)
 		ft_printf("You win!\n");
 		on_destroy(data);
 	}
+	if (data->map_array->map[new_y][new_x] == 'K')
+	{
+		ft_printf("You lose!\n");
+		on_destroy(data);
+	}
 }
 
-static void	update_win_sprites(t_data *data, int x, int y)
+static void	update_window_sprites(t_data *data, int x, int y)
 {
 	data->map_array->moves++;
 	if (y == data->map_array->exit_y && x == data->map_array->exit_x)
@@ -81,8 +86,8 @@ void	move_player(t_data *data, int dir)
 		new_y >= 0 && new_y < data->map_array->height &&
 		data->map_array->map[new_y][new_x] != '1')
 	{
-		win_game(data, new_x, new_y);
-		update_win_sprites(data, x, y);
+		win_and_lose_game(data, new_x, new_y);
+		update_window_sprites(data, x, y);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[0],
 			new_x * data->img->img_px, new_y * data->img->img_px);
 		/* // Coloca la imagen del jugador en la nueva posición >BONUS PART<
