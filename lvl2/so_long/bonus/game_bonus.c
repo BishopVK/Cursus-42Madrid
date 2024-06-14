@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:10 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 18:37:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:49:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	clean_up_img_arrays(t_data *data)
 {
 	int	i;
 
-	i	0;
+	i = 0;
 	while(i < 4)
 	{
 		if (data->img->player[i])
@@ -36,7 +36,7 @@ void	clean_up(t_data *data)
 {
 	if (data->img)
 	{
-		clean_up_img_arrays(t_data *data);
+		clean_up_img_arrays(data);
 		if (data->img->collec)
 			mlx_destroy_image(data->mlx_ptr, data->img->collec);
 		if (data->img->wall)
