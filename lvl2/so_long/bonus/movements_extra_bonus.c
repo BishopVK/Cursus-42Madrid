@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:05:00 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 20:12:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:24:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	initialize_screen_counter(t_data *data)
 void	counter_on_screen(t_data *data)
 {
 	char	*moves;
+
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall,
 		0 * data->img->img_px, 0 * data->img->img_px);
 	moves = ft_itoa(data->map_array->moves);
