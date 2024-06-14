@@ -6,11 +6,45 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:04:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:46:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+static void	win_game(t_data *data, int new_x, int new_y)
+{
+	if (data->map_array->map[new_y][new_x] == 'E' &&
+		data->map_array->chars->collectible == 0)
+	{
+		ft_printf("You win!\n");
+		on_destroy(data);
+	}
+}
+
+static void	update_win_sprites(t_data *data, int x, int y)
+{
+	data->map_array->moves++;
+	if (y == data->map_array->exit_y && x == data->map_array->exit_x)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->exit[0], x * data->img->img_px, y * data->img->img_px);
+		data->map_array->map[y][x] = 'E';
+	}
+	else
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->back, x * data->img->img_px, y * data->img->img_px);
+		data->map_array->map[y][x] = '0';
+	}
+	ft_printf("Counter: %i\n", data->map_array->moves);
+	if (data->map_array->chars->collectible == 0)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img->exit[4], data->map_array->exit_x * data->img->img_px,
+			data->map_array->exit_y * data->img->img_px);
+	}
+}
 
 static void	move_resume(t_map_array *map_array, int *x, int *y, int dir)
 {
@@ -47,44 +81,11 @@ void	move_player(t_data *data, int dir)
 		new_y >= 0 && new_y < data->map_array->height &&
 		data->map_array->map[new_y][new_x] != '1')
 	{
-		/* if (data->map_array->map[new_y][new_x] == 'E' &&
-			data->map_array->chars->collectible != 0)
-		{
-			//ft_printf("Has llegado a la salida!\n");
-			return ;
-		} */
-		if (data->map_array->map[new_y][new_x] == 'E' &&
-			data->map_array->chars->collectible == 0)
-		{
-			ft_printf("Has Ganado!\n");
-			on_destroy(data);
-		}
-
-		data->map_array->moves++;
-		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
-			x * data->img->img_px, y * data->img->img_px); */
-		if (y == data->map_array->exit_y && x == data->map_array->exit_x)
-		{
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit,
-				x * data->img->img_px, y * data->img->img_px);
-			data->map_array->map[y][x] = 'E';
-		}
-		else
-		{
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
-				x * data->img->img_px, y * data->img->img_px);
-			data->map_array->map[y][x] = '0';
-		}
-
-		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->back,
-			new_x * data->img->img_px, new_y * data->img->img_px); */
-
-		// Coloca la imagen del jugador en la nueva posición >MANDATORY PART<
-		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-				new_x * data->img->img_px, new_y * data->img->img_px);
-		data->map_array->map[new_y][new_x] = 'P'; */
-
-		// Coloca la imagen del jugador en la nueva posición >BONUS PART<
+		win_game(data, new_x, new_y);
+		update_win_sprites(data, x, y);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player[0],
+			new_x * data->img->img_px, new_y * data->img->img_px);
+		/* // Coloca la imagen del jugador en la nueva posición >BONUS PART<
 		if (dir == DOWN_KEY)
 		{
 			data->img->player = new_file_img(data->img->player_path[0], data);
@@ -108,12 +109,8 @@ void	move_player(t_data *data, int dir)
 			data->img->player = new_file_img(data->img->player_path[3], data);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
-		}
-		data->map_array->map[new_y][new_x] = 'P';
+		} */
 
-		data->map_array->start_x = new_x;
-		data->map_array->start_y = new_y;
-		ft_printf("Counter: %i\n", data->map_array->moves);
 		// ON BONUS
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall,
 			0 * data->img->img_px, 0 * data->img->img_px);
@@ -121,27 +118,8 @@ void	move_player(t_data *data, int dir)
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 25, 0x000000, moves);
 		free(moves);
 
-		// Display Array for Debugging
-		display_array(data->map_array);
+		data->map_array->map[new_y][new_x] = 'P';
+		data->map_array->start_x = new_x;
+		data->map_array->start_y = new_y;
 	}
 }
-
-/* void	move_up(t_data *data)
-{
-	move_player(data, UP_KEY);
-}
-
-void	move_left(t_data *data)
-{
-	move_player(data, LEFT_KEY);
-}
-
-void	move_down(t_data *data)
-{
-	move_player(data, DOWN_KEY);
-}
-
-void move_right(t_data *data)
-{
-	move_player(data, RIGHT_KEY);
-} */
