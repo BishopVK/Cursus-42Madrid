@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/14 13:08:33 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/14 14:09:43 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,18 @@ SRC			=	so_long.c \
 
 OBJ			=	$(SRC:.c=.o)
 
-BONUS_SRC	=	so_long_bonus.c
+BONUS_DIR	=	bonus
+
+BONUS_SRC	=	$(BONUS_DIR)/so_long_bonus.c \
+				$(BONUS_DIR)/parse_bonus.c \
+				$(BONUS_DIR)/check_map_character_bonus.c \
+				$(BONUS_DIR)/array_bonus.c \
+				$(BONUS_DIR)/copy_of_array_bonus.c \
+				$(BONUS_DIR)/flood_fill_bonus.c \
+				$(BONUS_DIR)/game_bonus.c \
+				$(BONUS_DIR)/sprites_bonus.c \
+				$(BONUS_DIR)/hooks_bonus.c \
+				$(BONUS_DIR)/movements_bonus.c
 
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
@@ -59,9 +70,6 @@ PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 MINILIBX_DIR	=	minilibx-linux
 MINILIBX		=	$(MINILIBX_DIR)/libmlx_Linux.a
 
-#OPENGL_DIR	=	printf
-#OPENGL		=	$(OPENGL_DIR)/libftprintf.a
-
 all: $(NAME)
 
 bonus: $(NAME)_bonus
@@ -75,16 +83,13 @@ $(PRINTF):
 $(MINILIBX):
 	@$(MAKE) -C $(MINILIBX_DIR)
 
-#$(OPENGL):
-#	@$(MAKE) -C $(OPENGL_DIR)
-
-$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJ) $(GNL_OBJ)
+$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(GNL_OBJ) $(OBJ)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -L$(MINILIBX_DIR) -lX11 -lXext -lbsd -o $(NAME)
 	$(call print_cyan,"Compiled so_long")
 
-#$(NAME)_bonus: $(LIBFT) $(PRINTF) $(BONUS_OBJ) # Rule for compiling with bonus items
-#	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -o $(NAME)
-#	$(call print_cyan,"Compiled so_long (bonus)")
+$(NAME)_bonus: $(LIBFT) $(PRINTF) $(MINILIBX) $(GNL_OBJ) $(BONUS_OBJ) # Rule for compiling with bonus items
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -L$(MINILIBX_DIR) -lX11 -lXext -lbsd -o $(NAME)
+	$(call print_cyan,"Compiled so_long (bonus)")
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) -c $< -o $@
