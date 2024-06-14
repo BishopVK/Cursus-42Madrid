@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:42:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/13 23:01:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:15:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,6 @@ void	move_player(t_data *data, int dir)
 		new_y >= 0 && new_y < data->map_array->height &&
 		data->map_array->map[new_y][new_x] != '1')
 	{
-		/* if (data->map_array->map[new_y][new_x] == 'E' &&
-			data->map_array->chars->collectible != 0)
-		{
-			//ft_printf("Has llegado a la salida!\n");
-			return ;
-		} */
 		if (data->map_array->map[new_y][new_x] == 'E' &&
 			data->map_array->chars->collectible == 0)
 		{
@@ -80,68 +74,15 @@ void	move_player(t_data *data, int dir)
 			new_x * data->img->img_px, new_y * data->img->img_px); */
 
 		// Coloca la imagen del jugador en la nueva posición >MANDATORY PART<
-		/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
 				new_x * data->img->img_px, new_y * data->img->img_px);
-		data->map_array->map[new_y][new_x] = 'P'; */
-
-		// Coloca la imagen del jugador en la nueva posición >BONUS PART<
-		if (dir == DOWN_KEY)
-		{
-			data->img->player = new_file_img(data->img->player_path[0], data);
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-				new_x * data->img->img_px, new_y * data->img->img_px);
-		}
-		if (dir == UP_KEY)
-		{
-			data->img->player = new_file_img(data->img->player_path[1], data);
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-				new_x * data->img->img_px, new_y * data->img->img_px);
-		}
-		if (dir == LEFT_KEY)
-		{
-			data->img->player = new_file_img(data->img->player_path[2], data);
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-				new_x * data->img->img_px, new_y * data->img->img_px);
-		}
-		if (dir == RIGHT_KEY)
-		{
-			data->img->player = new_file_img(data->img->player_path[3], data);
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->player,
-				new_x * data->img->img_px, new_y * data->img->img_px);
-		}
 		data->map_array->map[new_y][new_x] = 'P';
 
 		data->map_array->start_x = new_x;
 		data->map_array->start_y = new_y;
 		ft_printf("Counter: %i\n", data->map_array->moves);
-		// ON BONUS
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->wall,
-			0 * data->img->img_px, 0 * data->img->img_px);
-		char	*moves = ft_itoa(data->map_array->moves);
-		mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 25, 0x000000, moves);
-		free(moves);
 
 		// Display Array for Debugging
 		display_array(data->map_array);
 	}
 }
-
-/* void	move_up(t_data *data)
-{
-	move_player(data, UP_KEY);
-}
-
-void	move_left(t_data *data)
-{
-	move_player(data, LEFT_KEY);
-}
-
-void	move_down(t_data *data)
-{
-	move_player(data, DOWN_KEY);
-}
-
-void move_right(t_data *data)
-{
-	move_player(data, RIGHT_KEY);
-} */
