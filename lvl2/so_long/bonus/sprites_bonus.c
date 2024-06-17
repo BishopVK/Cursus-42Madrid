@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:04:48 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/15 19:20:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/17 09:26:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static void	put_images_on_window(t_data *data, t_map_array *map_array,
 
 static void	create_paths(t_data *data)
 {
-	data->img->player_path[0] = "./sprites/xpm/Player/char_front_idle_1.xpm";
-	data->img->player_path[1] = "./sprites/xpm/Player/char_back_idle_1.xpm";
-	data->img->player_path[2] = "./sprites/xpm/Player/char_left_idle_1.xpm";
-	data->img->player_path[3] = "./sprites/xpm/Player/char_right_idle_1.xpm";
-	data->img->collec_path = "./sprites/xpm/Item/tomato.xpm";
-	data->img->wall_path = "./sprites/xpm/Tileset/water_2.xpm";
-	data->img->wall_border_path = "./sprites/xpm/Tileset/water_border_1.xpm";
-	data->img->back_path = "./sprites/xpm/Tileset/background.xpm";
-	data->img->exit_path[0] = "./sprites/xpm/Exit/exit_0.xpm";
-	data->img->exit_path[1] = "./sprites/xpm/Exit/exit_1.xpm";
-	data->img->exit_path[2] = "./sprites/xpm/Exit/exit_2.xpm";
-	data->img->exit_path[3] = "./sprites/xpm/Exit/exit_3.xpm";
-	data->img->exit_path[4] = "./sprites/xpm/Exit/exit_4.xpm";
-	data->img->enemy_path = "./sprites/xpm/Enemy/sheep_idle_1.xpm";
+	data->img->player_path[0] = "./textures/xpm/Player/char_front_idle_1.xpm";
+	data->img->player_path[1] = "./textures/xpm/Player/char_back_idle_1.xpm";
+	data->img->player_path[2] = "./textures/xpm/Player/char_left_idle_1.xpm";
+	data->img->player_path[3] = "./textures/xpm/Player/char_right_idle_1.xpm";
+	data->img->collec_path = "./textures/xpm/Item/tomato.xpm";
+	data->img->wall_path = "./textures/xpm/Tileset/water_2.xpm";
+	data->img->wall_border_path = "./textures/xpm/Tileset/water_border_1.xpm";
+	data->img->back_path = "./textures/xpm/Tileset/background.xpm";
+	data->img->exit_path[0] = "./textures/xpm/Exit/exit_0.xpm";
+	data->img->exit_path[1] = "./textures/xpm/Exit/exit_1.xpm";
+	data->img->exit_path[2] = "./textures/xpm/Exit/exit_2.xpm";
+	data->img->exit_path[3] = "./textures/xpm/Exit/exit_3.xpm";
+	data->img->exit_path[4] = "./textures/xpm/Exit/exit_4.xpm";
+	data->img->enemy_path = "./textures/xpm/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 }
 

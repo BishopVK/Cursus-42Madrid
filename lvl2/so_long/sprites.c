@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:04:47 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 14:30:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/17 08:50:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void	*new_file_img(char *path, t_data *data)
 
 void	get_images_and_paths(t_data *data)
 {
-	data->img->player_path = "./sprites/xpm/Player/char_front_idle_1.xpm";
-	data->img->collec_path = "./sprites/xpm/Item/tomato.xpm";
-	data->img->wall_path = "./sprites/xpm/Tileset/water_2.xpm";
-	data->img->wall_border_path = "./sprites/xpm/Tileset/water_border_1.xpm";
-	data->img->back_path = "./sprites/xpm/Tileset/background.xpm";
-	data->img->exit_path = "./sprites/xpm/Exit/exit_0.xpm";
-	data->img->exit_path_2 = "./sprites/xpm/Exit/exit_4.xpm";
-	data->img->enemy_path = "./sprites/xpm/Enemy/sheep_idle_1.xpm";
+	data->img->player_path = "./textures/xpm/Player/char_front_idle_1.xpm";
+	data->img->collec_path = "./textures/xpm/Item/tomato.xpm";
+	data->img->wall_path = "./textures/xpm/Tileset/water_2.xpm";
+	data->img->wall_border_path = "./textures/xpm/Tileset/water_border_1.xpm";
+	data->img->back_path = "./textures/xpm/Tileset/background.xpm";
+	data->img->exit_path = "./textures/xpm/Exit/exit_0.xpm";
+	data->img->exit_path_2 = "./textures/xpm/Exit/exit_4.xpm";
+	data->img->enemy_path = "./textures/xpm/Enemy/sheep_idle_1.xpm";
 	data->img->img_px = 64;
 	data->img->player = new_file_img(data->img->player_path, data);
 	data->img->collec = new_file_img(data->img->collec_path, data);
