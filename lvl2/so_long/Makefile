@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/14 19:07:38 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/17 09:26:12 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ MINILIBX		=	$(MINILIBX_DIR)/libmlx_Linux.a
 
 all: $(NAME)
 
-bonus: $(NAME)_bonus
+bonus: $(BONUS_DIR)/.bonus
 
 $(LIBFT):
 	@$(MAKE) -s -C $(LIBFT_DIR)
@@ -88,7 +88,8 @@ $(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(GNL_OBJ) $(OBJ)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -L$(MINILIBX_DIR) -lX11 -lXext -lbsd -o $(NAME)
 	$(call print_cyan,"Compiled so_long")
 
-$(NAME)_bonus: $(LIBFT) $(PRINTF) $(MINILIBX) $(GNL_OBJ) $(BONUS_OBJ) # Rule for compiling with bonus items
+$(BONUS_DIR)/.bonus: $(LIBFT) $(PRINTF) $(MINILIBX) $(GNL_OBJ) $(BONUS_OBJ) # Rule for compiling with bonus items
+	@touch $(BONUS_DIR)/.bonus
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MINILIBX_DIR) $(BONUS_OBJ) $(GNL_OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) -L$(MINILIBX_DIR) -lX11 -lXext -lbsd -o $(NAME)
 	$(call print_cyan,"Compiled so_long (bonus)")
 
@@ -99,7 +100,7 @@ clean:
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(PRINTF_DIR) clean
 	@$(MAKE) -s -C $(MINILIBX_DIR) clean
-	@rm -f $(OBJ) $(GNL_OBJ) $(BONUS_OBJ)
+	@rm -f $(OBJ) $(GNL_OBJ) $(BONUS_OBJ) $(BONUS_DIR)/.bonus
 
 fclean: clean
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
