@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/15 19:20:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/17 09:04:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ typedef struct s_map_chars
 //Array
 typedef struct s_map_array
 {
-	int			width;
-	int			height;
-	int			start_x;
-	int			start_y;
-	int			exit_x;
-	int			exit_y;
-	int			moves;
-	char		**map;
-	t_map_chars	*chars;
+	int				width;
+	int				height;
+	int				start_x;
+	int				start_y;
+	int				exit_x;
+	int				exit_y;
+	unsigned int	moves;
+	char			**map;
+	t_map_chars		*chars;
 }	t_map_array;
 
 //XPM
