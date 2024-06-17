@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 08:22:03 by danjimen          #+#    #+#              #
-#    Updated: 2024/05/06 09:39:49 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/17 08:49:47 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ define print_green
 endef
 
 NAME		=	libft.a
-CC			=	cc
+CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_isalpha.c \
 				ft_isdigit.c \
