@@ -37,12 +37,15 @@ To meet the objectives of the mandatory part of the project, the following rules
 |    `%i`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_result.png"></p> |
 |    `%%`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_result.png"></p> |
 |    `%u`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_result.png"></p> |
-| `ra`  | rotate a                            | shifts all elements of stack a from bottom to top      |
-| `rb`  | rotate b                            | shifts all elements of stack b from bottom to top      |
-| `rr`  | rotate a + rotate b                 | both `ra` and `rb`                                     |
-| `rra` | reverse rotate a                    | shifts all elements of stack a from top to bottom      |
-| `rrb` | reverse rotate b                    | shifts all elements of stack b from top to bottom      |
-| `rrr` | reverse rotate a + reverse rotate b | both `rra` and `rrb`                                   |
+|    `%s`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_result.png"></p> |
+|    `%s`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_null_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_null_result.png"></p> |
+|`not printable` | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/not_printable_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/not_printable_result.png"></p> |
+|    `%x`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/lowercase_hexadecimal_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/lowercase_hexadecimal_result.png"></p> |
+|    `%X`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/uppercase_hexadecimal_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/uppercase_hexadecimal_result.png"></p> |
+|    `%p`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_result.png"></p> |
+|    `%p`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_void_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_void_result.png"></p> |
+| `Multiple`  | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/multiple_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/multiple_result.png"></p> |
+
 
 
 
