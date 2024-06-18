@@ -30,7 +30,6 @@ To meet the objectives of the mandatory part of the project, the following rules
 ## Preview of the mandatory part
 
 **Correct use:**  
-</br>
 
 If a correct file to read from is indicated, the read file will be returned line by line (until a line break or the end of the document is found).
 
@@ -39,7 +38,6 @@ If a correct file to read from is indicated, the read file will be returned line
 </p>
 
 **Standar input use:**  
-</br>
 
 If a file to read from is not indicated, text entry will be allowed through standard keyboard input, and it will also be returned line by line until execution is interrupted (CTRL + D).
 
@@ -48,7 +46,6 @@ If a file to read from is not indicated, text entry will be allowed through stan
 </p>
 
 **Incorrect use:**  
-</br>
 
 If two or more files are entered to read from, an error will be returned with instructions on how to use the function correctly.
 
@@ -71,7 +68,6 @@ If two or more files are entered to read from, an error will be returned with in
 ## Preview of the bonus part
 
 **Correct use:**  
-</br>
 
 If two or more files are entered to read from, the title of the file to be read will be returned one by one along with its content read line by line. The same will then be done with the rest of the files.
 
