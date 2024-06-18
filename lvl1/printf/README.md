@@ -32,7 +32,7 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 | Conversion  | Code                         | Result                                                 |
 | ----------- | ----------------------------------- | ------------------------------------------------------ |
-|    `%c`     | ```javascript function saludo() {    console.log("Hola, mundo!"); } | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
+|    `%c`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
 |    `%d`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_result.png"></p> |
 |    `%i`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_result.png"></p> |
 |    `%%`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_result.png"></p> |
