@@ -1,3 +1,10 @@
+## My score
+
+|-----------------------|---------------|
+| <p align="center">
+<img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png">
+</p> | **108/100**   |
+
 ## push_swap
 
 This project will make you sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. To succeed you’ll have to manipulate various types of algorithms and choose the most appropriate solution (out of many) for an optimized data sorting.
