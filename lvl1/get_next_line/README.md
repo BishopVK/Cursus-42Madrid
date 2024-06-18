@@ -36,7 +36,7 @@ If a correct file to read from is indicated, the read file will be returned line
 <p align="left">
 	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/mandatory.png">
 </p>
----
+  
 
 **Standar input use:**  
 
@@ -45,7 +45,7 @@ If a file to read from is not indicated, text entry will be allowed through stan
 <p align="left">
 	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/stdin.png">
 </p>
----
+  
 
 **Incorrect use:**  
 
