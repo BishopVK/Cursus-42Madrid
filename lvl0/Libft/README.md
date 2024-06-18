@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/Score_100.png"></p> | **Mandatory part**   |
+| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl0/Libft/img/Score_125.png"></p> | **Mandatory part + Full bonus part**   |
 
 
 ## Libft
