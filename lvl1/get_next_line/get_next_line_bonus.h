@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:13:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/29 08:51:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:52:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 
 //OPEN_MAX (Max fd open)
 # include <limits.h>
+
+//FD_SETSIZE (Max fd open)
+# include <sys/select.h>
 
 //strchr, strlen, strdup, strlcpy
 //# include <string.h>
