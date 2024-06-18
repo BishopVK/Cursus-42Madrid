@@ -1,0 +1,19 @@
+1. Definir la estructura de datos necesaria: Antes de empezar a escribir el código, es importante pensar en la estructura de datos que necesitarás para almacenar temporalmente los datos mientras lees desde el archivo.
+
+2. Leer desde el archivo: Utiliza la función read para leer desde el archivo especificado por el file descriptor (fd) proporcionado como parámetro.
+
+3. Almacenar la lectura: Almacena los datos leídos en un buffer.
+
+4. Procesar el buffer: Una vez que hayas leído del archivo y almacenado los datos en un buffer, necesitarás procesar ese buffer para extraer una línea completa. Esto implica buscar el carácter de nueva línea (\n) en el buffer.
+
+5. Retornar la línea: Cuando encuentres una línea completa, devuelve esa línea. Si no se encuentra una línea completa, debes almacenar los datos restantes en el buffer hasta la próxima llamada de la función get_next_line.
+
+6. Manejo de errores y final de archivo: Asegúrate de manejar correctamente los casos de error y el final del archivo. Si se produce un error durante la lectura o si llegas al final del archivo, devuelve NULL.
+
+7. Funciones auxiliares y modularidad: Puedes considerar la creación de funciones auxiliares en el archivo get_next_line_utils.c para ayudar a realizar tareas específicas, como buscar el carácter de nueva línea en el buffer.
+
+8. Pruebas exhaustivas: Después de escribir tu función, es importante realizar pruebas exhaustivas para asegurarte de que funciona correctamente en una variedad de situaciones, incluyendo diferentes valores de BUFFER_SIZE.
+
+9. Optimización: Intenta leer la menor cantidad posible de datos cada vez que llames a get_next_line. Evita leer el archivo completo de una vez y luego procesar cada línea. En su lugar, lee y procesa solo la cantidad necesaria de datos en cada llamada.
+
+10. Gestión de tamaños de buffer grandes: Asegúrate de que tu función funcione correctamente incluso con tamaños de buffer grandes. Puedes necesitar considerar la gestión de la memoria de manera eficiente para evitar problemas de rendimiento o falta de memoria.
