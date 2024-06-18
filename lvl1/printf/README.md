@@ -33,14 +33,10 @@ To meet the objectives of the mandatory part of the project, the following rules
 | Conversion  | Code                         | Result                                                 |
 | ----------- | ----------------------------------- | ------------------------------------------------------ |
 |    `%c`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%c`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%c`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%c`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%c`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%d`     | swap b                              | swaps the 2 top elements of stack b                    |
-|    `%i`     | swap a + swap b                     | both `sa` and `sb`                                     |
-|    `%%`     | push a                              | moves the top element of stack b at the top of stack a |
-|    `%u`     | push b                              | moves the top element of stack a at the top of stack b |
+|    `%d`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_result.png"></p> |
+|    `%i`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_result.png"></p> |
+|    `%%`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_result.png"></p> |
+|    `%u`     | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_code.png"></p> | <p align="center"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_result.png"></p> |
 | `ra`  | rotate a                            | shifts all elements of stack a from bottom to top      |
 | `rb`  | rotate b                            | shifts all elements of stack b from bottom to top      |
 | `rr`  | rotate a + rotate b                 | both `ra` and `rb`                                     |
