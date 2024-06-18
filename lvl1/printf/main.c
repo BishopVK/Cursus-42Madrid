@@ -57,16 +57,16 @@
 
 //cc -Wall -Wextra -Werror main.c libftprintf.a && ./a.out
 // Comparison between the operation of printf() and my ft_printf()
-int	main(void)
+/* int	main(void)
 {
 	int	size;
 
 	char	c = 'D';
-	printf("\CHAR (c):\n");
+	printf("\nCHAR (c):\n");
 	size = printf("Printf: %c\n", c);
 	printf("Size Printf: %d\n", size);
 	size = ft_printf("ft_printf: %c\n", c);
-	printf("Size ft_printf: %d\n", size);
+	printf("Size ft_printf: %d\n", size); 
 
 	int		n = -123;
 	printf("\nINTEGER (i):\n");
@@ -88,7 +88,7 @@ int	main(void)
 	size = ft_printf("ft_printf: %u\n", ui);
 	printf("Size ft_printf: %d\n", size);
 
-	printf("\PERCENTAGE (%%):\n");
+	printf("\nPERCENTAGE (%%):\n");
 	size = printf("Printf: %%\n");
 	printf("Size Printf: %d\n", size);
 	size = ft_printf("ft_printf: %%\n");
@@ -162,4 +162,4 @@ int	main(void)
 	printf("Size ft_printf: %d\n", size);
 
 	return (0);
-}
+} */
