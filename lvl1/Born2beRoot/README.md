@@ -20,10 +20,7 @@ To meet the objectives of the mandatory part of the project, the following rules
 |  `1`  | **Virtualization:** Use VirtualBox (or UTM if VirtualBox is not available) to create your virtual machine. |
 |  `2`  | **Operating System:** Install the latest stable version of Debian or Rocky Linux (Debian is recommended for beginners). |
 |  `3`  | **Minimal Services:** Configure the server with the minimal number of services. Do not install any graphical interface like X.org. |
-|  `4`  | **SSH Configuration:** 
-* SSH must run on port 4242 only. 
-* Root login via SSH should be disabled. 
-* Use SSH to create a new user during the defense. |
+|  `4`  | **SSH Configuration:** <ul><li>SSH must run on port 4242 only.</li><li>Root login via SSH should be disabled.</li><li>Use SSH to create a new user during the defense.</li></ul> |
 |  `5`  | **Firewall Configuration:** 
 * Use UFW (or firewalld for Rocky) to configure the firewall, allowing only port 4242. 
 * The firewall must be active when the virtual machine runs. |
