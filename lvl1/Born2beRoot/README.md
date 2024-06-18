@@ -12,7 +12,6 @@ I set up my first server using virtualization with VirtualBox. This project invo
 
 ## Instruction set
 
-
 To meet the objectives of the mandatory part of the project, the following rules must be followed:
 
 | **#** | **Instruction**                                                                                                                                                           |
@@ -21,61 +20,13 @@ To meet the objectives of the mandatory part of the project, the following rules
 |  `2`  | **Operating System:** Install the latest stable version of Debian or Rocky Linux (Debian is recommended for beginners). |
 |  `3`  | **Minimal Services:** Configure the server with the minimal number of services. Do not install any graphical interface like X.org. |
 |  `4`  | **SSH Configuration:** <ul><li>SSH must run on port 4242 only.</li><li>Root login via SSH should be disabled.</li><li>Use SSH to create a new user during the defense.</li></ul> |
-|  `5`  | **Firewall Configuration:** 
-* Use UFW (or firewalld for Rocky) to configure the firewall, allowing only port 4242. 
-* The firewall must be active when the virtual machine runs. |
+|  `5`  | **Firewall Configuration:** <ul><li>Use UFW (or firewalld for Rocky) to configure the firewall, allowing only port 4242.</li><li>The firewall must be active when the virtual machine runs.</li></ul> |
 |  `6`  | **Hostname:** Set the hostname of the virtual machine to your login followed by "42" (e.g., wil42). |
-|  `7`  | **User and Groups:** 
-* Create a user with your login name. 
-* This user must belong to the groups user42 and sudo. 
-* Implement a strong password policy for all users. |
+|  `7`  | **User and Groups:** <ul><li>Create a user with your login name.</li><li>This user must belong to the groups user42 and sudo.</li><li>Implement a strong password policy for all users.</li></ul> |
+|  `8`  | **Password Policy:** <ul><li>Passwords must expire every 30 days.</li><li>Minimum days between password changes should be 2.</li><li>Users should receive a warning 7 days before password expiration.</li><li>Passwords must be at least 10 characters long, include an uppercase letter and a number, and not contain the username.</li><li>Root password must also follow this policy.</li></ul> |
+|  `9`  | **Sudo Configuration:** <ul><li>Limit authentication attempts to three.</li><li>Display a custom message on incorrect password attempts.</li><li>Log all sudo commands to /var/log/sudo/.</li><li>Enable TTY mode for sudo.</li><li>Restrict accessible directories for sudo.</li></ul> |
+|  `10`  | **Monitoring Script:** Create a monitoring.sh script that displays system information every 10 minutes. This includes: <ul><li>OS architecture and kernel version</li><li>Number of physical and virtual CPUs</li><li>Available RAM and usage percentage</li><li>Disk usage</li><li>CPU load</li><li>Last reboot date and time</li><li>LVM status</li><li>Number of active connections</li><li>Number of users</li><li>Server's IPv4 address and MAC address</li><li>Number of sudo commands executed</li></ul> |
 
-
-## Functions of the mandatory part
-
-**Replicate original functions:**
-
-| **Function** | **Description**                                                                                                                                  |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-|   `isalpha`  | Checks if a character is an alphabetic letter.                                                                                                   |
-|   `isdigit`  | Checks if a character is a numeric digit.                                                                                                        |
-|   `isalnum`  | Checks whether a character is alphanumeric, that is, a letter or a digit.                                                                        |
-|   `isascii`  | Checks whether an integer value represents a valid ASCII character (between 0 and 127).                                                          |
-|   `isprint`  | Checks whether a character is printable (visible) and belongs to the ASCII printable character set.                                              |
-|   `strlen`   | Calculates the length of a character string (not including the null character).                                                                  |
-|   `memset`   | Fills a block of memory with a specific value.                                                                                                   |
-|   `bzero`    | Obsolete. It is similar to memset but is used to set a block of memory to zero.                                                                  |
-|   `memcpy`   | Copies a block of memory from a source location to a destination location.                                                                       |
-|   `memmove`  | Copies a block of memory from a source location to a destination location, handling memory overlays.                                             |
-|   `strlcpy`  | Copies a string to a buffer with a maximum limit, avoiding buffer overflows.                                                                     |
-|   `strlcat`  | Concatenates two strings to a buffer with a maximum limit, avoiding buffer overflows.                                                            |
-|   `toupper`  | Converts a lowercase character to uppercase, if applicable.                                                                                      |
-|   `tolower`  | Converts an uppercase character to lowercase, if applicable.                                                                                     |
-|   `strchr`   | Finds the first occurrence of a character in a string.                                                                                           |
-|   `strrchr`  | Finds the last occurrence of a character in a string.                                                                                            |
-|   `strncmp`  | Compares the first n characters of two strings.                                                                                                  |
-|   `memchr`   | Finds the first occurrence of a specific byte in a block of memory.                                                                              |
-|   `memcmp`   | Compares the first n bytes of two blocks of memory.                                                                                              |
-|   `strnstr`  | Finds the first occurrence of a substring in a string, up to a maximum number of characters.                                                     |
-|   `atoi`     | Converts a character string representing a number to an integer (int).                                                                           |
-|   `calloc`   | Dynamically allocates a block of memory for a specified number of elements, initializing each byte to zero.                                      |
-|   `strdup`   | Duplicates a string of characters to a new memory location, dynamically allocating enough space and copying the contents of the original string. |
-
-**Additional functions:**
-
-|  **Function**   | **Description**                                                                                                                            |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-|   `ft_substr`   | Reserve (with malloc(3)) and return a substring of the string 's'. The substring starts from index 'start' and has a length of max. 'len'. |
-|   `ft_strjoin`  | Reserve (with malloc(3)) and return a new string, formed by the concatenation of 's1' and 's2'.                                            |
-|   `ft_strtrim`  | Removes all characters from the string 'set' from the beginning and end of 's1', until a character not belonging to 'set' is found. The resulting string is returned with a malloc(3) fallback. |
-|   `ft_split`    | Reserve (using malloc(3)) an array of strings resulting from separating the string 's' into substrings using the character 'c' as a delimiter. The array must be terminated with a NULL pointer. |
-|   `ft_itoa`     | Using malloc(3), generate a string that represents the integer value received as an argument. Negative numbers have to be managed.         |
-|   `ft_strmapi`  | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the character itself. Generates a new string with the result of successive use of 'f' |
-|  `ft_striteri`  | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the address of the character itself, which can be modified if necessary. |
-| `ft_putchar_fd` | Sends the character 'c' to the specified file descriptor.                                                                                  |
-| `ft_putstr_fd`  | Sends the string 's' to the specified file descriptor.                                                                                     |
-| `ft_putendl_fd` | Sends the string 's' to the given file descriptor, followed by a line break.                                                               |
-| `ft_putnbr_fd`  | Sends the number 'n' to the given file descriptor.                                                                                         |
 
 ## The Bonus part
 
@@ -83,21 +34,10 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 | **#** | **Instruction**                                                                                                                                                                 |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  `1`  | **Complete Mandatory Part:** The mandatory part of the project must be fully completed and meet all specified requirements.                                                     |
-|  `2`  | **Additional Functions:** Implement the additional functions specified for the bonus section. These functions involve manipulating linked lists.                                |
-|  `3`  | **Separate Files:** The bonus functions should be implemented in separate files, typically named with _bonus suffixes (e.g., ft_lstnew_bonus.c, ft_lstadd_front_bonus.c, etc.). |
-|  `4`  | **Comprehensive Testing:** Ensure that the bonus functions are tested thoroughly and work correctly under various conditions and edge cases.                                    |
+|  `1`  | **Complete Mandatory Part:** Ensure that the mandatory part of the project is fully completed and meets all specified requirements. |
+|  `2`  | **Additional Partition Configuration:** Configure the partitions to achieve a structure similar to the example provided in the project instructions. |
+|  `3`  | **WordPress Site:** Set up a functional WordPress site using the following services: <ul><li>Lighttpd</li><li>MariaDB</li><li>PHP</li></ul> |
+|  `4`  | **Additional Useful Service:** Configure an additional service of your choice (excluding NGINX/Apache2). You must justify your choice during the defense. <ul><li>**FTP (File Transfer Protocol):** a standard network protocol used for transferring files between computers over a network.</li><li>**FileZilla:** a popular open-source FTP client software that allows users to transfer files between their local computer and a remote server.</li><li>**Encapsulating users in an FTP directory:** restricting their access within a specific directory on the FTP server.</li></ul> |
+|  `5`  | **Firewall Rules for Bonus Services:** Adapt the UFW or firewalld rules to accommodate any additional ports needed for the bonus services. |
 
-## Functions of the bonus part
-
-| **Function**      | **Description**                                                                                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ft_lstnew`       | Create a new node using malloc(3). The member variable 'content' is initialized with the content of the parameter 'content'. The 'next' variable, with NULL. |
-| `ft_lstadd_front` | Add the 'new' node to the beginning of the 'lst' list.                                                                                                       |
-| `ft_lstsize`      | Counts the number of nodes in a list.                                                                                                                        |
-| `ft_lstlast`      | Returns the last node in the list.                                                                                                                           |
-| `ft_lstadd_back`  | Add the 'new' node to the end of the 'lst' list.                                                                                                             |
-| `ft_lstdelone`    | It takes as a parameter a node 'lst' and frees the memory of the content using the function 'del' given as a parameter, in addition to freeing the node. The 'next' memory must not be freed. |
-| `ft_lstclear`     | Delete and free the given ’lst’ node and all consecutive nodes of that node, using the ’del’ and free(3) function. In the end, the pointer to the list must be NULL. |
-| `ft_lstiter`      | Iterates the list 'lst' and applies the function 'f' on the content of each node.                                                                            |
-| `ft_lstmap`       | Iterates the list 'lst' and applies the function 'f' to the contents of each node. Creates a list resulting from the correct and successive application of the function 'f' on each node. The 'del' function is used to delete the contents of a node, if necessary. |
+<p>The bonus part will only be evaluated if the mandatory part is perfect. "Perfect" means that the mandatory part is fully functional and complete. If any part of the mandatory requirements is not fulfilled, the bonus will not be considered.</p>
