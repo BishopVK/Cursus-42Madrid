@@ -10,10 +10,10 @@
 # Ignorar directorios específicos
 /.vscode
 /pruebas
-/txt
+#/txt
 
 # Ignorar ficheros de pruebas
-*.txt
+#*.txt
 *.c
 !get_next_line.c
 !get_next_line_utils.c
