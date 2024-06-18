@@ -48,16 +48,19 @@ In this case, we read the contents of Martin_Luther_King.txt. The cat command is
 
 ## Preview of the bonus part
 
-**Multiple pipes**
+**Multiple pipes:**
+<br>
 <br>
 In this case, we read the content of infile.txt. The "cat" command is responsible for reading the received content. "ls -la" will ignore the input received and list directories and files in the current path including hidden files. "awk" will filter out the ninth column from the result, which includes the names of the files and directories. "grep pipex" will exclude from the final result anything that does not contain the word "pipex". Finally and for convenience for this example, we show the result through the output to the standard output.
 
 <p align="center">
 <img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/bonus.png">
 </p>
+<br>
 
 
-**Here doc**
+**Here doc:**
+<br>
 <br>
 In this second case we simulate the use of the here doc.
 To do this we use the reserved word "here_doc" followed by the reserved word for escaping the here doc, in this case EOF.
