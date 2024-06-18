@@ -1,9 +1,8 @@
 ## My score
 
+| **Project**           | **Score**     |
 |-----------------------|---------------|
-| <p align="center">
-<img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png">
-</p> | **108/100**   |
+| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png"></p> | **108/100**   |
 
 ## push_swap
 
