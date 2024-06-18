@@ -36,6 +36,7 @@ If a correct file to read from is indicated, the read file will be returned line
 <p align="left">
 	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/mandatory.png">
 </p>
+---
 
 **Standar input use:**  
 
@@ -44,7 +45,8 @@ If a file to read from is not indicated, text entry will be allowed through stan
 <p align="left">
 	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/stdin.png">
 </p>
-  
+---
+
 **Incorrect use:**  
 
 If two or more files are entered to read from, an error will be returned with instructions on how to use the function correctly.
@@ -52,7 +54,8 @@ If two or more files are entered to read from, an error will be returned with in
 <p align="left">
 	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/bad_use.png">
 </p>
-  
+
+
 ## The Bonus part
 
 <p>To fully complete the bonus part of the project, the following conditions must be met:</p>
