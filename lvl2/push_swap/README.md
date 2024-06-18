@@ -1,4 +1,4 @@
-## My score
+## Grade
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
@@ -61,10 +61,3 @@ it that can't be executed won't.
 <p align="center">
 <img width="2275px" alt="1102px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/test_2275-1102.png">
 </p>
-<!--
-
-## Grade
-<p align="center">
-<img width="210" alt="125" src="https://github.com/JZJavier/42/assets/76801285/9b5924a8-8876-4bce-b783-1e6b5da93252">
-</p>
--->
