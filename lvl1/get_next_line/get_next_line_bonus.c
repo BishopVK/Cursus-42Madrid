@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:12:38 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/29 08:57:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:53:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ int	read_file(int fd, char **result, char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*buffer;
-	static char	*result[OPEN_MAX];
+	static char	*result[FD_SETSIZE];
 	char		*line;
 	int			bytes_read;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= OPEN_MAX)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= FD_SETSIZE)
 		return (NULL);
 	if (!result[fd])
 		result[fd] = ft_strdup("");
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 // ./a.out txt/texto.txt
 
 //LECTURA DE FICHERO O DE STDIN
-/* int	main(int argc, char *argv[]) {
+int	main(int argc, char *argv[]) {
 	char *buffer;
 
 	//Leer desde archivo si se proporciona al menos
@@ -117,16 +117,16 @@ char	*get_next_line(int fd)
 				exit(EXIT_FAILURE);
 			}
 
-			printf(COLOR_CYAN"\n>> CONTENIDO DEL ARCHIVO: %s:\n" COLOR_RESET,
+			printf(COLOR_CYAN"\n>> FILE CONTENT: %s:\n" COLOR_RESET,
 				argv[i]);
 			while ((buffer = get_next_line(fd)) != NULL) {
 				// Verificar si se asignó memoria correctamente
 				if (buffer == NULL) {
-					fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+					fprintf(stderr, "Failure to allocate memory for buffer\n");
 					break;
 				}
 				// Procesar la línea leída
-				printf("RECIBIDO: %s\n", buffer);
+				printf("RECEIVED: %s", buffer);
 
 				// Liberar la memoria asignada a la línea
 				free(buffer);
@@ -141,16 +141,16 @@ char	*get_next_line(int fd)
 	}
 	// Leer desde stdin si no se proporcionan argumentos en la línea de comandos
 	else if (argc == 1) {
-		printf("Ingrese texto desde stdin:\n");
+		printf("Enter text from stdin:\n");
 		while ((buffer = get_next_line(STDIN_FILENO)) != NULL) {
 			// Verificar si se asignó memoria correctamente
 			if (buffer == NULL) {
-				fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+				fprintf(stderr, "Failure to allocate memory for buffer\n");
 				break;
 			}
 
 			// Procesar la línea leída
-			printf("RECIBIDO: %s\n", buffer);
+			printf("RECEIVED: %s", buffer);
 
 			// Liberar la memoria asignada a la línea
 			free(buffer);
@@ -160,9 +160,10 @@ char	*get_next_line(int fd)
 		fprintf(stderr, "Uso: %s [archivo1] [archivo2] ...\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
+	printf("\n");
 
-	return 0;
-} */
+	return (0);
+}
 
 //PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
 /* int main(int argc, char *argv[])
