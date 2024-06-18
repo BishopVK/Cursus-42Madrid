@@ -49,6 +49,7 @@ In this case, we read the contents of Martin_Luther_King.txt. The cat command is
 ## Preview of the bonus part
 
 **Multiple pipes**
+<br>
 In this case, we read the content of infile.txt. The "cat" command is responsible for reading the received content. "ls -la" will ignore the input received and list directories and files in the current path including hidden files. "awk" will filter out the ninth column from the result, which includes the names of the files and directories. "grep pipex" will exclude from the final result anything that does not contain the word "pipex". Finally and for convenience for this example, we show the result through the output to the standard output.
 
 <p align="center">
@@ -57,6 +58,7 @@ In this case, we read the content of infile.txt. The "cat" command is responsibl
 
 
 **Here doc**
+<br>
 In this second case we simulate the use of the here doc.
 To do this we use the reserved word "here_doc" followed by the reserved word for escaping the here doc, in this case EOF.
 We will enter the desired text through standard input, which will stop automatically when the escape word is detected. "grep rose" will filter out all received lines that contain the word "rose". "wc -w" will count the number of words in the received line. The result will be stored with an append in the file outfile.txt, adding the result to the end of the document. In this case 4: the number of words contained in the line "A rose by anyone".
