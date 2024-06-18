@@ -43,7 +43,7 @@ To meet the objectives of the mandatory part of the project, I had to follow the
 <p>Starting from the player's position (P), the entire map is traversed while avoiding walls (1), and enemies (K) in the bonus part, to ensure that the player can reach all the collectibles (C) and the exit (E). If not, the map will be unsolvable.</p>
 
 <p>Demonstration of the flood fill function in action:</p>
-<p align="center">
+<p align="left">
 <img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/so_long/img/Flood_fill.gif">
 </p>
 
