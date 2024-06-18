@@ -49,36 +49,12 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 ## The Bonus part
 
-<p>To fully pass the bonus part of the project Pipex, the following conditions must be met:</p>
+<p>To fully complete the bonus part of the project, the following conditions must be met:</p>
 
-| **#** | **Instruction**                                                                                                                        |
-| ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
-|  `1`  | Implement the ability to handle multiple pipes in the program..                                                                        |
-|  `2`  | Support input redirection using "<< LIMITER" and output redirection using ">>" when the first parameter is "here_doc".                 |
-|  `3`  | Ensure that the mandatory part of the project is flawless without any errors, even in extreme or misuse cases.                         |
-|  `4`  | Bonus features will only be evaluated if the mandatory part is deemed perfect; otherwise, the bonus will be ignored during assessment. |
-
-
-## Preview of the bonus part
-
-**Multiple pipes:**
-<br>
-<br>
-In this case, we read the content of infile.txt. The "cat" command is responsible for reading the received content. "ls -la" will ignore the input received and list directories and files in the current path including hidden files. "awk" will filter out the ninth column from the result, which includes the names of the files and directories. "grep pipex" will exclude from the final result anything that does not contain the word "pipex". Finally and for convenience for this example, we show the result through the output to the standard output.
-
-<p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/bonus.png">
-</p>
-<br>
-
-
-**Here doc:**
-<br>
-<br>
-In this second case we simulate the use of the here doc.
-To do this we use the reserved word "here_doc" followed by the reserved word for escaping the here doc, in this case EOF.
-We will enter the desired text through standard input, which will stop automatically when the escape word is detected. "grep rose" will filter out all received lines that contain the word "rose". "wc -w" will count the number of words in the received line. The result will be stored with an append in the file outfile.txt, adding the result to the end of the document. In this case 4: the number of words contained in the line "A rose by anyone".
-
-<p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/here_doc.png">
-</p>
+| **#** | **Instruction**                                                                                                                                        |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|  `1`  | **Bonus Implementation:** Implement any combination of the following flags: '-0.' and the field minimum width for all possible conversions.            |
+|  `2`  | **Additional Flags:** Handle all of the following flags: '# +' (including the space).                                                                  |
+|  `3`  | **Perfect Mandatory Part:** The mandatory part of the project must be perfect, meaning it works completely without any errors or unexpected behaviors. |
+|  `4`  | **Separate Files:** Bonus features must be implemented in separate files named _bonus.{c/h}.                                                           |
+|  `5`  | **Makefile Rule:** Include a bonus rule in the Makefile that compiles these bonus features.                                                            |
