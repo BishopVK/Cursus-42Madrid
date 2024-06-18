@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 // ./a.out txt/texto.txt
 
 //LECTURA DE FICHERO O DE STDIN
-/*int	main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char *buffer;
 
@@ -124,12 +124,12 @@ char	*get_next_line(int fd)
 			// Verificar si se asignó memoria correctamente
 			if (buffer == NULL)
 			{
-				fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+				fprintf(stderr, "Failure to allocate memory for buffer\n");
 				break;
 			}
 
 			// Procesar la línea leída
-			printf("RECIBIDO: %s\n", buffer);
+			printf("RECEIVED: %s", buffer);
 
 			// Liberar la memoria asignada a la línea
 			free(buffer);
@@ -145,18 +145,18 @@ char	*get_next_line(int fd)
 	// Leer desde stdin si no se proporcionan argumentos en la línea de comandos
 	else if (argc == 1)
 	{
-		printf("Ingrese texto desde stdin:\n");
+		printf("Enter text from stdin:\n");
 		while ((buffer = get_next_line(STDIN_FILENO)) != NULL)
 		{
 			// Verificar si se asignó memoria correctamente
 			if (buffer == NULL)
 			{
-				fprintf(stderr, "Fallo al asignar memoria para el buffer\n");
+				fprintf(stderr, "Failure to allocate memory for buffer\n");
 				break;
 			}
 
 			// Procesar la línea leída
-			printf("RECIBIDO: %s\n", buffer);
+			printf("RECEIVED: %s", buffer);
 
 			// Liberar la memoria asignada a la línea
 			free(buffer);
@@ -164,12 +164,13 @@ char	*get_next_line(int fd)
 	}
 	else
 	{
-		fprintf(stderr, "Uso: %s [nombre_del_archivo]\n", argv[0]);
+		fprintf(stderr, "Correct use: %s [name_of_file]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
+	printf("\n");
 
 	return 0;
-}*/
+}
 
 //PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
 /* int main(int argc, char *argv[])
