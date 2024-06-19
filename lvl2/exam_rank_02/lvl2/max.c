@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 23:08:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/18 23:22:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:53:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		max(int* tab, unsigned int len)
+int	max(int *tab, unsigned int len)
 {
 	unsigned int	higger;
 	unsigned int	i;
