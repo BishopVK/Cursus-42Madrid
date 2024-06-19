@@ -11,7 +11,7 @@ This is my current progress on the 42Madrid Cursus
 | [libft](/lvl0/Libft) | **125/100**   |
 | [ft_printf](/lvl1/printf) | **100/100**   |
 | [get_next_line](/lvl1/get_next_line) | **125/100**   |
-| Born2beroot           | **125/100**   |
+| [Born2beroot](/lvl1/Born2beRoot) | **125/100**   |
 | [push_swap](/lvl2/push_swap) | **108/100**   |
 | [pipex](/lvl2/pipex) | **125/100**   |
 | [so_long](/lvl2/so_long) | **125/100**   |
