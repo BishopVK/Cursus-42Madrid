@@ -31,7 +31,7 @@ Here are the 4 exercises that I had to complete during the exam:
 
 | **Level** | **Description**                                                                                                                                           |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    `1`    | [**ft_putstr:**](/lvl1) Write a function that displays a string on the standard output.                                                                   |
-|    `2`    | [**max:**](/lvl2) This function should analyze the array tab and determine the largest integer present in it. If the array is empty, it should return 0.  |
-|    `3`    | [**ft_range:**](/lvl3) Write a function that allocates an array of integers using malloc(). The array should be filled with consecutive values starting from start to end, inclusive, and then return a pointer to the first element of this array. |
-|    `4`    | [**fprime:**](/lvl4) Write a program that takes a positive integer as input and prints its prime factors on the standard output, separated by '*', in ascending order. If the number of parameters is not exactly 1, the program simply outputs a newline.  |
+|    `1`    | [**ft_putstr:**](/lvl2/exam_rank_02/lvl1) Write a function that displays a string on the standard output.                                                                   |
+|    `2`    | [**max:**](/lvl2/exam_rank_02/lvl2) This function should analyze the array tab and determine the largest integer present in it. If the array is empty, it should return 0.  |
+|    `3`    | [**ft_range:**](/lvl2/exam_rank_02/lvl3) Write a function that allocates an array of integers using malloc(). The array should be filled with consecutive values starting from start to end, inclusive, and then return a pointer to the first element of this array. |
+|    `4`    | [**fprime:**](/lvl2/exam_rank_02/lvl4) Write a program that takes a positive integer as input and prints its prime factors on the standard output, separated by '*', in ascending order. If the number of parameters is not exactly 1, the program simply outputs a newline.  |
