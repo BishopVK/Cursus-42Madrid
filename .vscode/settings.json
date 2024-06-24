@@ -2,6 +2,7 @@
 	"files.associations": {
 		"limits.h": "c",
 		"libft.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"so_long_bonus.h": "c"
 	}
 }
