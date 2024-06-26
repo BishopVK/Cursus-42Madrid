@@ -3,6 +3,8 @@
 		"limits.h": "c",
 		"libft.h": "c",
 		"unistd.h": "c",
-		"so_long_bonus.h": "c"
+		"so_long_bonus.h": "c",
+		"philo.h": "c",
+		"pthread.h": "c"
 	}
 }
