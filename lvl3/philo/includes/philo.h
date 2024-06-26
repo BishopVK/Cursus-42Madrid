@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/26 08:01:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/26 08:35:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,11 @@
 
 // gettimeofday
 #include <sys/time.h>
+
+#define NUM_THREADS 5
+
+typedef struct s_threads
+{
+	int				counter;
+	pthread_mutex_t	mutex;
+}	t_threads;
