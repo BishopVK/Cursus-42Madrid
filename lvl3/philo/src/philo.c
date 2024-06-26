@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/26 08:42:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:59:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 void	*funcion_hilos(void *arg)
 {
 	int	i;
+	t_threads *threads;
 
 	i = 0;
+	threads = (t_threads *)arg;
 	while (i < 100000)
 	{
 		// Los hilos se quedan aquí hasta que otro hilo salga de la zona crítica
 
 		// Bloqueamos el acceso a varios hilos a la sección crítica
-		pthread_mutex_lock(&mutex);
-		contador++;
+		pthread_mutex_lock(&threads->mutex);
+		threads->counter++;
+		printf("Soy el hilo %d\n", threads->philo_nbr);
 		// Desbloqueamos el acceso a varios hilos a la sección crítica
-		pthread_mutex_unlock(&mutex);
+		pthread_mutex_unlock(&threads->mutex);
 		i++;
 	}
 	return (NULL);
@@ -45,6 +48,7 @@ int	main(void)
 	i = 0;
 	while (i < NUM_THREADS)
 	{
+		threads.philo_nbr = i;
 		pthread_create(&threads_nbr[i], NULL, funcion_hilos, &threads);
 		i++;
 	}
