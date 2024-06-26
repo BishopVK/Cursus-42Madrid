@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/26 08:35:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:52:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 typedef struct s_threads
 {
 	int				counter;
+	int				philo_nbr;
 	pthread_mutex_t	mutex;
 }	t_threads;
