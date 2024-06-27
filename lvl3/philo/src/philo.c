@@ -6,19 +6,20 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/26 10:59:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:40:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	*funcion_hilos(void *arg)
+/* void	*funcion_hilos(void *arg)
 {
 	int	i;
 	t_threads *threads;
 
 	i = 0;
 	threads = (t_threads *)arg;
+	printf("Soy el hilo %d\n", threads->philo_nbr);
 	while (i < 100000)
 	{
 		// Los hilos se quedan aquí hasta que otro hilo salga de la zona crítica
@@ -26,15 +27,41 @@ void	*funcion_hilos(void *arg)
 		// Bloqueamos el acceso a varios hilos a la sección crítica
 		pthread_mutex_lock(&threads->mutex);
 		threads->counter++;
-		printf("Soy el hilo %d\n", threads->philo_nbr);
 		// Desbloqueamos el acceso a varios hilos a la sección crítica
 		pthread_mutex_unlock(&threads->mutex);
 		i++;
 	}
 	return (NULL);
+} */
+
+t_table	parse_args(int argc, char **argv)
+{
+	t_table	table;
+
+	table.time_to_die = argv[1];
+	table.time_to_eat = argv[2];
+	table.time_to_sleep = argv[3];
+	if (argc == 6)
+		table.nbr_must_eat = argv[4];
+	else
+		table.nbr_must_eat = -1;
+	return (table);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
+{
+	t_table	table;
+
+	if (argc >= 5 && argc <= 6)
+		table = parse_args(argc, argv);
+	else
+	{
+		printf("Correct use: ./philo time_to_die time_to_eat time_to_sleep");
+		printf("[number_of_times_each_philosopher_must_eat]\n");
+	}
+}
+
+/* int	main(void)
 {
 	pthread_t	threads_nbr[NUM_THREADS];
 	t_threads	threads;
@@ -66,4 +93,4 @@ int	main(void)
 	pthread_mutex_destroy(&threads.mutex);
 
 	return (0);
-}
+} */
