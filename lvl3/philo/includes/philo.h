@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/26 10:52:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:31:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,28 @@
 
 #define NUM_THREADS 5
 
-typedef struct s_threads
+/* typedef struct s_threads
 {
 	int				counter;
 	int				philo_nbr;
 	pthread_mutex_t	mutex;
-}	t_threads;
+}	t_threads; */
+
+typedef struct s_philosopher
+{
+	int			id;
+	pthread_t	thread;
+	int			meals_eaten;
+	long		last_meal_time;
+}	t_philosopher;
+
+typedef struct s_table
+{
+	int					nbr_philosophers;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					nbr_must_eat;
+	pthread_mutex_t		*forks; // Array de mutexes
+	struct Philosopher	*philosophers;
+}	t_table;
