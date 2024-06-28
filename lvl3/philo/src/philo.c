@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 09:18:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:25:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ t_table	parse_args(int argc, char **argv)
 {
 	t_table	table;
 
+	table.time_to_die = ft_atoi(argv[1]);
+	table.time_to_eat = ft_atoi(argv[2]);
+	table.time_to_sleep = ft_atoi(argv[3]);
 	if (argc == 5)
 		table.nbr_must_eat = ft_atoi(argv[4]);
 	else
 		table.nbr_must_eat = -1;
-	table.time_to_die = ft_atoi(argv[1]);
-	table.time_to_eat = ft_atoi(argv[2]);
-	table.time_to_sleep = ft_atoi(argv[3]);
 	return (table);
 }
 
