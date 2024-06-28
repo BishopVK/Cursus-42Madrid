@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 14:37:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:13:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,35 @@
 	return (NULL);
 } */
 
+/*
+typedef struct s_philosopher
+{
+	int			id;
+	pthread_t	thread;
+	int			meals_eaten;
+	long		last_meal_time;
+}	t_philosopher;
+*/
+
+static void	initialize_structs(t_table *table)
+{
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos + 1);
+	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos + 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_table	table;
 
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
-	printf("nbr_philosophers == %i\n", table.nbr_philosophers);
+	printf("nbr_philos == %i\n", table.nbr_philos);
 	printf("time_to_die == %i\n", table.time_to_die);
 	printf("time_to_eat == %i\n", table.time_to_eat);
 	printf("time_to_sleep == %i\n", table.time_to_sleep);
 	printf("nbr_must_eat == %i\n", table.nbr_must_eat);
 
+	initialize_structs(&table);
 	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
 
 	return (0);
