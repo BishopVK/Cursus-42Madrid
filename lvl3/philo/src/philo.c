@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 11:07:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:37:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ int	main(int argc, char **argv)
 
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
+	printf("nbr_philosophers == %i\n", table.nbr_philosophers);
 	printf("time_to_die == %i\n", table.time_to_die);
 	printf("time_to_eat == %i\n", table.time_to_eat);
 	printf("time_to_sleep == %i\n", table.time_to_sleep);
 	printf("nbr_must_eat == %i\n", table.nbr_must_eat);
+
+	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
 
 	return (0);
 }
