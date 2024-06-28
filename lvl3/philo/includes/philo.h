@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 11:07:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:13:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ typedef struct s_philosopher
 
 typedef struct s_table
 {
-	int					nbr_philosophers;
+	int					nbr_philos;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nbr_must_eat;
 	pthread_mutex_t		*forks; // Array de mutexes
-	struct Philosopher	*philosophers;
+	t_philosopher		*philos;
 }	t_table;
 
 /*_____           _        _   _                  
