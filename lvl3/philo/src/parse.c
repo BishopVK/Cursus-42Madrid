@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:00:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 11:07:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:52:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ static int	validate_args_set(int argc, char **argv)
 				return (1);
 			j++;
 		}
-		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < 0)
 			return (1);
 		i++;
 	}
+	if (ft_atol(argv[2]) < 60 || ft_atol(argv[3]) < 60
+		|| ft_atol(argv[4]) < 60)
+		return (2);
 	return (0);
 }
 
@@ -38,11 +41,12 @@ static t_table	parse_args(int argc, char **argv)
 {
 	t_table	table;
 
-	table.time_to_die = ft_atoi(argv[1]);
-	table.time_to_eat = ft_atoi(argv[2]);
-	table.time_to_sleep = ft_atoi(argv[3]);
-	if (argc == 5)
-		table.nbr_must_eat = ft_atoi(argv[4]);
+	table.nbr_philosophers = ft_atoi(argv[1]);
+	table.time_to_die = ft_atoi(argv[2]);
+	table.time_to_eat = ft_atoi(argv[3]);
+	table.time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		table.nbr_must_eat = ft_atoi(argv[5]);
 	else
 		table.nbr_must_eat = -1;
 	return (table);
@@ -50,18 +54,22 @@ static t_table	parse_args(int argc, char **argv)
 
 int	validate_args(int argc, char **argv, t_table *table)
 {
-	if (argc >= 4 && argc <= 5)
+	if (argc >= 5 && argc <= 6)
 	{
 		if (validate_args_set(argc, argv) != 0)
 		{
-			printf("Invalid args type\n");
+			if (validate_args_set(argc, argv) == 1)
+				printf("Invalid args type\n");
+			if (validate_args_set(argc, argv) == 2)
+				printf("Minimum time to die, eat or sleep must be 60\n");
 			return (1);
 		}
 		*table = parse_args(argc, argv);
 	}
 	else
 	{
-		printf("Correct use: ./philo time_to_die time_to_eat time_to_sleep");
+		printf("Correct use: ./philo number_of_philosophers time_to_die");
+		printf(" time_to_eat time_to_sleep");
 		printf(" [number_of_times_each_philosopher_must_eat]\n");
 		return (1);
 	}
