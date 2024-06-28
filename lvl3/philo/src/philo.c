@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 15:13:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:50:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,21 @@ typedef struct s_philosopher
 
 static void	initialize_structs(t_table *table)
 {
-	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos + 1);
-	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos + 1);
+	int	i;
+	struct timeval	current_time;
+
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
+	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
+	gettimeofday(&current_time, NULL);
+	i = 0;
+	while(i < table->nbr_philos)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		table->philos[i].id = i + 1;
+		table->philos[i].meals_eaten = 0;
+		table->philos[i].last_meal_time = current_time.tv_usec;
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -65,6 +78,8 @@ int	main(int argc, char **argv)
 	initialize_structs(&table);
 	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
 
+	free(table.forks);
+	free(table.philos);
 	return (0);
 }
 
