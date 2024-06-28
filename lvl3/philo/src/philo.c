@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 22:50:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/29 00:10:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,15 @@ int	main(int argc, char **argv)
 
 	initialize_structs(&table);
 	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
+
+	int	i = 0;
+	while(i < table.nbr_philos)
+	{
+		printf("table.philos[i].id == %i\n", table.philos[i].id);
+		printf("table.philos[i].meals_eaten == %i\n", table.philos[i].meals_eaten);
+		printf("table.philos[i].last_meal_time == %li\n", table.philos[i].last_meal_time);
+		i++;
+	}
 
 	free(table.forks);
 	free(table.philos);
