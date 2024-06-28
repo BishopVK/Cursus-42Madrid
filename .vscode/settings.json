@@ -5,6 +5,7 @@
 		"unistd.h": "c",
 		"so_long_bonus.h": "c",
 		"philo.h": "c",
-		"pthread.h": "c"
+		"pthread.h": "c",
+		"time.h": "c"
 	}
 }
