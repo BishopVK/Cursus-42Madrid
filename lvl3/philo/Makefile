@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/26 07:52:00 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/26 08:19:50 by danjimen         ###   ########.fr        #
+#    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
+#    Updated: 2024/06/28 09:20:27 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,10 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 SRC_DIR		=	src
-SRC			=	$(SRC_DIR)/philo.c
+SRC			=	$(SRC_DIR)/philo.c \
+				$(SRC_DIR)/functions/ft_atoi.c \
+				$(SRC_DIR)/functions/ft_atol.c \
+				$(SRC_DIR)/functions/ft_isdigit.c
 
 OBJ			=	$(SRC:.c=.o)
 
