@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 10:31:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:07:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,8 @@ typedef struct s_table
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 int		ft_isdigit(int c);
+
+//////////////////////////////////////////////////////
+//						PARSE.C						//
+//////////////////////////////////////////////////////
+int		validate_args(int argc, char **argv, t_table *table);
