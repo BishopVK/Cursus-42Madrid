@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:00:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 14:52:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:07:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_table	parse_args(int argc, char **argv)
 {
 	t_table	table;
 
-	table.nbr_philosophers = ft_atoi(argv[1]);
+	table.nbr_philos = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);
 	table.time_to_eat = ft_atoi(argv[3]);
 	table.time_to_sleep = ft_atoi(argv[4]);
