@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/06/28 09:20:27 by danjimen         ###   ########.fr        #
+#    Updated: 2024/06/28 11:07:31 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,18 +25,20 @@ define print_green
 	@echo $(COLOR_GREEN)$1$(COLOR_RESET)
 endef
 
-NAME		=	philo
+NAME			=	philo
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CC				=	cc
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
-SRC_DIR		=	src
-SRC			=	$(SRC_DIR)/philo.c \
-				$(SRC_DIR)/functions/ft_atoi.c \
-				$(SRC_DIR)/functions/ft_atol.c \
-				$(SRC_DIR)/functions/ft_isdigit.c
+SRC_DIR			=	src
+FUNCTIONS_DIR	=	$(SRC_DIR)/functions
+SRC				=	$(SRC_DIR)/philo.c \
+					$(SRC_DIR)/parse.c \
+					$(FUNCTIONS_DIR)/ft_atoi.c \
+					$(FUNCTIONS_DIR)/ft_atol.c \
+					$(FUNCTIONS_DIR)/ft_isdigit.c
 
-OBJ			=	$(SRC:.c=.o)
+OBJ				=	$(SRC:.c=.o)
 
 all: $(NAME)
 
