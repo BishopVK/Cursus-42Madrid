@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/29 00:11:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:42:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ typedef struct s_philosopher
 }	t_philosopher;
 */
 
+static void	cleanup(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while(i < table->nbr_philos)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
+	}
+	free(table->forks);
+	free(table->philos);
+}
+
 static void	initialize_structs(t_table *table)
 {
 	int	i;
@@ -51,13 +65,13 @@ static void	initialize_structs(t_table *table)
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
-	gettimeofday(&current_time, NULL);
 	i = 0;
 	while(i < table->nbr_philos)
 	{
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
 		table->philos[i].meals_eaten = 0;
+		gettimeofday(&current_time, NULL);
 		table->philos[i].last_meal_time = current_time.tv_usec;
 		i++;
 	}
@@ -86,9 +100,7 @@ int	main(int argc, char **argv)
 		printf("table.philos[i].last_meal_time == %li\n", table.philos[i].last_meal_time);
 		i++;
 	}
-
-	free(table.forks);
-	free(table.philos);
+	cleanup(&table);
 	return (0);
 }
 
