@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 15:24:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:50:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@
 
 typedef struct s_philosopher
 {
-	int			id;
-	pthread_t	thread;
-	int			meals_eaten;
-	long		last_meal_time;
-	t_table		*table;
+	int				id;
+	pthread_t		thread;
+	int				meals_eaten;
+	long			last_meal_time;
+	struct s_table	*table;
 }	t_philosopher;
 
 typedef struct s_table
@@ -80,7 +80,7 @@ int		ft_isdigit(int c);
 //////////////////////////////////////////////////////
 //						PARSE.C						//
 //////////////////////////////////////////////////////
-long	get_current_time();
+long	get_current_time(void);
 int		validate_args(int argc, char **argv, t_table *table);
 
 //////////////////////////////////////////////////////
@@ -88,3 +88,9 @@ int		validate_args(int argc, char **argv, t_table *table);
 //////////////////////////////////////////////////////
 void	print_action(int id, char *action);
 void	*philo_routine(void *arg);
+
+//////////////////////////////////////////////////////
+//					ACTIONS.C						//
+//////////////////////////////////////////////////////
+void	think(t_philosopher *philo);
+void	eat(t_philosopher *philo);
