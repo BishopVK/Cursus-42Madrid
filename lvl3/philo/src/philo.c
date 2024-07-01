@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/29 14:42:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:05:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ static void	initialize_structs(t_table *table)
 int	main(int argc, char **argv)
 {
 	t_table	table;
+	int	i;
 
+	// Parseo
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
 	printf("nbr_philos == %i\n", table.nbr_philos);
@@ -89,10 +91,12 @@ int	main(int argc, char **argv)
 	printf("time_to_sleep == %i\n", table.time_to_sleep);
 	printf("nbr_must_eat == %i\n", table.nbr_must_eat);
 
+	// Inicialización de estructuras
 	initialize_structs(&table);
 	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
 
-	int	i = 0;
+	//Bucle de comprobación
+	i = 0;
 	while(i < table.nbr_philos)
 	{
 		printf("table.philos[i].id == %i\n", table.philos[i].id);
@@ -100,6 +104,24 @@ int	main(int argc, char **argv)
 		printf("table.philos[i].last_meal_time == %li\n", table.philos[i].last_meal_time);
 		i++;
 	}
+
+	// Crear hilos para los filósofos
+	i = 0;
+	while (i < table.nbr_philos)
+	{
+		pthread_create(&table.philos[i].thread, NULL, philo_routine, &table.philos[i]);
+		i++;
+	}
+
+	// Esperar a que los hilos terminen
+	i = 0;
+	while (i < table.nbr_philos)
+	{
+		pthread_join(table.philos[i].thread, NULL);
+		i++;
+	}
+
+	// Liberar al final
 	cleanup(&table);
 	return (0);
 }
