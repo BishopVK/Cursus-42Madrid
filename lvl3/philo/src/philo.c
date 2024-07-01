@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 19:46:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:33:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ static void	cleanup(t_table *table)
 
 long	get_current_time(void)
 {
-	struct timeval	tv;
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	struct timeval	time;
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000) + (time.tv_usec / 1000);
 }
 
 static void	initialize_structs(t_table *table)
