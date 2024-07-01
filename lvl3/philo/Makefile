@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/07/01 09:58:51 by danjimen         ###   ########.fr        #
+#    Updated: 2024/07/01 19:42:57 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ FUNCTIONS_DIR	=	$(SRC_DIR)/functions
 SRC				=	$(SRC_DIR)/philo.c \
 					$(SRC_DIR)/parse.c \
 					$(SRC_DIR)/routine.c \
+					$(SRC_DIR)/actions.c \
 					$(FUNCTIONS_DIR)/ft_atoi.c \
 					$(FUNCTIONS_DIR)/ft_atol.c \
 					$(FUNCTIONS_DIR)/ft_isdigit.c
