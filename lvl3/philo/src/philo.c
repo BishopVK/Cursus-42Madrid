@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 10:05:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:03:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ static void	cleanup(t_table *table)
 	free(table->philos);
 }
 
+long	get_current_time()
+{
+	struct timeval	tv;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
 static void	initialize_structs(t_table *table)
 {
 	int	i;
-	struct timeval	current_time;
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
@@ -71,8 +77,7 @@ static void	initialize_structs(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
 		table->philos[i].meals_eaten = 0;
-		gettimeofday(&current_time, NULL);
-		table->philos[i].last_meal_time = current_time.tv_usec;
+		table->philos[i].last_meal_time = get_current_time();
 		i++;
 	}
 }
