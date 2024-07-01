@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 21:30:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:15:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@
 
 #define NUM_THREADS 5
 
-/* typedef struct s_threads
+typedef enum s_bool
 {
-	int				counter;
-	int				philo_nbr;
-	pthread_mutex_t	mutex;
-}	t_threads; */
+	false,
+	true,
+}	t_bool;
 
 typedef struct s_philosopher
 {
@@ -59,6 +58,8 @@ typedef struct s_table
 	int					nbr_must_eat;
 	pthread_mutex_t		*forks; // Array de mutexes
 	t_philosopher		*philos;
+	int					loop_end; // Bandera para terminar la simulación
+	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera
 }	t_table;
 
 /*_____           _        _                         
