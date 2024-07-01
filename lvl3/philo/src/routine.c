@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 21:40:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:45:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_action(int id, char *action)
 {
-	printf("%li: %i %s\n", get_current_time(), id, action);
+	printf("%ld: %d %s\n", get_current_time(), id, action);
 }
 
 static int	end_of_routine(t_table *table)
