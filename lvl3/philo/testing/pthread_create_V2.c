@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pthread_create_V2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 21:46:12 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/24 09:35:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:07:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
