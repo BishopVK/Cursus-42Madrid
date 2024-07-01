@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 19:50:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:28:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,6 @@ void	*philo_routine(void *arg);
 //////////////////////////////////////////////////////
 void	think(t_philosopher *philo);
 void	eat(t_philosopher *philo);
+void	sleep_philosopher(t_philosopher *philo);
+void	take_forks(t_philosopher *philo);
+void	leave_forks(t_philosopher *philo);
