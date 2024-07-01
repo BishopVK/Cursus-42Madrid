@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 21:50:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:41:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	cleanup(t_table *table)
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&table->end_mutex);
 	free(table->forks);
 	free(table->philos);
 }
@@ -64,6 +65,8 @@ static void	initialize_structs(t_table *table)
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
+	table->loop_end = 0;
+	pthread_mutex_init(&table->end_mutex, NULL);
 	i = 0;
 	while(i < table->nbr_philos)
 	{
@@ -84,25 +87,9 @@ int	main(int argc, char **argv)
 	// Parseo
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
-	printf("nbr_philos == %i\n", table.nbr_philos);
-	printf("time_to_die == %i\n", table.time_to_die);
-	printf("time_to_eat == %i\n", table.time_to_eat);
-	printf("time_to_sleep == %i\n", table.time_to_sleep);
-	printf("nbr_must_eat == %i\n", table.nbr_must_eat);
 
 	// Inicialización de estructuras
 	initialize_structs(&table);
-	// Comprobar leaks de liberación de memoria antes de inicializar los hilos
-
-	//Bucle de comprobación
-	i = 0;
-	while(i < table.nbr_philos)
-	{
-		printf("table.philos[i].id == %i\n", table.philos[i].id);
-		printf("table.philos[i].meals_eaten == %i\n", table.philos[i].meals_eaten);
-		printf("table.philos[i].last_meal_time == %li\n", table.philos[i].last_meal_time);
-		i++;
-	}
 
 	// Crear hilos para los filósofos
 	i = 0;
