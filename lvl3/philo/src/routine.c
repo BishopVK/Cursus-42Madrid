@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 19:42:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:52:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	print_action(int id, char *action)
 void	*philo_routine(void *arg)
 {
 	t_philosopher *philo;
-	//t_table *table;
 
 	philo = (t_philosopher *)arg;
-	//table = philo->table;
 	think(philo);
 	return (NULL);
 }
