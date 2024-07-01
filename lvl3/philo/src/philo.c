@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 19:30:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:46:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@
 	return (NULL);
 } */
 
-/*
-typedef struct s_philosopher
-{
-	int			id;
-	pthread_t	thread;
-	int			meals_eaten;
-	long		last_meal_time;
-}	t_philosopher;
-*/
-
 static void	cleanup(t_table *table)
 {
 	int	i;
@@ -58,7 +48,7 @@ static void	cleanup(t_table *table)
 	free(table->philos);
 }
 
-long	get_current_time()
+long	get_current_time(void)
 {
 	struct timeval	tv;
 	gettimeofday(&tv, NULL);
