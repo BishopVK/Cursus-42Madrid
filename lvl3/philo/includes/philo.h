@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 22:15:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 08:27:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_table
 	t_philosopher		*philos;
 	int					loop_end; // Bandera para terminar la simulación
 	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera
+	long				start_time;
 }	t_table;
 
 /*_____           _        _                         
@@ -87,7 +88,7 @@ int		validate_args(int argc, char **argv, t_table *table);
 //////////////////////////////////////////////////////
 //					ROUTINE.C						//
 //////////////////////////////////////////////////////
-void	print_action(int id, char *action);
+void	print_action(int id, char *action, long start_time);
 void	*philo_routine(void *arg);
 
 //////////////////////////////////////////////////////
