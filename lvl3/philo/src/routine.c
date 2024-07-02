@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 08:25:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:39:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*philo_routine(void *arg)
 	philo = (t_philosopher *)arg;
 	while (end_of_routine(philo->table) == false)
 	{
-		think(philo);
+		//think(philo);
 		if (end_of_routine(philo->table) == true)
 			break ;
 		take_forks(philo);
@@ -67,6 +67,7 @@ void	*philo_routine(void *arg)
 		if (end_of_routine(philo->table) == true)
 			break ;
 		sleep_philosopher(philo);
+		think(philo);
 	}
 	return (NULL);
 }
