@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/01 23:41:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 08:18:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ long	get_current_time(void)
 {
 	struct timeval	time;
 	long			time_miliseconds;
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+
+	gettimeofday(&time, NULL);
 	time_miliseconds = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (time_miliseconds);
 }
@@ -62,13 +62,16 @@ long	get_current_time(void)
 static void	initialize_structs(t_table *table)
 {
 	int	i;
+	struct timeval	time;
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
 	table->loop_end = 0;
+	gettimeofday(&time, NULL);
+	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
 	i = 0;
-	while(i < table->nbr_philos)
+	while (i < table->nbr_philos)
 	{
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
@@ -82,7 +85,7 @@ static void	initialize_structs(t_table *table)
 int	main(int argc, char **argv)
 {
 	t_table	table;
-	int	i;
+	int		i;
 
 	// Parseo
 	if (validate_args(argc, argv, &table) != 0)
