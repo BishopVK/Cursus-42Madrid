@@ -7,6 +7,15 @@
 		"philo.h": "c",
 		"pthread.h": "c",
 		"time.h": "c",
-		"waitflags.h": "c"
+		"waitflags.h": "c",
+		"array": "c",
+		"deque": "c",
+		"list": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"regex": "c"
 	}
 }
