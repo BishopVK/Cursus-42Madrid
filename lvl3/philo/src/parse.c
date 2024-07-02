@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:00:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 15:07:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 22:37:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ static int	validate_args_set(int argc, char **argv)
 			return (1);
 		i++;
 	}
+	if (ft_atol(argv[1]) <= 1)
+		return (2);
 	if (ft_atol(argv[2]) < 60 || ft_atol(argv[3]) < 60
 		|| ft_atol(argv[4]) < 60)
-		return (2);
+		return (3);
 	return (0);
 }
 
@@ -61,6 +63,8 @@ int	validate_args(int argc, char **argv, t_table *table)
 			if (validate_args_set(argc, argv) == 1)
 				printf("Invalid args type\n");
 			if (validate_args_set(argc, argv) == 2)
+				printf("Minimum of philosophers must be 2\n");
+			if (validate_args_set(argc, argv) == 3)
 				printf("Minimum time to die, eat or sleep must be 60\n");
 			return (1);
 		}
