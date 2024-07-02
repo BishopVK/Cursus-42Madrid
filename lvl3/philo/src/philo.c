@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:00:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:36:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,34 @@
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
+} */
 
-void	ft_usleep(int ms)
+/* void	ft_usleep(int ms)
 {
 	long int	time;
 
 	time = timestamp();
 	while (timestamp() - time < ms)
 		usleep(ms / 10);
+} */
+
+/* long long	ft_calc_time(void)
+{
+	struct timeval	tv;
+	long long	time_now;
+
+	gettimeofday(&tv, NULL);
+	time_now = (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return (time_now);
+} */
+
+/* void	ft_usleep(int time)
+{
+	long long	old_time;
+
+	old_time = ft_calc_time();
+	while ((ft_calc_time() - old_time) < time)
+		usleep(400);
 } */
 
 static void	cleanup(t_table *table)
