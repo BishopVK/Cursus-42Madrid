@@ -3,35 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 08:18:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:00:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-/* void	*funcion_hilos(void *arg)
+/* long long	timestamp(void)
 {
-	int	i;
-	t_threads *threads;
+	struct timeval	tv;
 
-	i = 0;
-	threads = (t_threads *)arg;
-	printf("Soy el hilo %d\n", threads->philo_nbr);
-	while (i < 100000)
-	{
-		// Los hilos se quedan aquí hasta que otro hilo salga de la zona crítica
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
 
-		// Bloqueamos el acceso a varios hilos a la sección crítica
-		pthread_mutex_lock(&threads->mutex);
-		threads->counter++;
-		// Desbloqueamos el acceso a varios hilos a la sección crítica
-		pthread_mutex_unlock(&threads->mutex);
-		i++;
-	}
-	return (NULL);
+void	ft_usleep(int ms)
+{
+	long int	time;
+
+	time = timestamp();
+	while (timestamp() - time < ms)
+		usleep(ms / 10);
 } */
 
 static void	cleanup(t_table *table)
@@ -45,6 +40,7 @@ static void	cleanup(t_table *table)
 		i++;
 	}
 	pthread_mutex_destroy(&table->end_mutex);
+	pthread_mutex_destroy(&table->global_mutex);
 	free(table->forks);
 	free(table->philos);
 }
@@ -70,6 +66,10 @@ static void	initialize_structs(t_table *table)
 	gettimeofday(&time, NULL);
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
+	pthread_mutex_init(&table->global_mutex, NULL);
+	table->even_delay = table->time_to_eat;
+	if (table->time_to_eat > table->time_to_sleep)
+		table->even_delay = table->time_to_sleep;
 	i = 0;
 	while (i < table->nbr_philos)
 	{
@@ -81,6 +81,18 @@ static void	initialize_structs(t_table *table)
 		i++;
 	}
 }
+
+/*
+1 800 200 200 (muere)
+5 800 200 200 (viven)
+5 800 200 200 7 (viven y cada uno come 7 veces)
+4 410 200 200 (viven)
+4 310 200 100 (mueren)
+
+3 310 103 103 (tienen que vivir)
+3 310 104 104 (tienen que morir)
+181 400 200 200 (mueren)
+*/
 
 int	main(int argc, char **argv)
 {
@@ -114,37 +126,3 @@ int	main(int argc, char **argv)
 	cleanup(&table);
 	return (0);
 }
-
-/* int	main(void)
-{
-	pthread_t	threads_nbr[NUM_THREADS];
-	t_threads	threads;
-	int			i;
-
-	memset(&threads, 0, sizeof(t_threads));
-
-	// Iniciamos el mutex
-	pthread_mutex_init(&threads.mutex, NULL);
-
-	i = 0;
-	while (i < NUM_THREADS)
-	{
-		threads.philo_nbr = i;
-		pthread_create(&threads_nbr[i], NULL, funcion_hilos, &threads);
-		i++;
-	}
-
-	i = 0;
-	while (i < NUM_THREADS)
-	{
-		pthread_join(threads_nbr[i], NULL);
-		i++;
-	}
-
-	printf("El valor final del contador es: %d\n", threads.counter);
-
-	// Destruimos el mutex cuando todos los hilos terminen
-	pthread_mutex_destroy(&threads.mutex);
-
-	return (0);
-} */
