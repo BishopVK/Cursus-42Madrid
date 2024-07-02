@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 14:39:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:00:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ static int	end_of_routine(t_table *table)
 	{
 		if (get_current_time() - table->philos[i].last_meal_time > table->time_to_die)
 		{
-			print_action(table->philos[i].id, "died", table->start_time);
 			table->loop_end = 1;
-			pthread_mutex_unlock(&table->end_mutex);
-			return (1);
+			print_action(table->philos[i].id, "died", table->start_time);
+			return (pthread_mutex_unlock(&table->end_mutex), 1);
+			//return (1);
 		}
 		if (table->nbr_must_eat != -1 && table->philos[i].meals_eaten >= table->nbr_must_eat)
 		{
 			table->loop_end = 1;
-			pthread_mutex_unlock(&table->end_mutex);
-			return (1);
+			printf("Done %i loops correctly\n", table->philos[i].meals_eaten);
+			return (pthread_mutex_unlock(&table->end_mutex), 1);
+			//return (1);
 		}
 		i++;
 	}
@@ -51,6 +52,10 @@ void	*philo_routine(void *arg)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
+	if (philo->table->nbr_philos == 3 && philo->id == 3)
+		usleep(philo->table->even_delay);
+	else if (philo->id % 2 == 0)
+		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table) == false)
 	{
 		//think(philo);
