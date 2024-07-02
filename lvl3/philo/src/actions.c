@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 11:48:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:51:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sleep_philosopher(t_philosopher *philo)
 	usleep(philo->table->time_to_sleep * 1000);
 }
 
-/* void	take_forks(t_philosopher *philo)
+void	take_forks(t_philosopher *philo)
 {
 	int	left_fork;
 	int	right_fork;
@@ -54,7 +54,10 @@ void	sleep_philosopher(t_philosopher *philo)
 				return ; // Both forks taken, exit the function
 			}
 			else
+			{
 				pthread_mutex_unlock(&philo->table->forks[left_fork]); // Release the left fork if right fork is not available
+				pthread_mutex_unlock(&philo->table->forks[right_fork]); // Release the left fork if right fork is not available
+			}
 			pthread_mutex_unlock(&philo->table->global_mutex); // Unlock the global mutex if we couldn't take both forks
 			usleep(100);
 		}
@@ -73,14 +76,17 @@ void	sleep_philosopher(t_philosopher *philo)
 				return ; // Both forks taken, exit the function
 			}
 			else
+			{
 				pthread_mutex_unlock(&philo->table->forks[right_fork]); // Release the left fork if right fork is not available
+				pthread_mutex_unlock(&philo->table->forks[left_fork]); // Release the left fork if right fork is not available
+			}
 			pthread_mutex_unlock(&philo->table->global_mutex); // Unlock the global mutex if we couldn't take both forks
 			usleep(100);
 		}
 	}
-} */
+}
 
-void	take_forks(t_philosopher *philo)
+/* void	take_forks(t_philosopher *philo)
 {
 	int	left_fork;
 	int	right_fork;
@@ -106,7 +112,7 @@ void	take_forks(t_philosopher *philo)
 		if (philo->table->loop_end == 0)
 			print_action(philo->id, "has taken a fork", philo->table->start_time);
 	}
-}
+} */
 
 /* void	take_forks(t_philosopher *philo)
 {
