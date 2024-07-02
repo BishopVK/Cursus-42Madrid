@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:00:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:36:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,3 +104,6 @@ void	leave_forks(t_philosopher *philo);
 
 // long long	timestamp(void);
 // void		ft_usleep(int ms);
+
+// long long	ft_calc_time(void);
+// void		ft_usleep(int time);
