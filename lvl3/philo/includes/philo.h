@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 08:27:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:28:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_table
 	int					loop_end; // Bandera para terminar la simulación
 	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera
 	long				start_time;
+	pthread_mutex_t		global_mutex; // Mutex general para poder comprobar si ambos tenedores están libres
 }	t_table;
 
 /*_____           _        _                         
