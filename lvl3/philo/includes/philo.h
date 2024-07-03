@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:36:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:16:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_table
 	long				start_time;
 	pthread_mutex_t		global_mutex; // Mutex general para poder comprobar si ambos tenedores están libres
 	int					even_delay;
+	pthread_t			referee;
+	int					is_simulation_ended;
 }	t_table;
 
 /*_____           _        _                         
@@ -91,6 +93,7 @@ int		validate_args(int argc, char **argv, t_table *table);
 //					ROUTINE.C						//
 //////////////////////////////////////////////////////
 void	print_action(int id, char *action, long start_time);
+void	*referee_routine(void *arg);
 void	*philo_routine(void *arg);
 
 //////////////////////////////////////////////////////
