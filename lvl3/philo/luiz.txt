@@ -1,4 +1,4 @@
-- Even: min(die, eat)
+- Even: min(die, eat) -> ✅
 
 
 	
