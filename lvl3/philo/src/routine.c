@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:36:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:17:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,6 @@ void	*philo_routine(void *arg)
 		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table) == false)
 	{
-		//think(philo);
-		if (end_of_routine(philo->table) == true)
-			break ;
 		take_forks(philo);
 		if (end_of_routine(philo->table) == true)
 		{
