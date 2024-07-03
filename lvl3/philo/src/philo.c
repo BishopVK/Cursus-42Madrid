@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/03 11:15:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:19:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ static void	initialize_structs(t_table *table)
 	pthread_mutex_init(&table->end_mutex, NULL);
 	pthread_mutex_init(&table->global_mutex, NULL);
 	table->even_delay = table->time_to_eat;
-	if (table->time_to_eat > table->time_to_sleep)
-		table->even_delay = table->time_to_sleep;
+	if (table->time_to_eat > table->time_to_die)
+		table->even_delay = table->time_to_die;
 	i = 0;
 	while (i < table->nbr_philos)
 	{
