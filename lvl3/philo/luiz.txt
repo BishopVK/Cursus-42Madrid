@@ -1,0 +1,17 @@
+- Even: min(die, eat)
+
+
+	
+- Proteger variable end_loop (mutearla)
+- Check if philo = dead cogiendo fork, return ;
+- Mutex print
+
+
+
+- Hacer monitor --> funcion end_of_routine
+- end_of_routine_philo:
+	· end_loop == 1
+		|| number_meals == current_meals
+		|| current - start >= time_die
+
+- usleep
