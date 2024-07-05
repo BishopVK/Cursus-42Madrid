@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 09:44:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:43:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	eat(t_philosopher *philo)
 {
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "is eating");
-	usleep(philo->table->time_to_eat * 1000);
+	//usleep(philo->table->time_to_eat * 1000);
+	custom_sleep(philo->table->time_to_eat * 1000, philo);
 	philo->meals_eaten++;
 	philo->last_meal_time = get_current_time();
 }
@@ -31,7 +32,8 @@ void	sleep_philosopher(t_philosopher *philo)
 {
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "is sleeping");
-	usleep(philo->table->time_to_sleep * 1000);
+	//usleep(philo->table->time_to_sleep * 1000);
+	custom_sleep(philo->table->time_to_sleep * 1000, philo);
 }
 
 /* void	take_forks(t_philosopher *philo)
