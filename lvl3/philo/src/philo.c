@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:36:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 08:17:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static void	initialize_structs(t_table *table)
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
 	pthread_mutex_init(&table->global_mutex, NULL);
-	table->even_delay = table->time_to_eat;
-	if (table->time_to_eat > table->time_to_sleep)
-		table->even_delay = table->time_to_sleep;
+	table->even_delay = table->time_to_die;
+	if (table->time_to_eat < table->time_to_die)
+		table->even_delay = table->time_to_eat;
 	i = 0;
 	while (i < table->nbr_philos)
 	{
