@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 11:43:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:04:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	custom_sleep(int microseconds, t_philosopher *philo)
 	int	interval;
 	int	slept;
 
-	interval = philo->table->even_delay * 1000;
+	//interval = philo->table->even_delay * 1000;
+	interval = 100 * 1000;
 	slept = 0;
 	while (slept < microseconds)
 	{
 		if (microseconds - slept > interval)
-			usleep(interval);
+			ft_usleep(interval);
 		else
-			usleep(microseconds - slept);
+			ft_usleep(microseconds - slept);
 		slept += interval;
 
 		// Verificar si hemos sido interrumpidos
