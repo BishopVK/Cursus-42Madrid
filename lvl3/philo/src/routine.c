@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 13:06:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:43:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	print_action(t_philosopher *philo, char *action)
 	long	actual_time;
 
 	actual_time = get_current_time() - philo->table->start_time;
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		printf("%ld: %d %s\n", actual_time, philo->id, action);
-
+	pthread_mutex_unlock(&philo->table->end_mutex);
 }
 
 int	end_of_routine(t_table *table)
@@ -85,9 +86,9 @@ void	*philo_routine(void *arg)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
-	if (philo->table->nbr_philos == 3 && philo->id == 3)
-		usleep(philo->table->even_delay);
-	else if (philo->id % 2 == 0)
+	/* if (philo->table->nbr_philos == 3 && philo->id == 3)
+		usleep(philo->table->even_delay); */
+	if (philo->id % 2 == 0)
 		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table) == false)
 	{
