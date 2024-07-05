@@ -6,11 +6,37 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 09:40:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:43:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	custom_sleep(int microseconds, t_philosopher *philo)
+{
+	int	interval;
+	int	slept;
+
+	interval = philo->table->even_delay * 1000;
+	slept = 0;
+	while (slept < microseconds)
+	{
+		if (microseconds - slept > interval)
+			usleep(interval);
+		else
+			usleep(microseconds - slept);
+		slept += interval;
+
+		// Verificar si hemos sido interrumpidos
+		pthread_mutex_lock(&philo->table->global_mutex);
+		if (end_of_routine(philo->table) == true)
+		{
+			pthread_mutex_unlock(&philo->table->global_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->table->global_mutex);
+	}
+}
 
 void	print_action(t_philosopher *philo, char *action)
 {
