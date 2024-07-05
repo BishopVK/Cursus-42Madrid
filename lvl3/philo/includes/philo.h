@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:36:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/05 08:44:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int		validate_args(int argc, char **argv, t_table *table);
 //////////////////////////////////////////////////////
 //					ROUTINE.C						//
 //////////////////////////////////////////////////////
-void	print_action(int id, char *action, long start_time);
+void	print_action(t_philosopher *philo, char *action);
+int		end_of_routine(t_table *table);
 void	*philo_routine(void *arg);
 
 //////////////////////////////////////////////////////
