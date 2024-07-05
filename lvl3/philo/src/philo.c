@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/03 13:16:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:36:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,13 @@ static void	initialize_structs(t_table *table)
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
 	table->loop_end = 0;
-	table->is_simulation_ended = 0;
 	gettimeofday(&time, NULL);
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
 	pthread_mutex_init(&table->global_mutex, NULL);
 	table->even_delay = table->time_to_eat;
-	if (table->time_to_eat > table->time_to_die)
-		table->even_delay = table->time_to_die;
+	if (table->time_to_eat > table->time_to_sleep)
+		table->even_delay = table->time_to_sleep;
 	i = 0;
 	while (i < table->nbr_philos)
 	{
@@ -101,6 +100,7 @@ static void	initialize_structs(t_table *table)
 		i++;
 	}
 }
+
 /*
 1 800 200 200 (muere)
 5 800 200 200 (viven)
@@ -125,7 +125,6 @@ int	main(int argc, char **argv)
 	// Inicialización de estructuras
 	initialize_structs(&table);
 
-	pthread_create(&table.referee, NULL, referee_routine, &table);
 	// Crear hilos para los filósofos
 	i = 0;
 	while (i < table.nbr_philos)

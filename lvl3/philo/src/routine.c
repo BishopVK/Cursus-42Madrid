@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/03 14:18:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:36:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,16 @@ static int	end_of_routine(t_table *table)
 		if (get_current_time() - table->philos[i].last_meal_time > table->time_to_die)
 		{
 			table->loop_end = 1;
-			pthread_mutex_lock(&table->global_mutex);
 			print_action(table->philos[i].id, "died", table->start_time);
-			pthread_mutex_unlock(&table->global_mutex);
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
+			//return (1);
 		}
 		if (table->nbr_must_eat != -1 && table->philos[i].meals_eaten >= table->nbr_must_eat)
 		{
 			table->loop_end = 1;
-			pthread_mutex_lock(&table->global_mutex);
 			printf("Done %i loops correctly\n", table->philos[i].meals_eaten);
-			pthread_mutex_unlock(&table->global_mutex);
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
+			//return (1);
 		}
 		i++;
 	}
@@ -49,35 +47,30 @@ static int	end_of_routine(t_table *table)
 	return (0);
 }
 
-void	*referee_routine(void *arg)
-{
-	t_table	*table;
-
-	table = (t_table *)arg;
-
-	while (1)
-	{
-		if (table->is_simulation_ended == 1)
-			table->loop_end = 1;
-	}
-	return (NULL);
-}
-
 void	*philo_routine(void *arg)
 {
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
-	/* if (philo->table->nbr_philos == 3 && philo->id == 3)
-		usleep(philo->table->even_delay); */
-	/* if (philo->id % 2 == 0)
-		usleep(philo->table->even_delay); */
-	while (end_of_routine(philo->table) == 0)
+	if (philo->table->nbr_philos == 3 && philo->id == 3)
+		usleep(philo->table->even_delay);
+	else if (philo->id % 2 == 0)
+		usleep(philo->table->even_delay);
+	while (end_of_routine(philo->table) == false)
 	{
+		//think(philo);
+		if (end_of_routine(philo->table) == true)
+			break ;
 		take_forks(philo);
-		leave_forks(philo);
+		if (end_of_routine(philo->table) == true)
+		{
+			leave_forks(philo);
+			break ;
+		}
 		eat(philo);
 		leave_forks(philo);
+		if (end_of_routine(philo->table) == true)
+			break ;
 		sleep_philosopher(philo);
 		think(philo);
 	}
