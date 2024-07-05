@@ -2,7 +2,7 @@
 
 
 	
-- Proteger variable end_loop (mutearla)
+- Proteger variable loop_end (mutearla)
 - Check if philo = dead cogiendo fork, return ;
 - Mutex print
 
