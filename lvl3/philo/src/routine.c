@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 14:43:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:05:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	*philo_routine(void *arg)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
-	/* if (philo->table->nbr_philos == 3 && philo->id == 3)
-		usleep(philo->table->even_delay); */
+	if (philo->table->nbr_philos == 3 && philo->id == 3)
+		usleep(philo->table->even_delay);
 	if (philo->id % 2 == 0)
 		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table) == false)
