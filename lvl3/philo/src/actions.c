@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/05 11:52:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:48:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,33 @@ void	think(t_philosopher *philo)
 
 void	eat(t_philosopher *philo)
 {
+	long	current;
+
+	current = get_current_time();
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "is eating");
 	//usleep(philo->table->time_to_eat * 1000);
-	custom_sleep(philo->table->time_to_eat * 1000, philo);
-	philo->meals_eaten++;
-	philo->last_meal_time = get_current_time();
+	//if (current + (philo->table->time_to_die * 1000) - (philo->table->time_to_eat * 1000) > current + (philo->table->time_to_eat * 1000))
+	/* if (philo->last_meal_time + (philo->table->time_to_die * 1000) - (philo->table->time_to_eat * 1000) > current + (philo->table->time_to_eat * 1000))
+	{ */
+		usleep(philo->table->time_to_eat * 1000);
+		//custom_sleep(philo->table->time_to_eat * 1000, philo);
+		philo->meals_eaten++;
+		philo->last_meal_time = get_current_time();
+	/* } */
 }
 
 void	sleep_philosopher(t_philosopher *philo)
 {
+	long	current;
+
+	current = get_current_time();
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "is sleeping");
-	//usleep(philo->table->time_to_sleep * 1000);
-	custom_sleep(philo->table->time_to_sleep * 1000, philo);
+	//if (current + philo->table->time_to_die > current + philo->table->time_to_sleep)
+	//if (philo->last_meal_time + (philo->table->time_to_die * 1000) - (philo->table->time_to_sleep * 1000) > current + (philo->table->time_to_sleep * 1000))
+		usleep(philo->table->time_to_sleep * 1000);
+	//custom_sleep(philo->table->time_to_sleep * 1000, philo);
 }
 
 /* void	take_forks(t_philosopher *philo)
