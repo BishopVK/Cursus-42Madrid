@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/08 11:05:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:49:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	custom_sleep(int microseconds, t_philosopher *philo)
+/* void	custom_sleep(int microseconds, t_philosopher *philo)
 {
 	int	interval;
 	int	slept;
@@ -37,7 +37,7 @@ void	custom_sleep(int microseconds, t_philosopher *philo)
 		}
 		pthread_mutex_unlock(&philo->table->global_mutex);
 	}
-}
+} */
 
 void	print_action(t_philosopher *philo, char *action)
 {
@@ -53,7 +53,9 @@ void	print_action(t_philosopher *philo, char *action)
 int	end_of_routine(t_table *table)
 {
 	int	i;
+	// long	current;
 
+	// current = get_current_time() - table->start_time;
 	pthread_mutex_lock(&table->end_mutex);
 	if (table->loop_end)
 		return (pthread_mutex_unlock(&table->end_mutex), 1);
