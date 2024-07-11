@@ -16,6 +16,7 @@
 		"vector": "c",
 		"string_view": "c",
 		"initializer_list": "c",
-		"regex": "c"
+		"regex": "c",
+		"ft_printf.h": "c"
 	}
 }
