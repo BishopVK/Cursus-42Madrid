@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 
 //cc main.c libftprintf.a && ./a.out > salida.txt 2> error.txt
-/* int	main(void)
+int	main(void)
 {
 	int				i = -123;
 	unsigned int	ui = 42;
@@ -53,7 +53,7 @@
 	ft_dprintf(2, "Pointer = %p\n", i);
 
 	return(0);
-} */
+}
 
 //cc -Wall -Wextra -Werror main.c libftprintf.a && ./a.out
 // Comparison between the operation of printf() and my ft_printf()
