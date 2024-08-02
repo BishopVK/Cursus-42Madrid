@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/09 14:49:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:50:44 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_action(t_philosopher *philo, char *action)
 int	end_of_routine(t_table *table)
 {
 	int	i;
-	// long	current;
+	long	current;
 
 	// current = get_current_time() - table->start_time;
 	pthread_mutex_lock(&table->end_mutex);
@@ -62,6 +62,23 @@ int	end_of_routine(t_table *table)
 	i = 0;
 	while (i < table->nbr_philos)
 	{
+
+		current = get_current_time() - table->start_time;
+
+		// printf("table->time_to_die - current == %li\n", table->time_to_die - current);
+		// printf("table->philos[%i].last_meal_time - get_current_time() == %li\n", i, table->philos[i].last_meal_time - get_current_time());
+
+		printf("tget_current_time() - table->philos[%i].last_meal_time == %li\n", i, get_current_time() - table->philos[i].last_meal_time);
+
+		if (get_current_time() - table->philos[i].last_meal_time)
+		{
+			table->loop_end = 1;
+			printf("table->philos[i].last_meal_time - current= %li\n", table->philos[i].last_meal_time - current);
+			usleep(table->time_to_die - current * -1);
+			printf("%ld: %d %s\n", get_current_time() - table->start_time, table->philos[i].id, "died");
+			return (pthread_mutex_unlock(&table->end_mutex), true);
+		}
+
 		if (get_current_time() - table->philos[i].last_meal_time > table->time_to_die)
 		{
 			table->loop_end = 1;
