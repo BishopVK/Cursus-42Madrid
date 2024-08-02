@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/09 14:50:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:43:53 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	eat(t_philosopher *philo)
 		//custom_sleep(philo->table->time_to_eat * 1000, philo);
 		philo->meals_eaten++;
 		philo->last_meal_time = get_current_time();
-		printf("philo->last_meal_time == %li\n", philo->last_meal_time);
+		//printf("philo->last_meal_time == %li\n", philo->last_meal_time);
 }
 
 void	sleep_philosopher(t_philosopher *philo)
@@ -160,6 +160,11 @@ void	take_forks(t_philosopher *philo)
 	pthread_mutex_lock(&philo->table->forks[left_fork]);
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "has taken a fork");
+	if (end_of_routine(philo->table) == true)
+		{
+			pthread_mutex_unlock(&philo->table->forks[left_fork]);
+			return ;
+		}
 	pthread_mutex_lock(&philo->table->forks[right_fork]);
 	//if (philo->table->loop_end == 0)
 		print_action(philo, "has taken a fork");
