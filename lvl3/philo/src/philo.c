@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/09 14:39:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:55:47 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	initialize_structs(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
 		table->philos[i].meals_eaten = 0;
-		table->philos[i].last_meal_time = get_current_time();
+		table->philos[i].last_meal_time = table->start_time;
 		// printf("table->philos[%i].last_meal_time = %li\n", i, table->philos[i].last_meal_time);
 		table->philos[i].table = table;
 		i++;
