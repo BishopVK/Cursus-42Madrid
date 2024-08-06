@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/08/05 14:55:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:28:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	eat(t_philosopher *philo)
 	/* printf("current == %li\n", current);
 	printf("time_since_last_meal == %li\n", time_since_last_meal);
 	printf("time_remaining == %li\n", current); */
-
 
 	if (time_remaining < philo->table->time_to_eat)
 	{
@@ -177,6 +176,27 @@ void	take_forks(t_philosopher *philo)
 	int	right_fork;
 
 	left_fork = philo->id - 1;
+	right_fork = (philo->id) % philo->table->nbr_philos; // Calcula el tenedor derecho correctamente
+
+	pthread_mutex_lock(&philo->table->forks[left_fork]);
+	{
+		printf("He cogido el tenerdor nº %i\n", left_fork);
+		print_action(philo, "has taken a fork");
+	}
+	pthread_mutex_lock(&philo->table->forks[right_fork]);
+	{
+		printf("He cogido el tenerdor nº %i\n", right_fork);
+		print_action(philo, "has taken a fork");
+	}
+}
+
+///////////////////////////////
+/* void	take_forks(t_philosopher *philo)
+{
+	int	left_fork;
+	int	right_fork;
+
+	left_fork = philo->id - 1;
 	right_fork = (philo->id + 1) % philo->table->nbr_philos; // Calcula el tenedor derecho correctamente
 
 	pthread_mutex_lock(&philo->table->forks[left_fork]);
@@ -194,7 +214,7 @@ void	take_forks(t_philosopher *philo)
 		pthread_mutex_unlock(&philo->table->forks[right_fork]);
 		return ;
 	}
-}
+} */
 
 /* void	take_forks(t_philosopher *philo)
 {
