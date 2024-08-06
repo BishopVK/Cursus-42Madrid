@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/08/05 14:59:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:28:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ int	end_of_routine(t_table *table)
 		time_since_last_meal = (table->philos[i].last_meal_time - current - table->start_time) * -1;
 		time_remaining = table->time_to_die - time_since_last_meal;
 
-		/* printf("ROUTINE: current == %li\n", current);
+		printf("ROUTINE: Philo == %i\n", i + 1);
+		printf("ROUTINE: current == %li\n", current);
 		printf("ROUTINE: time_since_last_meal == %li\n", time_since_last_meal);
-		printf("ROUTINE: time_remaining == %li\n", current); */
+		printf("ROUTINE: time_remaining == %li\n", current);
 
 		if (time_remaining < table->time_to_eat)
 		{
@@ -117,7 +118,7 @@ void	*philo_routine(void *arg)
 	philo = (t_philosopher *)arg;
 	if (philo->table->nbr_philos == 3 && philo->id == 3)
 		usleep(philo->table->even_delay);
-	if (philo->id % 2 == 0)
+	else if (philo->id % 2 == 0)
 		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table) == false)
 	{
