@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/14 11:29:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:16:32 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exit_map_error(char *buffer, char *message, int fd)
 		free(buffer);
 	get_next_line(fd, TRUE);
 	ft_dprintf(2, "Error\n> %s\n", message);
+	close (fd);
 	exit (EXIT_FAILURE);
 }
 
