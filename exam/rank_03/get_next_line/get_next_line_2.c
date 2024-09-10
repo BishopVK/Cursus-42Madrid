@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.e      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 20:03:39 by danjimen          #+#    #+#             */
-/*   Updated: 2024/09/10 20:18:12 by danjimen         ###   ########.fr       */
+/*   Created: 2024/09/10 14:19:17 by danjimen          #+#    #+#             */
+/*   Updated: 2024/09/10 14:34:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(char	*src)
+char	*ft_strdup(char *src)
 {
 	char	*dst;
-	int		i;
+	int	i;
 
 	i = 0;
 	if (src == NULL)
@@ -39,9 +39,9 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE];
 	char		line[70000];
-	static char	buffer_readed;
-	static char	buffer_pos;
-	int			i;
+	static int	buffer_readed;
+	static int	buffer_pos;
+	int		i;
 
 	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
