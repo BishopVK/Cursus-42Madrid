@@ -6,33 +6,18 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:09:48 by danjimen &        #+#    #+#             */
-/*   Updated: 2024/09/11 13:31:19 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/09/11 15:17:51 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static void	ft_lstclear_push_swap(t_stack_node **stack)
+static void	error(t_stack_node **a, t_stack_node **b, char *command)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*current;
-
-	if (NULL == stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
-}
-
-static void	error(t_stack_node **a, t_stack_node **b)
-{
-	ft_lstclear_push_swap(a);
-	ft_lstclear_push_swap(b);
+	stack_clear(a);
+	stack_clear(b);
+	get_next_line(STDIN_FILENO, TRUE);
+	free(command);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -62,5 +47,5 @@ void	command(t_stack_node **a, t_stack_node **b, char *command)
 	else if (ft_strcmp(command, "rrr\n") == 0)
 		rrr(a, b);
 	else
-		error(a, b);
+		error(a, b, command);
 }

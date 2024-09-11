@@ -53,7 +53,7 @@ char	*ft_strdup(const char *s)
 	char	*dest;
 	char	*principio;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	dest = (char *)malloc(ft_strlen(s) + 1);
 	if (dest == NULL)

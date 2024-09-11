@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:11:52 by danjimen          #+#    #+#             */
-/*   Updated: 2024/02/27 08:11:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:44:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char	*get_line_and_update_result(char **result, char *line)
 {
 	char	*tmp;
 
+	if (!result || !*result)
+		return (NULL);
 	ft_strlcpy(line, *result, (ft_strchr(*result, '\n') - *result) + 2);
 	tmp = *result;
 	*result = ft_strdup(ft_strchr(*result, '\n') + 1);
@@ -27,6 +29,8 @@ static char	*process_result(char **result)
 {
 	char	*line;
 
+	if (!result || !*result)
+		return (NULL);
 	if (ft_strchr(*result, '\n'))
 	{
 		line = (char *)malloc(ft_strchr(*result, '\n') - *result + 2);
@@ -39,12 +43,9 @@ static char	*process_result(char **result)
 		line = (char *)malloc(ft_strlen(*result) + 1);
 		if (line == NULL)
 			return (NULL);
-		if (line)
-		{
-			ft_strlcpy(line, *result, ft_strlen(*result) + 1);
-			free(*result);
-			*result = (NULL);
-		}
+		ft_strlcpy(line, *result, ft_strlen(*result) + 1);
+		free(*result);
+		*result = (NULL);
 	}
 	return (line);
 }
@@ -72,13 +73,15 @@ int	read_file(int fd, char **result, char *buffer)
 	return (bytes_read);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_bool free_static)
 {
 	char		*buffer;
 	static char	*result;
 	char		*line;
 	int			bytes_read;
 
+	if (free_static == TRUE && result != NULL)
+		return (free(result), NULL);
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	if (!result)
@@ -103,7 +106,7 @@ char	*get_next_line(int fd)
 // ./a.out txt/texto.txt
 
 //LECTURA DE FICHERO O DE STDIN
-/* int	main(int argc, char *argv[])
+/*int	main(int argc, char *argv[])
 {
 	char *buffer;
 
@@ -169,7 +172,7 @@ char	*get_next_line(int fd)
 	}
 
 	return 0;
-} */
+}*/
 
 //PRUEBA DE LECTURA DE UN FD DEL CUAL NO ES POSIBLE LA LECTURA
 /* int main(int argc, char *argv[])

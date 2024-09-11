@@ -20,7 +20,7 @@
 # include "../printf/ft_printf.h"
 
 //get_next_line
-# include "../get_next_line/get_next_line.h"
+# include "get_next_line/get_next_line.h"
 
 //argc, argv
 # include <stdlib.h>

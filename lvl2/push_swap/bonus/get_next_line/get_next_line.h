@@ -35,7 +35,13 @@
 #  define BUFFER_SIZE 100
 # endif
 
-char	*get_next_line(int fd);
+typedef enum s_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
+
+char	*get_next_line(int fd, t_bool free_static);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);

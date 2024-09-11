@@ -6,11 +6,17 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 18:17:37 by sshiling          #+#    #+#             */
-/*   Updated: 2024/09/11 13:30:58 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/09/11 15:10:03 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+static void	clear_at_exit(t_stack_node *a, t_stack_node *b)
+{
+	stack_clear(&a);
+	stack_clear(&b);
+}
 
 static int	is_sorted(t_stack_node *stack)
 {
@@ -54,15 +60,17 @@ int	main(int argc, char **argv)
 	if (parse_argvs(argc, argv, &stack_a) != 0)
 		return (1);
 	len = ft_listsize(stack_a);
-	line = get_next_line(STDIN_FILENO);
+	line = get_next_line(STDIN_FILENO, FALSE);
 	while (line)
 	{
 		command(&stack_a, &stack_b, line);
-		line = get_next_line(STDIN_FILENO);
+		free(line);
+		line = get_next_line(STDIN_FILENO, FALSE);
 	}
+	free(line);
 	if (is_sorted(stack_a) && ft_listsize(stack_a) == len)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free(stack_a);
+	clear_at_exit(stack_a, stack_b);
 }

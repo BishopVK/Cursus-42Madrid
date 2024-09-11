@@ -6,7 +6,7 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:56:07 by danjimen &        #+#    #+#             */
-/*   Updated: 2024/09/11 13:06:07 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/09/11 18:31:49 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	no_repeat_numbers(t_stack_node *stack_node_a)
 			{
 				if (local_node->nb == tmp_node->nb)
 				{
-					ft_printf("ERROR: %d is duplicate\n", local_node->nb);
+					ft_printf("ERROR\n", local_node->nb);
 					stack_clear(&stack_node_a);
 					exit(-1);
 				}
@@ -45,7 +45,7 @@ static void	integer_number(int out_of_limits, t_stack_node *stack_node_a)
 	if (out_of_limits < 0)
 	{
 		stack_clear(&stack_node_a);
-		ft_printf("Error: Number out of INT limits\n");
+		ft_printf("Error\n");
 		exit(-1);
 	}
 }
