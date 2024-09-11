@@ -1,0 +1,23 @@
+# Ignorar archivos temporales
+*.tmp
+.DS_Store
+
+# Ignorar archivos de compilación
+*.o
+*.out
+*.a
+
+# Ignorar directorios específicos
+/.vscode
+/pruebas
+/txt
+
+# Ignorar ficheros de pruebas
+*.txt
+*.c
+!get_next_line.c
+!get_next_line_utils.c
+!get_next_line.h
+!get_next_line_bonus.c
+!get_next_line_utils_bonus.c
+!get_next_line_bonus.h

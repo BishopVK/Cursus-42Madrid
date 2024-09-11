@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/04/03 18:49:46 by danjimen         ###   ########.fr        #
+#    Updated: 2024/09/11 14:03:04 by danjimen &       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ define print_green
 	@echo $(COLOR_GREEN)$1$(COLOR_RESET)
 endef
 
-NAME		=	push_swap
+PUSH_NAME	=	push_swap
+CHECK_NAME	=	checker
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	push_swap.c \
@@ -47,9 +48,27 @@ SRC			=	push_swap.c \
 				get_next_line/get_next_line_bonus.c \
 				get_next_line/get_next_line_utils_bonus.c
 
+BONUS_DIR	=	bonus
+GNL_DIR		=	bonus/get_next_line
+SRC_BONUS	=	$(BONUS_DIR)/checker.c \
+				$(BONUS_DIR)/ft_custom_atoll.c \
+				$(BONUS_DIR)/moves.c \
+				$(BONUS_DIR)/parse.c \
+				$(BONUS_DIR)/push.c \
+				$(BONUS_DIR)/reverse_rotate.c \
+				$(BONUS_DIR)/rotate.c \
+				$(BONUS_DIR)/split_argvs.c \
+				$(BONUS_DIR)/stack.c \
+				$(BONUS_DIR)/swap.c \
+				$(GNL_DIR)/get_next_line.c \
+				$(GNL_DIR)/get_next_line_utils.c \
+
 OBJ			=	$(SRC:.c=.o)
+OBJ_BONUS	=	$(SRC_BONUS:.c=.o)
+
 HEADER		=	push_swap.h \
-				get_next_line/get_next_line_bonus.h
+				get_next_line/get_next_line_bonus.h \
+				bonus/get_next_line/get_next_line_bonus.h
 
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
@@ -57,7 +76,7 @@ LIBFT		=	$(LIBFT_DIR)/libft.a
 PRINTF_DIR	=	printf
 PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
-all: $(NAME)
+all: $(PUSH_NAME) $(CHECK_NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -66,9 +85,13 @@ $(LIBFT):
 $(PRINTF):
 	@$(MAKE) -C $(PRINTF_DIR)
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+$(PUSH_NAME): $(OBJ) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(PUSH_NAME)
 	$(call print_cyan,"Compiled push_swap")
+
+$(CHECK_NAME): $(OBJ_BONUS) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GNL_DIR) $(OBJ_BONUS) $(LIBFT) $(PRINTF) -o $(CHECK_NAME)
+	$(call print_cyan,"Compiled checker")
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
@@ -77,13 +100,15 @@ clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ)
-	$(call print_green,"Cleaned object files of push_swap")
+	@rm -f $(OBJ_BONUS)
+	$(call print_green,"Cleaned object files of push_swap and checker")
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
-	@rm -f $(NAME)
-	$(call print_green,"Cleaned the executable push_swap")
+	@rm -f $(PUSH_NAME)
+	@rm -f $(CHECK_NAME)
+	$(call print_green,"Cleaned the executable push_swap and checker")
 
 re: fclean all
 
