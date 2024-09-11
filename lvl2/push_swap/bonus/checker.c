@@ -6,36 +6,11 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 18:17:37 by sshiling          #+#    #+#             */
-/*   Updated: 2024/09/11 13:10:17 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/09/11 13:30:58 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-static void	ft_lstclear_push_swap(t_stack_node **stack)
-{
-	t_stack_node	*tmp;
-	t_stack_node	*current;
-
-	if (NULL == stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
-}
-
-static void	error(t_stack_node **a, t_stack_node **b)
-{
-	ft_lstclear_push_swap(a);
-	ft_lstclear_push_swap(b);
-	write(2, "Error\n", 6);
-	exit(1);
-}
 
 static int	is_sorted(t_stack_node *stack)
 {
@@ -65,7 +40,6 @@ static int	ft_listsize(t_stack_node *stack)
 	return (len);
 }
 
-// cc *.c ../get_next_line/get_next_line.c ../printf/ft_dprintf.c ../printf/ft_printf.c ../printf/ft_converions.c ../printf/ft_printf_utils.c ../libft/ft_strlen.c ../libft/ft_strdup.c ../libft/ft_strchr.c ../libft/ft_isdigit.c ../libft/ft_split.c ../libft/ft_atoi.c ../libft/ft_strjoin.c ../libft/ft_strlcpy.c
 int	main(int argc, char **argv)
 {
 	t_stack_node	*stack_a;

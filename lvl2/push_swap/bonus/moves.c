@@ -6,26 +6,35 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:09:48 by danjimen &        #+#    #+#             */
-/*   Updated: 2024/09/11 13:10:07 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/09/11 13:31:19 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static int	ft_strcmp(const char *s1, const char *s2)
+static void	ft_lstclear_push_swap(t_stack_node **stack)
 {
-	int	i;
+	t_stack_node	*tmp;
+	t_stack_node	*current;
 
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	while (s1[i] != '\0' || s2[i] != '\0')
+	if (NULL == stack)
+		return ;
+	current = *stack;
+	while (current)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		tmp = current->next;
+		free(current);
+		current = tmp;
 	}
-	return (0);
+	*stack = NULL;
+}
+
+static void	error(t_stack_node **a, t_stack_node **b)
+{
+	ft_lstclear_push_swap(a);
+	ft_lstclear_push_swap(b);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
 void	command(t_stack_node **a, t_stack_node **b, char *command)
