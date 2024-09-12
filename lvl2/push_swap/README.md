@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/score_125.png"></p> | **Mandatory part + a part of the bonus part**   |
+| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/push_swap/img/Score_125.png"></p> | **Mandatory part + a part of the bonus part**   |
 
 ## push_swap
 
