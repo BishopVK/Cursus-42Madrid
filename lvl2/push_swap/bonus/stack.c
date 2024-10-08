@@ -6,7 +6,7 @@
 /*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 12:02:19 by danjimen &        #+#    #+#             */
-/*   Updated: 2024/09/11 15:17:52 by danjimen &       ###   ########.fr       */
+/*   Updated: 2024/10/07 08:59:19 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	display(t_stack_node *new_node)
 
 	local_node = new_node;
 	if (local_node == NULL)
-		ft_printf("Stack vacío\n");
+		ft_printf("Error: Empty stack\n");
 	else
 	{
 		while (local_node)
 		{
-			ft_printf("valor = %d\n", local_node->nb);
+			ft_printf("value = %d\n", local_node->nb);
 			local_node = local_node->next;
 		}
 	}
