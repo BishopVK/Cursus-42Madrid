@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:30:59 by danjimen          #+#    #+#             */
-/*   Updated: 2024/01/29 09:54:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/10/08 10:15:28 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list	*ft_lstnew(void *content)
 	return (new_node);
 }
 
-/*int	main(void)
+/* int	main(void)
 {
 	// Prueba 1: Crear un nodo con contenido de tipo entero
 	int *data = (int *)malloc(sizeof(int));
@@ -54,4 +54,4 @@ t_list	*ft_lstnew(void *content)
 	free(node3);
 
 	return (0);
-}*/
+} */
