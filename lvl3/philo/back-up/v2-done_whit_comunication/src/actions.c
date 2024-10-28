@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/07/02 23:36:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/10/28 08:00:14 by danjimen &       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	eat(t_philosopher *philo)
 		print_action(philo->id, "is eating", philo->table->start_time);
 	usleep(philo->table->time_to_eat * 1000);
 	philo->meals_eaten++;
-	philo->last_meal_time = get_current_time();
+	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
 }
 
 void	sleep_philosopher(t_philosopher *philo)
