@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_5.c                                      :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 21:04:21 by danjimen          #+#    #+#             */
-/*   Updated: 2024/10/31 09:33:32 by danjimen         ###   ########.fr       */
+/*   Created: 2024/10/31 09:07:15 by danjimen          #+#    #+#             */
+/*   Updated: 2024/10/31 09:33:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 
 static void	ft_putstr(char *str, int *count)
@@ -58,7 +58,7 @@ static void	ft_puthex(unsigned int n, int *count)
 	(*count)++;
 }
 
-int	ft_printf(const char *format, ... )
+int	ft_printf(const char *format, ...)
 {
 	int		count;
 	va_list	args;
