@@ -17,3 +17,4 @@ This is my current progress on the 42Madrid Cursus
 | [so_long](/lvl2/so_long) | **125/100**   |
 | [Exam Rank 02](/lvl2/exam_rank_02) | **100/100**   |
 | [philosophers](/lvl3/philo) | **in progress**   |
+| [minishell](https://github.com/BishopVK/minishell) | **101/125**   |
