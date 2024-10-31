@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_7.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 21:28:27 by danjimen          #+#    #+#             */
-/*   Updated: 2024/10/30 21:30:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/10/31 08:52:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_X
+#ifndef GET_NEXT_LINE_7_H
+# define GET_NEXT_LINE_7_H
 
 # include <unistd.h>
 # include <stdio.h>
