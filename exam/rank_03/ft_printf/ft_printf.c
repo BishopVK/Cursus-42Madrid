@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 09:07:15 by danjimen          #+#    #+#             */
-/*   Updated: 2024/10/31 09:33:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/01 09:37:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	char	*str = "Hola mundo";
+	char	*str = "Hello World!";
 	int		nbr = 42;
 	int		hex = 255;
 	int		count;
