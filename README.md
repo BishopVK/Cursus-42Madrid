@@ -3,7 +3,7 @@
 This is my current progress on the 42Madrid Cursus
 
 <p align="center">
-<img width="2576px" alt="2238px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png">
+<img width="1268px" alt="1172px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png">
 </p>
 
 | **Project**           | **Score**     |
@@ -18,3 +18,4 @@ This is my current progress on the 42Madrid Cursus
 | [Exam Rank 02](/lvl2/exam_rank_02) | **100/100**   |
 | [philosophers](/lvl3/philo) | **in progress**   |
 | [minishell](https://github.com/BishopVK/minishell) | **101/125**   |
+| [Exam Rank 03](/lvl3/exam_rank_03) | **100/100**   |
