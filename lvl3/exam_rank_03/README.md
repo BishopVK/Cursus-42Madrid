@@ -29,6 +29,6 @@ To pass this exam, you must successfully complete one of the two exercises menti
 
 In my case, the exercise i was assigned was **ft_printf**. You can see how I solved it below:
 
-| **Level** | **Description**                                                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    `1`    | [**ft_prinf:**](/lvl3/exam_rank_03/ft_printf)
+| **Exercise** | **Description**                               |
+| ------------ | --------------------------------------------- |
+|     `1`      | [**ft_prinf:**](/lvl3/exam_rank_03/ft_printf) |
