@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 09:07:15 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/01 09:37:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:02:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,13 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	char	*str = "Hello World!";
-	int		nbr = 42;
-	int		hex = 255;
-	int		count;
+	int	count;
 
-	count = ft_printf("str = %s | nbr = %d | hex = %x\n", str, nbr, hex);
+	count = ft_printf("%s\n", "toto");
 	ft_printf("count = %d\n", count);
-	count = printf("str = %s | nbr = %d | hex = %x\n", str, nbr, hex);
-	printf("count = %d\n", count);
+	count = ft_printf("Magic %s is %d\n", "number", 42);
+	ft_printf("count = %d\n", count);
+	count = ft_printf("Hexadecimal for %d is %x\n", 42, 42);
+	ft_printf("count = %d\n", count);
 	return (0);
 }
