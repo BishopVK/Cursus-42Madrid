@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/07/01 19:42:57 by danjimen         ###   ########.fr        #
+#    Updated: 2024/10/28 07:55:57 by danjimen &       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endef
 NAME			=	philo
 
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-Wall -Wextra -Werror -fsanitize=thread -g3
 
 SRC_DIR			=	src
 FUNCTIONS_DIR	=	$(SRC_DIR)/functions

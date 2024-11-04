@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/04 08:03:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:36:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // INT_MAX, INT_MIN
 #include <limits.h>
 
-//#define NUM_THREADS 5
+#define NUM_THREADS 5
 
 typedef enum s_bool
 {
