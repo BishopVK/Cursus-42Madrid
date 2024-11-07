@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/05 12:02:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:52:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static int	end_of_routine(t_table *table, int meals)
 
 	pthread_mutex_lock(&table->end_mutex);
 	if (table->loop_end)
+	{
+		if (table->nbr_philos == 1)
+			print_action(1, "died", table->start_time);
 		return (pthread_mutex_unlock(&table->end_mutex), 1);
+	}
 	i = 0;
 	while (i < table->nbr_philos)
 	{
@@ -34,7 +38,7 @@ static int	end_of_routine(t_table *table, int meals)
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
 			//return (1);
 		}
-		printf("meals =%i\n", meals);
+		printf("DB: meals =%i\n", meals);
 		if (meals == table->nbr_philos * table->nbr_must_eat)
 		{
 			table->loop_end = 1;
@@ -67,7 +71,6 @@ void	*philo_routine(void *arg)
 		usleep(philo->table->even_delay);
 	while (end_of_routine(philo->table, meals) == false)
 	{
-		//think(philo);
 		if (end_of_routine(philo->table, meals) == true)
 			break ;
 		take_forks(philo);
@@ -76,7 +79,12 @@ void	*philo_routine(void *arg)
 			leave_forks(philo);
 			break ;
 		}
-		meals += eat(philo);
+		eat(philo);
+		pthread_mutex_lock(&philo->table->global_mutex);
+		meals++;
+		pthread_mutex_unlock(&philo->table->global_mutex);
+		if (end_of_routine(philo->table, meals) == true)
+			break ;
 		leave_forks(philo);
 		if (end_of_routine(philo->table, meals) == true)
 			break ;
