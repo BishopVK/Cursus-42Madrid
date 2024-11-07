@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 10:52:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:39:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ static int	end_of_routine(t_table *table, int meals)
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
 			//return (1);
 		}
+		/* pthread_mutex_lock(&table->global_mutex); // DB
 		printf("DB: meals =%i\n", meals);
+		pthread_mutex_unlock(&table->global_mutex); // DB */
 		if (meals == table->nbr_philos * table->nbr_must_eat)
 		{
 			table->loop_end = 1;
@@ -84,7 +86,10 @@ void	*philo_routine(void *arg)
 		meals++;
 		pthread_mutex_unlock(&philo->table->global_mutex);
 		if (end_of_routine(philo->table, meals) == true)
+		{
+			leave_forks(philo);
 			break ;
+		}
 		leave_forks(philo);
 		if (end_of_routine(philo->table, meals) == true)
 			break ;
