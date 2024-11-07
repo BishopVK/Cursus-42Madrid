@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 17:15:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:33:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ int	eat(t_philosopher *philo)
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is eating", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
+	//printf("DB: get_current_time() == %li\n", get_current_time());
+	//printf("DB: philo->last_meal_time == %li\n", philo->last_meal_time);
+	//printf("DB: get_current_time() - philo->last_meal_time == %li\n", get_current_time() - philo->last_meal_time);
+	/* pthread_mutex_lock(&philo->table->end_mutex);
+	if (get_current_time() - philo->last_meal_time < philo->table->time_to_eat)
+	{
+		usleep((get_current_time() - philo->last_meal_time) * 1000);  // DA ERROR
+		philo->table->loop_end = true;
+		return (pthread_mutex_unlock(&philo->table->end_mutex), 1);
+	} */
 	usleep(philo->table->time_to_eat * 1000);
 	philo->meals_eaten++;
 	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
