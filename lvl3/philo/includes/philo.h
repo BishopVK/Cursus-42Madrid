@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/05 11:30:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:55:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_table
 	pthread_mutex_t		*forks; // Array de mutexes
 	t_philosopher		*philos;
 	int					loop_end; // Bandera para terminar la simulación
-	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera
+	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera loop_end
 	long				start_time;
 	pthread_mutex_t		global_mutex; // Mutex general para poder comprobar si ambos tenedores están libres
 	int					even_delay;
