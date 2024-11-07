@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 17:02:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:15:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	think(t_philosopher *philo)
 {
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is thinking", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
 }
 
 int	eat(t_philosopher *philo)
 {
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is eating", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
 	usleep(philo->table->time_to_eat * 1000);
 	philo->meals_eaten++;
 	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
@@ -30,8 +34,10 @@ int	eat(t_philosopher *philo)
 
 void	sleep_philosopher(t_philosopher *philo)
 {
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is sleeping", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
 	usleep(philo->table->time_to_sleep * 1000);
 }
 
@@ -130,7 +136,7 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 			usleep(philo->table->time_to_die * 1000);
 		else
 			usleep(philo->table->time_to_eat * 1000);
-		//print_action(philo->id, "Morí XD", philo->table->start_time);
+		//print_action(philo->id, "DB: Morí XD", philo->table->start_time);
 		return (true);
 	}
 	return (false);
@@ -145,13 +151,17 @@ void	take_forks(t_philosopher *philo)
 	right_fork = philo->id % philo->table->nbr_philos;
 
 	pthread_mutex_lock(&philo->table->forks[left_fork]);
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "has taken a fork", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
 	if (one_philo_case(philo, left_fork, right_fork) == true)
 		return ;
 	pthread_mutex_lock(&philo->table->forks[right_fork]);
+	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "has taken a fork", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
 }
 
 void	leave_forks(t_philosopher *philo)
