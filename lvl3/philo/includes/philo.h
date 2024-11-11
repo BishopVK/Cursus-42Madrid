@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 16:55:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:37:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_table
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nbr_must_eat;
+	int					total_meals;
 	pthread_mutex_t		*forks; // Array de mutexes
 	t_philosopher		*philos;
 	int					loop_end; // Bandera para terminar la simulación
