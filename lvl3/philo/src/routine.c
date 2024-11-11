@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 12:39:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:01:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	print_action(int id, char *action, long start_time)
 static int	end_of_routine(t_table *table, int meals)
 {
 	int	i;
+	int	nbr_meals;
 
+	pthread_mutex_lock(&table->global_mutex);
+	nbr_meals = meals;
+	pthread_mutex_unlock(&table->global_mutex);
 	pthread_mutex_lock(&table->end_mutex);
 	if (table->loop_end)
 	{
@@ -41,7 +45,7 @@ static int	end_of_routine(t_table *table, int meals)
 		/* pthread_mutex_lock(&table->global_mutex); // DB
 		printf("DB: meals =%i\n", meals);
 		pthread_mutex_unlock(&table->global_mutex); // DB */
-		if (meals == table->nbr_philos * table->nbr_must_eat)
+		if (nbr_meals == table->nbr_philos * table->nbr_must_eat)
 		{
 			table->loop_end = 1;
 			printf("Done %i loops correctly\n", table->philos[i].meals_eaten);
@@ -64,18 +68,27 @@ static int	end_of_routine(t_table *table, int meals)
 void	*philo_routine(void *arg)
 {
 	t_philosopher	*philo;
-	static int		meals;
+	int				meals;
 
 	philo = (t_philosopher *)arg;
 	if (philo->table->nbr_philos == 3 && philo->id == 3)
 		usleep(philo->table->even_delay);
 	else if (philo->id % 2 == 0)
 		usleep(philo->table->even_delay);
+	pthread_mutex_lock(&philo->table->global_mutex);
+	meals = philo->table->total_meals;
+	pthread_mutex_unlock(&philo->table->global_mutex);
 	while (end_of_routine(philo->table, meals) == false)
 	{
+		pthread_mutex_lock(&philo->table->global_mutex);
+		meals = philo->table->total_meals;
+		pthread_mutex_unlock(&philo->table->global_mutex);
 		if (end_of_routine(philo->table, meals) == true)
 			break ;
 		take_forks(philo);
+		pthread_mutex_lock(&philo->table->global_mutex);
+		meals = philo->table->total_meals;
+		pthread_mutex_unlock(&philo->table->global_mutex);
 		if (end_of_routine(philo->table, meals) == true)
 		{
 			leave_forks(philo);
@@ -83,7 +96,10 @@ void	*philo_routine(void *arg)
 		}
 		eat(philo);
 		pthread_mutex_lock(&philo->table->global_mutex);
-		meals++;
+		philo->table->total_meals++;
+		pthread_mutex_unlock(&philo->table->global_mutex);
+		pthread_mutex_lock(&philo->table->global_mutex);
+		meals = philo->table->total_meals;
 		pthread_mutex_unlock(&philo->table->global_mutex);
 		if (end_of_routine(philo->table, meals) == true)
 		{
@@ -91,6 +107,9 @@ void	*philo_routine(void *arg)
 			break ;
 		}
 		leave_forks(philo);
+		pthread_mutex_lock(&philo->table->global_mutex);
+		meals = philo->table->total_meals;
+		pthread_mutex_unlock(&philo->table->global_mutex);
 		if (end_of_routine(philo->table, meals) == true)
 			break ;
 		sleep_philosopher(philo);
