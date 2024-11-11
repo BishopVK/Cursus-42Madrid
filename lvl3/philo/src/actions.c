@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 17:33:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:09:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	eat(t_philosopher *philo)
 	} */
 	usleep(philo->table->time_to_eat * 1000);
 	philo->meals_eaten++;
+	pthread_mutex_lock(&philo->table->global_mutex);
 	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
+	pthread_mutex_unlock(&philo->table->global_mutex);
 	return (1);
 }
 
@@ -142,6 +144,7 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 	if (left_fork == right_fork)
 	{
 		philo->table->loop_end = true;
+		print_action(philo->id, "has taken a fork", philo->table->start_time);
 		if (philo->table->time_to_die < philo->table->time_to_eat)
 			usleep(philo->table->time_to_die * 1000);
 		else
@@ -152,7 +155,7 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 	return (false);
 }
 
-void	take_forks(t_philosopher *philo)
+/* void	take_forks(t_philosopher *philo)
 {
 	int	left_fork;
 	int	right_fork;
@@ -172,6 +175,41 @@ void	take_forks(t_philosopher *philo)
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "has taken a fork", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
+} */
+
+void	take_forks(t_philosopher *philo)
+{
+	int	left_fork;
+	int	right_fork;
+	int	loop_ended;
+
+	left_fork = philo->id - 1;
+	right_fork = philo->id % philo->table->nbr_philos;
+
+	if (one_philo_case(philo, left_fork, right_fork) == true)
+		return ;
+	// Check loop_end only once to simplify mutex locking
+	pthread_mutex_lock(&philo->table->end_mutex);
+	loop_ended = philo->table->loop_end;
+	pthread_mutex_unlock(&philo->table->end_mutex);
+
+	if (loop_ended)
+		return ;
+
+	// Acquire forks in a fixed order based on the philosopher's ID
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(&philo->table->forks[left_fork]);
+		print_action(philo->id, "has taken a fork", philo->table->start_time);
+		pthread_mutex_lock(&philo->table->forks[right_fork]);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->table->forks[right_fork]);
+		print_action(philo->id, "has taken a fork", philo->table->start_time);
+		pthread_mutex_lock(&philo->table->forks[left_fork]);
+	}
+	print_action(philo->id, "has taken a fork", philo->table->start_time);
 }
 
 void	leave_forks(t_philosopher *philo)
