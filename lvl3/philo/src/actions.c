@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/11 14:09:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:06:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	think(t_philosopher *philo)
 	pthread_mutex_unlock(&philo->table->end_mutex);
 }
 
-int	eat(t_philosopher *philo)
+void	eat(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
@@ -36,12 +36,11 @@ int	eat(t_philosopher *philo)
 		philo->table->loop_end = true;
 		return (pthread_mutex_unlock(&philo->table->end_mutex), 1);
 	} */
-	usleep(philo->table->time_to_eat * 1000);
+	ft_usleep(philo->table->time_to_eat * 1000);
 	philo->meals_eaten++;
 	pthread_mutex_lock(&philo->table->global_mutex);
 	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
 	pthread_mutex_unlock(&philo->table->global_mutex);
-	return (1);
 }
 
 void	sleep_philosopher(t_philosopher *philo)
@@ -50,7 +49,7 @@ void	sleep_philosopher(t_philosopher *philo)
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is sleeping", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
-	usleep(philo->table->time_to_sleep * 1000);
+	ft_usleep(philo->table->time_to_sleep * 1000);
 }
 
 /* void	take_forks(t_philosopher *philo)
@@ -146,9 +145,9 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 		philo->table->loop_end = true;
 		print_action(philo->id, "has taken a fork", philo->table->start_time);
 		if (philo->table->time_to_die < philo->table->time_to_eat)
-			usleep(philo->table->time_to_die * 1000);
+			ft_usleep(philo->table->time_to_die * 1000);
 		else
-			usleep(philo->table->time_to_eat * 1000);
+			ft_usleep(philo->table->time_to_eat * 1000);
 		//print_action(philo->id, "DB: Morí XD", philo->table->start_time);
 		return (true);
 	}
