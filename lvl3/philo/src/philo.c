@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/11 12:38:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:06:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,32 @@
 		usleep(400);
 } */
 
+long	get_current_time(void)
+{
+	struct timeval	current;
+	long			current_miliseconds;
+
+	gettimeofday(&current, NULL);
+	current_miliseconds = (current.tv_sec * 1000) + (current.tv_usec / 1000);
+	return (current_miliseconds);
+}
+
+void	ft_usleep(size_t time)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < time / 1000)
+	{
+		/* printf("DB: Entré\n");
+		printf("DB: get_instant() = %zu\n", get_instant());
+		printf("DB: start = %zu\n", start);
+		printf("DB: get_instant() - start = %zu\n", get_instant() - start);
+		printf("DB: time = %zu\n", time / 1000); */
+		usleep(200);
+	}
+}
+
 static void	cleanup(t_table *table)
 {
 	int	i;
@@ -62,16 +88,6 @@ static void	cleanup(t_table *table)
 	pthread_mutex_destroy(&table->global_mutex);
 	free(table->forks);
 	free(table->philos);
-}
-
-long	get_current_time(void)
-{
-	struct timeval	time;
-	long			time_miliseconds;
-
-	gettimeofday(&time, NULL);
-	time_miliseconds = (time.tv_sec * 1000) + (time.tv_usec / 1000);
-	return (time_miliseconds);
 }
 
 static void	initialize_structs(t_table *table)
