@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/11 12:37:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:09:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,14 @@ long	ft_atol(const char *nptr);
 int		ft_isdigit(int c);
 
 //////////////////////////////////////////////////////
-//						PARSE.C						//
+//						PHILO.C						//
 //////////////////////////////////////////////////////
 long	get_current_time(void);
+void	ft_usleep(size_t time);
+
+//////////////////////////////////////////////////////
+//						PARSE.C						//
+//////////////////////////////////////////////////////
 int		validate_args(int argc, char **argv, t_table *table);
 
 //////////////////////////////////////////////////////
@@ -98,8 +103,8 @@ void	*philo_routine(void *arg);
 //					ACTIONS.C						//
 //////////////////////////////////////////////////////
 void	think(t_philosopher *philo);
-//void	eat(t_philosopher *philo);
-int		eat(t_philosopher *philo);
+void	eat(t_philosopher *philo);
+//int		eat(t_philosopher *philo);
 void	sleep_philosopher(t_philosopher *philo);
 void	take_forks(t_philosopher *philo);
 void	leave_forks(t_philosopher *philo);
