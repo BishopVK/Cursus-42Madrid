@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/13 14:49:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:30:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	eat(t_philosopher *philo)
 	pthread_mutex_unlock(&philo->table->end_mutex);
 
 	ft_usleep(philo->table->time_to_eat * 1000);
+	pthread_mutex_lock(&philo->table->end_mutex);
 	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->table->end_mutex);
 	pthread_mutex_lock(&philo->table->global_mutex);
 	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
 	pthread_mutex_unlock(&philo->table->global_mutex);
