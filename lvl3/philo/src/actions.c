@@ -6,18 +6,38 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/13 11:18:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:46:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	think(t_philosopher *philo)
+/* void	think(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
 		print_action(philo->id, "is thinking", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
+} */
+
+void	think(t_philosopher *philo)
+{
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	pthread_mutex_lock(&philo->table->end_mutex);
+	if (philo->table->loop_end == 0)
+		print_action(philo->id, "is thinking", philo->table->start_time);
+	pthread_mutex_unlock(&philo->table->end_mutex);
+	if (philo->table->nbr_philos % 2 == 0)
+		return ;
+	t_eat = philo->table->time_to_eat;
+	t_sleep = philo->table->time_to_sleep;
+	t_think = (t_eat * 2) - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	ft_usleep((t_think * 0.21) * 1000);
 }
 
 void	eat(t_philosopher *philo)
