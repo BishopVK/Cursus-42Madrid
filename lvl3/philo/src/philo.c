@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/12 14:06:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/13 07:26:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ static void	initialize_structs(t_table *table)
 5 800 200 200 7 (viven y cada uno come 7 veces)
 4 410 200 200 (viven)
 4 310 200 100 (mueren)
-
 3 310 103 103 (tienen que vivir)
 3 310 104 104 (tienen que morir)
 181 400 200 200 (mueren)
