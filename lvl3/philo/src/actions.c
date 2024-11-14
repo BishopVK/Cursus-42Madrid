@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/14 13:34:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:52:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,12 @@ void	eat(t_philosopher *philo)
 
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == false)
+	{
 		print_action(philo->id, "is eating", philo->table->start_time);
+		pthread_mutex_lock(&philo->table->global_mutex);
+		philo->table->total_meals++;
+		pthread_mutex_unlock(&philo->table->global_mutex);
+	}
 	pthread_mutex_unlock(&philo->table->end_mutex);
 
 	pthread_mutex_lock(&philo->table->end_mutex);
