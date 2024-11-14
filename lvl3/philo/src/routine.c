@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/12 09:56:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:16:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	end_of_routine(t_table *table)
 		pthread_mutex_unlock(&table->global_mutex);
 		if (time_restant > table->time_to_die)
 		{
-			table->loop_end = 1;
+			table->im_die = true;
 			print_action(table->philos[i].id, "died", table->start_time);
 			//pthread_mutex_unlock(&table->global_mutex);
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
@@ -52,7 +52,7 @@ static int	end_of_routine(t_table *table)
 		pthread_mutex_unlock(&table->global_mutex); // DB */
 		if (nbr_meals == table->nbr_philos * table->nbr_must_eat)
 		{
-			table->loop_end = true;
+			table->im_die = true;
 			printf("Done %i loops correctly\n", table->philos[i].meals_eaten);
 			return (pthread_mutex_unlock(&table->end_mutex), 1);
 			//return (1);
@@ -68,6 +68,29 @@ static int	end_of_routine(t_table *table)
 	}
 	pthread_mutex_unlock(&table->end_mutex);
 	return (0);
+}
+
+void	*referee_routine(void *arg)
+{
+	t_table	*table;
+	int		someone_dies;
+
+	table = (t_table *)arg;
+	while (1)
+	{
+		pthread_mutex_lock(&table->end_mutex);
+		someone_dies = table->im_die;
+		pthread_mutex_unlock(&table->end_mutex);
+		if (someone_dies == true)
+		{
+			pthread_mutex_lock(&table->end_mutex);
+			table->loop_end = true;
+			pthread_mutex_unlock(&table->end_mutex);
+			break ;
+		}
+		//pthread_mutex_unlock(&table->end_mutex);
+	}
+	return (NULL);
 }
 
 void	*philo_routine(void *arg)
@@ -102,6 +125,8 @@ void	*philo_routine(void *arg)
 		if (end_of_routine(philo->table) == true)
 			break ;
 		sleep_philosopher(philo);
+		if (end_of_routine(philo->table) == true)
+			break ;
 		think(philo);
 	}
 	return (NULL);
