@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/13 21:30:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:34:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ void	think(t_philosopher *philo)
 	long	t_sleep;
 	long	t_think;
 
+	printf("DB: Entré a pensar!\n");
 	pthread_mutex_lock(&philo->table->end_mutex);
-	if (philo->table->loop_end == 0)
+	if (philo->table->loop_end == false)
 		print_action(philo->id, "is thinking", philo->table->start_time);
+	else
+	{
+		pthread_mutex_unlock(&philo->table->end_mutex);
+		return ;
+	}
 	pthread_mutex_unlock(&philo->table->end_mutex);
 	if (philo->table->nbr_philos % 2 == 0)
 		return ;
@@ -52,7 +58,7 @@ void	eat(t_philosopher *philo)
 	printf("DB: remaining_life_time == %li\n", remaining_life_time); */
 
 	pthread_mutex_lock(&philo->table->end_mutex);
-	if (philo->table->loop_end == 0)
+	if (philo->table->loop_end == false)
 		print_action(philo->id, "is eating", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
 
@@ -62,6 +68,8 @@ void	eat(t_philosopher *philo)
 		printf("DB: remaining_life_time == %li\n", remaining_life_time);
 		ft_usleep(remaining_life_time * 1000);
 		//philo->table->loop_end = true;
+		philo->table->im_die = true;
+		print_action(philo->id, "died", philo->table->start_time);
 		pthread_mutex_unlock(&philo->table->end_mutex);
 		return ;
 	}
@@ -72,14 +80,14 @@ void	eat(t_philosopher *philo)
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->table->end_mutex);
 	pthread_mutex_lock(&philo->table->global_mutex);
-	philo->last_meal_time = get_current_time(); // Need to protect whit mutex (data race detected)
+	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->table->global_mutex);
 }
 
 void	sleep_philosopher(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->table->end_mutex);
-	if (philo->table->loop_end == 0)
+	if (philo->table->loop_end == false)
 		print_action(philo->id, "is sleeping", philo->table->start_time);
 	pthread_mutex_unlock(&philo->table->end_mutex);
 	ft_usleep(philo->table->time_to_sleep * 1000);
@@ -176,7 +184,10 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 	if (left_fork == right_fork)
 	{
 		printf("DB: Entré en one_philo_case()\n");
-		philo->table->loop_end = true;
+		//philo->table->loop_end = true;
+		pthread_mutex_lock(&philo->table->end_mutex);
+		philo->table->im_die = true;
+		pthread_mutex_unlock(&philo->table->end_mutex);
 		print_action(philo->id, "has taken a fork", philo->table->start_time);
 		/* if (philo->table->time_to_die < philo->table->time_to_eat)
 			ft_usleep(philo->table->time_to_die * 1000);
@@ -215,7 +226,7 @@ void	take_forks(t_philosopher *philo)
 {
 	int	left_fork;
 	int	right_fork;
-	int	loop_ended;
+	//int	loop_ended;
 
 	left_fork = philo->id - 1;
 	right_fork = philo->id % philo->table->nbr_philos;
@@ -223,12 +234,12 @@ void	take_forks(t_philosopher *philo)
 	if (one_philo_case(philo, left_fork, right_fork) == true)
 		return ;
 	// Check loop_end only once to simplify mutex locking
-	pthread_mutex_lock(&philo->table->end_mutex);
+	/* pthread_mutex_lock(&philo->table->end_mutex);
 	loop_ended = philo->table->loop_end;
 	pthread_mutex_unlock(&philo->table->end_mutex);
 
 	if (loop_ended)
-		return ;
+		return ; */
 
 	// Acquire forks in a fixed order based on the philosopher's ID
 	if (philo->id % 2 == 0)
