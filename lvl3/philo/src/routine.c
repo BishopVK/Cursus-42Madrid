@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/14 20:16:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/14 22:06:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static int	end_of_routine(t_table *table)
 	{
 		if (table->nbr_philos == 1)
 			print_action(1, "died", table->start_time);
-		return (pthread_mutex_unlock(&table->end_mutex), 1);
+		return (pthread_mutex_unlock(&table->end_mutex), true);
 	}
 	if (nbr_meals == table->nbr_philos * table->nbr_must_eat)
 	{
 		table->im_die = true;
 		printf("Done %i loops correctly\n", nbr_meals);
-		return (pthread_mutex_unlock(&table->end_mutex), 1);
+		return (pthread_mutex_unlock(&table->end_mutex), true);
 		//return (1);
 	}
 	i = 0;
@@ -49,9 +49,10 @@ static int	end_of_routine(t_table *table)
 		if (time_restant > table->time_to_die)
 		{
 			table->im_die = true;
+			//pthread_mutex_lock(&table->global_mutex);
 			print_action(table->philos[i].id, "died", table->start_time);
 			//pthread_mutex_unlock(&table->global_mutex);
-			return (pthread_mutex_unlock(&table->end_mutex), 1);
+			return (pthread_mutex_unlock(&table->end_mutex), true);
 			//return (1);
 		}
 		i++;
@@ -63,22 +64,22 @@ static int	end_of_routine(t_table *table)
 void	*referee_routine(void *arg)
 {
 	t_table	*table;
-	int		someone_dies;
+	//int		someone_dies;
 
 	table = (t_table *)arg;
 	while (1)
 	{
 		pthread_mutex_lock(&table->end_mutex);
-		someone_dies = table->im_die;
-		pthread_mutex_unlock(&table->end_mutex);
-		if (someone_dies == true)
+		/* someone_dies = table->im_die;
+		pthread_mutex_unlock(&table->end_mutex); */
+		if (table->im_die == true)
 		{
-			pthread_mutex_lock(&table->end_mutex);
+			//pthread_mutex_lock(&table->end_mutex);
 			table->loop_end = true;
 			pthread_mutex_unlock(&table->end_mutex);
 			break ;
 		}
-		//pthread_mutex_unlock(&table->end_mutex);
+		pthread_mutex_unlock(&table->end_mutex);
 	}
 	return (NULL);
 }
