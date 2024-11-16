@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:40:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_table
 	int					even_delay;
 	pthread_t			referee;
 	int					im_die;
+	pthread_mutex_t		print_mutex;
 }	t_table;
 
 /*_____           _        _                         
