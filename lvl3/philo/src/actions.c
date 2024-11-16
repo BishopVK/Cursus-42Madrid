@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 20:53:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:59:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,8 +242,8 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 			ft_usleep(philo->table->time_to_die * 1000);
 		else
 			ft_usleep(philo->table->time_to_eat * 1000); */
-		ft_usleep(philo->table->time_to_die * 1000);
 		print_action(philo->id, "died", philo->table);
+		ft_usleep(philo->table->time_to_die * 1000);
 		return (true);
 	}
 	return (false);
