@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 17:40:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:46:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int		validate_args(int argc, char **argv, t_table *table);
 //////////////////////////////////////////////////////
 //					ROUTINE.C						//
 //////////////////////////////////////////////////////
-void	print_action(int id, char *action, long start_time);
+void	print_action(int id, char *action, t_table *table);
+//void	print_action(int id, char *action, long start_time);
 void	*referee_routine(void *arg);
 void	*philo_routine(void *arg);
 
