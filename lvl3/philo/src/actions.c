@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 20:59:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:14:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 {
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == 0)
-		print_action(philo->id, "is thinking", philo->table->start_time);
-	pthread_mutex_unlock(&philo->table->end_mutex);
+	{
+		pthread_mutex_unlock(&philo->table->end_mutex);
+		print_action(philo->id, "is thinking", philo->table);
+	}
+	else
+		pthread_mutex_unlock(&philo->table->end_mutex);
 } */
 
 void	think(t_philosopher *philo)
@@ -51,7 +55,7 @@ void	think(t_philosopher *philo)
 void	eat(t_philosopher *philo)
 {
 	long	remaining_life_time;
-	//int		t_eat;
+	int		t_eat;
 
 	remaining_life_time = philo->table->time_to_die - (get_current_time() - philo->last_meal_time);
 	/* printf("DB: philo->table->time_to_die == %i\n", philo->table->time_to_die);
@@ -80,7 +84,7 @@ void	eat(t_philosopher *philo)
 		print_action(philo->id, "died", philo->table);
 		return ;
 	}
-	/* t_eat = 0;
+	t_eat = 0;
 	while (t_eat <= philo->table->time_to_eat)
 	{
 		pthread_mutex_lock(&philo->table->end_mutex);
@@ -90,13 +94,13 @@ void	eat(t_philosopher *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
-		if (1 > philo->table->time_to_eat - t_eat)
+		if (20 > philo->table->time_to_eat - t_eat)
 			ft_usleep((philo->table->time_to_eat - t_eat) * 1000);
 		else
-			ft_usleep(1 * 1000);
-		t_eat += 1;
-	} */
-	ft_usleep(philo->table->time_to_eat * 1000);
+			ft_usleep(20 * 1000);
+		t_eat += 20;
+	}
+	//ft_usleep(philo->table->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->table->global_mutex);
 	//philo->meals_eaten++;
 	philo->table->total_meals++;
@@ -106,7 +110,7 @@ void	eat(t_philosopher *philo)
 
 void	sleep_philosopher(t_philosopher *philo)
 {
-	pthread_mutex_lock(&philo->table->end_mutex);
+	/* pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == false)
 	{
 		pthread_mutex_unlock(&philo->table->end_mutex);
@@ -114,8 +118,8 @@ void	sleep_philosopher(t_philosopher *philo)
 	}
 	else
 		pthread_mutex_unlock(&philo->table->end_mutex);
-	ft_usleep(philo->table->time_to_sleep * 1000);
-	/* int	t_sleep;
+	ft_usleep(philo->table->time_to_sleep * 1000); */
+	int	t_sleep;
 
 	t_sleep = 0;
 	pthread_mutex_lock(&philo->table->end_mutex);
@@ -133,12 +137,12 @@ void	sleep_philosopher(t_philosopher *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
-		if (1 > philo->table->time_to_sleep - t_sleep)
+		if (20 > philo->table->time_to_sleep - t_sleep)
 			ft_usleep((philo->table->time_to_sleep - t_sleep) * 1000);
 		else
-			ft_usleep(1 * 1000);
-		t_sleep += 1;
-	} */
+			ft_usleep(20 * 1000);
+		t_sleep += 20;
+	}
 	//ft_usleep(philo->table->time_to_sleep * 1000);
 }
 
