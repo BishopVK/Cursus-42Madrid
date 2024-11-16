@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/14 12:02:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:25:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ static void	initialize_structs(t_table *table)
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
 	pthread_mutex_init(&table->global_mutex, NULL);
+	pthread_mutex_init(&table->print_mutex, NULL);
 	table->even_delay = table->time_to_eat;
 	if (table->time_to_eat > table->time_to_sleep)
 		table->even_delay = table->time_to_sleep;

@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/11/11 12:24:37 by danjimen         ###   ########.fr        #
+#    Updated: 2024/11/16 18:34:09 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC				=	$(SRC_DIR)/philo.c \
 					$(SRC_DIR)/actions.c \
 					$(FUNCTIONS_DIR)/ft_atoi.c \
 					$(FUNCTIONS_DIR)/ft_atol.c \
-					$(FUNCTIONS_DIR)/ft_isdigit.c
+					$(FUNCTIONS_DIR)/ft_isdigit.c \
+					$(FUNCTIONS_DIR)/ft_strcmp.c
 
 OBJ				=	$(SRC:.c=.o)
 
