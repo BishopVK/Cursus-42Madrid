@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 21:14:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 11:48:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,16 +238,16 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 	{
 		//printf("DB: Entré en one_philo_case()\n");
 		//philo->table->loop_end = true;
-		pthread_mutex_lock(&philo->table->end_mutex);
-		philo->im_die = true;
-		pthread_mutex_unlock(&philo->table->end_mutex);
 		print_action(philo->id, "has taken a fork", philo->table);
+		ft_usleep(philo->table->time_to_die * 1000);
 		/* if (philo->table->time_to_die < philo->table->time_to_eat)
 			ft_usleep(philo->table->time_to_die * 1000);
 		else
 			ft_usleep(philo->table->time_to_eat * 1000); */
+		pthread_mutex_lock(&philo->table->end_mutex);
+		philo->im_die = true;
+		pthread_mutex_unlock(&philo->table->end_mutex);
 		print_action(philo->id, "died", philo->table);
-		ft_usleep(philo->table->time_to_die * 1000);
 		return (true);
 	}
 	return (false);
