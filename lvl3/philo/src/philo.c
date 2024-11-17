@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 18:44:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:31:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 
+	//pthread_join(table.referee, NULL); Commnet??
 	// Esperar a que los hilos terminen
 	i = 0;
 	while (i < table.nbr_philos)
@@ -161,7 +162,6 @@ int	main(int argc, char **argv)
 		pthread_join(table.philos[i].thread, NULL);
 		i++;
 	}
-	pthread_join(table.referee, NULL);
 	
 	// Liberar al final
 	cleanup(&table);
