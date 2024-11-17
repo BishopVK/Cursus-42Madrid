@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 11:48:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:29:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	eat(t_philosopher *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
-		if (20 > philo->table->time_to_eat - t_eat)
+		if (1 > philo->table->time_to_eat - t_eat)
 			ft_usleep((philo->table->time_to_eat - t_eat) * 1000);
 		else
-			ft_usleep(20 * 1000);
-		t_eat += 20;
+			ft_usleep(1 * 1000);
+		t_eat += 1;
 	}
 	//ft_usleep(philo->table->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->table->global_mutex);
@@ -137,11 +137,11 @@ void	sleep_philosopher(t_philosopher *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
-		if (20 > philo->table->time_to_sleep - t_sleep)
+		if (1 > philo->table->time_to_sleep - t_sleep)
 			ft_usleep((philo->table->time_to_sleep - t_sleep) * 1000);
 		else
-			ft_usleep(20 * 1000);
-		t_sleep += 20;
+			ft_usleep(1 * 1000);
+		t_sleep += 1;
 	}
 	//ft_usleep(philo->table->time_to_sleep * 1000);
 }
