@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 18:43:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 21:46:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ typedef struct s_philosopher
 {
 	int				id;
 	pthread_t		thread;
-	int				meals_eaten;
 	long			last_meal_time;
-	int				im_die;
 	struct s_table	*table;
 }	t_philosopher;
 
@@ -66,7 +64,7 @@ typedef struct s_table
 	pthread_mutex_t		global_mutex; // Mutex general para poder comprobar si ambos tenedores están libres
 	int					even_delay;
 	pthread_t			referee;
-	//int					im_die;
+	int					im_die;
 	pthread_mutex_t		print_mutex;
 }	t_table;
 
