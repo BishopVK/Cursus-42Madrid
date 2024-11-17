@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 22:25:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:46:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ void	eat(t_philosopher *philo)
 	printf("DB: get_current_time() - philo->last_meal_time == %li\n", get_current_time() - philo->last_meal_time);
 	printf("DB: remaining_life_time == %li\n", remaining_life_time); */
 
-	if (remaining_life_time < philo->table->time_to_eat)
-	{
-		//printf("DB: remaining_life_time == %li\n", remaining_life_time);
-		ft_usleep(remaining_life_time * 1000);
-		pthread_mutex_lock(&philo->table->end_mutex);
-		philo->table->im_die = true;
-		pthread_mutex_unlock(&philo->table->end_mutex);
-		print_action(philo->id, "died", philo->table);
-		return ;
-	}
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == false)
 	{
@@ -85,7 +75,20 @@ void	eat(t_philosopher *philo)
 		pthread_mutex_unlock(&philo->table->global_mutex);
 	}
 	else
+	{
 		pthread_mutex_unlock(&philo->table->end_mutex);
+		return ;
+	}
+	if (remaining_life_time < philo->table->time_to_eat)
+	{
+		//printf("DB: remaining_life_time == %li\n", remaining_life_time);
+		ft_usleep(remaining_life_time * 1000);
+		pthread_mutex_lock(&philo->table->end_mutex);
+		philo->table->im_die = true;
+		pthread_mutex_unlock(&philo->table->end_mutex);
+		print_action(philo->id, "died", philo->table);
+		return ;
+	}
 	t_eat = 0;
 	while (t_eat <= philo->table->time_to_eat)
 	{
