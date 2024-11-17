@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 20:34:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:58:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,10 @@ void	print_action(int id, char *action, t_table *table)
 
 static int	end_of_routine(t_table *table)
 {
-	int		i;
+	//int		i;
 	int		nbr_meals;
-	long	time_restant;
+	//long	time_restant;
 
-	pthread_mutex_lock(&table->global_mutex);
-	nbr_meals = table->total_meals;
-	pthread_mutex_unlock(&table->global_mutex);
 	pthread_mutex_lock(&table->end_mutex);
 	if (table->loop_end)
 	{
@@ -48,16 +45,21 @@ static int	end_of_routine(t_table *table)
 			print_action(1, "died", table);
 		return (true);
 	}
-	printf("DB: nbr_meals == %i\n", nbr_meals);
-	if (nbr_meals >= table->nbr_philos * table->nbr_must_eat)
+	pthread_mutex_unlock(&table->end_mutex);
+	pthread_mutex_lock(&table->global_mutex);
+	nbr_meals = table->total_meals;
+	pthread_mutex_unlock(&table->global_mutex);
+	//printf("DB: nbr_meals == %i\n", nbr_meals);
+	if (nbr_meals == (table->nbr_philos * table->nbr_must_eat))
 	{
-		//table->im_die = true;
+		//printf("Done %i loops correctly\n", nbr_meals);
+		pthread_mutex_lock(&table->end_mutex);
+		table->im_die = true;
 		table->loop_end = true;
 		pthread_mutex_unlock(&table->end_mutex);
-		printf("Done %i loops correctly\n", nbr_meals);
 		return (true);
 	}
-	i = 0;
+	/* i = 0;
 	while (i < table->nbr_philos)
 	{
 		pthread_mutex_lock(&table->global_mutex);
@@ -65,14 +67,16 @@ static int	end_of_routine(t_table *table)
 		pthread_mutex_unlock(&table->global_mutex);
 		if (time_restant > table->time_to_die)
 		{
-			//table->im_die = true;
-			pthread_mutex_unlock(&table->end_mutex);
 			print_action(table->philos[i].id, "died", table);
+			pthread_mutex_lock(&table->end_mutex);
+			table->im_die = true;
+			table->loop_end = true;
+			pthread_mutex_unlock(&table->end_mutex);
 			return (true);
 		}
 		i++;
-	}
-	pthread_mutex_unlock(&table->end_mutex);
+	} */
+	//pthread_mutex_unlock(&table->end_mutex);
 	return (0);
 }
 
@@ -89,7 +93,7 @@ void	*referee_routine(void *arg)
 		while(i < table->nbr_philos)
 		{
 			pthread_mutex_lock(&table->end_mutex);
-			someone_dies = table->philos[i].im_die;
+			someone_dies = table->im_die;
 			pthread_mutex_unlock(&table->end_mutex);
 			if (someone_dies == true)
 			{
@@ -98,18 +102,21 @@ void	*referee_routine(void *arg)
 				table->loop_end = true;
 				pthread_mutex_unlock(&table->end_mutex);
 				return (NULL);
+				//break ;
 			}
 			i++;
 		}
-		/* someone_dies = table->im_die;
-		pthread_mutex_unlock(&table->end_mutex); */
-		/* if (table->im_die == true)
+		/* pthread_mutex_lock(&table->end_mutex);
+		someone_dies = table->im_die;
+		pthread_mutex_unlock(&table->end_mutex);
+		if (someone_dies == true)
 		{
-			//pthread_mutex_lock(&table->end_mutex);
+			pthread_mutex_lock(&table->end_mutex);
 			table->loop_end = true;
+			pthread_mutex_unlock(&table->end_mutex);
 			break ;
-		}
-		pthread_mutex_unlock(&table->end_mutex); */
+		} */
+		//pthread_mutex_unlock(&table->end_mutex);
 	}
 	return (NULL);
 }
