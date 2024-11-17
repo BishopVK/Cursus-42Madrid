@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 20:31:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:07:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static void	cleanup(t_table *table)
 	}
 	pthread_mutex_destroy(&table->end_mutex);
 	pthread_mutex_destroy(&table->global_mutex);
+	pthread_mutex_destroy(&table->print_mutex);
 	free(table->forks);
 	free(table->philos);
 }
@@ -99,6 +100,7 @@ static void	initialize_structs(t_table *table)
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
 	table->loop_end = false;
 	table->total_meals = 0;
+	table->im_die = 0;
 	gettimeofday(&time, NULL);
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	pthread_mutex_init(&table->end_mutex, NULL);
@@ -112,9 +114,7 @@ static void	initialize_structs(t_table *table)
 	{
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
-		table->philos[i].meals_eaten = 0;
 		table->philos[i].last_meal_time = get_current_time();
-		table->philos[i].im_die = false;
 		table->philos[i].table = table;
 		i++;
 	}
@@ -153,8 +153,7 @@ int	main(int argc, char **argv)
 		pthread_create(&table.philos[i].thread, NULL, philo_routine, &table.philos[i]);
 		i++;
 	}
-
-	//pthread_join(table.referee, NULL); Commnet??
+	pthread_join(table.referee, NULL); // Comment??
 	// Esperar a que los hilos terminen
 	i = 0;
 	while (i < table.nbr_philos)
