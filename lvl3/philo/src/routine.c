@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/16 19:02:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:34:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ static int	end_of_routine(t_table *table)
 			print_action(1, "died", table);
 		return (true);
 	}
-	if (nbr_meals == table->nbr_philos * table->nbr_must_eat)
+	printf("DB: nbr_meals == %i\n", nbr_meals);
+	if (nbr_meals >= table->nbr_philos * table->nbr_must_eat)
 	{
 		//table->im_die = true;
+		table->loop_end = true;
 		pthread_mutex_unlock(&table->end_mutex);
 		printf("Done %i loops correctly\n", nbr_meals);
 		return (true);
