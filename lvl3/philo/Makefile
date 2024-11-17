@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/11/16 18:34:09 by danjimen         ###   ########.fr        #
+#    Updated: 2024/11/17 20:35:33 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endef
 NAME			=	philo
 
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror -g3 -fsanitize=thread
+CFLAGS			=	-Wall -Wextra -Werror #-g3 -fsanitize=thread
 
 SRC_DIR			=	src
 FUNCTIONS_DIR	=	$(SRC_DIR)/functions
