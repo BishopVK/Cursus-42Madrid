@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:05:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 22:46:54 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:20:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	think(t_philosopher *philo)
 	if (t_think < 0)
 		t_think = 0;
 	//ft_usleep((t_think * 0.21) * 1000);
-	ft_usleep((t_think * 0.1) * 1000);
+	ft_usleep(t_think * 0.1);
 }
 
 void	eat(t_philosopher *philo)
@@ -82,7 +82,7 @@ void	eat(t_philosopher *philo)
 	if (remaining_life_time < philo->table->time_to_eat)
 	{
 		//printf("DB: remaining_life_time == %li\n", remaining_life_time);
-		ft_usleep(remaining_life_time * 1000);
+		ft_usleep(remaining_life_time);
 		pthread_mutex_lock(&philo->table->end_mutex);
 		philo->table->im_die = true;
 		pthread_mutex_unlock(&philo->table->end_mutex);
@@ -100,9 +100,9 @@ void	eat(t_philosopher *philo)
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
 		if (1 > philo->table->time_to_eat - t_eat)
-			ft_usleep((philo->table->time_to_eat - t_eat) * 1000);
+			ft_usleep(philo->table->time_to_eat - t_eat);
 		else
-			ft_usleep(1 * 1000);
+			ft_usleep(1);
 		t_eat += 1;
 	}
 	//ft_usleep(philo->table->time_to_eat * 1000);
@@ -144,9 +144,9 @@ void	sleep_philosopher(t_philosopher *philo)
 		}
 		pthread_mutex_unlock(&philo->table->end_mutex);
 		if (1 > philo->table->time_to_sleep - t_sleep)
-			ft_usleep((philo->table->time_to_sleep - t_sleep) * 1000);
+			ft_usleep(philo->table->time_to_sleep - t_sleep);
 		else
-			ft_usleep(1 * 1000);
+			ft_usleep(1);
 		t_sleep += 1;
 	}
 	//ft_usleep(philo->table->time_to_sleep * 1000);
@@ -245,7 +245,7 @@ static t_bool	one_philo_case(t_philosopher *philo, int left_fork, int right_fork
 		//printf("DB: Entré en one_philo_case()\n");
 		//philo->table->loop_end = true;
 		print_action(philo->id, "has taken a fork", philo->table);
-		ft_usleep(philo->table->time_to_die * 1000);
+		ft_usleep(philo->table->time_to_die);
 		/* if (philo->table->time_to_die < philo->table->time_to_eat)
 			ft_usleep(philo->table->time_to_die * 1000);
 		else

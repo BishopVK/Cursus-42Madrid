@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 22:07:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:19:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_usleep(size_t time)
 	size_t	start;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < time / 1000)
+	while ((get_current_time() - start) < time)
 	{
 		/* printf("DB: Entré\n");
 		printf("DB: get_instant() = %zu\n", get_instant());
