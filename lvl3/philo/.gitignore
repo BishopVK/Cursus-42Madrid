@@ -10,6 +10,7 @@ philo
 # Ignorar otro tipo de archivos
 *.txt
 !luiz.txt
+!testing.txt
 
 # Ignorar directorios específicos
 /.vscode

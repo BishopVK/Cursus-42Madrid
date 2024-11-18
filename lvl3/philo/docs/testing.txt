@@ -1,0 +1,8 @@
+1 800 200 200 (muere)
+5 800 200 200 (viven)
+5 800 200 200 7 (viven y cada uno come 7 veces)
+4 410 200 200 (viven)
+4 310 200 100 (mueren)
+3 310 103 103 (tienen que vivir)
+3 310 104 104 (tienen que morir)
+181 400 200 200 (mueren)
