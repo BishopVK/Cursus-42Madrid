@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 11:36:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:08:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static int	end_of_routine(t_table *table)
 	{
 		pthread_mutex_lock(&table->end_mutex);
 		table->im_die = true;
-		//table->loop_end = true;
 		pthread_mutex_unlock(&table->end_mutex);
 		return (true);
 	}
