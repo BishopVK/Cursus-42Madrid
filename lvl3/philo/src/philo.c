@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 12:20:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:41:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ long	get_current_time(void)
 
 void	ft_usleep(size_t time)
 {
-	long	end;
+	size_t	start;
 
-	end = get_current_time() + time;
-	while (get_current_time() < end)
-		continue ;
+	start = get_current_time();
+	while ((get_current_time() - start) < time)
+		usleep(200);
 }
 
 static void	cleanup(t_table *table)
