@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 12:08:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:11:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	*referee_routine(void *arg)
 	t_table	*table;
 	int		i;
 	int		someone_dies;
+	long	time_restant;
 
 	table = (t_table *)arg;
 	while (1)
@@ -81,6 +82,18 @@ void	*referee_routine(void *arg)
 				pthread_mutex_unlock(&table->end_mutex);
 				return (NULL);
 			}
+			pthread_mutex_lock(&table->global_mutex);
+			time_restant = table->philos[i].death_date;
+			if (get_current_time() - table->philos[i].last_meal_time > time_restant)
+			{
+				pthread_mutex_unlock(&table->global_mutex);
+				print_action(table->philos[i].id, "died", table);
+				pthread_mutex_lock(&table->end_mutex);
+				table->loop_end = true;
+				pthread_mutex_unlock(&table->end_mutex);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&table->global_mutex);
 			i++;
 		}
 	}
