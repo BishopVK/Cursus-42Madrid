@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/11/17 20:35:33 by danjimen         ###   ########.fr        #
+#    Updated: 2024/11/18 11:04:06 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,15 @@ CFLAGS			=	-Wall -Wextra -Werror #-g3 -fsanitize=thread
 
 SRC_DIR			=	src
 FUNCTIONS_DIR	=	$(SRC_DIR)/functions
+ACTIONS_DIR		=	$(SRC_DIR)/actions
 SRC				=	$(SRC_DIR)/philo.c \
 					$(SRC_DIR)/parse.c \
 					$(SRC_DIR)/routine.c \
-					$(SRC_DIR)/actions.c \
+					$(ACTIONS_DIR)/think.c \
+					$(ACTIONS_DIR)/eat.c \
+					$(ACTIONS_DIR)/sleep.c \
+					$(ACTIONS_DIR)/take_forks.c \
+					$(ACTIONS_DIR)/leave_forks.c \
 					$(FUNCTIONS_DIR)/ft_atoi.c \
 					$(FUNCTIONS_DIR)/ft_atol.c \
 					$(FUNCTIONS_DIR)/ft_isdigit.c \
