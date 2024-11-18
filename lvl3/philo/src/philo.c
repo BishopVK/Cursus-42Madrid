@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 12:41:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:05:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	initialize_structs(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->philos[i].id = i + 1;
 		table->philos[i].last_meal_time = get_current_time();
+		table->philos[i].death_date = table->time_to_die;
 		table->philos[i].table = table;
 		i++;
 	}
