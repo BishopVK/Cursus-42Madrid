@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:00:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 08:14:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:26:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static int	validate_args_set(int argc, char **argv)
 	}
 	if (ft_atol(argv[1]) < 1)
 		return (2);
-	/* if (ft_atol(argv[2]) < 60 || ft_atol(argv[3]) < 60
-		|| ft_atol(argv[4]) < 60)
-		return (3); */
 	return (0);
 }
 
@@ -61,20 +58,18 @@ int	validate_args(int argc, char **argv, t_table *table)
 		if (validate_args_set(argc, argv) != 0)
 		{
 			if (validate_args_set(argc, argv) == 1)
-				printf("Invalid args type\n");
+				write(2, "Invalid args type\n", 19);
 			if (validate_args_set(argc, argv) == 2)
-				printf("Minimum of philosophers must be 1\n");
-			/* if (validate_args_set(argc, argv) == 3)
-				printf("Minimum time to die, eat or sleep must be 60\n"); */
+				write(2, "Minimum of philosophers must be 1\n", 35);
 			return (1);
 		}
 		*table = parse_args(argc, argv);
 	}
 	else
 	{
-		printf("Correct use: ./philo number_of_philosophers time_to_die");
-		printf(" time_to_eat time_to_sleep");
-		printf(" [number_of_times_each_philosopher_must_eat]\n");
+		write(2, "Correct use: ./philo number_of_philosophers time_to_die", 56);
+		write(2, " time_to_eat time_to_sleep", 27);
+		write(2, " [number_of_times_each_philosopher_must_eat]\n", 46);
 		return (1);
 	}
 	return (0);
