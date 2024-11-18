@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 21:46:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:25:36 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 // INT_MAX, INT_MIN
 #include <limits.h>
 
-#define NUM_THREADS 5
-
 typedef enum s_bool
 {
 	false,
@@ -56,12 +54,12 @@ typedef struct s_table
 	int					time_to_sleep;
 	int					nbr_must_eat;
 	int					total_meals;
-	pthread_mutex_t		*forks; // Array de mutexes
+	pthread_mutex_t		*forks;
 	t_philosopher		*philos;
-	int					loop_end; // Bandera para terminar la simulación
-	pthread_mutex_t		end_mutex; // Mutex para proteger la bandera loop_end
+	int					loop_end;
+	pthread_mutex_t		end_mutex;
 	long				start_time;
-	pthread_mutex_t		global_mutex; // Mutex general para poder comprobar si ambos tenedores están libres
+	pthread_mutex_t		global_mutex;
 	int					even_delay;
 	pthread_t			referee;
 	int					im_die;
@@ -83,6 +81,7 @@ typedef struct s_table
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 int		ft_isdigit(int c);
+int		ft_strcmp(const char *s1, const char *s2);
 
 //////////////////////////////////////////////////////
 //						PHILO.C						//
@@ -99,24 +98,35 @@ int		validate_args(int argc, char **argv, t_table *table);
 //					ROUTINE.C						//
 //////////////////////////////////////////////////////
 void	print_action(int id, char *action, t_table *table);
-//void	print_action(int id, char *action, long start_time);
 void	*referee_routine(void *arg);
 void	*philo_routine(void *arg);
 
+// ╔═.✵.═════════════════════════════════════════════╗
+//					ACTIONS FOLDER
+// ╚═════════════════════════════════════════════.✵.═╝
+
 //////////////////////////////////////////////////////
-//					ACTIONS.C						//
+//						THINK.C						//
 //////////////////////////////////////////////////////
 void	think(t_philosopher *philo);
+
+//////////////////////////////////////////////////////
+//						EAT.C						//
+//////////////////////////////////////////////////////
 void	eat(t_philosopher *philo);
 //int		eat(t_philosopher *philo);
-void	sleep_philosopher(t_philosopher *philo);
+
+//////////////////////////////////////////////////////
+//						SLEEP.C						//
+//////////////////////////////////////////////////////
+void	sleep(t_philosopher *philo, int t_sleep);
+
+//////////////////////////////////////////////////////
+//					TAKE_FORKS.C					//
+//////////////////////////////////////////////////////
 void	take_forks(t_philosopher *philo);
+
+//////////////////////////////////////////////////////
+//					LEAVE_FORKS.C					//
+//////////////////////////////////////////////////////
 void	leave_forks(t_philosopher *philo);
-
-// long long	timestamp(void);
-// void		ft_usleep(int ms);
-
-// long long	ft_calc_time(void);
-// void		ft_usleep(int time);
-
-int		ft_strcmp(const char *s1, const char *s2);
