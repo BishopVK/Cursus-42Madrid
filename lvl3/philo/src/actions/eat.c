@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:54:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 19:08:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:59:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,6 @@ void	eat_sleep_loop(t_philosopher *philo)
 
 void	eat(t_philosopher *philo)
 {
-	//printf("DB: philo[%i] death_date => %li\n", philo->id, philo->death_date);
-	//printf("DB: get_current_time() => %li\n", get_current_time());
-	//printf("DB: philo->last_meal_time => %li\n", philo->last_meal_time);
-	//printf("DB: get_current_time() - philo->last_meal_time => %li\n", get_current_time() - philo->last_meal_time);
-	if (get_current_time() - philo->last_meal_time > philo->death_date)
-	{
-		/* if (philo->table->time_to_eat > philo->table->time_to_die)
-			ft_usleep(philo->table->time_to_eat - philo->table->time_to_die); */
-		pthread_mutex_lock(&philo->table->end_mutex);
-		philo->table->im_die = true;
-		pthread_mutex_unlock(&philo->table->end_mutex);
-		print_action(philo->id, "died", philo->table);
-		return ;
-	}
 	pthread_mutex_lock(&philo->table->end_mutex);
 	if (philo->table->loop_end == false)
 	{
@@ -76,9 +62,8 @@ void	eat(t_philosopher *philo)
 		print_action(philo->id, "is eating", philo->table);
 		pthread_mutex_lock(&philo->table->global_mutex);
 		philo->table->total_meals++;
-		philo->last_meal_time = get_current_time();
 		philo->death_date = (get_current_time() - philo->last_meal_time) + philo->table->time_to_die;
-		printf("DB: philo[%i] death_date => %li\n", philo->id, philo->death_date);
+		philo->last_meal_time = get_current_time();
 		pthread_mutex_unlock(&philo->table->global_mutex);
 	}
 	else
@@ -91,7 +76,6 @@ void	eat(t_philosopher *philo)
 	eat_sleep_loop(philo);
 	/* pthread_mutex_lock(&philo->table->global_mutex);
 	philo->death_date = (get_current_time() - philo->last_meal_time) + philo->table->time_to_die;
-	printf("DB: philo[%i] death_date => %li\n", philo->id, philo->death_date);
-	//philo->last_meal_time = get_current_time();
-	pthread_mutex_unlock(&philo->table->global_mutex) */;
+	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&philo->table->global_mutex); */
 }
