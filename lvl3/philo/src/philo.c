@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 23:19:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:33:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,17 +136,10 @@ int	main(int argc, char **argv)
 	t_table	table;
 	int		i;
 
-	// Parseo
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
-
-	// Inicialización de estructuras
 	initialize_structs(&table);
-
-	// Crear hilo para el árbitro
 	pthread_create(&table.referee, NULL, referee_routine, &table);
-
-	// Crear hilos para los filósofos
 	i = 0;
 	while (i < table.nbr_philos)
 	{
@@ -154,15 +147,12 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	pthread_join(table.referee, NULL); // Comment??
-	// Esperar a que los hilos terminen
 	i = 0;
 	while (i < table.nbr_philos)
 	{
 		pthread_join(table.philos[i].thread, NULL);
 		i++;
 	}
-	
-	// Liberar al final
 	cleanup(&table);
 	return (0);
 }
