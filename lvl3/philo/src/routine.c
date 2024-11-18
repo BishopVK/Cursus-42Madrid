@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:56:08 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 10:45:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:26:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	end_of_routine(t_table *table)
 	{
 		pthread_mutex_lock(&table->end_mutex);
 		table->im_die = true;
-		table->loop_end = true;
+		//table->loop_end = true;
 		pthread_mutex_unlock(&table->end_mutex);
 		return (true);
 	}
@@ -109,7 +109,7 @@ void	philo_routine_loop(t_philosopher *philo)
 		leave_forks(philo);
 		if (end_of_routine(philo->table) == true)
 			break ;
-		sleep_philosopher(philo);
+		sleep(philo, 0);
 		if (end_of_routine(philo->table) == true)
 			break ;
 		think(philo);
