@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:00:19 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/07 08:46:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:07:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	validate_args_set(int argc, char **argv)
 	}
 	/* if (ft_atol(argv[1]) <= 1)
 		return (2); */
-	if (ft_atol(argv[2]) < 60 || ft_atol(argv[3]) < 60
+	/* if (ft_atol(argv[2]) < 60 || ft_atol(argv[3]) < 60
 		|| ft_atol(argv[4]) < 60)
-		return (3);
+		return (3); */
 	return (0);
 }
 
@@ -64,8 +64,8 @@ int	validate_args(int argc, char **argv, t_table *table)
 				printf("Invalid args type\n");
 			/* if (validate_args_set(argc, argv) == 2)
 				printf("Minimum of philosophers must be 2\n"); */
-			if (validate_args_set(argc, argv) == 3)
-				printf("Minimum time to die, eat or sleep must be 60\n");
+			/* if (validate_args_set(argc, argv) == 3)
+				printf("Minimum time to die, eat or sleep must be 60\n"); */
 			return (1);
 		}
 		*table = parse_args(argc, argv);
