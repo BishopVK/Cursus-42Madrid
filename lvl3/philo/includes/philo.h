@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 18:04:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:46:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 // INT_MAX, INT_MIN
 #include <limits.h>
+
+#define OK 0
+#define ERR 1
 
 typedef enum s_bool
 {
