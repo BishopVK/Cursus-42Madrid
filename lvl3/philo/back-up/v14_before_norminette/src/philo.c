@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/17 23:19:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:41:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ void	ft_usleep(size_t time)
 		usleep(200);
 	}
 }
+
+/* void	ft_usleep(size_t time)
+{
+	long	end;
+
+	end = get_current_time() + time;
+	while (get_current_time() < end)
+		continue ;
+} */
 
 static void	cleanup(t_table *table)
 {
