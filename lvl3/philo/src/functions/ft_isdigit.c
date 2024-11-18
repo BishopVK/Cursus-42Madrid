@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:04:15 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 08:27:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:02:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Verifica si un carácter es un dígito numérico.
+#include "../../includes/philo.h"
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

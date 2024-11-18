@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:55:18 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/28 09:17:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:02:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Convierte una cadena de caracteres que representa
-//un número en un entero (int).
+#include "../../includes/philo.h"
+
 long	ft_atol(const char *nptr)
 {
 	long	sign;
