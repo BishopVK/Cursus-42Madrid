@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 11:25:36 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:36:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	eat(t_philosopher *philo);
 //////////////////////////////////////////////////////
 //						SLEEP.C						//
 //////////////////////////////////////////////////////
-void	sleep(t_philosopher *philo, int t_sleep);
+void	sleep_philo(t_philosopher *philo, int t_sleep);
 
 //////////////////////////////////////////////////////
 //					TAKE_FORKS.C					//
