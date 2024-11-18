@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 20:46:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:18:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,6 @@ typedef struct s_table
                                |___/|_|            */
 
 //////////////////////////////////////////////////////
-//					FUNCTIONS						//
-//////////////////////////////////////////////////////
-int		ft_atoi(const char *nptr);
-long	ft_atol(const char *nptr);
-int		ft_isdigit(int c);
-int		ft_strcmp(const char *s1, const char *s2);
-
-//////////////////////////////////////////////////////
 //						PHILO.C						//
 //////////////////////////////////////////////////////
 long	get_current_time(void);
@@ -98,17 +90,22 @@ void	ft_usleep(size_t time);
 //////////////////////////////////////////////////////
 int		validate_args(int argc, char **argv, t_table *table);
 
+// ╔═.✵.═════════════════════════════════════════════╗
+//					ROUTINE FOLDER
+// ╚═════════════════════════════════════════════.✵.═╝
 //////////////////////////////////////////////////////
-//					ROUTINE.C						//
+//					PHILO_ROUTINE.C					//
 //////////////////////////////////////////////////////
-void	print_action(int id, char *action, t_table *table);
-void	*referee_routine(void *arg);
 void	*philo_routine(void *arg);
+
+//////////////////////////////////////////////////////
+//					REFEREE_ROUTINE.C				//
+//////////////////////////////////////////////////////
+void	*referee_routine(void *arg);
 
 // ╔═.✵.═════════════════════════════════════════════╗
 //					ACTIONS FOLDER
 // ╚═════════════════════════════════════════════.✵.═╝
-
 //////////////////////////////////////////////////////
 //						THINK.C						//
 //////////////////////////////////////////////////////
@@ -134,3 +131,16 @@ void	take_forks(t_philosopher *philo);
 //					LEAVE_FORKS.C					//
 //////////////////////////////////////////////////////
 void	leave_forks(t_philosopher *philo);
+
+//////////////////////////////////////////////////////
+//					PRINT_ACTION.C					//
+//////////////////////////////////////////////////////
+void	print_action(int id, char *action, t_table *table);
+
+// ╔═.✵.═════════════════════════════════════════════╗
+//					FUNCTIONS FOLDER
+// ╚═════════════════════════════════════════════.✵.═╝
+int		ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
+int		ft_isdigit(int c);
+int		ft_strcmp(const char *s1, const char *s2);
