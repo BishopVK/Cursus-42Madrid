@@ -6,30 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 20:36:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:22:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-long	get_current_time(void)
-{
-	struct timeval	current;
-	long			current_miliseconds;
-
-	gettimeofday(&current, NULL);
-	current_miliseconds = (current.tv_sec * 1000) + (current.tv_usec / 1000);
-	return (current_miliseconds);
-}
-
-void	ft_usleep(size_t time)
-{
-	size_t	start;
-
-	start = get_current_time();
-	while ((get_current_time() - start) < time)
-		usleep(200);
-}
 
 static void	cleanup(t_table *table)
 {
@@ -48,15 +29,31 @@ static void	cleanup(t_table *table)
 	free(table->philos);
 }
 
+static void	initialize_philos(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->nbr_philos)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		table->philos[i].id = i + 1;
+		table->philos[i].last_meal_time = get_current_time();
+		table->philos[i].death_date = table->time_to_die;
+		table->philos[i].table = table;
+		i++;
+	}
+}
+
 static void	initialize_structs(t_table *table)
 {
-	int				i;
 	struct timeval	time;
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
 	table->loop_end = false;
 	table->total_meals = 0;
+	table->philos_meals = 0;
 	table->im_die = 0;
 	gettimeofday(&time, NULL);
 	table->start_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
@@ -66,15 +63,7 @@ static void	initialize_structs(t_table *table)
 	table->even_delay = table->time_to_eat;
 	if (table->time_to_eat > table->time_to_sleep)
 		table->even_delay = table->time_to_sleep;
-	i = -1;
-	while (++i < table->nbr_philos)
-	{
-		pthread_mutex_init(&table->forks[i], NULL);
-		table->philos[i].id = i + 1;
-		table->philos[i].last_meal_time = get_current_time();
-		table->philos[i].death_date = table->time_to_die;
-		table->philos[i].table = table;
-	}
+	initialize_philos(table);
 }
 
 int	main(int argc, char **argv)
