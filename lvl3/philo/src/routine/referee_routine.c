@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:12:13 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 21:12:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:36:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	*referee_routine(void *arg)
 		i = 0;
 		while (i < table->nbr_philos)
 		{
+			pthread_mutex_lock(&table->global_mutex);
+			table->total_meals = table->philos_meals;
+			pthread_mutex_unlock(&table->global_mutex);
 			if (detect_if_someone_dies(table) == ERR)
 				return (NULL);
 			if (detect_death_date(table, i) == ERR)
