@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 07:52:36 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 21:18:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:08:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_table
 	int					time_to_sleep;
 	int					nbr_must_eat;
 	int					total_meals;
+	int					philos_meals;
 	pthread_mutex_t		*forks;
 	t_philosopher		*philos;
 	int					loop_end;
@@ -80,7 +81,7 @@ typedef struct s_table
                                |___/|_|            */
 
 //////////////////////////////////////////////////////
-//						PHILO.C						//
+//						UTILS.C						//
 //////////////////////////////////////////////////////
 long	get_current_time(void);
 void	ft_usleep(size_t time);
