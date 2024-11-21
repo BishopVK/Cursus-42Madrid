@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 09:19:38 by danjimen          #+#    #+#              #
-#    Updated: 2024/11/18 21:19:11 by danjimen         ###   ########.fr        #
+#    Updated: 2024/11/21 12:19:19 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endef
 NAME			=	philo
 
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror #-g3 -fsanitize=thread
+CFLAGS			=	-Wall -Wextra -Werror #-fsanitize=thread
 
 SRC_DIR			=	src
 FUNCTIONS_DIR	=	$(SRC_DIR)/functions
@@ -36,6 +36,7 @@ ACTIONS_DIR		=	$(SRC_DIR)/actions
 ROUTINE_DIR		=	$(SRC_DIR)/routine
 SRC				=	$(SRC_DIR)/philo.c \
 					$(SRC_DIR)/parse.c \
+					$(SRC_DIR)/utils.c \
 					$(ROUTINE_DIR)/philo_routine.c \
 					$(ROUTINE_DIR)/referee_routine.c \
 					$(ACTIONS_DIR)/think.c \
