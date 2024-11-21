@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:09:37 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 21:09:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/21 09:15:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_action(int id, char *action, t_table *table)
 	{
 		pthread_mutex_lock(&table->print_mutex);
 		if (nbr_dies == 0)
-			printf("%ld: %d %s\n", get_current_time() - table->start_time,
+			printf("%ld %d %s\n", get_current_time() - table->start_time,
 				id, action);
 		if (ft_strcmp(action, "died") == 0)
 			nbr_dies++;
