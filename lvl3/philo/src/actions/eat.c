@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:54:09 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/18 20:20:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:36:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	eat(t_philosopher *philo)
 		pthread_mutex_unlock(&philo->table->end_mutex);
 		print_action(philo->id, "is eating", philo->table);
 		pthread_mutex_lock(&philo->table->global_mutex);
-		philo->table->total_meals++;
+		philo->table->philos_meals++;
 		philo->death_date = (get_current_time() - philo->last_meal_time)
 			+ philo->table->time_to_die;
 		philo->last_meal_time = get_current_time();
