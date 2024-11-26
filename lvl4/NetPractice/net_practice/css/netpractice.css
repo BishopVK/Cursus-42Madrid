@@ -63,9 +63,9 @@ div {
     position:fixed;
     bottom:0px;
     right:0px;
-    width:250px;
-    height:200px;
-    font-size:70%;
+    width:500px;
+    height:300px;
+    font-size:100%;
     overflow-y: scroll;
 }
 
