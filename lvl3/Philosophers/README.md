@@ -12,7 +12,7 @@ The project (mandatory part) involves simulating the "Dining Philosophers" probl
 
 ## Instruction set
 
-Here is a list of instructions required to complete the project::
+Here is a list of instructions required to complete the project:
 
 | **#** | **Instruction** |
 | ----- | --------------- |
