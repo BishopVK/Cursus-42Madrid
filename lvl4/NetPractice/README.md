@@ -2,7 +2,7 @@
 
 | **Score** | **Description** |
 | --------- | ----- |
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/NetPractice/img/Score_100.png"></p> | **Mandatory part** |
+| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/NetPractice/img/Score_100.png"></p> | **Mandatory part** (Bonus part not available) |
 
 # Net Practice
 
