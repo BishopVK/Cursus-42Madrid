@@ -24,6 +24,8 @@ The Net_Practice project is a practical exercise designed to introduce participa
 
 Participants will access a training interface through a web browser, where they can practice their skills by either logging in or using a correction version of the exercises. Each level requires the completion of specific tasks, and once successfully finished, participants can export their configurations for submission to their Git repository. This project not only enhances technical knowledge but also encourages hands-on experience in network configuration and problem-solving.
 
+[back to contents](#table-of-contents)
+
 
 ## General Guidelines
 
@@ -33,6 +35,8 @@ Participants will access a training interface through a web browser, where they 
 |  `2`  | Understanding TCP/IP addressing is crucial to successfully complete the exercises. |
 |  `3`  | There are 10 levels, each representing a unique network configuration challenge. |
 |  `4`  | All exercises are completed in a browser-based training interface. The networks simulated are not real but mimic real-world scenarios. |
+
+[back to contents](#table-of-contents)
 
 
 ## Networking Concepts
@@ -67,6 +71,8 @@ Routing is the process of forwarding data packets between networks. Key componen
 * **Check Logs:** Review logs in the training interface for hints on misconfigurations.
 * **Subnet Calculation:** Ensure that all devices in the same subnet have compatible IP ranges and masks.
 
+[back to contents](#table-of-contents)
+
 
 ## Preview of an Exercise
 
@@ -75,3 +81,5 @@ In this case, we can see how we must configure several networks and subnets, whe
 <p align="center">
 <img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/NetPractice/img/NetPractice.png">
 </p>
+
+[back to contents](#table-of-contents)
