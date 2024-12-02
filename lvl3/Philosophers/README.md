@@ -1,7 +1,7 @@
 ## Grade
 
-| **Score**           | **Description**     |
-|-----------------------|---------------|
+| **Score** | **Description** |
+| --------- | ----- |
 | <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/Score_108.png"></p> | **Mandatory part**   |
 
 
@@ -31,45 +31,14 @@ Here is a list of instructions required to complete the project::
 
 ## Preview of the mandatory part
 
-In this case, we read the contents of Martin_Luther_King.txt. The cat command is responsible for reading the received content. Through the pipe we pass the result to the awk command, which in this case is responsible for printing the fourth column of each row of text, and passing the output to the standard output.
+In this image, one can observe a scenario where the philosophers have an appropriate amount of time to organize themselves and eat, sleep, and think without dying at any point.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/awk.png">
+<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/preview.png">
 </p>
 
-
-## The Bonus part
-
-<p>To fully pass the bonus part of the project Pipex, the following conditions must be met:</p>
-
-| **#** | **Instruction**                                                                                                                        |
-| ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
-|  `1`  | Implement the ability to handle multiple pipes in the program..                                                                        |
-|  `2`  | Support input redirection using "<< LIMITER" and output redirection using ">>" when the first parameter is "here_doc".                 |
-|  `3`  | Ensure that the mandatory part of the project is flawless without any errors, even in extreme or misuse cases.                         |
-|  `4`  | Bonus features will only be evaluated if the mandatory part is deemed perfect; otherwise, the bonus will be ignored during assessment. |
-
-
-## Preview of the bonus part
-
-**Multiple pipes:**
-<br>
-<br>
-In this case, we read the content of infile.txt. The "cat" command is responsible for reading the received content. "ls -la" will ignore the input received and list directories and files in the current path including hidden files. "awk" will filter out the ninth column from the result, which includes the names of the files and directories. "grep pipex" will exclude from the final result anything that does not contain the word "pipex". Finally and for convenience for this example, we show the result through the output to the standard output.
+In this other case, it is evident that the timing was very tight, resulting in one of the philosophers dying due to not being able to eat. Their death was announced with zero milliseconds of delay from the moment the thread died and was printed.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/bonus.png">
-</p>
-<br>
-
-
-**Here doc:**
-<br>
-<br>
-In this second case we simulate the use of the here doc.
-To do this we use the reserved word "here_doc" followed by the reserved word for escaping the here doc, in this case EOF.
-We will enter the desired text through standard input, which will stop automatically when the escape word is detected. "grep rose" will filter out all received lines that contain the word "rose". "wc -w" will count the number of words in the received line. The result will be stored with an append in the file outfile.txt, adding the result to the end of the document. In this case 4: the number of words contained in the line "A rose by anyone".
-
-<p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/here_doc.png">
+<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/preview_2.png">
 </p>
