@@ -10,7 +10,11 @@
 
 1. [Project Overview](#project-overview)
 2. [General Guidelines](#general-guidelines)
-3. [Networking Concepts](#networking-concepts) * [What is TCP/IP?](#what-is-tcp/ip?) * [Subnet Masks and CIDR](#subnet-masks-and-cidr) * [Routing Basics](#routing-basics) * [Troubleshooting Tips](#troubleshooting-tips)
+3. [Networking Concepts](#networking-concepts)
+   * [What is TCP/IP?](#what-is-tcp/ip?)
+   * [Subnet Masks and CIDR](#subnet-masks-and-cidr)
+   * [Routing Basics](#routing-basics)
+   * [Troubleshooting Tips](#troubleshooting-tips)
 4. [Preview of an Exercise](#preview-of-an-exercise)
 
 
