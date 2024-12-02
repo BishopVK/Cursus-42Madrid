@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/philo/img/Score_108.png"></p> | **Mandatory part**   |
+| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/Score_108.png"></p> | **Mandatory part**   |
 
 
 ## Philosophers
