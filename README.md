@@ -16,6 +16,8 @@ This is my current progress on the 42Madrid Cursus
 | [pipex](/lvl2/pipex) | **125/100**   |
 | [so_long](/lvl2/so_long) | **125/100**   |
 | [Exam Rank 02](/lvl2/exam_rank_02) | **100/100**   |
-| [philosophers](/lvl3/philo) | **in progress**   |
+| [philosophers](/lvl3/philo) | **108/100**   |
 | [minishell](https://github.com/BishopVK/minishell) | **101/125**   |
 | [Exam Rank 03](/lvl3/exam_rank_03) | **100/100**   |
+| [NetPractice](/lvl4/NetPractice) | **100/100**   |
+| [CPP Module](/lvl4/CPP_Module) | **in progress**   |
