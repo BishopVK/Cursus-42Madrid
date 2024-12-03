@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 08:22:03 by danjimen          #+#    #+#              #
-#    Updated: 2024/09/11 13:12:55 by danjimen &       ###   ########.fr        #
+#    Updated: 2024/12/03 11:33:12 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Definición de colores
-COLOR_CYAN := "\x1b[36m"
-COLOR_GREEN := "\x1b[32m"
-COLOR_RESET := "\x1b[0m"
+COLOR_CYAN := "\033[36m"
+COLOR_GREEN := "\033[32m"
+COLOR_RESET := "\033[0m"
 
 # Macro para imprimir un mensaje en color cyan
 define print_cyan

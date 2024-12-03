@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen & isainz-r <danjimen & isainz-    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 07:56:47 by danjimen          #+#    #+#              #
-#    Updated: 2024/09/11 14:03:04 by danjimen &       ###   ########.fr        #
+#    Updated: 2024/12/03 11:40:14 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Definición de colores
-COLOR_CYAN := "\x1b[36m"
-COLOR_GREEN := "\x1b[32m"
-COLOR_RESET := "\x1b[0m"
+COLOR_CYAN := "\033[36m"
+COLOR_GREEN := "\033[32m"
+COLOR_RESET := "\033[0m"
 
 # Macro para imprimir un mensaje en color cyan
 define print_cyan
@@ -79,11 +79,11 @@ PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 all: $(PUSH_NAME) $(CHECK_NAME)
 
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) bonus -C $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
+	@$(MAKE) -s bonus -C $(LIBFT_DIR)
 
 $(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -s -C $(PRINTF_DIR)
 
 $(PUSH_NAME): $(OBJ) $(LIBFT) $(PRINTF)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(PUSH_NAME)
@@ -97,15 +97,15 @@ $(CHECK_NAME): $(OBJ_BONUS) $(LIBFT) $(PRINTF)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ)
 	@rm -f $(OBJ_BONUS)
 	$(call print_green,"Cleaned object files of push_swap and checker")
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(PRINTF_DIR) fclean
 	@rm -f $(PUSH_NAME)
 	@rm -f $(CHECK_NAME)
 	$(call print_green,"Cleaned the executable push_swap and checker")
