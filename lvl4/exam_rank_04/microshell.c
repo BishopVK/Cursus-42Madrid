@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:21:01 by danjimen          #+#    #+#             */
-/*   Updated: 2024/12/04 16:46:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:22:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-int	error(char *str)
+void	error(char *str)
 {
 	while (*str)
 		write(2, str++, 1);
