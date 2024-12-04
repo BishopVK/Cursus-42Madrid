@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:37:14 by danjimen          #+#    #+#             */
-/*   Updated: 2024/11/21 12:22:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:50:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,19 @@ static void	initialize_philos(t_table *table)
 	}
 }
 
-static void	initialize_structs(t_table *table)
+static int	initialize_structs(t_table *table)
 {
 	struct timeval	time;
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_philos);
+	if (!table->forks)
+		return (ERR);
 	table->philos = malloc(sizeof(t_philosopher) * table->nbr_philos);
+	if (!table->philos)
+	{
+		free (table->forks);
+		return (ERR);
+	}
 	table->loop_end = false;
 	table->total_meals = 0;
 	table->philos_meals = 0;
@@ -64,6 +71,7 @@ static void	initialize_structs(t_table *table)
 	if (table->time_to_eat > table->time_to_sleep)
 		table->even_delay = table->time_to_sleep;
 	initialize_philos(table);
+	return (OK);
 }
 
 int	main(int argc, char **argv)
@@ -73,7 +81,8 @@ int	main(int argc, char **argv)
 
 	if (validate_args(argc, argv, &table) != 0)
 		return (1);
-	initialize_structs(&table);
+	if (initialize_structs(&table) == ERR)
+		return (ERR);
 	pthread_create(&table.referee, NULL, referee_routine, &table);
 	i = 0;
 	while (i < table.nbr_philos)
