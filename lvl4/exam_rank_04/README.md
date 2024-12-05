@@ -10,8 +10,34 @@
 The exam rank 04 consists exclusively of completing one exercise: **microshell.** This exercise implements a basic shell-like command executor in C. It parses and executes commands provided as arguments, supporting command pipelines (|) and sequences (;). The built-in cd command is implemented with strict error handling. It focuses on low-level system programming using system calls like fork, pipe, execve, and chdir, with robust error management for invalid inputs or system call failures.
 
 
-## Instruction set
+## Key features and constraints include
 
+* **Command Execution:**
+  * Accepts commands as arguments, with the executable's path provided as absolute or relative.
+  * The program does not build paths using the `PATH` environment variable.
+
+* **Built-in** `cd` **Command:**
+  * Handles directory changes with a single argument (the path).
+  * Prints appropriate error messages to `STDERR` if the arguments are invalid or the directory change fails.
+
+* **Special Symbols:**
+  * Supports `|` for piping commands and `;` for separating commands.
+  * Does not allow invalid symbol usage, such as consecutive or misplaced `|` or `;`.
+
+* **Error Handling:**
+  * Prints `error: fatal` to `STDERR` and exits immediately if any system call (other than `execve` and `chdir`) fails.
+  * Prints `error: cannot execute executable` if `execve` fails.
+
+* **Scalability:**
+  * Capable of handling large numbers of pipes (`|`), even with a limited number of open files (e.g., less than 30).
+
+
+## What This Project Does Not Manage
+* Wildcards (e.g., `*`, `~`).
+* Environment variable expansion (e.g., `$BLA`).
+
+
+## Instruction set
 
 To pass this exam, you must successfully complete the exercise. If done correctly, you will receive a score of 100 out of 100 points. The exam procedure is as follows:
 
@@ -27,7 +53,7 @@ To pass this exam, you must successfully complete the exercise. If done correctl
 
 ## My exam
 
-You can see how I solved it below:
+You can see how i solved it below:
 
 | **#** | **Exercise**                                         |
 | ----- | ---------------------------------------------------- |
