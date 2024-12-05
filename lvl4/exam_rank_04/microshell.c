@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:21:01 by danjimen          #+#    #+#             */
-/*   Updated: 2024/12/05 12:28:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:38:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	exec(char **argv, int i, char **env)
 	return (WIFEXITED(status) && WEXITSTATUS(status));
 }
 
-int main(int argc, char **argv, char **env)
+int main(int i, char **argv, char **env)
 {
-	int	i = 0, status = 0;
-	(void)argc;
+	int	status = 0;
+	i = 0;
 
 	while (argv[i])
 	{
