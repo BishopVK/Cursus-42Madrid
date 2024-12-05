@@ -57,5 +57,5 @@ You can see how i solved it below:
 
 | **#** | **Exercise**                                         |
 | ----- | ---------------------------------------------------- |
-|  `1`  | [**microshell.c:**](/lvl4/exam_rank_04/microshell.c) |
-|  `2`  | [**microshell.h:**](/lvl4/exam_rank_04/microshell.h) |
+|  `1`  | [**microshell.c**](/lvl4/exam_rank_04/microshell.c) |
+|  `2`  | [**microshell.h**](/lvl4/exam_rank_04/microshell.h) |
