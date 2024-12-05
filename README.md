@@ -20,4 +20,5 @@ This is my current progress on the 42Madrid Cursus
 | [Minishell](https://github.com/BishopVK/minishell) | **101/125** |
 | [Exam Rank 03](/lvl3/exam_rank_03)                 | **100/100** |
 | [NetPractice](/lvl4/NetPractice)                   | **100/100** |
+| [Exam Rank 04](/lvl4/exam_rank_04)                 | **100/100** |
 | [CPP Module](/lvl4/CPP_Module)                     | **in progress** |
