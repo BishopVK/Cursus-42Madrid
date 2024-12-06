@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:13:32 by danjimen          #+#    #+#             */
-/*   Updated: 2024/06/18 18:52:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:56:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 #  define BUFFER_SIZE 100
 # endif
 
-# define COLOR_CYAN "\x1b[36m"
-# define COLOR_RESET "\x1b[0m"
+# define COLOR_CYAN "\033[36m"
+# define COLOR_RESET "\033[0m"
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
