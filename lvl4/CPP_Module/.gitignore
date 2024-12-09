@@ -5,7 +5,7 @@
 # Ignorar archivos de compilación
 *.o
 *.out
-philo
+phonebook
 
 # Ignorar otro tipo de archivos
 *.txt
