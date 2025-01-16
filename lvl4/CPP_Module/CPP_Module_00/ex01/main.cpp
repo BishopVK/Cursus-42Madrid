@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:15:39 by danjimen          #+#    #+#             */
-/*   Updated: 2024/12/06 19:11:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:02:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,35 @@ int	CountWords(std::string str)
 	return (0);
 }
 
+std::string	TrimWords(std::string str)
+{
+	std::string	strTrimed;
+	int			i = 0;
+
+	for (i; i < str.length(); i++)
+	{
+		if (!std::isspace(str[i]))
+			break;
+	}
+	// std::cout << "Salté " << i << " espacios" << std::endl; // DB
+	for (i; i < str.length(); i++)
+	{
+		if (!std::isspace(str[i]))
+			strTrimed.push_back(str[i]);
+		else
+			break;
+	}
+	std::cout << "strTrimed = " << strTrimed << std::endl;
+	return (strTrimed);
+}
+
+std::string ToUpper(std::string str)
+{
+	for (int i = 0; i < str.length(); i++)
+		str[i] = std::toupper(str[i]);
+	return (str);
+}
+
 int	main(void)
 {
 	std::string	input;
@@ -75,19 +104,20 @@ int	main(void)
 		std::cout << RESET;
 		if (CountWords(input) != 0)
 			continue;
-		std::string	inputTrimed;
-		
-		if (input == "ADD")
-			std::cout << GREEN << "You have entered " << input << " correctly" << RESET << std::endl;
-		else if (input == "SEARCH")
-			std::cout << GREEN << "You have entered " << input << " correctly" << RESET << std::endl;
-		else if (input == "EXIT")
+		std::string	inputTrimed = TrimWords(input);
+		inputTrimed = ToUpper(inputTrimed);
+
+		if (inputTrimed == "ADD")
+			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
+		else if (inputTrimed == "SEARCH")
+			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
+		else if (inputTrimed == "EXIT")
 		{
-			std::cout << GREEN << "You have entered " << input << " correctly" << RESET << std::endl;
+			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
 			return (0);
 		}
 		else
-			std::cout << RED << "Error: " << RESET << input << ": Incorrect command" << std::endl;
+			std::cout << RED << "Error: " << RESET << inputTrimed << ": Incorrect command" << std::endl;
 	}
 	return (0);
 }
