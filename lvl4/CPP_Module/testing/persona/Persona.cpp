@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 20:23:15 by danjimen          #+#    #+#             */
-/*   Updated: 2024/12/09 21:02:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:29:47 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 // Implementación del constructor
 Persona::Persona(std::string nombreInicial, int edadInicial)
 {
-	nombre = nombreInicial;
+	if (nombreInicial == "")
+		nombre = "sin_nombre";
+	else
+		nombre = nombreInicial;
 	edad = edadInicial;
 }
 
