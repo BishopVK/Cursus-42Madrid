@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:15:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/23 12:58:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:19:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
 
-int	CountWords(std::string str)
+/* int	CountWords(std::string str)
 {
 	int	wordCount = 0;
 
@@ -48,7 +48,7 @@ int	CountWords(std::string str)
 		}
 	}
 	return (0);
-}
+} */
 
 std::string	TrimWords(std::string str)
 {
@@ -60,7 +60,6 @@ std::string	TrimWords(std::string str)
 		if (!std::isspace(str[i]))
 			break;
 	}
-	// std::cout << "Salté " << i << " espacios" << std::endl; // DB
 	for (i; i < str.length(); i++)
 	{
 		if (!std::isspace(str[i]))
@@ -68,7 +67,6 @@ std::string	TrimWords(std::string str)
 		else
 			break;
 	}
-	std::cout << "strTrimed = " << strTrimed << std::endl;
 	return (strTrimed);
 }
 
@@ -84,13 +82,13 @@ int	main(void)
 	Phonebook	contactList;
 	std::string	input;
 
-	std::cout << GREEN << "WELCOME TO YOUR PHONEBOOK!" << RESET << std::endl;
-	std::cout << "\t- Use " << CYAN << "ADD" << RESET << " to save a new contact" << std::endl;
-	std::cout << "\t- Use " << CYAN << "SEARCH" << RESET << " to display a specific contact" << std::endl;
-	std::cout << "\t- Use " << CYAN << "EXIT" << RESET << " to close your PhoneBook" << std::endl;
-
-	while (input != "EXIT" && !std::cin.eof()) // Added control por ctrl + D (EOF)
+	while (input != "EXIT" && !std::cin.eof()) // Added ctrl + D (EOF) control
 	{
+		std::cout << std::endl << GREEN << "WELCOME TO YOUR PHONEBOOK!" << RESET << std::endl;
+		std::cout << "\t- Use " << CYAN << "ADD" << RESET << " to save a new contact" << std::endl;
+		std::cout << "\t- Use " << CYAN << "SEARCH" << RESET << " to display a specific contact" << std::endl;
+		std::cout << "\t- Use " << CYAN << "EXIT" << RESET << " to close your PhoneBook" << std::endl;
+
 		std::cout << std::endl << BOLD << "Insert a command (ADD, SEARCH, EXIT):" << RESET CYAN << std::endl;
 		std::getline(std::cin, input);
 		std::cout << RESET;
@@ -100,19 +98,23 @@ int	main(void)
 		inputTrimed = ToUpper(inputTrimed);
 
 		if (inputTrimed == "ADD")
-		{
-			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
 			contactList.add();
-		}
 		else if (inputTrimed == "SEARCH")
-			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
+			contactList.search();
 		else if (inputTrimed == "EXIT")
 		{
-			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
+			std::cout << GREEN << "See you soon 😉" << RESET << std::endl;
 			return (0);
 		}
+		else if (std::cin.eof())
+		{
+			std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
+			return (1);
+		}
+		else if (inputTrimed == "")
+			std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Void command." << RESET << std::endl;
 		else
-			std::cout << RED << "Error: " << RESET << inputTrimed << ": Incorrect command" << std::endl;
+			std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Incorrect command." << RESET << std::endl;
 	}
 	return (0);
 }
