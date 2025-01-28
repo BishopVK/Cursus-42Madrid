@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:15:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/28 23:19:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:27:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(void)
 			contactList.search();
 		else if (inputTrimed == "EXIT")
 		{
-			std::cout << GREEN << "See you soon 😉" << RESET << std::endl;
+			std::cout << GREEN << std::endl << "Exiting. See you soon 😉" << RESET << std::endl;
 			return (0);
 		}
 		else if (std::cin.eof())
