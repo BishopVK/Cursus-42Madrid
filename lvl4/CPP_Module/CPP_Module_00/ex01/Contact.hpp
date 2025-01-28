@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:35:22 by danjimen          #+#    #+#             */
-/*   Updated: 2024/12/09 21:45:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:53:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 class Contact
 {
 	public:
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickName;
-		int			phoneNumber;
-		std::string	darkestSecret;
+		std::string	firstName = "";
+		std::string	lastName = "";
+		std::string	nickName = "";
+		std::string	phoneNumber;
+		std::string	darkestSecret = "";
 		// Constructor
 		Contact(void);
 		// Destructor
