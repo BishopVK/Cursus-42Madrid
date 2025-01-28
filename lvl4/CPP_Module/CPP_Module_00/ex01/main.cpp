@@ -6,20 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:15:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/16 15:02:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:58:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-
-#define BOLD "\033[1m"
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define CYAN "\033[36m"
-#define RESET "\033[0m"
+#include "Phonebook.hpp"
 
 int	CountWords(std::string str)
 {
@@ -90,6 +81,7 @@ std::string ToUpper(std::string str)
 
 int	main(void)
 {
+	Phonebook	contactList;
 	std::string	input;
 
 	std::cout << GREEN << "WELCOME TO YOUR PHONEBOOK!" << RESET << std::endl;
@@ -102,13 +94,16 @@ int	main(void)
 		std::cout << std::endl << BOLD << "Insert a command (ADD, SEARCH, EXIT):" << RESET CYAN << std::endl;
 		std::getline(std::cin, input);
 		std::cout << RESET;
-		if (CountWords(input) != 0)
-			continue;
 		std::string	inputTrimed = TrimWords(input);
+		/* if (CountWords(inputTrimed) != 0)
+			continue; */
 		inputTrimed = ToUpper(inputTrimed);
 
 		if (inputTrimed == "ADD")
+		{
 			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
+			contactList.add();
+		}
 		else if (inputTrimed == "SEARCH")
 			std::cout << GREEN << "You have entered " << inputTrimed << " correctly" << RESET << std::endl;
 		else if (inputTrimed == "EXIT")
