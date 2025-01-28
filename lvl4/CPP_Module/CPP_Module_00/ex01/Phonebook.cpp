@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:59 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/28 12:33:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:26:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,31 @@ std::string	Phonebook::TagToLavel(std::string tag)
 	return result;
 }
 
-void	Phonebook::ContactFields(std::string tag, int current)
+bool	ContainsNotNumbers(std::string &input)
+{
+	//std::cout << "DB: input = " << input << std::endl; // DB
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		// DB: Not digit
+		if (!std::isdigit(input[i]))
+			return true;
+	}
+	return false;
+}
+
+bool	ContainsSpecialChars(std::string &input)
+{
+	//std::cout << "DB: input = " << input << std::endl; // DB
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		// DB: Not ASCII chars
+		if (static_cast<unsigned char>(input[i]) > 127)
+			return true;
+	}
+	return false;
+}
+
+int	Phonebook::ContactFields(std::string tag, int current)
 {
 	std::string Contact::*fieldPtr = nullptr;
 	std::string lavel = TagToLavel(tag);
@@ -63,21 +87,35 @@ void	Phonebook::ContactFields(std::string tag, int current)
 	else
 	{
 		std::cout << YELLOW << tag << ": Invalid tag provided." << RESET << std::endl;
-		return ;
+		return (-1);
 	}
 	while (true)
 	{
-		std::cout << BOLD << lavel << RESET;
+		std::cout << "\t- "  << BOLD CYAN << lavel << RESET;
 		std::getline(std::cin, contact[current].*fieldPtr);
-		if (!(contact[current].*fieldPtr).empty())
-			break;
-		if (std::cin.eof())
+		if ((contact[current].*fieldPtr).empty())
 		{
-			std::cout << RED << "Input interrupted. Exiting..." << RESET << std::endl;
-			return ;
+			if (std::cin.eof())
+			{
+				std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
+				return (-1);
+			}
+			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED <<"Cannot be empty. Please try again." << RESET << std::endl;
+			continue ;
 		}
-		std::cout << RED << lavel <<"Cannot be empty. Please try again." << RESET << std::endl;
+		if (tag == "phoneNumber" && ContainsNotNumbers(contact[current].*fieldPtr))
+		{
+			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED << "Not a valid number. Please insert only digits" << RESET << std::endl;
+			continue ;
+		}
+		if (ContainsSpecialChars(contact[current].*fieldPtr))
+		{
+			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED << "Not special characters allowed. Please use only standard ASCII characters." << RESET << std::endl;
+			continue ;
+		}
+		break;
 	}
+	return (0);
 }
 
 void	Phonebook::add(void)
@@ -85,17 +123,165 @@ void	Phonebook::add(void)
 	if (current == MaxContacts)
 		current = 0;
 	current = current % MaxContacts;
-	std::cout << "current = " << current << std::endl; // DB
+	//std::cout << "current = " << current << std::endl; // DB
 
-	ContactFields("firstName", current);
-	ContactFields("lastName", current);
-	ContactFields("nickName", current);
-	ContactFields("phoneNumber", current);
-	ContactFields("darkestSecret", current);
+	std::cout << std::endl << GREEN << "CREATE A NEW CONTACT:" << RESET << std::endl;
+	if (ContactFields("firstName", current) < 0 ||
+		ContactFields("lastName", current) < 0 ||
+		ContactFields("nickName", current) < 0 ||
+		ContactFields("phoneNumber", current) < 0 ||
+		ContactFields("darkestSecret", current) < 0)
+		return ;
 	
-	// At the end
+	// DB: At the end
 	current++;
 	if (nbContacts < MaxContacts)
 		nbContacts++;
-	std::cout << "Contact added successfully.\n";
+	std::cout << GREEN << std::endl << "Contact added successfully." << RESET << std::endl;
+	std::cout << std::endl << YELLOW << "Press Enter to return to Main Menu." << RESET << std::endl;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // DB: Ignore up to the new line
+	if (std::cin.eof())
+	{
+		std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
+		return ;
+	}
+}
+
+void	Phonebook::PrintOneContactField(std::string field, int i)
+{
+	std::string	Contact::*fieldPtr = nullptr;
+	int			spaceChars = 0;
+
+	if (field == "firstName")
+		fieldPtr = &Contact::firstName;
+	else if (field == "lastName")
+		fieldPtr = &Contact::lastName;
+	else if (field == "nickName")
+		fieldPtr = &Contact::nickName;
+	else
+	{
+		std::cout << YELLOW << field << ": Invalid field provided." << RESET << std::endl;
+		return ;
+	}
+	if ((contact[i].*fieldPtr).length() > 10)
+	{
+		std::cout << "|";
+		for (int j = 0; j < 9; j++)
+			std::cout << (contact[i].*fieldPtr)[j];
+		std::cout << ".";
+	}
+	else
+	{
+		std::cout << "|";
+		for (size_t j = 0; j < 10 - (contact[i].*fieldPtr).length(); j++)
+			std::cout << " ";
+		std::cout << contact[i].*fieldPtr;
+	}
+}
+
+bool	IsNumber(const std::string& str)
+{
+	for (char c : str)
+	{
+		// DB: Validate if there are a char that its not a digit
+		if (!std::isdigit(c))
+			return false;
+	}
+
+	// Verify its not empty
+	return (!str.empty());
+}
+
+void	Phonebook::PrintContatDetails(int contactIndex)
+{
+	int	index = contactIndex - 1;
+
+	std::cout << std::endl << GREEN << "PRINTING DETAILS OF CONTACT:" << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "First name: " << RESET << contact[index].firstName << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Last name: " << RESET << contact[index].lastName << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Nick name: " << RESET << contact[index].nickName << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Phone Number: " << RESET << contact[index].phoneNumber << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Darkest Secret: " << RESET << contact[index].darkestSecret << RESET << std::endl;
+
+	std::cout << std::endl << YELLOW << "Press Enter to return to Main Menu." << RESET << std::endl;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // DB: Ignore up to the new line
+	if (std::cin.eof())
+	{
+		std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
+		return ;
+	}
+}
+
+void	Phonebook::PrintAllContacts(void)
+{
+	std::string	contactSelected;
+	int			number = -1;
+
+	std::cout << std::endl << GREEN << "PHONEBOOK CONTACTS:" << RESET << std::endl;
+	std::cout << std::endl << "|     " << BOLD CYAN << "INDEX" << RESET << "|" << BOLD CYAN << "FIRST NAME" << RESET <<
+		"|" << BOLD CYAN << " LAST NAME" << RESET << "|" << BOLD CYAN << "  NICKNAME" << RESET << "|" << std::endl;
+	for (int i = 0; i < nbContacts; i++)
+	{
+		std::cout << "|         " << i + 1;
+		PrintOneContactField("firstName", i);
+		PrintOneContactField("lastName", i);
+		PrintOneContactField("nickName", i);
+		std::cout << "|" << std::endl;
+	}
+	while (true)
+	{
+		std::cout << std::endl << BOLD << "Select a valid " << CYAN << "INDEX" << WHITE <<  " to view contact details: " << RESET;
+		std::getline(std::cin, contactSelected);
+
+		if (contactSelected.empty())
+		{
+			if (std::cin.eof())
+			{
+				std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
+				return ;
+			}
+			std::cout << RED <<"Cannot be empty. Please try again." << RESET << std::endl;
+			continue ;
+		}
+		if (IsNumber(contactSelected))
+		{
+			try
+			{
+				long long temp = std::stoll(contactSelected);
+
+				if (temp >= INT_MIN && temp <= INT_MAX)
+				{
+					number = static_cast<int>(temp);
+					//std::cout << "You have entered the number: " << number << std::endl; // DB
+					if (number < 1 || number > nbContacts)
+					{
+						std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Please insert a valid index." << RESET << std::endl;
+						continue ;
+					}
+					PrintContatDetails(number);
+					break;
+				}
+				else
+					std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " The number its out of a int number." << RESET << std::endl;
+			}
+			catch (const std::exception& e)
+			{
+				std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Not a valid index." << RESET << std::endl;
+			}
+		}
+		else
+			std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Not valid index. Please insert only digits." << RESET << std::endl;
+	}
+	
+}
+
+void	Phonebook::search(void)
+{
+	if (nbContacts <= 0)
+	{
+		std::cout << std::endl << YELLOW << "No contact was added to the phonebook." << RESET << std::endl;
+		return ;
+	}
+	else
+		PrintAllContacts();
 }
