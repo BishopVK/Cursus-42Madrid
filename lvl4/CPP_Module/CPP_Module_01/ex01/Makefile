@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 17:41:07 by danjimen          #+#    #+#              #
-#    Updated: 2025/02/02 11:49:02 by danjimen         ###   ########.fr        #
+#    Updated: 2025/02/02 12:15:51 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	BraiiiiiiinnnzzzZ
+NAME	=	Moar_brainz!
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
