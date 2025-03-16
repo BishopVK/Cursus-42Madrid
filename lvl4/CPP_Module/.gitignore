@@ -12,3 +12,4 @@ phonebook
 
 # Ignorar directorios específicos
 /.vscode
+/docs
