@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:26:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 01:10:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:04:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Harl::Harl()
 	option[1] = &Harl::info;
 	option[2] = &Harl::warning;
 	option[3] = &Harl::error;
+	option[4] = &Harl::wrong;
 }
 
 Harl::~Harl()
@@ -44,17 +45,53 @@ void	Harl::error(void)
 	std::cout << RED << std::endl << "ERROR 🆘" << std::endl << RESET << ITALIC << "This is unacceptable! I want to speak to the manager now." << RESET << std::endl;
 }
 
-void	Harl::complain(std::string level)
+void	Harl::wrong(void)
+{
+	std::cout << ITALIC << "[ Probably  complaining  about  insignificant  problems  ]" << RESET << std::endl;
+}
+
+void	Harl::complain(const std::string &level)
 {
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int			i = 0;
 	int			size = sizeof(levels) / sizeof(levels[0]); // Total number of bytes in the array divided by the number of bytes in an array element = number of elements
 
-	for (int i = 0; i < size; i++)
+	for (i; i < size; i++)
 	{
 		if (levels[i] == level)
 		{
 			(this->*option[i])();
 			return ;
 		}
+	}
+
+	(this->*option[i])(); // Wrong case
+}
+
+void harl_filter(const std::string &level)
+{
+	Harl harl;
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int	i = 0;
+
+	for (i; i < 4; i++)
+	{
+		if (levels[i] == level)
+			break ;
+	}
+	switch (i)
+	{
+		case 0:
+			harl.complain(levels[0]);
+		case 1:
+			harl.complain(levels[1]);
+		case 2:
+			harl.complain(levels[2]);
+		case 3:
+			harl.complain(levels[3]);
+			break ;
+		default:
+			harl.complain(levels[4]);
+			break ;
 	}
 }

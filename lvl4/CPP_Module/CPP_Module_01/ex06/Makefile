@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/18 20:28:40 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/19 00:52:07 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/19 01:33:04 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Harl_2.0
+NAME	=	harlFilter
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98

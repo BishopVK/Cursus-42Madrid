@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:13:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 01:06:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:03:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ class Harl
 		void	info(void);
 		void	warning(void);
 		void	error(void);
-		void	(Harl::*option[4])(void);
+		void	wrong(void);
+		void	(Harl::*option[5])(void);
 	public:
 		Harl();
 		~Harl();
-		void	complain(std::string level);
-};
+		void	complain(const std::string &level);
+	};
 
+	void	harl_filter(const std::string &level);
+	
 #endif
