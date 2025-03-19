@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:13:03 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 01:03:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:33:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	welcomeMessage()
 	std::cout << RED << "\tERROR 🆘" << RESET << std::endl;
 }
 
-int main(int argc, char const *argv[])
+int main(void)
 {
 	std::string	selected_word;
 
