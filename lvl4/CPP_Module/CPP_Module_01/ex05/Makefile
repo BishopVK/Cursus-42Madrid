@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/18 20:28:40 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/18 22:12:48 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/19 00:52:07 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	Harl_2.0
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp
+SRC		=	main.cpp \
+			Harl.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   harl.h                                             :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:13:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/18 23:53:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:06:26 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-# define HARL_H
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <iostream>
 #include <string>
@@ -24,7 +24,21 @@
 #define CYAN "\033[36m"
 #define BOLD "\033[1m"
 #define BOLD_OFF "\033[22m"
+#define ITALIC "\033[3m"
 #define RESET "\033[0m"
-#define INVALID_NUMBER "Please, enter a valid number:"
+
+class Harl
+{
+	private:
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
+		void	(Harl::*option[4])(void);
+	public:
+		Harl();
+		~Harl();
+		void	complain(std::string level);
+};
 
 #endif

@@ -6,62 +6,42 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:13:03 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/18 23:55:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:03:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "harl.h"
+#include "Harl.hpp"
 
-bool	IsNumber(const std::string& str)
+void	welcomeMessage()
 {
-	for (char c : str)
-	{
-		if (!std::isdigit(c))
-			return false;
-	}
-
-	return (!str.empty());
+	std::cout << "Welcome to Harl 2.0. Select an option:" << std::endl;
+	std::cout << GREEN << "\tDEBUG ✅" << RESET << std::endl;
+	std::cout << CYAN << "\tINFO ℹ️" << RESET << std::endl;
+	std::cout << YELLOW << "\tWARNING ⚠️" << RESET << std::endl;
+	std::cout << RED << "\tERROR 🆘" << RESET << std::endl;
 }
 
 int main(int argc, char const *argv[])
 {
-	std::cout << "Welcome to Harl 2.0. Enter a numer from 1 to 4:" << std::endl;
+	std::string	selected_word;
+
 	while (true || !std::cin.eof())
 	{
-		std::cout << GREEN << "\t1. DEBUG ✅" << RESET << std::endl;
-		std::cout << CYAN << "\t2. INFO ℹ️" << RESET << std::endl;
-		std::cout << YELLOW << "\t3. WARNING ⚠️" << RESET << std::endl;
-		std::cout << RED << "\t4. ERROR 🆘" << RESET << std::endl;
-		std::string	buffer;
-		std::getline(std::cin, buffer);
+		welcomeMessage();
+		std::getline(std::cin, selected_word);
 		if (std::cin.eof())
 		{
 			std::cout << RED << std::endl << "Input interrupted. Exiting..." << RESET << std::endl;
 			return (1);
 		}
-		if (IsNumber(buffer))
+		if (selected_word != "DEBUG" && selected_word != "INFO" && selected_word != "WARNING" && selected_word != "ERROR")
 		{
-			try
-			{
-				long long temp = std::stoll(buffer);
-				if (temp < 1 || temp > 4)
-				{
-					std::cerr << RED << INVALID_NUMBER << RESET << std::endl;
-					continue;
-				}
-				break;
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << RED << INVALID_NUMBER << RESET << std::endl;
-			}
+			std::cerr << RED << "Invalid option selected." << RESET << std::endl << std::endl;
+			continue ;
 		}
-		else
-		{
-			std::cerr << RED << INVALID_NUMBER << RESET << std::endl;
-			continue;
-		}
+		break ;
 	}
-	std::cout << GREEN << "Correct number!!" << RESET << std::endl;
+	Harl harl;
+	harl.complain(selected_word);
 	return 0;
 }
