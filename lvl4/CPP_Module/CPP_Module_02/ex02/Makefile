@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 22:25:26 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/20 00:06:03 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/21 00:59:51 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex01
+NAME	=	ex02
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
