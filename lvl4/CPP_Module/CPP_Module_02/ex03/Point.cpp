@@ -1,28 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 22:44:38 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/21 18:30:11 by danjimen         ###   ########.fr       */
+/*   Created: 2025/03/21 16:51:09 by danjimen          #+#    #+#             */
+/*   Updated: 2025/03/21 17:00:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-int main(void)
+Point::Point()
 {
-	Point a(2,2);
-	Point b(4,7);
-	Point c(9,3);
-	Point target(4,2);
+}
 
-	if (bsp(a, b, c, target))
-		std::cout << GREEN << "Target point (" << target.getX() << "," << target.getY() << ") its inside the triangle" << RESET << std::endl;
-	else
-		std::cout << RED << "Target point (" << target.getX() << "," << target.getY() << ") its outside the triangle" << RESET << std::endl;
+Point::Point(const Fixed &x, const Fixed &y)
+{
+	this->_x = x;
+	this->_y = y;
+}
 
-	return 0;
+Point::Point(const Point &other)
+{
+	*this = other;
+}
+
+Point &Point::operator=(const Point &other)
+{
+	if (this != &other)
+	{
+		this->_x = other.getX();
+		this->_y = other.getY();
+	}
+	return *this;
+}
+
+Point::~Point()
+{
+}
+
+Fixed Point::getX() const
+{
+	return (this->_x);
+}
+
+Fixed Point::getY() const
+{
+	return (this->_y);
 }

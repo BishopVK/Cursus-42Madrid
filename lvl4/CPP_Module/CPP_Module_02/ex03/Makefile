@@ -6,17 +6,19 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 22:25:26 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/21 00:59:51 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/21 18:26:39 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex02
+NAME	=	ex03
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	main.cpp \
-			Fixed.cpp
+			Fixed.cpp \
+			Point.cpp \
+			bsp.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
