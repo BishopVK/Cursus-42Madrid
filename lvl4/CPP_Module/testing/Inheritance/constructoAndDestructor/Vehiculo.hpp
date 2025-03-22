@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Vehiculo.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/22 12:19:21 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 12:38:49 by danjimen         ###   ########.fr       */
+/*   Created: 2025/03/22 12:48:50 by danjimen          #+#    #+#             */
+/*   Updated: 2025/03/22 13:01:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-Ejercicio 1: Introducción a la herencia
-Crea una clase Animal con un método hablar() que imprima "Hace un sonido".
-Luego, crea una clase Perro que herede de Animal y sobrescriba hablar() para imprimir "Guau guau".
-*/
+#ifndef VEHICULO_HPP
+# define VEHICULO_HPP
 
-#include "Perro.hpp"
+#include <iostream>
+#include <string>
 
-int main()
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+
+class Vehiculo
 {
-	Animal	animal;
-	Perro	perro;
+	public:
+		Vehiculo();
+		~Vehiculo();
+};
 
-	animal.Hablar();
-	perro.Hablar();
-
-	return 0;
-}
+#endif
