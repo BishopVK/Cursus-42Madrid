@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:34:47 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 18:31:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:34:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(void)
 	std::cout << std::endl << BOLD << "\t-- STATS --" << RESET << std::endl;
 	robocop.printStats();
 
-	// Create Robocop
+	// Create R2D2
 	FragTrap	r2d2("R2D2");
 	std::cout << std::endl << BOLD << "\t-- STATS --" << RESET << std::endl;
 	r2d2.printStats();
