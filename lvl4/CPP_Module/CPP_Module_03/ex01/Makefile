@@ -6,17 +6,18 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/21 21:06:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/22 01:02:27 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/22 13:57:17 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ClapTrap
+NAME	=	ScavTrap
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	main.cpp \
-			ClapTrap.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
