@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:34:47 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 14:27:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:53:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(void)
 	bender.attack("Robocop");
 	robocop.takeDamage(bender.getAttack());
 	robocop.attack("Bender");
+	bender.takeDamage(robocop.getAttack());
 
 	// Repairing
 	std::cout << std::endl << BOLD << "\t-- REPAIRING --" << RESET << std::endl;
@@ -46,8 +47,8 @@ int main(void)
 
 	// Energy to zero
 	std::cout << std::endl << BOLD << "\t-- LOSTING ENERGY POINTS AND HIT POINTS --" << RESET << std::endl;
-	bender.setEnergy(0);
-	robocop.setHitPoints(0);
+	bender.setHitPoints(0);
+	robocop.setEnergy(0);
 
 	// Print stats
 	std::cout << std::endl << BOLD << "\t-- STATS --" << RESET << std::endl;
@@ -62,7 +63,8 @@ int main(void)
 	robocop.beRepaired(10);
 
 	// ScavTrap Guard Gate Mode
-	std::cout << std::endl << BOLD << "\t-- GUARD GATE MODE--" << RESET << std::endl;
+	std::cout << std::endl << BOLD << "\t-- GUARD GATE MODE WHITHOUT HIT POINTS --" << RESET << std::endl;
+	robocop.setHitPoints(0);
 	robocop.guardGate();
 
 	// Destructors autocall
