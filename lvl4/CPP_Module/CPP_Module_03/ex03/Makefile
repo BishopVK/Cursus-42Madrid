@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/21 21:06:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/22 18:18:21 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/22 19:06:07 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	FragTrap
+NAME	=	DiamondTrap
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
@@ -18,7 +18,8 @@ FLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp \
 			ClapTrap.cpp \
 			ScavTrap.cpp \
-			FragTrap.cpp
+			FragTrap.cpp \
+			DiamondTrap.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

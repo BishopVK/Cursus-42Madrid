@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 14:55:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:34:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	this->_name = "no_name";
 	this->_hitPoints = 100;
@@ -21,7 +21,7 @@ ScavTrap::ScavTrap()
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Empty constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string &name)
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 {
 	this->_name = name;
 	this->_hitPoints = 100;
@@ -58,7 +58,7 @@ void	ScavTrap::attack(const std::string &target)
 {
 	if (this->_energy > 0 && this->_hitPoints > 0)
 	{
-		std::cout << CYAN << "ScavTrap " << this->_name
+		std::cout << CYAN << this->_name
 		<< " cause " << this->_attack
 		<< " damage points to " << target
 		<< " whit a powerfull ScavAttack" << RESET << std::endl;
@@ -68,12 +68,12 @@ void	ScavTrap::attack(const std::string &target)
 	{
 		if (this->_hitPoints < 0)
 			this->_hitPoints = 0;
-		std::cout << RED << "ScavTrap " << this->_name
+		std::cout << RED << this->_name
 		<< " it's dead and can't attack 💀" << RESET << std::endl;
 	}
 	else
 	{
-		std::cout << RED << "ScavTrap " << this->_name
+		std::cout << RED << this->_name
 		<< " have " << this->_energy
 		<< " energy points!"
 		<< " Can't attack " << target << " 🪫" << RESET << std::endl;

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:32:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 18:04:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:42:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap // Added virtual to avoid create multiple copies of ClapTrap
 {
 	private:
 

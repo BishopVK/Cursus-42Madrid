@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 18:10:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:03:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	this->_name = "no_name";
 	this->_hitPoints = 100;
@@ -21,7 +21,7 @@ FragTrap::FragTrap()
 	std::cout << GREEN << "FragTrap " << this->_name << ": Empty constructor called" << RESET << std::endl;
 }
 
-FragTrap::FragTrap(const std::string &name)
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name)
 {
 	this->_name = name;
 	this->_hitPoints = 100;
