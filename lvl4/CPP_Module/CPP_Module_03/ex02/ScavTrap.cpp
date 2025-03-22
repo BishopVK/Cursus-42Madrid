@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 14:55:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:51:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ ScavTrap::ScavTrap()
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Empty constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string &name)
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 {
 	this->_name = name;
 	this->_hitPoints = 100;
