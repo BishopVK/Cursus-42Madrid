@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 14:51:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:55:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	else if (this->_hitPoints <= 0)
 	{
-		this->_hitPoints = 0;
+		if (this->_hitPoints < 0)
+			this->_hitPoints = 0;
 		std::cout << RED << "ScavTrap " << this->_name
 		<< " it's dead and can't attack 💀" << RESET << std::endl;
 	}
