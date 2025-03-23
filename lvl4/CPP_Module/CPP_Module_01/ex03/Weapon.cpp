@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 12:46:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/16 22:51:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/24 00:49:02 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 Weapon::Weapon(const std::string &type) : _type(type) // Inicialización directa con una "Lista de inicialización". Las referencias deben inicializarse al ser creadas
 {
-	std::cout << GREEN << "Weapon '" << _type << "' was created." << std::endl;
+	std::cout << GREEN << "Weapon '" << _type << "' was created." << RESET << std::endl;
 }
 
 Weapon::~Weapon()
 {
-	std::cout << RED << "Weapon '" << _type << "' was destroyed." << std::endl;
+	std::cout << RED << "Weapon '" << _type << "' was destroyed." << RESET << std::endl;
 }
 
 const std::string&	Weapon::getType(void) const
