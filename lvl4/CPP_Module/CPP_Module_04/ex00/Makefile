@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/22 22:08:27 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/23 01:35:05 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/23 01:50:33 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,5 +43,8 @@ rc:	re
 
 r:	rc
 	./$(NAME)
+
+valgrind:	rc
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 .PHONY: all clean fclean re rc r
