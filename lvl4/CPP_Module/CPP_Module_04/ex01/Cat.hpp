@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:25:49 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 01:05:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:13:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
+	private:
+		Brain	*_brain;
 	public:
 		Cat();
 		Cat(const Cat &other);
@@ -24,6 +27,9 @@ class Cat : public Animal
 		~Cat();
 
 		void	makeSound() const;
+
+		void	setIdeas(const std::string &idea);
+		void	printIdeas();
 };
 
 #endif
