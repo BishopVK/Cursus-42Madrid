@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/22 22:08:27 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/23 22:12:33 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/23 23:39:33 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex01
+NAME	=	Abstract
 
 CPP		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98

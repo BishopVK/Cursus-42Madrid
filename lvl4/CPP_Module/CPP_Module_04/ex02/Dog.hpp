@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:25:49 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:11:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/23 23:36:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Dog : public Animal
 		Dog &operator=(const Dog &other);
 		~Dog();
 
-		void	makeSound() const;
+		void	makeSound() const override;
 
 		void	setIdeas(const std::string &idea);
 		void	printIdeas();

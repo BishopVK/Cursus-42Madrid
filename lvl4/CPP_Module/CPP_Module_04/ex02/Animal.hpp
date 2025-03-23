@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:25:49 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 01:24:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/23 23:35:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Animal
 		Animal &operator=(const Animal &other);
 		virtual ~Animal();
 
-		virtual void	makeSound() const;
+		virtual void	makeSound() const = 0; // Pure Virtual Method.
 		std::string		getType() const;
 };
 
