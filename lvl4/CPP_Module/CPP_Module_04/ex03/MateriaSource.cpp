@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:52:04 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 23:45:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 23:49:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ MateriaSource::~MateriaSource()
 	for (int i = 0; i < 4; i++)
 	{
 		if (_materiaLearned[i] != nullptr)
+		{
 			delete _materiaLearned[i];
+			_materiaLearned[i] = nullptr;
+		}
 	}
 }
 
@@ -90,4 +93,16 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	if (i == 4)
 		std::cout << "The materia you want to create has not been learned" << std::endl;
 	return nullptr;
+}
+
+void	MateriaSource::printMateriaLearned()
+{
+	std::cout << std::endl << "-- MATERIAS LEARNED --" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materiaLearned[i] != nullptr)
+			std::cout << "Materia " << i << ": " << this->_materiaLearned[i]->getType() << std::endl;
+		else
+			std::cout << "Materia " << i << ": it's empty" << std::endl;
+	}
 }

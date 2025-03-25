@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:33:02 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 23:19:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 23:47:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class MateriaSource : public IMateriaSource
 		~MateriaSource();
 		void learnMateria(AMateria*);
 		AMateria* createMateria(std::string const & type);
+
+		void	printMateriaLearned();
 };
 
 #endif
