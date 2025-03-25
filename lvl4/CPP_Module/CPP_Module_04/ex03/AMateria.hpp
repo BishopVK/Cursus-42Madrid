@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:25:33 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/24 01:55:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:52:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <list>
+#include "ICharacter.hpp";
 
 #define BOLD "\033[1m"
 #define BOLD_OFF "\033[22m"
@@ -40,7 +42,7 @@ class AMateria
 		
 		std::string const & getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;
-		//virtual void use(ICharacter& target);
+		virtual void use(ICharacter& target);
 };
 
 #endif
