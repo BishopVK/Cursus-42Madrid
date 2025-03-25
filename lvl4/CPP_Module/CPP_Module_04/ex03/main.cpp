@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 22:13:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:20:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main()
 
 		AMateria *ice = new Ice();
 		AMateria *cure = new Cure();
-		AMateria *cure2 = new Cure();
+		//AMateria *cure2 = cure->clone();
 
 		ICharacter* me = new Character("me");
 		me->printStats();
@@ -63,7 +63,7 @@ int main()
 		me->unequip(0);
 		me->use(0, *bob);
 		me->use(1, *bob);
-		me->equip(cure2);
+		me->equip(cure->clone());
 		
 		std::cout << ">> ME <<" << std::endl;
 		me->printStats();
