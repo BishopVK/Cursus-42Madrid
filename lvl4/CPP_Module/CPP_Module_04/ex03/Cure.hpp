@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:48:26 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/24 02:15:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:47:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Cure : public AMateria
 		~Cure();
 		
 		AMateria* clone() const override;
-		//virtual void use(ICharacter& target);
+		void use(ICharacter& target);
 };
 
 #endif

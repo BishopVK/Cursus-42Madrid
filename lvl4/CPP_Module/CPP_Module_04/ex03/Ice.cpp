@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:52:06 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/24 02:18:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:50:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ Ice::~Ice()
 AMateria* Ice::clone() const
 {
 	return new Ice(*this);
+}
+
+void Ice::use(ICharacter& target)
+{
+	std::cout << YELLOW << "* shoots an ice bolt at " << target.getName() << " *" << RESET << std::endl;
 }
