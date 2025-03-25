@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 00:35:13 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/24 02:14:21 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/25 14:57:04 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp \
 			AMateria.cpp \
 			Ice.cpp \
-			Cure.cpp
+			Cure.cpp \
+			Character.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
