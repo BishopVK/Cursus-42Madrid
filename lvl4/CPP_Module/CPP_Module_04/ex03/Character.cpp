@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 03:13:19 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:22:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void Character::equip(AMateria* m)
 	{
 		if (inventory[i] == nullptr)
 		{
+			std::cout << "Equiped " << m->getType() << " in inventory slot " << i << std::endl;
 			inventory[i] = m;
 			_slot_occupied[i] = true;
 			break;
@@ -150,8 +151,37 @@ void Character::use(int idx, ICharacter& target)
 	}
 	if (_slot_occupied[idx] == false)
 	{
-		std::cout << RED << "Empty inventory slot to unequip" << RESET << std::endl;
+		std::cout << RED << "Empty inventory slot to use" << RESET << std::endl;
 		return;
 	}
 	inventory[idx]->use(target);
+}
+
+void	Character::printStats()
+{
+	std::cout << std::endl << "-- NAME --" << std::endl;
+	std::cout << this->getName() << std::endl;
+
+	std::cout << std::endl << "-- INVENTORY --" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_slot_occupied[i])
+			std::cout << "Slot " << i << " have: " << this->inventory[i]->getType() << std::endl;
+		else
+			std::cout << "Slot " << i << " it's Empty" << std::endl;
+	}
+
+	std::cout << std::endl << "-- FLOOR --" << std::endl;
+	if (floor.empty())
+		std::cout << "There are no objects on the floor" << std::endl;
+	else
+	{
+		int i = 0;
+		for (std::list<AMateria*>::const_iterator it = this->floor.begin(); it != this->floor.end(); ++it)
+		{
+			if (*it) // Not nullptr
+				std::cout << "Materia " << i << " in the floor: " << (*it)->getType() << std::endl;
+			i++;
+		}
+	}
 }
