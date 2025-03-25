@@ -6,11 +6,16 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:12:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 00:27:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:56:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <AMateria.hpp>
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
+
+#include "AMateria.hpp"
+
+class AMateria; // Forward declaration
 
 class ICharacter
 {
@@ -21,4 +26,8 @@ class ICharacter
 		virtual void equip(AMateria* m) = 0; // Pure virtual method
 		virtual void unequip(int idx) = 0; // Pure virtual method
 		virtual void use(int idx, ICharacter& target) = 0; // Pure virtual method
+
+		virtual void	printStats() = 0;
 };
+
+#endif
