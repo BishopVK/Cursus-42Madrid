@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:48:26 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 01:47:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:16:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Ice : public AMateria
 		
 		AMateria* clone() const override;
 		void use(ICharacter& target);
+
+		bool is_dynamic() const;
 };
 
 #endif

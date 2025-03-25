@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:52:06 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 01:51:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:18:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ AMateria* Cure::clone() const
 void Cure::use(ICharacter& target)
 {
 	std::cout << YELLOW << "* heals " << target.getName() << "’s wounds *" << RESET << std::endl;
+}
+
+bool Cure::is_dynamic() const
+{
+	return true;
 }

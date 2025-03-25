@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:25:33 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 01:52:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:16:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ class AMateria
 		std::string const & getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
+
+		virtual bool is_dynamic() const;
 };
 
 #endif
