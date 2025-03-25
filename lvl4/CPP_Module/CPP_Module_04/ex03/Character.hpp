@@ -6,11 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:12:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 01:38:47 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:57:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ICharacter.hpp>
+#include <Ice.hpp>
+#include <Cure.hpp>
 
 class Character : public ICharacter
 {
