@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 01:44:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 03:13:19 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,53 @@ Character &Character::operator=(const Character &other)
 {
 	std::cout << GREEN << "Character Copy Assignment Constructor called" << RESET << std::endl;
 	if (this != &other)
+	{
 		this->_name = other._name;
+
+		//Delete old materias
+		for (int i = 0; i < 4; i++)
+		{
+			if (this->inventory[i] != nullptr && this->inventory[i]->is_dynamic())
+			{
+				delete this->inventory[i];
+				this->inventory[i] = nullptr;
+			}
+		}
+
+		// Copy inventory and _slot_occupied
+		for (int i = 0; i < 4; i++)
+		{
+			if (other.inventory[i] != nullptr)
+			{
+				if (other.inventory[i]->getType() == "ice")
+					this->inventory[i] = new Ice();
+				else if (other.inventory[i]->getType() == "cure")
+					this->inventory[i] = new Cure();
+				else
+					this->inventory[i] = new Ice(other.inventory[i]->getType());
+				this->_slot_occupied[i] = true;
+			}
+			else
+			{
+				this->inventory[i] = nullptr;
+				this->_slot_occupied[i] = false;
+			}
+		}
+
+		// Copy floor list
+		for (std::list<AMateria*>::const_iterator it = other.floor.begin(); it != other.floor.end(); ++it)
+		{
+			if (*it) // Not nullptr
+			{
+				if ((*it)->getType() == "ice")
+					this->floor.push_back(new Ice());
+				else if ((*it)->getType() == "cure")
+					this->floor.push_back(new Cure());
+				else
+					this->floor.push_back(new Ice((*it)->getType()));
+			}
+		}
+	}
 	return (*this);
 }
 
@@ -38,14 +84,15 @@ Character::~Character()
 	// Delete Materias from inventory
 	for (int i = 0; i < 4; i++)
 	{
-		if (inventory[i] != nullptr)
+		if (inventory[i] != nullptr && inventory[i]->is_dynamic())
 			delete inventory[i];
 	}
 
 	// Delete Materias from floor list
-	for (AMateria* materia : floor)
+	for (std::list<AMateria*>::iterator it = floor.begin(); it != floor.end(); ++it)
 	{
-		delete materia;
+		if (*it && (*it)->is_dynamic()) // It's not nullptr and it's created dynamicly
+			delete *it;
 	}
 }
 
