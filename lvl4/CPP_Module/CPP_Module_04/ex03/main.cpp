@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 22:09:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:13:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main()
 		AMateria *cure = new Cure();
 		AMateria *cure2 = new Cure();
 
-		Character* me = new Character("me");
+		ICharacter* me = new Character("me");
 		me->printStats();
 
 
@@ -54,8 +54,8 @@ int main()
 		me->equip(ice);
 		me->equip(cure);
 		
-		Character* bob = new Character(*me);
-		//ICharacter* bob = new Character(dynamic_cast<Character&>(*me));
+		//Character* bob = new Character(*me);
+		ICharacter* bob = new Character(static_cast<Character&>(*me));
 
 		me->printStats();
 		me->use(0, *bob);
