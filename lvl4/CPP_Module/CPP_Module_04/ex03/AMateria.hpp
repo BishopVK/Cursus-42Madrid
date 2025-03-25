@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:25:33 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 02:16:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:40:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include "ICharacter.hpp";
+#include "ICharacter.hpp"
 
 #define BOLD "\033[1m"
 #define BOLD_OFF "\033[22m"
@@ -28,6 +28,8 @@
 #define CYAN "\033[36m"
 #define RESET "\033[0m"
 #define INVERT "\033[7m"
+
+class ICharacter; // Forward declaration
 
 class AMateria
 {
