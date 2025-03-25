@@ -6,13 +6,16 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:12:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 02:57:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:56:10 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ICharacter.hpp>
-#include <Ice.hpp>
-#include <Cure.hpp>
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
+
+#include "ICharacter.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 class Character : public ICharacter
 {
@@ -27,8 +30,12 @@ class Character : public ICharacter
 		Character &operator=(const Character &other);
 		~Character();
 
-		std::string const &getName() const override;
-		void equip(AMateria* m) override;
-		void unequip(int idx) override;
-		void use(int idx, ICharacter& target) override;
+		std::string const	&getName() const override;
+		void	equip(AMateria* m) override;
+		void	unequip(int idx) override;
+		void	use(int idx, ICharacter& target) override;
+
+		void	printStats() override;
 };
+
+#endif
