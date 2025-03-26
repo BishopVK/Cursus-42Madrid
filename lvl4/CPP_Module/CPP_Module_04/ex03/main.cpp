@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 22:20:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 02:29:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
 #include "Character.hpp"
+#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 
 int main()
 {
@@ -34,44 +36,63 @@ int main()
 	} */
 
 	{
-		/* IMateriaSource* src = new MateriaSource();
-		src->learnMateria(new Ice());
-		src->learnMateria(new Cure()); */
-
+		std::cout << MAGENTA << std::endl << "-- CREATING AND LEARNING MATERIAS --" << RESET << std::endl;
+		IMateriaSource* src = new MateriaSource();
 		AMateria *ice = new Ice();
 		AMateria *cure = new Cure();
-		//AMateria *cure2 = cure->clone();
+		src->learnMateria(ice);
+		src->learnMateria(cure);
+		src->printMateriaLearned();
 
+		std::cout << MAGENTA << std::endl << "-- CREATING A CHARACTER --" << RESET << std::endl;
 		ICharacter* me = new Character("me");
 		me->printStats();
 
+		std::cout << MAGENTA << std::endl << "-- CREATING MORE MATERIAS --" << RESET << std::endl;
+		AMateria* tmp = src->createMateria("ice");
+		if (tmp)
+			me->equip(tmp);
 
-		/* AMateria* tmp;
-		tmp = src->createMateria("ice");
-		me->equip(tmp);
-		tmp = src->createMateria("cure"); */
+		AMateria* tmp2 = src->createMateria("cure");
+		if (tmp)
+			me->equip(tmp2);
 		
-		me->equip(ice);
-		me->equip(cure);
+		AMateria* clonedCure = cure->clone();
+		me->equip(clonedCure);
 		
-		//Character* bob = new Character(*me);
+		std::cout << MAGENTA << std::endl << "-- CREATING A SECOND CHARACTER --" << RESET << std::endl;
+		//Character* bob = new Character("bob");
 		ICharacter* bob = new Character(static_cast<Character&>(*me));
+		bob->setName("bob");
 
+		std::cout << MAGENTA << std::endl << "-- PRINTING CHARACTER STATS --" << RESET << std::endl;
 		me->printStats();
+		bob->printStats();
+
+		std::cout << MAGENTA << std::endl << "-- PLAYING WHIT THE INVENTORY --" << RESET << std::endl;
 		me->use(0, *bob);
 		me->use(1, *bob);
 		me->unequip(0);
+		me->unequip(1);
 		me->use(0, *bob);
 		me->use(1, *bob);
-		me->equip(cure->clone());
-		
-		std::cout << ">> ME <<" << std::endl;
+		me->use(2, *bob);
+			
+		std::cout << MAGENTA << std::endl << "-- PRINTING CHARACTER STATS --" << RESET << std::endl;
 		me->printStats();
-		std::cout << ">> BOB <<" << std::endl;
 		bob->printStats();
+
+		std::cout << MAGENTA << std::endl << "-- CALLING DESTRUCTORS --" << RESET << std::endl;
 		delete bob;
+		delete clonedCure;
+		if (tmp2)
+			delete tmp2;
+		if (tmp)
+			delete tmp;
 		delete me;
-		//delete src;
+		delete cure;
+		delete ice;
+		delete src;
 	}
 
 	return 0;
