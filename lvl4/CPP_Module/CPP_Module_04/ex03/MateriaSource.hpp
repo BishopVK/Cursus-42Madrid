@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:33:02 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 23:47:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 00:45:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ class MateriaSource : public IMateriaSource
 		MateriaSource(const MateriaSource &other);
 		MateriaSource &operator=(const MateriaSource &other);
 		~MateriaSource();
-		void learnMateria(AMateria*);
-		AMateria* createMateria(std::string const & type);
+		void learnMateria(AMateria*) override;
+		AMateria* createMateria(std::string const & type) override;
 
-		void	printMateriaLearned();
+		void	printMateriaLearned() override;
 };
 
 #endif
