@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:51:20 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 14:24:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:59:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
+std::string	blue(int nbr)
+{
+	std::string blueText = BLUE + std::to_string(nbr) + RESET;
+	return (blueText);
+}
+
 Account::Account( int initial_deposit )
 {
 	this->_accountIndex = _nbAccounts;
@@ -33,24 +39,22 @@ Account::Account( int initial_deposit )
 	Account::_nbAccounts++;
 	Account::_totalAmount += this->_amount;
 
-	std::string	account_index = BLUE + std::to_string(this->_accountIndex) + RESET;
-	std::string	amount = BLUE + std::to_string(this->_amount) + RESET;
-
 	Account::_displayTimestamp();
-	std::cout << " index:" << account_index // Index
-	<< ";amount:" << amount // amount
-	<< ";created" << std::endl; // created
+	std::cout
+	<< " index:" << blue(this->_accountIndex) // Index
+	<< ";amount:" << blue(this->_amount) // amount
+	<< ";created"
+	<< std::endl;
 }
 
 Account::~Account(void)
 {
-	std::string	account_index = BLUE + std::to_string(this->_accountIndex) + RESET;
-	std::string	amount = BLUE + std::to_string(this->_amount) + RESET;
-
 	Account::_displayTimestamp();
-	std::cout << " index:" << account_index // Index
-	<< ";amount:" << amount // amount
-	<< ";closed" << std::endl; // created
+	std::cout
+	<< " index:" << blue(this->_accountIndex) // Index
+	<< ";amount:" << blue(this->_amount) // amount
+	<< ";closed"
+	<< std::endl;
 }
 
 void	Account::_displayTimestamp( void )
@@ -68,14 +72,42 @@ void	Account::_displayTimestamp( void )
 
 void	Account::displayAccountsInfos( void )
 {
-	std::string	nbAccounts = BLUE + std::to_string(Account::_nbAccounts) + RESET;
-	std::string	totalAmount = BLUE + std::to_string(Account::_totalAmount) + RESET;
-	std::string	totalNbDeposits = BLUE + std::to_string(Account::_totalNbDeposits) + RESET;
-	std::string	totalNbWithdrawals = BLUE + std::to_string(Account::_totalNbWithdrawals) + RESET;
+	Account::_displayTimestamp();
+	std::cout
+	<< " accounts:" << blue(Account::_nbAccounts) // Number of accounts
+	<< ";total:" << blue(Account::_totalAmount) // Total amounts
+	<< ";deposits:" << blue(Account::_totalNbDeposits) // Total number of deposits
+	<< ";withdrawals:" << blue(Account::_totalNbWithdrawals) // Total number of withdrawals
+	<< std::endl;
+}
+
+void Account::displayStatus( void ) const
+{
+	Account::_displayTimestamp();
+	std::cout
+	<< " index:" << blue(this->_accountIndex) // Index
+	<< ";amount:" << blue(this->_amount) // amount
+	<< ";deposits:" << blue(this->_nbDeposits) // deposits
+	<< ";withdrawals:" << blue(this->_nbWithdrawals) // withdrawals
+	<< std::endl;
+}
+
+void	Account::makeDeposit( int deposit )
+{
+	Account::_totalAmount += deposit;
+	Account::_totalNbDeposits++;
 
 	Account::_displayTimestamp();
-	std::cout << " accounts:" << nbAccounts // Number of accounts
-	<< ";total:" << totalAmount // Total amounts
-	<< ";deposits:" << totalNbDeposits // Total number of deposits
-	<< ";withdrawals:" << totalNbWithdrawals << std::endl; // Total number of withdrawals
+	std::cout
+	<< " index:" << blue(this->_accountIndex) // Index
+	<< ";p_amount:" << blue(this->_amount); // previous amount before deposit
+	
+	this->_amount += deposit;
+	this->_nbDeposits++;
+
+	std::cout
+	<< ";deposit:" << blue(deposit) // deposit
+	<< ";amount:" << blue(this->_amount) // amount after deposit
+	<< ";nb_deposits:" << blue(this->_nbDeposits) // number of deposits
+	<< std::endl;
 }
