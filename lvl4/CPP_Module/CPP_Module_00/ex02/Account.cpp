@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:51:20 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 14:59:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:03:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,37 @@ void	Account::makeDeposit( int deposit )
 	<< ";amount:" << blue(this->_amount) // amount after deposit
 	<< ";nb_deposits:" << blue(this->_nbDeposits) // number of deposits
 	<< std::endl;
+}
+
+bool	Account::makeWithdrawal( int withdrawal )
+{
+	if (withdrawal > this->_amount)
+	{
+		Account::_displayTimestamp();
+		std::cout
+		<< " index:" << blue(this->_accountIndex) // Index
+		<< ";p_amount:" << blue(this->_amount) // previous amount before withdrawal
+		<< ";withdrawal:refused"
+		<< std::endl;
+		return (false);
+	}
+
+	Account::_totalAmount -= withdrawal;
+	Account::_totalNbWithdrawals++;
+
+	Account::_displayTimestamp();
+	std::cout
+	<< " index:" << blue(this->_accountIndex) // Index
+	<< ";p_amount:" << blue(this->_amount); // previous amount before withdrawal
+
+	this->_amount -= withdrawal;
+	this->_nbWithdrawals++;
+
+	std::cout
+	<< ";withdrawal:" << blue(withdrawal) // deposit
+	<< ";amount:" << blue(this->_amount) // amount after withdrawal
+	<< ";nb_withdrawals:" << blue(this->_nbWithdrawals) // number of withdrawal
+	<< std::endl;
+
+	return (true);
 }
