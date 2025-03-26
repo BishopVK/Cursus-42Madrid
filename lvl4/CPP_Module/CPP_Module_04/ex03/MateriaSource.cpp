@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:52:04 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 23:49:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 02:23:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	MateriaSource::learnMateria(AMateria *m)
 	{
 		if (_materiaLearned[i] == nullptr)
 		{
-			std::cout << "Learned " << m->getType() << " materia recipe" << i << std::endl;
 			_materiaLearned[i] = m->clone();
+			std::cout << "Learned " << m->getType() << " materia recipe" << std::endl;
 			break;
 		}
 	}
@@ -87,7 +87,10 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 		if (this->_materiaLearned[i] != nullptr)
 		{
 			if (this->_materiaLearned[i]->getType() == type)
+			{
+				std::cout << "Materia " << _materiaLearned[i]->getType() << " created" << std::endl;
 				return (this->_materiaLearned[i]->clone());
+			}
 		}
 	}
 	if (i == 4)
@@ -97,7 +100,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 
 void	MateriaSource::printMateriaLearned()
 {
-	std::cout << std::endl << "-- MATERIAS LEARNED --" << std::endl;
+	std::cout << YELLOW << std::endl << "-- MATERIAS LEARNED --" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materiaLearned[i] != nullptr)
