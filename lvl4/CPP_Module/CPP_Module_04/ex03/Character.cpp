@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 16:22:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 02:14:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,20 @@ Character::~Character()
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i] != nullptr && inventory[i]->is_dynamic())
+		{
 			delete inventory[i];
+			inventory[i] = nullptr;
+		}
 	}
 
 	// Delete Materias from floor list
 	for (std::list<AMateria*>::iterator it = floor.begin(); it != floor.end(); ++it)
 	{
 		if (*it && (*it)->is_dynamic()) // It's not nullptr and it's created dynamicly
+		{
 			delete *it;
+			*it = nullptr;
+		}
 	}
 }
 
@@ -112,7 +118,7 @@ void Character::equip(AMateria* m)
 		if (inventory[i] == nullptr)
 		{
 			std::cout << "Equiped " << m->getType() << " in inventory slot " << i << std::endl;
-			inventory[i] = m;
+			inventory[i] = m->clone();
 			_slot_occupied[i] = true;
 			break;
 		}
@@ -137,6 +143,7 @@ void Character::unequip(int idx)
 	{
 		std::cout << CYAN << "Unequiped " << inventory[idx]->getType() << " from inventory" << RESET << std::endl;
 		floor.push_back(inventory[idx]); // Move to floor list
+		//delete inventory[idx];
 		inventory[idx] = nullptr;
 		_slot_occupied[idx] = false;
 	}
@@ -159,10 +166,10 @@ void Character::use(int idx, ICharacter& target)
 
 void	Character::printStats()
 {
-	std::cout << std::endl << "-- NAME --" << std::endl;
+	std::cout << YELLOW << std::endl << "-- NAME --" << RESET << std::endl;
 	std::cout << this->getName() << std::endl;
 
-	std::cout << std::endl << "-- INVENTORY --" << std::endl;
+	std::cout << YELLOW << std::endl << "-- INVENTORY --" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_slot_occupied[i])
@@ -171,7 +178,7 @@ void	Character::printStats()
 			std::cout << "Slot " << i << " it's Empty" << std::endl;
 	}
 
-	std::cout << std::endl << "-- FLOOR --" << std::endl;
+	std::cout << YELLOW << std::endl << "-- FLOOR --" << RESET << std::endl;
 	if (floor.empty())
 		std::cout << "There are no objects on the floor" << std::endl;
 	else
@@ -184,4 +191,9 @@ void	Character::printStats()
 			i++;
 		}
 	}
+}
+
+void	Character::setName(const std::string &name)
+{
+	this->_name = name;
 }
