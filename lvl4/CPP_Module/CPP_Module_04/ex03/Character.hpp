@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:12:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 15:56:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/26 02:13:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Character : public ICharacter
 		void	use(int idx, ICharacter& target) override;
 
 		void	printStats() override;
+		void	setName(const std::string &name) override;
 };
 
 #endif
