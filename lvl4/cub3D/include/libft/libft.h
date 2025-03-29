@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 08:59:20 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/29 22:48:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:18:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ char			*ft_strstr(char *haystack, char *needle);
 int				ft_strchr_int(const char *s, int c);
 long long int	ft_custom_atoll(const char *nptr);
 char			**ft_split_isspace(char const *s);
+char			*ft_strtrim_isspace(char const *s1);
 
 #endif
