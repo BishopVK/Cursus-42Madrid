@@ -1,0 +1,13 @@
+#Compiled files
+so_long
+*.out
+*.o
+*.a
+
+# files
+.json
+.bonus
+.md
+
+# directory
+/.vscode
