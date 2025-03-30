@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/29 22:28:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:01:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_map_chars
 	/* int	collectible;
 	int	exit; */
 	int	player;
+	char	*buffer;
+	char	*buffer_trimed;
 }	t_map_chars;
 
 //Array
@@ -53,10 +55,17 @@ typedef struct s_map_array
 {
 	int				width;
 	int				height;
-	int				start_x;
-	int				start_y;
-	int				exit_x;
-	int				exit_y;
+	int				player_x;
+	int				player_y;
+	char			player_dir;
+	char			**north;
+	char			**south;
+	char			**west;
+	char			**east;
+	char			**floor;
+	char			**ceiling;
+	/* int				exit_x;
+	int				exit_y; */
 	unsigned int	moves;
 	char			**map;
 	t_map_chars		*chars;
@@ -113,72 +122,75 @@ typedef enum s_key_codes
 /****************************************/
 /*				parse.c					*/
 /****************************************/
-void	exit_map_error(char *buffer, char *message, int fd);
+//void	exit_map_error(char *buffer, char *message, int fd);
+void	exit_map_error(t_map_array *map_array, char *message, int fd);
 int		count_buffer_len(char *buffer, int fd);
-int		read_map_lines(char *buffer, char *map);
-void	read_map(char *map, t_map_chars *map_chars, t_map_array *map_array);
+//void	read_map_lines(char *buffer, char *map, t_map_array *map_array);
+void	read_map_lines(char *map, t_map_array *map_array);
+void	read_map(char *map, t_map_array *map_array);
 void	check_arg_extension(char *map);
+void	free_elements(t_map_array *map_array);
 
 /****************************************/
 /*		check_map_characters.c			*/
 /****************************************/
-void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd);
+/* void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd);
 void	count_nbr_chars(char *buffer, t_map_chars *map_chars);
 void	check_borders(char *buffer, int total_lines, int map_line, int fd);
 int		read_for_check_borders(char *buffer, char *map, int map_lines,
 			t_map_chars *map_chars);
-void	check_map_characters(char *buffer, char *allowed, int fd);
+void	check_map_characters(char *buffer, char *allowed, int fd); */
 
 /****************************************/
 /*				array.c					*/
 /****************************************/
-void	free_array(t_map_array *s_map_array);
+/* void	free_array(t_map_array *s_map_array);
 void	display_array(t_map_array *map_array);
 void	initialize_array(char *buffer, t_map_array *map_array, int map_lines);
 void	create_array(t_map_array *map_array);
 void	read_to_create_array(char *map, t_map_array *map_array);
-
+ */
 /****************************************/
 /*			copy_of_array.c				*/
 /****************************************/
-void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars);
+/* void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars);
 void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array);
-void	create_array_copy(t_map_array *map_array, t_map_array *copy_array);
+void	create_array_copy(t_map_array *map_array, t_map_array *copy_array); */
 
 /****************************************/
 /*			flood_fill.c				*/
 /****************************************/
-void	detect_player_and_exit(char *buffer, t_map_array *map_array,
+/* void	detect_player_and_exit(char *buffer, t_map_array *map_array,
 			int map_lines);
 void	verify_flood_fill_result(t_map_chars *copy_chars,
 			t_map_array *map_array);
 void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
-			int x, int y);
+			int x, int y); */
 
 /****************************************/
 /*				game.c					*/
 /****************************************/
-void	clean_up(t_data *data);
+/* void	clean_up(t_data *data);
 void	free_mlx_resources(t_data *data);
 void	verify_map_size(t_map_array *map_array, t_data *data);
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array);
+void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array); */
 
 /****************************************/
 /*				sprites.c				*/
 /****************************************/
-void	*new_file_img(char *path, t_data *data);
+/* void	*new_file_img(char *path, t_data *data);
 void	get_images_and_paths(t_data *data);
-void	put_images(t_data *data, t_map_array *map_array);
+void	put_images(t_data *data, t_map_array *map_array); */
 
 /****************************************/
 /*				hooks.c					*/
 /****************************************/
-int		on_destroy(void *param);
-int		on_keypress(int keysym, t_data *data);
+/* int		on_destroy(void *param);
+int		on_keypress(int keysym, t_data *data); */
 
 /****************************************/
 /*			movements.c					*/
 /****************************************/
-void	move_player(t_data *data, int dir);
+/* void	move_player(t_data *data, int dir); */
 
 #endif
