@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/31 00:00:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:58:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ static void	keep_map_elements(char ***element, t_map_array *map_array, int fd)
 {
 	if (*element == NULL)
 	{
-		printf ("%s IS VOID\n", map_array->chars->buffer_trimed);
+		printf ("%s IS VOID\n", map_array->chars->buffer_trimed); // DB
 		*element = ft_split_isspace(map_array->chars->buffer_trimed);
 	}
 	else
 	{
-		print_element(*element);
+		print_element(*element); // DB
 		free (map_array->chars->buffer_trimed);
 		free_elements(map_array);
 		exit_map_error(map_array, "Repeated map element", fd);
@@ -117,20 +117,30 @@ static void	keep_map_elements(char ***element, t_map_array *map_array, int fd)
 
 static void	detect_map_elements(t_map_array *map_array, int fd)
 {
+	char	*trimed;
+
+	trimed = map_array->chars->buffer_trimed;
 	if (ft_strlen(map_array->chars->buffer_trimed) > 3)
 	{
-		if (map_array->chars->buffer_trimed[0] == 'N' && map_array->chars->buffer_trimed[1] == 'O')
+		if (trimed[0] == 'N' && trimed[1] == 'O' && ft_isspace(trimed[2]))
 			keep_map_elements(&map_array->north, map_array, fd);
-		else if (map_array->chars->buffer_trimed[0] == 'S' && map_array->chars->buffer_trimed[1] == 'O')
+		else if (trimed[0] == 'S' && trimed[1] == 'O' && ft_isspace(trimed[2]))
 			keep_map_elements(&map_array->south, map_array, fd);
-		else if (map_array->chars->buffer_trimed[0] == 'W' && map_array->chars->buffer_trimed[1] == 'E')
+		else if (trimed[0] == 'W' && trimed[1] == 'E' && ft_isspace(trimed[2]))
 			keep_map_elements(&map_array->west, map_array, fd);
-		else if (map_array->chars->buffer_trimed[0] == 'E' && map_array->chars->buffer_trimed[1] == 'A')
+		else if (trimed[0] == 'E' && trimed[1] == 'A' && ft_isspace(trimed[2]))
 			keep_map_elements(&map_array->east, map_array, fd);
-		else if (map_array->chars->buffer_trimed[0] == 'F')
+		else if (trimed[0] == 'F' && ft_isspace(trimed[1]))
 			keep_map_elements(&map_array->floor, map_array, fd);
-		else if (map_array->chars->buffer_trimed[0] == 'C')
+		else if (trimed[0] == 'C' && ft_isspace(trimed[1]))
 			keep_map_elements(&map_array->ceiling, map_array, fd);
+		else
+		{
+			printf("%s", map_array->chars->buffer); // DB
+			free (map_array->chars->buffer_trimed);
+			free_elements(map_array);
+			exit_map_error(map_array, "Not a valid element detected", fd);
+		}
 	}
 }
 
@@ -138,10 +148,9 @@ static void	detect_map_elements(t_map_array *map_array, int fd)
 void	read_map_lines(char *map, t_map_array *map_array)
 {
 	int		fd;
-	//char	*buffer_trimed;
-	//int	map_lines;
+	int	last_map_line;
 
-	//map_lines = 0;
+	last_map_line = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		exit_map_error(map_array, "Open error", fd);
@@ -150,13 +159,23 @@ void	read_map_lines(char *map, t_map_array *map_array)
 		exit_map_error(map_array, "Void map file", fd);
 	while (map_array->chars->buffer != NULL)
 	{
+		map_array->file_lines++;
 		map_array->chars->buffer_trimed = ft_strtrim_isspace(map_array->chars->buffer);
 		if (map_array->chars->buffer[0] != '\n' && ft_strlen(map_array->chars->buffer_trimed) > 0)
 		{
 			if (map_array->chars->buffer_trimed[0] != '1')
 				detect_map_elements(map_array, fd);
 			else
-				printf("%s is part of the map\n", map_array->chars->buffer);
+			{
+				if (last_map_line != 0 && map_array->file_lines != (last_map_line + 1))
+				{
+					free (map_array->chars->buffer_trimed);
+					free_elements(map_array);
+					exit_map_error(map_array, "Void line in middle of the map", fd);
+				}
+				printf("%s", map_array->chars->buffer); // DB
+				last_map_line = map_array->file_lines;
+			}
 		}
 		/* count_buffer_len(buffer, fd);
 		check_map_characters(buffer, "01CEP", fd); */
@@ -167,7 +186,7 @@ void	read_map_lines(char *map, t_map_array *map_array)
 		map_array->chars->buffer = get_next_line(fd, false);
 		//map_lines++;
 	}
-	print_elements(map_array);
+	print_elements(map_array); // DB
 	close(fd);
 }
 
