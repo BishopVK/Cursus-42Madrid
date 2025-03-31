@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 01:01:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 01:38:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,48 +211,95 @@ void	print_map(t_map_array *map_array)
 	printf("\n");
 }
 
-void	check_element_path(t_map_array *map_array, char **element)
+void	check_element_path(t_map_array *map_array, char **element, int count)
 {
 	int	i;
-	int	count;
 	int	fd;
 
 	i = 0;
-	count = 0;
-	if (element)
+	while (element[i])
 	{
-		while (element[i])
+		if (i == 1)
 		{
-			if (i == 1)
+			fd = open(element[i], O_RDONLY);
+			if (fd == -1)
 			{
-				fd = open(element[i], O_RDONLY);
-				if (fd == -1)
-				{
-					if (errno == ENOENT)
-						exit_map_error(map_array, "Texture file does not exist", fd);
-					else if (errno == EACCES)
-						exit_map_error(map_array, "Texture file is not readable", fd);
-					else
-						exit_map_error(map_array, "Error opening texture file", fd);
-				}
-				close(fd);
-			}				
-			count++;
-			i++;
-		}
+				if (errno == ENOENT)
+					exit_map_error(map_array, "Texture file does not exist", fd);
+				else if (errno == EACCES)
+					exit_map_error(map_array, "Texture file is not readable", fd);
+				else
+					exit_map_error(map_array, "Error opening texture file", fd);
+			}
+			close(fd);
+		}				
+		count++;
+		i++;
 	}
 	if (count != 2)
-		exit_map_error(map_array, "The element is incorrect", -1);
+		exit_map_error(map_array, "The texture element is incorrect", -1);
+}
+
+void	check_element_rgb(t_map_array *map_array, char **element)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	count_elements;
+	char	**splited;
+	int	count_colors;
+
+	i = 0;
+	count_elements = 0;
+	while (element[i])
+	{
+		if (i == 1)
+		{
+			splited = ft_split(element[i], ',');
+			j = 0;
+			count_colors = 0;
+			while (splited[j])
+			{
+				k = 0;
+				while (splited[j][k])
+				{
+					if (!ft_isdigit(splited[j][k]))
+					{
+						free_double_pointer(splited);
+						exit_map_error(map_array, "Invalid RGB value", -1);
+					}
+					k++;
+				}
+				if (ft_atoi(splited[j]) < 0 || ft_atoi(splited[j]) > 255)
+				{
+					free_double_pointer(splited);
+					exit_map_error(map_array, "Invalid RGB range color", -1);
+				}
+				count_colors++;
+				j++;
+			}
+			if (count_colors != 3)
+			{
+				free_double_pointer(splited);
+				exit_map_error(map_array, "Invalid RGB color", -1);
+			}
+			free_double_pointer(splited);
+		}
+		count_elements++;
+		i++;
+	}
+	if (count_elements != 2)
+		exit_map_error(map_array, "The RGB element is incorrect", -1);
 }
 
 void	check_elements(t_map_array *map_array)
 {
-	check_element_path(map_array, map_array->north);
-	check_element_path(map_array, map_array->south);
-	check_element_path(map_array, map_array->west);
-	check_element_path(map_array, map_array->east);
-	/* check_element(map_array, map_array->floor);
-	check_element(map_array, map_array->ceiling); */
+	check_element_path(map_array, map_array->north, 0);
+	check_element_path(map_array, map_array->south, 0);
+	check_element_path(map_array, map_array->west, 0);
+	check_element_path(map_array, map_array->east, 0);
+	check_element_rgb(map_array, map_array->floor);
+	check_element_rgb(map_array, map_array->ceiling);
 }
 
 void	read_map_lines(char *map, t_map_array *map_array)
