@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/31 21:42:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 01:01:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,6 @@ static void	keep_map_elements(char ***element, t_map_array *map_array, int fd)
 	else
 	{
 		print_element(*element); // DB
-		//free (map_array->chars->buffer_trimed);
-		//free_elements(map_array);
 		exit_map_error(map_array, "Repeated map element", fd);
 	}
 }
@@ -164,11 +162,11 @@ static void	detect_map_elements(t_map_array *map_array, int fd)
 		else
 		{
 			printf("%s", map_array->chars->buffer); // DB
-			//free (map_array->chars->buffer_trimed);
-			//free_elements(map_array);
 			exit_map_error(map_array, "Not a valid element detected", fd);
 		}
 	}
+	else
+		exit_map_error(map_array, "Not a valid element detected", fd);
 }
 
 void save_map(char *map, t_map_array *map_array)
@@ -213,6 +211,50 @@ void	print_map(t_map_array *map_array)
 	printf("\n");
 }
 
+void	check_element_path(t_map_array *map_array, char **element)
+{
+	int	i;
+	int	count;
+	int	fd;
+
+	i = 0;
+	count = 0;
+	if (element)
+	{
+		while (element[i])
+		{
+			if (i == 1)
+			{
+				fd = open(element[i], O_RDONLY);
+				if (fd == -1)
+				{
+					if (errno == ENOENT)
+						exit_map_error(map_array, "Texture file does not exist", fd);
+					else if (errno == EACCES)
+						exit_map_error(map_array, "Texture file is not readable", fd);
+					else
+						exit_map_error(map_array, "Error opening texture file", fd);
+				}
+				close(fd);
+			}				
+			count++;
+			i++;
+		}
+	}
+	if (count != 2)
+		exit_map_error(map_array, "The element is incorrect", -1);
+}
+
+void	check_elements(t_map_array *map_array)
+{
+	check_element_path(map_array, map_array->north);
+	check_element_path(map_array, map_array->south);
+	check_element_path(map_array, map_array->west);
+	check_element_path(map_array, map_array->east);
+	/* check_element(map_array, map_array->floor);
+	check_element(map_array, map_array->ceiling); */
+}
+
 void	read_map_lines(char *map, t_map_array *map_array)
 {
 	int		fd;
@@ -236,11 +278,7 @@ void	read_map_lines(char *map, t_map_array *map_array)
 			else
 			{
 				if (last_map_line != 0 && map_array->file_lines != (last_map_line + 1))
-				{
-					//free (map_array->chars->buffer_trimed);
-					//free_elements(map_array);
 					exit_map_error(map_array, "Void line in middle of the map", fd);
-				}
 				printf("%s", map_array->chars->buffer); // DB
 				last_map_line = map_array->file_lines;
 				map_array->map_height++;
@@ -256,10 +294,19 @@ void	read_map_lines(char *map, t_map_array *map_array)
 		//map_lines++;
 	}
 	close(fd);
+	map_array->chars->buffer = NULL;
+	map_array->chars->buffer_trimed = NULL;
 	print_elements(map_array); // DB
 	printf("Map have %i lines\n", map_array->map_height); // DB
-	save_map(map, map_array);
-	print_map(map_array);
+	if (map_array->north && map_array->south && map_array->west && map_array->east && map_array->floor && map_array->ceiling)
+	{
+		check_elements(map_array);
+		save_map(map, map_array);
+		print_map(map_array);
+	}
+	else
+		exit_map_error(map_array, "Missing elements", -1);
+
 }
 
 void	read_map(char *map, t_map_array *map_array)

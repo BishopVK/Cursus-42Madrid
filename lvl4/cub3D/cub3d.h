@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/31 21:03:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 00:35:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 
 //strerror
 # include <string.h>
+
+//errno
+#include <errno.h>
 
 //Chars in map
 typedef struct s_map_chars
