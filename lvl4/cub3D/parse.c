@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/31 00:58:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/31 21:42:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	free_element(char **element)
 		while (element[i])
 		{
 			free (element[i]);
+			element[i] = NULL;
 			i++;
 		}
 		free (element);
+		element = NULL;
 	}
 }
 
@@ -42,9 +44,16 @@ void	exit_map_error(t_map_array *map_array, char *message, int fd)
 {
 	if (map_array->chars->buffer != NULL)
 		free(map_array->chars->buffer);
-	get_next_line(fd, true);
+	if (map_array->chars->buffer_trimed != NULL)
+		free(map_array->chars->buffer_trimed);
+	free_elements(map_array);
+	free_double_pointer(map_array->map);
+	if (fd > 0)
+	{
+		get_next_line(fd, true);
+		close (fd);
+	}
 	ft_dprintf(2, "Error\n> %s\n", message);
-	close (fd);
 	exit (EXIT_FAILURE);
 }
 
@@ -72,6 +81,24 @@ void	exit_map_error(t_map_array *map_array, char *message, int fd)
 	}
 	return (buffer_len);
 } */
+
+void	free_double_pointer(char **pointer)
+{
+	int	i;
+
+	i = 0;
+	if (pointer)
+	{
+		while (pointer[i])
+		{
+			free(pointer[i]);
+			pointer[i] = NULL;
+			i++;
+		}
+	}
+	free (pointer);
+	pointer = NULL;
+}
 
 static void	print_element(char **element)
 {
@@ -109,8 +136,8 @@ static void	keep_map_elements(char ***element, t_map_array *map_array, int fd)
 	else
 	{
 		print_element(*element); // DB
-		free (map_array->chars->buffer_trimed);
-		free_elements(map_array);
+		//free (map_array->chars->buffer_trimed);
+		//free_elements(map_array);
 		exit_map_error(map_array, "Repeated map element", fd);
 	}
 }
@@ -137,13 +164,54 @@ static void	detect_map_elements(t_map_array *map_array, int fd)
 		else
 		{
 			printf("%s", map_array->chars->buffer); // DB
-			free (map_array->chars->buffer_trimed);
-			free_elements(map_array);
+			//free (map_array->chars->buffer_trimed);
+			//free_elements(map_array);
 			exit_map_error(map_array, "Not a valid element detected", fd);
 		}
 	}
 }
 
+void save_map(char *map, t_map_array *map_array)
+{
+	int	fd;
+	int	i;
+
+	i = 0;
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		exit_map_error(map_array, "Open error", fd);
+	map_array->chars->buffer = get_next_line(fd, false);
+	map_array->map = malloc((map_array->map_height + 1) * sizeof(char *));
+	while (map_array->chars->buffer != NULL)
+	{
+		map_array->chars->buffer_trimed = ft_strtrim_isspace(map_array->chars->buffer);
+		if (map_array->chars->buffer[0] != '\n'
+			&& ft_strlen(map_array->chars->buffer_trimed) > 0
+			&& map_array->chars->buffer_trimed[0] == '1')
+		{
+			printf("Se va a guardar en map_array->map[%i]: %s", i, map_array->chars->buffer); // DB
+			map_array->map[i++] = ft_strdup(map_array->chars->buffer);
+		}
+		free(map_array->chars->buffer);
+		free(map_array->chars->buffer_trimed);
+		map_array->chars->buffer = get_next_line(fd, false);
+	}
+	map_array->map[i] = NULL;
+}
+
+void	print_map(t_map_array *map_array)
+{
+	int	i;
+
+	i = 0;
+	printf("\n-- MAP SAVED --\n");
+	while (map_array->map[i])
+	{
+		printf("%s", map_array->map[i]);
+		i++;
+	}
+	printf("\n");
+}
 
 void	read_map_lines(char *map, t_map_array *map_array)
 {
@@ -169,12 +237,13 @@ void	read_map_lines(char *map, t_map_array *map_array)
 			{
 				if (last_map_line != 0 && map_array->file_lines != (last_map_line + 1))
 				{
-					free (map_array->chars->buffer_trimed);
-					free_elements(map_array);
+					//free (map_array->chars->buffer_trimed);
+					//free_elements(map_array);
 					exit_map_error(map_array, "Void line in middle of the map", fd);
 				}
 				printf("%s", map_array->chars->buffer); // DB
 				last_map_line = map_array->file_lines;
+				map_array->map_height++;
 			}
 		}
 		/* count_buffer_len(buffer, fd);
@@ -186,8 +255,11 @@ void	read_map_lines(char *map, t_map_array *map_array)
 		map_array->chars->buffer = get_next_line(fd, false);
 		//map_lines++;
 	}
-	print_elements(map_array); // DB
 	close(fd);
+	print_elements(map_array); // DB
+	printf("Map have %i lines\n", map_array->map_height); // DB
+	save_map(map, map_array);
+	print_map(map_array);
 }
 
 void	read_map(char *map, t_map_array *map_array)

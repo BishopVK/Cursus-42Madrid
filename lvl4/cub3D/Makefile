@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/29 22:21:46 by danjimen         ###   ########.fr        #
+#    Updated: 2025/03/31 21:48:26 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,5 +66,16 @@ fclean: clean
 	$(call print_green,"Cleaned the executable cub3D")
 
 re: fclean all
+
+rc: re
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(MINILIBX_DIR) clean
+	@rm -f $(OBJ)
+
+r:	rc
+	./$(NAME) $(ARG)
+
+valgrind:	rc
+	valgrind --leak-check=full ./$(NAME) $(ARG)
 
 .PHONY: all clean fclean re

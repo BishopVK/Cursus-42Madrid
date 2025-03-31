@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/31 00:46:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/03/31 21:03:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_map_array
 	int				exit_y; */
 	unsigned int	moves;
 	int				file_lines;
+	int				map_height;
 	char			**map;
 	t_map_chars		*chars;
 }	t_map_array;
@@ -131,6 +132,7 @@ void	read_map_lines(char *map, t_map_array *map_array);
 void	read_map(char *map, t_map_array *map_array);
 void	check_arg_extension(char *map);
 void	free_elements(t_map_array *map_array);
+void	free_double_pointer(char **pointer);
 
 /****************************************/
 /*		check_map_characters.c			*/
