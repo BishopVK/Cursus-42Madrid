@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 14:21:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:50:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ int	main(int argc, char *argv[])
 {
 	t_map_array	map_array;
 	t_map_chars	map_chars;
+	t_rgb		floor_rgb;
+	t_rgb		ceiling_rgb;
 
 	ft_memset(&map_array, 0, sizeof(t_map_array));
 	ft_memset(&map_chars, 0, sizeof(t_map_chars));
+	ft_memset(&floor_rgb, 0, sizeof(t_rgb));
+	ft_memset(&ceiling_rgb, 0, sizeof(t_rgb));
 	map_array.chars = &map_chars;
+	map_array.floor = &floor_rgb;
+	map_array.ceiling = &ceiling_rgb;
 	if (argc != 2)
 	{
 		ft_dprintf(STDERR_FILENO, "Error\n> Correct use: %s map.cub\n", argv[0]);

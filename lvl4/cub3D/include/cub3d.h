@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 14:28:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:23:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@
 //errno
 #include <errno.h>
 
+typedef struct s_rgb
+{
+	char	**element;
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 //Chars in map
 typedef struct s_map_chars
 {
@@ -65,8 +73,10 @@ typedef struct s_map_array
 	char			**south;
 	char			**west;
 	char			**east;
-	char			**floor;
-	char			**ceiling;
+	//char			**floor;
+	t_rgb			*floor;
+	t_rgb			*ceiling;
+	//char			**ceiling;
 	/* int				exit_x;
 	int				exit_y; */
 	unsigned int	moves;
@@ -124,18 +134,65 @@ typedef enum s_key_codes
 	SPACE_KEY = 32
 }	t_key_codes;
 
+/*_____           _        _                         
+ |  __ \         | |      | |                        
+ | |__) | __ ___ | |_ ___ | |_ _   _ _ __   ___  ___ 
+ |  ___/ '__/ _ \| __/ _ \| __| | | | '_ \ / _ \/ __|
+ | |   | | | (_) | || (_) | |_| |_| | |_) |  __/\__ \
+ |_|   |_|  \___/ \__\___/ \__|\__, | .__/ \___||___/
+                                __/ | |              
+                               |___/|_|            */
+
+// ╔═.✵.═════════════════════════════════════════════╗
+// 					PARSE FOLDER
+// ╚═════════════════════════════════════════════.✵.═╝
+
+//////////////////////////////////////////////////////
+//						PARSE.C						//
+//////////////////////////////////////////////////////
+void	read_map(char *map, t_map_array *map_array);
+void	check_arg_extension(char *map);
+
+//////////////////////////////////////////////////////
+//						CLEAN.C						//
+//////////////////////////////////////////////////////
+void	free_elements(t_map_array *map_array);
+void	exit_map_error(t_map_array *map_array, char *message, int fd);
+void	free_double_pointer(char **pointer);
+
+//////////////////////////////////////////////////////
+//						DEBUG.C						//
+//////////////////////////////////////////////////////
+void	print_rgb_values(t_rgb *element);
+void	print_element(char **element);
+void	print_elements(t_map_array *map_array);
+void	print_map(t_map_array *map_array);
+
+//////////////////////////////////////////////////////
+//					DETECT_ELEMENTS.C				//
+//////////////////////////////////////////////////////
+void	detect_map_elements(t_map_array *map_array, int fd);
+
+//////////////////////////////////////////////////////
+//					CHECK_ELEMENTS.C				//
+//////////////////////////////////////////////////////
+void	check_elements(t_map_array *map_array);
+
+//////////////////////////////////////////////////////
+//						MAP.C						//
+//////////////////////////////////////////////////////
+void	save_map(char *map, t_map_array *map_array);
+
+
 /****************************************/
 /*				parse.c					*/
 /****************************************/
 //void	exit_map_error(char *buffer, char *message, int fd);
-void	exit_map_error(t_map_array *map_array, char *message, int fd);
-int		count_buffer_len(char *buffer, int fd);
+//int		count_buffer_len(char *buffer, int fd);
 //void	read_map_lines(char *buffer, char *map, t_map_array *map_array);
-void	read_map_lines(char *map, t_map_array *map_array);
-void	read_map(char *map, t_map_array *map_array);
-void	check_arg_extension(char *map);
-void	free_elements(t_map_array *map_array);
-void	free_double_pointer(char **pointer);
+//void	read_map_lines(char *map, t_map_array *map_array);
+//void	read_map(char *map, t_map_array *map_array);
+//void	check_arg_extension(char *map);
 
 /****************************************/
 /*		check_map_characters.c			*/

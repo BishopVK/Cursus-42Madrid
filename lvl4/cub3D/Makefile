@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/01 14:23:53 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/01 17:16:11 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,12 @@ SRC_DIR		=	src
 PARSE_DIR	=	src/parse
 
 SRC			=	$(SRC_DIR)/cub3d.c \
-				$(PARSE_DIR)/parse.c
+				$(PARSE_DIR)/parse.c \
+				$(PARSE_DIR)/clean.c \
+				$(PARSE_DIR)/debug.c \
+				$(PARSE_DIR)/detect_elements.c \
+				$(PARSE_DIR)/check_elements.c \
+				$(PARSE_DIR)/map.c
 
 OBJ			=	$(SRC:.c=.o)
 
