@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/31 21:48:26 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/01 14:23:53 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,12 @@ endef
 NAME		=	cub3D
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g3
-SRC			=	cub3d.c \
-				parse.c
+
+SRC_DIR		=	src
+PARSE_DIR	=	src/parse
+
+SRC			=	$(SRC_DIR)/cub3d.c \
+				$(PARSE_DIR)/parse.c
 
 OBJ			=	$(SRC:.c=.o)
 

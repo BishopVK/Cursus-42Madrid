@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 00:35:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:28:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define CUB3D_H
 
 //libft
-# include "include/libft/libft.h"
+# include "libft/libft.h"
 
 //mlx
-# include "include/minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 
 //X11
 # include <X11/X.h>
