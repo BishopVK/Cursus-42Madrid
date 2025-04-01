@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 01:38:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:06:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,21 +324,19 @@ void	read_map_lines(char *map, t_map_array *map_array)
 				detect_map_elements(map_array, fd);
 			else
 			{
-				if (last_map_line != 0 && map_array->file_lines != (last_map_line + 1))
-					exit_map_error(map_array, "Void line in middle of the map", fd);
+				if ((!map_array->north || !map_array->south || !map_array->west
+					|| !map_array->east || !map_array->floor
+					|| !map_array->ceiling) || (last_map_line != 0
+					&& map_array->file_lines != (last_map_line + 1)))
+					exit_map_error(map_array, "Void line in middle of the map or missing elements", fd);
 				printf("%s", map_array->chars->buffer); // DB
 				last_map_line = map_array->file_lines;
 				map_array->map_height++;
 			}
 		}
-		/* count_buffer_len(buffer, fd);
-		check_map_characters(buffer, "01CEP", fd); */
-		/* if (ft_strlen(buffer) > 256)
-			exit_map_error(buffer, "The map is too big", fd); */
 		free(map_array->chars->buffer);
 		free(map_array->chars->buffer_trimed);
 		map_array->chars->buffer = get_next_line(fd, false);
-		//map_lines++;
 	}
 	close(fd);
 	map_array->chars->buffer = NULL;
