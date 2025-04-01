@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:39:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 17:50:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:39:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char *argv[])
 	map_array.ceiling = &ceiling_rgb;
 	if (argc != 2)
 	{
-		ft_dprintf(STDERR_FILENO, "Error\n> Correct use: %s map.cub\n", argv[0]);
+		ft_dprintf(2, "Error\n> Correct use: %s map.cub\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
 	check_arg_extension(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 18:23:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:33:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,24 @@
 # include <string.h>
 
 //errno
-#include <errno.h>
+# include <errno.h>
 
 typedef struct s_rgb
 {
 	char	**element;
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
 }	t_rgb;
 
 //Chars in map
 typedef struct s_map_chars
 {
-	int	empty;
-	int	wall;
+	int		empty;
+	int		wall;
 	/* int	collectible;
 	int	exit; */
-	int	player;
+	int		player;
 	char	*buffer;
 	char	*buffer_trimed;
 }	t_map_chars;
@@ -182,7 +182,6 @@ void	check_elements(t_map_array *map_array);
 //						MAP.C						//
 //////////////////////////////////////////////////////
 void	save_map(char *map, t_map_array *map_array);
-
 
 /****************************************/
 /*				parse.c					*/
