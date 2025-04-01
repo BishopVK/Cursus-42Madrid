@@ -6,18 +6,48 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 18:49:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:04:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	save_map(char *map, t_map_array *m_a)
+void	check_map_chars(t_map_array *map_array)
 {
-	int	fd;
 	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
+	count = 0;
+	while (map_array->map[i])
+	{
+		j = 0;
+		while (map_array->map[i][j])
+		{
+			if (map_array->map[i][j] == 'N' || map_array->map[i][j] == 'S'
+				|| map_array->map[i][j] == 'W' || map_array->map[i][j] == 'E')
+				count++;
+			if (map_array->map[i][j] != 'N' && map_array->map[i][j] != 'S'
+					&& map_array->map[i][j] != 'W' && map_array->map[i][j] != 'E'
+					&& map_array->map[i][j] != '1' && map_array->map[i][j] != '0'
+					&& map_array->map[i][j] != ' ' && map_array->map[i][j] != '\n')
+			{
+				printf("\nForbiden char '%c' detected\n", map_array->map[i][j]); // DB
+				exit_map_error(map_array, "Error map characters", -1);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (count > 1)
+		exit_map_error(map_array, "Error number of players", -1);
+}
+
+void	save_map(char *map, t_map_array *m_a, int i)
+{
+	int	fd;
+
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		exit_map_error(m_a, "Open error", fd);
@@ -34,7 +64,9 @@ void	save_map(char *map, t_map_array *m_a)
 			m_a->map[i++] = ft_strdup(m_a->chars->buffer);
 		}
 		free(m_a->chars->buffer);
+		m_a->chars->buffer = NULL;
 		free(m_a->chars->buffer_trimed);
+		m_a->chars->buffer_trimed = NULL;
 		m_a->chars->buffer = get_next_line(fd, false);
 	}
 	m_a->map[i] = NULL;

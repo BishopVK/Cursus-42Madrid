@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 18:47:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:03:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void	read_map(char *map, t_map_array *map_array)
 		check_elements(map_array);
 		print_rgb_values(map_array->floor); // DB
 		print_rgb_values(map_array->ceiling); // DB
-		save_map(map, map_array);
+		save_map(map, map_array, 0);
+		check_map_chars(map_array);
 		print_map(map_array); // DB
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 18:33:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:03:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ void	check_elements(t_map_array *map_array);
 //////////////////////////////////////////////////////
 //						MAP.C						//
 //////////////////////////////////////////////////////
-void	save_map(char *map, t_map_array *map_array);
+void	check_map_chars(t_map_array *map_array);
+void	save_map(char *map, t_map_array *m_a, int i);
 
 /****************************************/
 /*				parse.c					*/
