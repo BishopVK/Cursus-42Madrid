@@ -6,13 +6,14 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:10:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 18:29:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:51:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	check_element_path(t_map_array *map_array, char **element, int count)
+static void	check_element_path(t_map_array *m_a,
+	char **element, int count)
 {
 	int	i;
 	int	fd;
@@ -26,11 +27,11 @@ static void	check_element_path(t_map_array *map_array, char **element, int count
 			if (fd == -1)
 			{
 				if (errno == ENOENT)
-					exit_map_error(map_array, "Texture file does not exist", fd);
+					exit_map_error(m_a, "Texture file does not exist", fd);
 				else if (errno == EACCES)
-					exit_map_error(map_array, "Texture file is not readable", fd);
+					exit_map_error(m_a, "Texture file is not readable", fd);
 				else
-					exit_map_error(map_array, "Error opening texture file", fd);
+					exit_map_error(m_a, "Error opening texture file", fd);
 			}
 			close(fd);
 		}
@@ -38,7 +39,7 @@ static void	check_element_path(t_map_array *map_array, char **element, int count
 		i++;
 	}
 	if (count != 2)
-		exit_map_error(map_array, "The texture element is incorrect", -1);
+		exit_map_error(m_a, "The texture element is incorrect", -1);
 }
 
 static void	save_rgb_values(t_rgb *element, char **splited)
@@ -79,9 +80,9 @@ static void	check_rgb_values(t_map_array *map_array,
 
 static void	check_element_rgb(t_map_array *map_array, t_rgb *element, int i)
 {
-	int	count_elements;
+	int		count_elements;
 	char	**splited;
-	int	count_colors;
+	int		count_colors;
 
 	count_elements = 0;
 	while (element->element[i])
