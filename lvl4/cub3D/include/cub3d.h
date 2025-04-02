@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 16:08:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:05:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_map
 	unsigned int	moves;
 	int				file_lines;
 	int				map_height;
-	int				map_max_width;
+	size_t			map_max_width;
 	char			**map;
 	t_map_chars		*chars;
 }	t_map;
@@ -180,6 +180,7 @@ void	check_elements(t_map *map_s);
 //////////////////////////////////////////////////////
 //						MAP.C						//
 //////////////////////////////////////////////////////
+void	check_map_size(t_map *map_s);
 void	check_map_chars(t_map *map_s);
 void	save_map(char *map, t_map *m_a, int i);
 

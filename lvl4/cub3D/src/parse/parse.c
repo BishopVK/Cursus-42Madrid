@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 16:00:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:08:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 	return (buffer_len);
 } */
 
+static void	set_map_width(t_map *map_s)
+{
+	if (ft_strlen(map_s->chars->buffer_trimed) > map_s->map_max_width)
+		map_s->map_max_width = ft_strlen(map_s->chars->buffer_trimed);
+}
+
 static void	read_lines(t_map *map_s, int fd, int *last_map_line)
 {
 	while (map_s->chars->buffer != NULL)
@@ -60,6 +66,7 @@ static void	read_lines(t_map *map_s, int fd, int *last_map_line)
 				map_s->map_height++;
 			}
 		}
+		set_map_width(map_s);
 		free(map_s->chars->buffer);
 		free(map_s->chars->buffer_trimed);
 		map_s->chars->buffer = get_next_line(fd, false);
@@ -85,6 +92,8 @@ static void	read_map_lines(char *map_file, t_map *map_s)
 	map_s->chars->buffer_trimed = NULL;
 	print_elements(map_s); // DB
 	printf("Map have %i lines\n", map_s->map_height); // DB
+	printf("Longest line have %li chars\n", map_s->map_max_width); // DB
+	check_map_size(map_s);
 }
 
 void	read_map(char *map_file, t_map *map_s)

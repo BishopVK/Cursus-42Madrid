@@ -6,11 +6,19 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 16:00:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:12:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	check_map_size(t_map *map_s)
+{
+	if (map_s->map_max_width > 256)
+		exit_map_error(map_s, "Map wider than 256 not allowed", -1);
+	if (map_s->map_height > 256)
+		exit_map_error(map_s, "Map higher than 256 not allowed", -1);
+}
 
 void	check_map_chars(t_map *map_s)
 {
