@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 17:08:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:44:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ static void	read_map_lines(char *map_file, t_map *map_s)
 	map_s->chars->buffer = NULL;
 	map_s->chars->buffer_trimed = NULL;
 	print_elements(map_s); // DB
-	printf("Map have %i lines\n", map_s->map_height); // DB
-	printf("Longest line have %li chars\n", map_s->map_max_width); // DB
 	check_map_size(map_s);
 }
 
@@ -107,7 +105,10 @@ void	read_map(char *map_file, t_map *map_s)
 		print_rgb_values(map_s->floor); // DB
 		print_rgb_values(map_s->ceiling); // DB
 		save_map(map_file, map_s, 0);
-		check_map_chars(map_s);
+		check_map_chars(map_s, 0, 0);
+		printf("Map have %i lines\n", map_s->map_height); // DB
+		printf("Longest line have %li chars\n", map_s->map_max_width); // DB
+		printf("The Map have %i chars\n", map_s->total_map_chars); // DB
 		print_map(map_s); // DB
 	}
 	else

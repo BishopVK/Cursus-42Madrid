@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 17:12:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:44:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ void	check_map_size(t_map *map_s)
 		exit_map_error(map_s, "Map higher than 256 not allowed", -1);
 }
 
-void	check_map_chars(t_map *map_s)
+void	count_chars(t_map *map_s, char character)
 {
-	int	i;
-	int	j;
+	if (character == '1' || character == '0' || character == 'N'
+		|| character == 'S' || character == 'W' || character == 'E')
+		map_s->total_map_chars++;
+}
+
+void	check_map_chars(t_map *map_s, int i, int j)
+{
 	int	count;
 
-	i = 0;
 	count = 0;
 	while (map_s->map[i])
 	{
@@ -40,10 +44,11 @@ void	check_map_chars(t_map *map_s)
 					&& map_s->map[i][j] != 'W' && map_s->map[i][j] != 'E'
 					&& map_s->map[i][j] != '1' && map_s->map[i][j] != '0'
 					&& map_s->map[i][j] != ' ' && map_s->map[i][j] != '\n')
-			{
+			{ // DB
 				printf("\nForbiden char '%c' detected\n", map_s->map[i][j]); // DB
 				exit_map_error(map_s, "Error map characters", -1);
-			}
+			} // DB
+			count_chars(map_s, map_s->map[i][j]);
 			j++;
 		}
 		i++;
@@ -77,5 +82,6 @@ void	save_map(char *map_file, t_map *m_a, int i)
 		m_a->chars->buffer_trimed = NULL;
 		m_a->chars->buffer = get_next_line(fd, false);
 	}
+	printf("\n"); // DB
 	m_a->map[i] = NULL;
 }
