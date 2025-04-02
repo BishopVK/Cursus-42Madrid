@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 22:03:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:04:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_map_chars
 }	t_map_chars;
 
 //Array
-typedef struct s_map_array
+typedef struct s_map
 {
 	int				width;
 	int				height;
@@ -84,7 +84,7 @@ typedef struct s_map_array
 	int				map_height;
 	char			**map;
 	t_map_chars		*chars;
-}	t_map_array;
+}	t_map;
 
 //XPM
 typedef struct s_img
@@ -116,7 +116,7 @@ typedef struct s_data
 	int			screen_width;
 	int			screen_height;
 	t_img		*img;
-	t_map_array	*map_array;
+	t_map		*map_s;
 }	t_data;
 
 typedef enum s_key_codes
@@ -150,14 +150,14 @@ typedef enum s_key_codes
 //////////////////////////////////////////////////////
 //						PARSE.C						//
 //////////////////////////////////////////////////////
-void	read_map(char *map, t_map_array *map_array);
+void	read_map(char *map, t_map *map_s);
 void	check_arg_extension(char *map);
 
 //////////////////////////////////////////////////////
 //						CLEAN.C						//
 //////////////////////////////////////////////////////
-void	free_elements(t_map_array *map_array);
-void	exit_map_error(t_map_array *map_array, char *message, int fd);
+void	free_elements(t_map *map_s);
+void	exit_map_error(t_map *map_s, char *message, int fd);
 void	free_double_pointer(char **pointer);
 
 //////////////////////////////////////////////////////
@@ -165,24 +165,24 @@ void	free_double_pointer(char **pointer);
 //////////////////////////////////////////////////////
 void	print_rgb_values(t_rgb *element);
 void	print_element(char **element);
-void	print_elements(t_map_array *map_array);
-void	print_map(t_map_array *map_array);
+void	print_elements(t_map *map_s);
+void	print_map(t_map *map_s);
 
 //////////////////////////////////////////////////////
 //					DETECT_ELEMENTS.C				//
 //////////////////////////////////////////////////////
-void	detect_map_elements(t_map_array *map_array, int fd);
+void	detect_map_elements(t_map *map_s, int fd);
 
 //////////////////////////////////////////////////////
 //					CHECK_ELEMENTS.C				//
 //////////////////////////////////////////////////////
-void	check_elements(t_map_array *map_array);
+void	check_elements(t_map *map_s);
 
 //////////////////////////////////////////////////////
 //						MAP.C						//
 //////////////////////////////////////////////////////
-void	check_map_chars(t_map_array *map_array);
-void	save_map(char *map, t_map_array *m_a, int i);
+void	check_map_chars(t_map *map_s);
+void	save_map(char *map, t_map *m_a, int i);
 
 /****************************************/
 /*				parse.c					*/

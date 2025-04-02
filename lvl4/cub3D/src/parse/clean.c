@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:52:43 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 17:46:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:01:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,24 @@ static void	free_element(char **element)
 	}
 }
 
-void	free_elements(t_map_array *map_array)
+void	free_elements(t_map *map_s)
 {
-	free_element(map_array->north);
-	free_element(map_array->south);
-	free_element(map_array->west);
-	free_element(map_array->east);
-	free_element(map_array->floor->element);
-	free_element(map_array->ceiling->element);
+	free_element(map_s->north);
+	free_element(map_s->south);
+	free_element(map_s->west);
+	free_element(map_s->east);
+	free_element(map_s->floor->element);
+	free_element(map_s->ceiling->element);
 }
 
-void	exit_map_error(t_map_array *map_array, char *message, int fd)
+void	exit_map_error(t_map *map_s, char *message, int fd)
 {
-	if (map_array->chars->buffer != NULL)
-		free(map_array->chars->buffer);
-	if (map_array->chars->buffer_trimed != NULL)
-		free(map_array->chars->buffer_trimed);
-	free_elements(map_array);
-	free_double_pointer(map_array->map);
+	if (map_s->chars->buffer != NULL)
+		free(map_s->chars->buffer);
+	if (map_s->chars->buffer_trimed != NULL)
+		free(map_s->chars->buffer_trimed);
+	free_elements(map_s);
+	free_double_pointer(map_s->map);
 	if (fd > 0)
 	{
 		get_next_line(fd, true);

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/01 22:03:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:00:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,87 +37,87 @@
 	return (buffer_len);
 } */
 
-static void	read_lines(t_map_array *m_a, int fd, int *last_map_line)
+static void	read_lines(t_map *map_s, int fd, int *last_map_line)
 {
-	while (m_a->chars->buffer != NULL)
+	while (map_s->chars->buffer != NULL)
 	{
-		m_a->file_lines++;
-		m_a->chars->buffer_trimed = ft_strtrim_isspace(m_a->chars->buffer);
-		if (m_a->chars->buffer[0] != '\n'
-			&& ft_strlen(m_a->chars->buffer_trimed) > 0)
+		map_s->file_lines++;
+		map_s->chars->buffer_trimed = ft_strtrim_isspace(map_s->chars->buffer);
+		if (map_s->chars->buffer[0] != '\n'
+			&& ft_strlen(map_s->chars->buffer_trimed) > 0)
 		{
-			if (m_a->chars->buffer_trimed[0] != '1')
-				detect_map_elements(m_a, fd);
+			if (map_s->chars->buffer_trimed[0] != '1')
+				detect_map_elements(map_s, fd);
 			else
 			{
-				if ((!m_a->north || !m_a->south || !m_a->west || !m_a->east
-						|| !m_a->floor->element || !m_a->ceiling->element)
-					|| (*last_map_line != 0
-						&& m_a->file_lines != (*last_map_line + 1)))
-					exit_map_error(m_a, "NL in map or missing elements", fd);
-				printf("%s", m_a->chars->buffer); // DB
-				*last_map_line = m_a->file_lines;
-				m_a->map_height++;
+				if ((!map_s->north || !map_s->south || !map_s->west
+						|| !map_s->east || !map_s->floor->element
+						|| !map_s->ceiling->element) || (*last_map_line != 0
+						&& map_s->file_lines != (*last_map_line + 1)))
+					exit_map_error(map_s, "NL in map or missing elements", fd);
+				printf("%s", map_s->chars->buffer); // DB
+				*last_map_line = map_s->file_lines;
+				map_s->map_height++;
 			}
 		}
-		free(m_a->chars->buffer);
-		free(m_a->chars->buffer_trimed);
-		m_a->chars->buffer = get_next_line(fd, false);
+		free(map_s->chars->buffer);
+		free(map_s->chars->buffer_trimed);
+		map_s->chars->buffer = get_next_line(fd, false);
 	}
 }
 
-static void	read_map_lines(char *map, t_map_array *map_array)
+static void	read_map_lines(char *map_file, t_map *map_s)
 {
 	int		fd;
 	int		last_map_line;
 
 	last_map_line = 0;
-	fd = open(map, O_RDONLY);
+	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-		exit_map_error(map_array, "Open error", fd);
-	map_array->chars->buffer = get_next_line(fd, false);
-	if (map_array->chars->buffer == NULL
-		|| ft_strlen(map_array->chars->buffer) == 0)
-		exit_map_error(map_array, "Void map file", fd);
-	read_lines(map_array, fd, &last_map_line);
+		exit_map_error(map_s, "Open error", fd);
+	map_s->chars->buffer = get_next_line(fd, false);
+	if (map_s->chars->buffer == NULL
+		|| ft_strlen(map_s->chars->buffer) == 0)
+		exit_map_error(map_s, "Void map file", fd);
+	read_lines(map_s, fd, &last_map_line);
 	close(fd);
-	map_array->chars->buffer = NULL;
-	map_array->chars->buffer_trimed = NULL;
-	print_elements(map_array); // DB
-	printf("Map have %i lines\n", map_array->map_height); // DB
+	map_s->chars->buffer = NULL;
+	map_s->chars->buffer_trimed = NULL;
+	print_elements(map_s); // DB
+	printf("Map have %i lines\n", map_s->map_height); // DB
 }
 
-void	read_map(char *map, t_map_array *map_array)
+void	read_map(char *map_file, t_map *map_s)
 {
-	read_map_lines(map, map_array);
-	if (map_array->north && map_array->south && map_array->west
-		&& map_array->east && map_array->floor->element
-		&& map_array->ceiling->element)
+	read_map_lines(map_file, map_s);
+	if (map_s->north && map_s->south && map_s->west
+		&& map_s->east && map_s->floor->element
+		&& map_s->ceiling->element)
 	{
-		check_elements(map_array);
-		print_rgb_values(map_array->floor); // DB
-		print_rgb_values(map_array->ceiling); // DB
-		save_map(map, map_array, 0);
-		check_map_chars(map_array);
-		print_map(map_array); // DB
+		check_elements(map_s);
+		print_rgb_values(map_s->floor); // DB
+		print_rgb_values(map_s->ceiling); // DB
+		save_map(map_file, map_s, 0);
+		check_map_chars(map_s);
+		print_map(map_s); // DB
 	}
 	else
-		exit_map_error(map_array, "Missing elements", -1);
-	/* if (map_array->height < 3)
+		exit_map_error(map_s, "Missing elements", -1);
+	/* if (map_s->height < 3)
 		exit_map_error(buffer, "The map must have at least 3 lines", -1);
-	map_array->width = read_for_check_borders(buffer, map,
-			map_array->height, map_chars); */
+	map_s->width = read_for_check_borders(buffer, map,
+			map_s->height, map_chars); */
 }
 
-void	check_arg_extension(char *map)
+void	check_arg_extension(char *map_file)
 {
 	int	map_len;
 	int	map_name_len;
 
-	map_len = ft_strlen(map);
+	map_len = ft_strlen(map_file);
 	map_name_len = map_len - 4;
-	if (!(ft_strncmp(map + map_name_len, ".cub", 4) == 0 && map_len > 4
-			&& map[map_len - 5] != '/'))
+	if (!(ft_strncmp(map_file + map_name_len, ".cub", 4) == 0 && map_len > 4
+			&& map_file[map_len - 5] != '/'))
 	{
 		ft_dprintf(STDERR_FILENO, "Error\n> Wrong file extension\n");
 		exit (EXIT_FAILURE);
