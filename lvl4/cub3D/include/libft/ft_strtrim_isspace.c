@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:07:01 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/29 23:17:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:40:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 char	*ft_strtrim_isspace(char const *s1)
 {
 	char	*result;
-	int		start;
-	int		end;
+	size_t	start;
+	size_t	end;
 	int		i;
 
 	if (!s1)
@@ -28,7 +28,7 @@ char	*ft_strtrim_isspace(char const *s1)
 	while (s1[start] && ft_isspace((unsigned char)s1[start]))
 		start++;
 	end = ft_strlen(s1) - 1;
-	while (end >= start && ft_isspace((unsigned char)s1[start]))
+	while (end >= start && ft_isspace((unsigned char)s1[end]))
 		end--;
 	result = (char *)malloc((end - start + 2) * sizeof(char));
 	if (!result)
@@ -40,12 +40,17 @@ char	*ft_strtrim_isspace(char const *s1)
 	return (result);
 }
 
-/*int	main(void)
+/* int	main(void)
 {
-	char const 	*s1 = "12Hola12Hola12";
-	char 		*result = ft_strtrim(s1);
+	char const 	*s1 = "    HOLA MUNDO    ";
+	printf("Franse original: %s\n", s1);
+	printf("Longitud: %li\n", ft_strlen(s1));
+
+	char 		*result = ft_strtrim_isspace(s1);
 
 	printf("Franse resultante: %s\n", result);
+	printf("Longitud: %li\n", ft_strlen(result));
+
 	free (result);
 	return (0);
-}*/
+} */
