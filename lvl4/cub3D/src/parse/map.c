@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 20:44:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 23:12:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	check_map_size(t_map *map_s)
 {
 	if (map_s->map_max_width > 256)
 		exit_map_error(map_s, "Map wider than 256 not allowed", -1);
+	else if (map_s->map_max_width < 3)
+		exit_map_error(map_s, "The map size is wrong", -1);
 	if (map_s->map_height > 256)
 		exit_map_error(map_s, "Map higher than 256 not allowed", -1);
+	else if (map_s->map_height < 3)
+		exit_map_error(map_s, "The map size is wrong", -1);
 }
 
 void	count_chars(t_map *map_s, char character)
