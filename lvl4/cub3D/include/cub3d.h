@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 16:04:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:08:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ typedef struct s_map_chars
 //Array
 typedef struct s_map
 {
-	int				width;
-	int				height;
 	int				player_x;
 	int				player_y;
 	char			player_dir;
@@ -82,6 +80,7 @@ typedef struct s_map
 	unsigned int	moves;
 	int				file_lines;
 	int				map_height;
+	int				map_max_width;
 	char			**map;
 	t_map_chars		*chars;
 }	t_map;
