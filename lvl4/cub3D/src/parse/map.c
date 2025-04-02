@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 23:12:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/03 00:05:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,28 @@ void	check_map_size(t_map *map_s)
 		exit_map_error(map_s, "The map size is wrong", -1);
 }
 
-void	count_chars(t_map *map_s, char character)
+static void	chars_and_borders(t_map *map_s, char charac, int i)
 {
-	if (character == '1' || character == '0' || character == 'N'
-		|| character == 'S' || character == 'W' || character == 'E')
+	char *trimed;
+
+	if (charac == '1' || charac == '0' || charac == 'N'
+		|| charac == 'S' || charac == 'W' || charac == 'E')
 		map_s->total_map_chars++;
+	if ((i == 0 || i == map_s->map_height - 1) && (charac != '1' && charac != ' ' && charac != '\n'))
+	{ // DB
+		printf("'%c' its not allowed char\n", charac); // DB
+		exit_map_error(map_s, "Invalid top or bottom border", -1);
+	} // DB
+	trimed = ft_strtrim_isspace(map_s->map[i]);
+	// printf("first: %c\n", trimed[0]); // DB
+	// printf("last: %c\n", trimed[ft_strlen(trimed) - 1]); // DB
+	if ((i > 0 || i < map_s->map_height - 1) && (trimed[0] != '1' || trimed[ft_strlen(trimed) - 1] != '1'))
+	{ // DB
+		printf("'%c' its not allowed char\n", trimed[ft_strlen(trimed) - 1]); // DB
+		free (trimed);
+		exit_map_error(map_s, "Invalid left or right border", -1);
+	} // DB
+	free (trimed);
 }
 
 void	check_map_chars(t_map *map_s, int i, int j)
@@ -52,7 +69,7 @@ void	check_map_chars(t_map *map_s, int i, int j)
 				printf("\nForbiden char '%c' detected\n", map_s->map[i][j]); // DB
 				exit_map_error(map_s, "Error map characters", -1);
 			} // DB
-			count_chars(map_s, map_s->map[i][j]);
+			chars_and_borders(map_s, map_s->map[i][j], i);
 			j++;
 		}
 		i++;
