@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/03 00:05:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/04 00:43:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,31 @@ static void	chars_and_borders(t_map *map_s, char charac, int i)
 	free (trimed);
 }
 
+void	detect_first_corner(t_map *map_s)
+{
+	int	j;
+
+	j = 0;
+	while (map_s->map[0][j])
+	{
+		if (map_s->map[0][j] == '1')
+		{
+			map_s->corner_y = 0;
+			map_s->corner_x = j;
+			printf("First corner located at ( %i , %i )\n",
+				map_s->corner_x, map_s->corner_y); // DB
+			break ;
+		}
+		j++;
+	}
+}
+
 void	check_map_chars(t_map *map_s, int i, int j)
 {
 	int	count;
 
 	count = 0;
+	detect_first_corner(map_s);
 	while (map_s->map[i])
 	{
 		j = 0;
