@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:14:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/04 00:43:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 00:02:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,31 +98,31 @@ void	check_map_chars(t_map *map_s, int i, int j)
 		exit_map_error(map_s, "Error number of players", -1);
 }
 
-void	save_map(char *map_file, t_map *m_a, int i)
+void	save_map(char *map_file, t_map *map_s, int i)
 {
 	int	fd;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-		exit_map_error(m_a, "Open error", fd);
-	m_a->chars->buffer = get_next_line(fd, false);
-	m_a->map = malloc((m_a->map_height + 1) * sizeof(char *));
-	while (m_a->chars->buffer != NULL)
+		exit_map_error(map_s, "Open error", fd);
+	map_s->chars->buffer = get_next_line(fd, false);
+	map_s->map = malloc((map_s->map_height + 1) * sizeof(char *));
+	while (map_s->chars->buffer != NULL)
 	{
-		m_a->chars->buffer_trimed = ft_strtrim_isspace(m_a->chars->buffer);
-		if (m_a->chars->buffer[0] != '\n'
-			&& ft_strlen(m_a->chars->buffer_trimed) > 0
-			&& m_a->chars->buffer_trimed[0] == '1')
+		map_s->chars->buffer_trimed = ft_strtrim_isspace(map_s->chars->buffer);
+		if (map_s->chars->buffer[0] != '\n'
+			&& ft_strlen(map_s->chars->buffer_trimed) > 0
+			&& map_s->chars->buffer_trimed[0] == '1')
 		{
-			printf("Se va a guardar en map_s->map[%i]: %s", i, m_a->chars->buffer); // DB
-			m_a->map[i++] = ft_strdup(m_a->chars->buffer);
+			printf("Se va a guardar en map_s->map[%i]: %s", i, map_s->chars->buffer); // DB
+			map_s->map[i++] = ft_strdup(map_s->chars->buffer);
 		}
-		free(m_a->chars->buffer);
-		m_a->chars->buffer = NULL;
-		free(m_a->chars->buffer_trimed);
-		m_a->chars->buffer_trimed = NULL;
-		m_a->chars->buffer = get_next_line(fd, false);
+		free(map_s->chars->buffer);
+		map_s->chars->buffer = NULL;
+		free(map_s->chars->buffer_trimed);
+		map_s->chars->buffer_trimed = NULL;
+		map_s->chars->buffer = get_next_line(fd, false);
 	}
 	printf("\n"); // DB
-	m_a->map[i] = NULL;
+	map_s->map[i] = NULL;
 }
