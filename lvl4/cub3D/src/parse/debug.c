@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 16:01:26 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 00:30:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	print_elements(t_map *map_s)
 	print_element(map_s->ceiling->element);
 }
 
-void	print_map(t_map *map_s)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
 	printf("\n-- MAP SAVED --\n");
-	while (map_s->map[i])
+	while (map[i])
 	{
-		printf("%s", map_s->map[i]);
+		printf("%s", map[i]);
 		i++;
 	}
 	printf("\n");

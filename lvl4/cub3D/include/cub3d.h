@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/04 00:38:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 00:31:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	free_double_pointer(char **pointer);
 void	print_rgb_values(t_rgb *element);
 void	print_element(char **element);
 void	print_elements(t_map *map_s);
-void	print_map(t_map *map_s);
+void	print_map(char **map);
 
 //////////////////////////////////////////////////////
 //					DETECT_ELEMENTS.C				//
@@ -183,76 +183,13 @@ void	check_map_size(t_map *map_s);
 void	check_map_chars(t_map *map_s, int i, int j);
 void	save_map(char *map, t_map *m_a, int i);
 
-/****************************************/
-/*				parse.c					*/
-/****************************************/
-//void	exit_map_error(char *buffer, char *message, int fd);
-//int		count_buffer_len(char *buffer, int fd);
-//void	read_map_lines(char *buffer, char *map, t_map_array *map_array);
-//void	read_map_lines(char *map, t_map_array *map_array);
-//void	read_map(char *map, t_map_array *map_array);
-//void	check_arg_extension(char *map);
+// ╔═.✵.═════════════════════════════════════════════╗
+// 					FLOOD_FILL FOLDER
+// ╚═════════════════════════════════════════════.✵.═╝
 
-/****************************************/
-/*		check_map_characters.c			*/
-/****************************************/
-/* void	check_nbr_chars(char *buffer, t_map_chars *map_chars, int fd);
-void	count_nbr_chars(char *buffer, t_map_chars *map_chars);
-void	check_borders(char *buffer, int total_lines, int map_line, int fd);
-int		read_for_check_borders(char *buffer, char *map, int map_lines,
-			t_map_chars *map_chars);
-void	check_map_characters(char *buffer, char *allowed, int fd); */
-
-/****************************************/
-/*				array.c					*/
-/****************************************/
-/* void	free_array(t_map_array *s_map_array);
-void	display_array(t_map_array *map_array);
-void	initialize_array(char *buffer, t_map_array *map_array, int map_lines);
-void	create_array(t_map_array *map_array);
-void	read_to_create_array(char *map, t_map_array *map_array);
- */
-/****************************************/
-/*			copy_of_array.c				*/
-/****************************************/
-/* void	create_copy_map_chars(t_map_chars *map_chars, t_map_chars *copy_chars);
-void	initialize_copy_array(t_map_array *map_array, t_map_array *copy_array);
-void	create_array_copy(t_map_array *map_array, t_map_array *copy_array); */
-
-/****************************************/
-/*			flood_fill.c				*/
-/****************************************/
-/* void	detect_player_and_exit(char *buffer, t_map_array *map_array,
-			int map_lines);
-void	verify_flood_fill_result(t_map_chars *copy_chars,
-			t_map_array *map_array);
-void	flood_fill(t_map_chars *copy_chars, t_map_array *copy_array,
-			int x, int y); */
-
-/****************************************/
-/*				game.c					*/
-/****************************************/
-/* void	clean_up(t_data *data);
-void	free_mlx_resources(t_data *data);
-void	verify_map_size(t_map_array *map_array, t_data *data);
-void	initialize_game(t_map_chars	*map_chars, t_map_array	*map_array); */
-
-/****************************************/
-/*				sprites.c				*/
-/****************************************/
-/* void	*new_file_img(char *path, t_data *data);
-void	get_images_and_paths(t_data *data);
-void	put_images(t_data *data, t_map_array *map_array); */
-
-/****************************************/
-/*				hooks.c					*/
-/****************************************/
-/* int		on_destroy(void *param);
-int		on_keypress(int keysym, t_data *data); */
-
-/****************************************/
-/*			movements.c					*/
-/****************************************/
-/* void	move_player(t_data *data, int dir); */
+//////////////////////////////////////////////////////
+//					FLOOD_FILL.C					//
+//////////////////////////////////////////////////////
+void	init_flood_fill(t_map *map_s);
 
 #endif
