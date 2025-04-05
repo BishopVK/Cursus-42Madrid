@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/05 00:29:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 02:59:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	set_map_width(t_map *map_s)
 {
-	if (ft_strlen(map_s->chars->buffer_trimed) > map_s->map_max_width)
-		map_s->map_max_width = ft_strlen(map_s->chars->buffer_trimed);
+	if (ft_strlen(map_s->chars->buffer) > map_s->map_max_width)
+		map_s->map_max_width = ft_strlen(map_s->chars->buffer);
 }
 
 static void	read_lines(t_map *map_s, int fd, int *last_map_line)
