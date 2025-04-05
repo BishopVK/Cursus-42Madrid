@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 13:35:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/01 17:16:11 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/05 00:35:52 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,25 +25,27 @@ define print_green
 	@echo $(COLOR_GREEN)$1$(COLOR_RESET)
 endef
 
-NAME		=	cub3D
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3
+NAME			=	cub3D
+CC				=	gcc
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
-SRC_DIR		=	src
-PARSE_DIR	=	src/parse
+SRC_DIR			=	src
+PARSE_DIR		=	src/parse
+FLOOD_FILL_DIR	=	src/flood_fill
 
-SRC			=	$(SRC_DIR)/cub3d.c \
-				$(PARSE_DIR)/parse.c \
-				$(PARSE_DIR)/clean.c \
-				$(PARSE_DIR)/debug.c \
-				$(PARSE_DIR)/detect_elements.c \
-				$(PARSE_DIR)/check_elements.c \
-				$(PARSE_DIR)/map.c
+SRC				=	$(SRC_DIR)/cub3d.c \
+					$(PARSE_DIR)/parse.c \
+					$(PARSE_DIR)/clean.c \
+					$(PARSE_DIR)/debug.c \
+					$(PARSE_DIR)/detect_elements.c \
+					$(PARSE_DIR)/check_elements.c \
+					$(PARSE_DIR)/map.c \
+					$(FLOOD_FILL_DIR)/flood_fill.c
 
-OBJ			=	$(SRC:.c=.o)
+OBJ				=	$(SRC:.c=.o)
 
-LIBFT_DIR	=	include/libft
-LIBFT		=	$(LIBFT_DIR)/libft.a
+LIBFT_DIR		=	include/libft
+LIBFT			=	$(LIBFT_DIR)/libft.a
 
 MINILIBX_DIR	=	include/minilibx-linux
 MINILIBX		=	$(MINILIBX_DIR)/libmlx_Linux.a

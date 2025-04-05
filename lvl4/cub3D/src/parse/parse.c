@@ -6,36 +6,11 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:05:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/02 20:44:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 00:29:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-/* int	count_buffer_len(char *buffer, int fd)
-{
-	static size_t	buffer_len;
-
-	if (buffer_len == 0)
-	{
-		if (buffer[ft_strlen(buffer) - 1] != '\n')
-			exit_map_error(buffer, "Wrong map size", fd);
-		buffer_len = (ft_strlen(buffer) - 1);
-		if (buffer_len < 3)
-			exit_map_error(buffer, "The map must have at least 3 columns", fd);
-	}
-	else if (buffer[ft_strlen(buffer) - 1] == '\n')
-	{
-		if ((ft_strlen(buffer) - 1) != buffer_len)
-			exit_map_error(buffer, "Wrong map size", fd);
-	}
-	else
-	{
-		if (ft_strlen(buffer) != buffer_len)
-			exit_map_error(buffer, "Wrong map size", fd);
-	}
-	return (buffer_len);
-} */
 
 static void	set_map_width(t_map *map_s)
 {
@@ -109,7 +84,7 @@ void	read_map(char *map_file, t_map *map_s)
 		printf("Map have %i lines\n", map_s->map_height); // DB
 		printf("Longest line have %li chars\n", map_s->map_max_width); // DB
 		printf("The Map have %i chars\n", map_s->total_map_chars); // DB
-		print_map(map_s); // DB
+		print_map(map_s->map); // DB
 	}
 	else
 		exit_map_error(map_s, "Missing elements", -1);

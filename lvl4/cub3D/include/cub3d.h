@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:33:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/05 00:31:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/05 01:24:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct s_map
 	char			**map;
 	t_map_chars		*chars;
 	int				total_map_chars;
+	int				total_1;
+	int				total_0;
 }	t_map;
 
 //XPM
