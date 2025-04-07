@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:12 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/07 02:52:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/08 01:05:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	main()
 		std::cout << std::endl << YELLOW << "-- EXAMPLE 1 --" << RESET << std::endl;
 		try
 		{
-			Bureaucrat	Hermes("Hermes Conrad", 34);
-			std::cout << Hermes << std::endl;
-			Hermes.incrementGrade();
-			std::cout << Hermes << std::endl;
-			Hermes.decrementGrade();
-			std::cout << Hermes << std::endl;
-			Hermes.setGrade(1);
-			std::cout << Hermes << std::endl;
-			Hermes.incrementGrade();
-			std::cout << Hermes << std::endl;
+			Bureaucrat	hermes("Hermes Conrad", 34);
+			std::cout << hermes << std::endl;
+			hermes.incrementGrade();
+			std::cout << hermes << std::endl;
+			hermes.decrementGrade();
+			std::cout << hermes << std::endl;
+			hermes.setGrade(1);
+			std::cout << hermes << std::endl;
+			hermes.incrementGrade();
+			std::cout << hermes << std::endl;
 		}
 		catch(const std::exception& e)
 		{
@@ -39,14 +39,14 @@ int	main()
 		std::cout << std::endl << YELLOW << "-- EXAMPLE 2 --" << RESET << std::endl;
 		try
 		{
-			Bureaucrat	Hermes("Hermes Conrad", 34);
-			std::cout << Hermes << std::endl;
-			Hermes.setGrade(149);
-			std::cout << Hermes << std::endl;
-			Hermes.decrementGrade();
-			std::cout << Hermes << std::endl;
-			Hermes.decrementGrade();
-			std::cout << Hermes << std::endl;
+			Bureaucrat	hermes("Hermes Conrad", 34);
+			std::cout << hermes << std::endl;
+			hermes.setGrade(149);
+			std::cout << hermes << std::endl;
+			hermes.decrementGrade();
+			std::cout << hermes << std::endl;
+			hermes.decrementGrade();
+			std::cout << hermes << std::endl;
 		}
 		catch(const std::exception& e)
 		{
