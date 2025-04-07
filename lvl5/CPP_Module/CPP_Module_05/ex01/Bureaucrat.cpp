@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:38:34 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/07 02:45:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:57:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,25 @@ std::ostream	&operator<<(std::ostream &os, const Bureaucrat &object)
 {
 	os << object._name << ", bureaucrat grade " << object._grade;
 	return (os); // Return of the outflow (std::cout)
+}
+
+void	Bureaucrat::signForm(Form &f)
+{
+	try
+	{
+		if (f.getSigned())
+		{
+			std::cout << f.getName() << " it's already signed" << std::endl;
+			return ;
+		}
+		f.beSigned(*this);
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->_name << " couldn’t sign " << f.getName() << " because " <<  e.what() << std::endl;
+	}
+	
 }
 
 // EXTRA

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:50 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/07 02:35:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:43:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <string>
 # include <stdexcept>
+# include "Form.hpp"
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -27,6 +28,8 @@
 #define BOLD_OFF "\033[22m"
 #define ITALIC "\033[3m"
 #define RESET "\033[0m"
+
+class Form;
 
 class Bureaucrat
 {
@@ -46,6 +49,8 @@ class Bureaucrat
 		int			getGrade() const;
 		void		incrementGrade();
 		void		decrementGrade();
+
+		void		signForm(Form &f);
 
 		// EXTRA
 		void		setName(const std::string &newName);
