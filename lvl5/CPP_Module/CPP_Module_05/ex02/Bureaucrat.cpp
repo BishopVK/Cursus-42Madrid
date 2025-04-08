@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:38:34 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 00:57:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:45:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ std::ostream	&operator<<(std::ostream &os, const Bureaucrat &object)
 	return (os); // Return of the outflow (std::cout)
 }
 
-void	Bureaucrat::signForm(Form &f)
+void	Bureaucrat::signForm(AForm &f)
 {
 	try
 	{

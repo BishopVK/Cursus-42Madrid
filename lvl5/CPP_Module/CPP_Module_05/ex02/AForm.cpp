@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 00:58:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:44:32 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form() : _name("Default"), _signed(false), _gradeSign(150), _gradeExecute(150)
+AForm::AForm() : _name("Default"), _signed(false), _gradeSign(150), _gradeExecute(150)
 {
-	std::cout << GREEN << "Form Empty constructor called" << RESET << std::endl;
+	std::cout << GREEN << "AForm Empty constructor called" << RESET << std::endl;
 }
 
-Form::Form(const std::string &name, const int gradeSign, const int gradeExecute) : _name(name), _signed(false), _gradeSign(gradeSign), _gradeExecute(gradeExecute)
+AForm::AForm(const std::string &name, const int gradeSign, const int gradeExecute) : _name(name), _signed(false), _gradeSign(gradeSign), _gradeExecute(gradeExecute)
 {
-	std::cout << GREEN << "Form Default constructor called" << RESET << std::endl;
+	std::cout << GREEN << "AForm Default constructor called" << RESET << std::endl;
 }
 
-Form::Form(const Form &other) : _name(other._name), _signed(other._signed), _gradeSign(other._gradeSign), _gradeExecute(other._gradeExecute)
+AForm::AForm(const AForm &other) : _name(other._name), _signed(other._signed), _gradeSign(other._gradeSign), _gradeExecute(other._gradeExecute)
 {
-	std::cout << GREEN << "Form Copy constructor called" << RESET << std::endl;
+	std::cout << GREEN << "AForm Copy constructor called" << RESET << std::endl;
 }
 
-Form &Form::operator=(const Form &other)
+AForm &AForm::operator=(const AForm &other)
 {
-	std::cout << GREEN << "Form Copy Assignment constructor called" << RESET << std::endl;
+	std::cout << GREEN << "AForm Copy Assignment constructor called" << RESET << std::endl;
 	if (this != &other)
 		this->_signed = other._signed;
 	return (*this);
 }
 
-Form::~Form()
+AForm::~AForm()
 {
-	std::cout << RED << "Form destructor called" << RESET << std::endl;
+	std::cout << RED << "AForm destructor called" << RESET << std::endl;
 }
 
-std::ostream	&operator<<(std::ostream &os, const Form &object)
+std::ostream	&operator<<(std::ostream &os, const AForm &object)
 {
 	os << object._name << " form:" <<std::endl
 	<< "\t- Grade to sign: " << object._gradeSign << std::endl
@@ -52,27 +52,27 @@ std::ostream	&operator<<(std::ostream &os, const Form &object)
 	return (os); // Return of the outflow (std::cout)
 }
 
-const std::string	Form::getName() const
+const std::string	AForm::getName() const
 {
 	return (this->_name);
 }
 
-bool	Form::getSigned() const
+bool	AForm::getSigned() const
 {
 	return (this->_signed);
 }
 
-const int	Form::getGradeSing() const
+const int	AForm::getGradeSing() const
 {
 	return (this->_gradeSign);
 }
 
-const int	Form::getGradeExecute() const
+const int	AForm::getGradeExecute() const
 {
 	return (this->_gradeExecute);
 }
 
-void	Form::beSigned(const Bureaucrat &b)
+void	AForm::beSigned(const Bureaucrat &b)
 {
 	if (this->_gradeSign < b.getGrade())
 		throw GradeTooLowException();
