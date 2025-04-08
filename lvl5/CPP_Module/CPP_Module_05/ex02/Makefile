@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/09 00:54:53 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/09 01:30:50 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,11 @@ $(NAME):	$(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	@if ls *_shrubbery> /dev/null 2>&1; then \
+		rm *_shrubbery; \
+	else \
+		echo "There are no *_shrubbery files to delete."; \
+	fi
 
 fclean:	clean
 	rm -f $(NAME)

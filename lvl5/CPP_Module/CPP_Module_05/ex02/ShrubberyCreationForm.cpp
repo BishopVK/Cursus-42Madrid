@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 00:59:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/09 01:24:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const
 	try
 	{
 		file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-		file.open(fileName.c_str());
+		file.open(fileName.c_str(), std::ios::in | std::ios::out | std::ios::trunc);
 		file
 		<< "        __ _.--..--._ _" << std::endl
 		<< "     .-' _/   _/\\_   \\_'-." << std::endl
@@ -63,7 +63,7 @@ void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const
 		<< "       . - '             ' -." << std::endl
 		<< "      /                      \\" << std::endl
 		<< "~~~~~~~  ~~~~~ ~~~~~  ~~~ ~~~  ~~~~~" << std::endl
-		<< "  ~~~   ~~~~~   ~ ~~   ~~ ~  ~ ~ ~~" << std::endl;
+		<< "  ~~~   ~~~~~   ~ ~~   ~~ ~  ~ ~ ~~" << std::endl << std::endl;
 	}
 	catch(std::ofstream::failure& e)
 	{
