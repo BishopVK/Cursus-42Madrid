@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 22:44:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/09 01:13:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,26 @@ class AForm
 	public:
 		AForm();
 		AForm(const std::string &name, const int gradeSign, const int gradeExecute);
-		AForm(const Form &other);
+		AForm(const AForm &other);
 		AForm &operator=(const AForm &other);
 		friend std::ostream	&operator<<(std::ostream &os, const AForm &object); // Friend function so you can have access to private members
-		~AForm();
+		virtual ~AForm(); // Abstract class must hace virtual destructor
+
+		void			execute(Bureaucrat const & executor) const;
+		virtual void	executeAction(Bureaucrat const & executor) const = 0; // Pure abstract to override
 
 		const std::string	getName() const;
 		bool				getSigned() const;
 		const int			getGradeSing() const;
 		const int			getGradeExecute() const;
+		void				setSigned(bool value);
 
 		void	beSigned(const Bureaucrat &b);
 	
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				virtual const char* what() const noexcept override
 				{
 					return ("Exception: Grade too high");
 				}
@@ -52,9 +56,18 @@ class AForm
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				virtual const char* what() const noexcept override
 				{
 					return ("Exception: Grade too low");
+				}
+		};
+
+		class FormNotSignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const noexcept override
+				{
+					return ("Exception: Form is not signed");
 				}
 		};
 };

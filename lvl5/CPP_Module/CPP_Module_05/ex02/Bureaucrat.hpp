@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:50 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 22:45:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/09 00:46:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class Bureaucrat
 		void		decrementGrade();
 
 		void		signForm(AForm &f);
+		void		executeForm(AForm const & form);
 
 		// EXTRA
 		void		setName(const std::string &newName);

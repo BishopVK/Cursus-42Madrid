@@ -6,18 +6,19 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/08 00:50:05 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/09 00:54:53 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Form
+NAME	=	ex02
 
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	main.cpp \
 			Bureaucrat.cpp \
-			Form.cpp
+			AForm.cpp \
+			ShrubberyCreationForm.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 

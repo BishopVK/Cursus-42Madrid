@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 22:44:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/09 01:17:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,19 @@ void	AForm::beSigned(const Bureaucrat &b)
 		throw GradeTooLowException();
 
 	this->_signed = true;
+}
+
+void	AForm::setSigned(bool value)
+{
+	this->_signed = value;
+}
+
+void AForm::execute(Bureaucrat const & executor) const
+{
+	if (this->_signed == false)
+		throw FormNotSignedException();
+	if (executor.getGrade() > this->_gradeExecute)
+		throw GradeTooLowException();
+
+	executeAction(executor);
 }
