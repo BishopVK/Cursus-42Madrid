@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:51:20 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 17:03:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:24:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ Account::~Account(void)
 
 void	Account::_displayTimestamp( void )
 {
-	time_t	t  = time(nullptr);
+	time_t	t  = time(NULL);
 	struct tm *tmp = localtime(&t);
 
 	std::cout << "[" << (1900 + tmp->tm_year) // Year

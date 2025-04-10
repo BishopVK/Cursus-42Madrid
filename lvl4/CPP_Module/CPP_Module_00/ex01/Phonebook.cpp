@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:59 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/28 23:26:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:24:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	ContainsSpecialChars(std::string &input)
 
 int	Phonebook::ContactFields(std::string tag, int current)
 {
-	std::string Contact::*fieldPtr = nullptr;
+	std::string Contact::*fieldPtr = NULL;
 	std::string lavel = TagToLavel(tag);
 
 	if (tag == "firstName")
@@ -149,7 +149,7 @@ void	Phonebook::add(void)
 
 void	Phonebook::PrintOneContactField(std::string field, int i)
 {
-	std::string	Contact::*fieldPtr = nullptr;
+	std::string	Contact::*fieldPtr = NULL;
 	int			spaceChars = 0;
 
 	if (field == "firstName")
