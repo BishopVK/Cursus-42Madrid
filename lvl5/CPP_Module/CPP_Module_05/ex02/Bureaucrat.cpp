@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:38:34 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 00:14:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:52:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Bureaucrat::Bureaucrat() : _name("no_name"), _grade(150)
 {
-	std::cout << GREEN << "Bureaucrat Empty constructor called" << RESET << std::endl;
+	std::cout << GREEN << "Bureaucrat " << this->_name << " Empty constructor called" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : _name(name), _grade(grade)
@@ -23,7 +23,7 @@ Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : _name(name),
 		throw GradeTooHighException();
 	if (grade > 150)
 		throw GradeTooLowException();
-	std::cout << GREEN << "Bureaucrat Default constructor called" << RESET << std::endl;
+	std::cout << GREEN << "Bureaucrat " << this->_name << " Default constructor called" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other)
@@ -45,7 +45,7 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << RED << "Bureaucrat Destructor called" << RESET << std::endl;
+	std::cout << RED << "Bureaucrat " << this->_name << " Destructor called" << RESET << std::endl;
 }
 
 std::string	Bureaucrat::getName() const

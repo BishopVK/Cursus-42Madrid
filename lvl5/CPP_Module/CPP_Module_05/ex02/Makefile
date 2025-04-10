@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/10 23:58:31 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/11 00:48:18 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC		=	main.cpp \
 			Bureaucrat.cpp \
 			AForm.cpp \
 			ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 
