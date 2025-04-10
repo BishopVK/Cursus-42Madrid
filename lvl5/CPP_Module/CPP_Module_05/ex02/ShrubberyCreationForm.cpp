@@ -6,23 +6,23 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 01:24:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:38:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), _target("none")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", _signRequired, _execRequired), _target("none")
 {
 	std::cout << GREEN << "ShrubberyCreationForm Empty constructor called" << RESET << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", _signRequired, _execRequired), _target(target)
 {
 	std::cout << GREEN << "ShrubberyCreationForm Default constructor called" << RESET << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other.getName(), 145, 137), _target(other._target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other.getName(), _signRequired, _execRequired), _target(other._target)
 {
 	std::cout << GREEN << "ShrubberyCreationForm Copy constructor called" << RESET << std::endl;
 	this->setSigned(other.getSigned());
@@ -49,7 +49,7 @@ void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const
 	try
 	{
 		file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-		file.open(fileName.c_str(), std::ios::in | std::ios::out | std::ios::trunc);
+		file.open(fileName.c_str(), std::ios::in | std::ios::out | std::ios::app);
 		file
 		<< "        __ _.--..--._ _" << std::endl
 		<< "     .-' _/   _/\\_   \\_'-." << std::endl
@@ -63,7 +63,9 @@ void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const
 		<< "       . - '             ' -." << std::endl
 		<< "      /                      \\" << std::endl
 		<< "~~~~~~~  ~~~~~ ~~~~~  ~~~ ~~~  ~~~~~" << std::endl
-		<< "  ~~~   ~~~~~   ~ ~~   ~~ ~  ~ ~ ~~" << std::endl << std::endl;
+		<< "  ~~~   ~~~~~   ~ ~~   ~~ ~  ~ ~ ~~" << std::endl
+		<< "PLANTED BY: " << executor.getName() << std::endl << std::endl;
+		std::cout << "Correctly planted " << fileName << " Shrubbery 🌲" << std::endl;
 	}
 	catch(std::ofstream::failure& e)
 	{

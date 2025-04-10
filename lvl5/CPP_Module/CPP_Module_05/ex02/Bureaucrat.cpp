@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:38:34 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 01:13:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:14:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void		Bureaucrat::executeForm(AForm const & form)
 {
 	try
 	{
-		form.execute(*this);
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
+		form.execute(*this);
 	}
 	catch(const std::exception& e)
 	{
