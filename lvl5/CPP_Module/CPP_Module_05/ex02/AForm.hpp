@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 01:13:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:02:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class AForm
 		friend std::ostream	&operator<<(std::ostream &os, const AForm &object); // Friend function so you can have access to private members
 		virtual ~AForm(); // Abstract class must hace virtual destructor
 
+		virtual void	print(std::ostream &os) const;
 		void			execute(Bureaucrat const & executor) const;
 		virtual void	executeAction(Bureaucrat const & executor) const = 0; // Pure abstract to override
 

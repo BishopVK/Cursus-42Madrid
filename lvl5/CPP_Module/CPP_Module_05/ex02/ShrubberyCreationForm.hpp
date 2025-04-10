@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:09:55 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/10 23:32:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:15:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
 
-		void executeAction(Bureaucrat const & executor) const override;
+		void executeAction(Bureaucrat const & executor) const;
+		void print(std::ostream &os) const;
 };
 
 #endif

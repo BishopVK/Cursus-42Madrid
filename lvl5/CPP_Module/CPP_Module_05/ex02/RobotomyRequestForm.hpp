@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:09:55 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 00:05:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:15:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 		~RobotomyRequestForm();
 
-		void executeAction(Bureaucrat const & executor) const override;
+		void executeAction(Bureaucrat const & executor) const;
+		void print(std::ostream &os) const;
 };
 
 #endif

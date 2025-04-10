@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 00:38:52 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:16:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,10 @@ void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const
 		std::cerr << RED << "Could not create or wite to file " << fileName << RESET << std::endl;
 		std::cerr << RED << "Reason: " << e.what() << RESET << std::endl;
 	}
+}
+
+void ShrubberyCreationForm::print(std::ostream &os) const
+{
+	AForm::print(os);
+	os << "\t- Target: " << this->_target << std::endl;
 }

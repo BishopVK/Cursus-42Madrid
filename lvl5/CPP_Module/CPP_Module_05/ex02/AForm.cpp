@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 01:17:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:04:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,19 @@ AForm::~AForm()
 
 std::ostream	&operator<<(std::ostream &os, const AForm &object)
 {
-	os << object._name << " form:" <<std::endl
-	<< "\t- Grade to sign: " << object._gradeSign << std::endl
-	<< "\t- Grade to Execute: " << object._gradeExecute << std::endl;
-	if (object._signed == true)
+	object.print(os);
+	return (os); // Return of the outflow (std::cout)
+}
+
+void	AForm::print(std::ostream &os) const
+{
+	os << this->_name << " form:" <<std::endl
+	<< "\t- Grade to sign: " << this->_gradeSign << std::endl
+	<< "\t- Grade to Execute: " << this->_gradeExecute << std::endl;
+	if (this->_signed == true)
 		os << "\t- Signed" << std::endl;
 	else
 		os << "\t- Not signed" << std::endl;
-	return (os); // Return of the outflow (std::cout)
 }
 
 const std::string	AForm::getName() const

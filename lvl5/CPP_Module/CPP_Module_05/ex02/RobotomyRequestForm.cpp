@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 00:05:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:15:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ void RobotomyRequestForm::executeAction(Bureaucrat const & executor) const
 		std::cout << "🪛 Bzzzzzzz bzzzzzzzzzzzz... " << this->_target << " has been robotomized!" << std::endl;
 	else
 		std::cout << this->_target << " robotomy failed 🤞🏼" << std::endl;
+}
+
+void RobotomyRequestForm::print(std::ostream &os) const
+{
+	AForm::print(os);
+	os << "\t- Target: " << this->_target << std::endl;
 }
