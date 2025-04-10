@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:02:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:18:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class AForm
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const noexcept override
+				virtual const char* what() const noexcept
 				{
 					return ("Exception: Grade too high");
 				}
@@ -57,7 +57,7 @@ class AForm
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const noexcept override
+				virtual const char* what() const noexcept
 				{
 					return ("Exception: Grade too low");
 				}
@@ -66,7 +66,7 @@ class AForm
 		class FormNotSignedException : public std::exception
 		{
 			public:
-				virtual const char* what() const noexcept override
+				virtual const char* what() const noexcept
 				{
 					return ("Exception: Form is not signed");
 				}

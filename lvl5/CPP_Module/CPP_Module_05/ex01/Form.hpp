@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 00:44:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:18:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class Form
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				const char* what() const noexcept
 				{
 					return ("Exception: Grade too high");
 				}
@@ -52,7 +52,7 @@ class Form
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				const char* what() const noexcept
 				{
 					return ("Exception: Grade too low");
 				}

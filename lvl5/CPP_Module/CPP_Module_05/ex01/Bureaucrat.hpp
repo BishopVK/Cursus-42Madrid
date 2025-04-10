@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:50 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/08 00:43:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:17:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				const char* what() const noexcept
 				{
 					return ("Exception: Bureaucrat of too high a level");
 				}
@@ -68,7 +68,7 @@ class Bureaucrat
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override
+				const char* what() const noexcept
 				{
 					return ("Exception: Bureaucrat of too low a level");
 				}
