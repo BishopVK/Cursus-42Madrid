@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:12 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/09 01:16:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/10 22:26:23 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	main()
 			ShrubberyCreationForm form("prueba");
 			std::cout << form << std::endl;
 			hermes.executeForm(form);
+			std::cout << form << std::endl;
 			hermes.signForm(form);
 			std::cout << form << std::endl;
 			hermes.executeForm(form);
+			std::cout << form << std::endl;
 			hermes.signForm(form);
 			std::cout << form << std::endl;
 			hermes.executeForm(form);
