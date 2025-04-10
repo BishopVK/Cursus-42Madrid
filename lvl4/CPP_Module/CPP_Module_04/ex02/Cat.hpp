@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:25:49 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 23:36:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:30:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Cat : public Animal
 		Cat &operator=(const Cat &other);
 		~Cat();
 
-		void	makeSound() const override;
+		void	makeSound() const;
 
 		void	setIdeas(const std::string &idea);
 		void	printIdeas();

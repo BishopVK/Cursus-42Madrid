@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:48:26 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 15:07:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:31:02 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Cure : public AMateria
 		Cure &operator=(const Cure &other);
 		~Cure();
 		
-		AMateria* clone() const override;
+		AMateria* clone() const;
 		void use(ICharacter& target);
 
 		bool is_dynamic() const;

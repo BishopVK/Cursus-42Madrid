@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:52:04 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 02:23:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:33:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			if (other._materiaLearned[i] != nullptr)
+			if (other._materiaLearned[i] != NULL)
 			{
 				if (other._materiaLearned[i]->getType() == "ice")
 					this->_materiaLearned[i] = new Ice();
@@ -40,7 +40,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 					this->_materiaLearned[i] = new Ice(other._materiaLearned[i]->getType());
 			}
 			else
-				this->_materiaLearned[i] = nullptr;
+				this->_materiaLearned[i] = NULL;
 		}
 	}
 	return (*this);
@@ -53,22 +53,22 @@ MateriaSource::~MateriaSource()
 	// Delete Materias Learned
 	for (int i = 0; i < 4; i++)
 	{
-		if (_materiaLearned[i] != nullptr)
+		if (_materiaLearned[i] != NULL)
 		{
 			delete _materiaLearned[i];
-			_materiaLearned[i] = nullptr;
+			_materiaLearned[i] = NULL;
 		}
 	}
 }
 
 void	MateriaSource::learnMateria(AMateria *m)
 {
-	if (m == nullptr)
+	if (m == NULL)
 		return ;
 	int i = 0;
 	for (i; i < 4; i++)
 	{
-		if (_materiaLearned[i] == nullptr)
+		if (_materiaLearned[i] == NULL)
 		{
 			_materiaLearned[i] = m->clone();
 			std::cout << "Learned " << m->getType() << " materia recipe" << std::endl;
@@ -84,7 +84,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	int	i = 0;
 	for (i; i < 4; i++)
 	{
-		if (this->_materiaLearned[i] != nullptr)
+		if (this->_materiaLearned[i] != NULL)
 		{
 			if (this->_materiaLearned[i]->getType() == type)
 			{
@@ -95,7 +95,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	}
 	if (i == 4)
 		std::cout << "The materia you want to create has not been learned" << std::endl;
-	return nullptr;
+	return NULL;
 }
 
 void	MateriaSource::printMateriaLearned()
@@ -103,7 +103,7 @@ void	MateriaSource::printMateriaLearned()
 	std::cout << YELLOW << std::endl << "-- MATERIAS LEARNED --" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_materiaLearned[i] != nullptr)
+		if (this->_materiaLearned[i] != NULL)
 			std::cout << "Materia " << i << ": " << this->_materiaLearned[i]->getType() << std::endl;
 		else
 			std::cout << "Materia " << i << ": it's empty" << std::endl;

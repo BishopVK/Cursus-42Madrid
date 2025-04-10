@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 02:14:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/11 01:33:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ Character &Character::operator=(const Character &other)
 		//Delete old materias
 		for (int i = 0; i < 4; i++)
 		{
-			if (this->inventory[i] != nullptr && this->inventory[i]->is_dynamic())
+			if (this->inventory[i] != NULL && this->inventory[i]->is_dynamic())
 			{
 				delete this->inventory[i];
-				this->inventory[i] = nullptr;
+				this->inventory[i] = NULL;
 			}
 		}
 
 		// Copy inventory and _slot_occupied
 		for (int i = 0; i < 4; i++)
 		{
-			if (other.inventory[i] != nullptr)
+			if (other.inventory[i] != NULL)
 			{
 				if (other.inventory[i]->getType() == "ice")
 					this->inventory[i] = new Ice();
@@ -55,7 +55,7 @@ Character &Character::operator=(const Character &other)
 			}
 			else
 			{
-				this->inventory[i] = nullptr;
+				this->inventory[i] = NULL;
 				this->_slot_occupied[i] = false;
 			}
 		}
@@ -63,7 +63,7 @@ Character &Character::operator=(const Character &other)
 		// Copy floor list
 		for (std::list<AMateria*>::const_iterator it = other.floor.begin(); it != other.floor.end(); ++it)
 		{
-			if (*it) // Not nullptr
+			if (*it) // Not NULL
 			{
 				if ((*it)->getType() == "ice")
 					this->floor.push_back(new Ice());
@@ -84,20 +84,20 @@ Character::~Character()
 	// Delete Materias from inventory
 	for (int i = 0; i < 4; i++)
 	{
-		if (inventory[i] != nullptr && inventory[i]->is_dynamic())
+		if (inventory[i] != NULL && inventory[i]->is_dynamic())
 		{
 			delete inventory[i];
-			inventory[i] = nullptr;
+			inventory[i] = NULL;
 		}
 	}
 
 	// Delete Materias from floor list
 	for (std::list<AMateria*>::iterator it = floor.begin(); it != floor.end(); ++it)
 	{
-		if (*it && (*it)->is_dynamic()) // It's not nullptr and it's created dynamicly
+		if (*it && (*it)->is_dynamic()) // It's not NULL and it's created dynamicly
 		{
 			delete *it;
-			*it = nullptr;
+			*it = NULL;
 		}
 	}
 }
@@ -111,11 +111,11 @@ void Character::equip(AMateria* m)
 {
 	int i = 0;
 
-	if (m == nullptr)
+	if (m == NULL)
 		return ;
 	for (i; i < 4; i++)
 	{
-		if (inventory[i] == nullptr)
+		if (inventory[i] == NULL)
 		{
 			std::cout << "Equiped " << m->getType() << " in inventory slot " << i << std::endl;
 			inventory[i] = m->clone();
@@ -144,7 +144,7 @@ void Character::unequip(int idx)
 		std::cout << CYAN << "Unequiped " << inventory[idx]->getType() << " from inventory" << RESET << std::endl;
 		floor.push_back(inventory[idx]); // Move to floor list
 		//delete inventory[idx];
-		inventory[idx] = nullptr;
+		inventory[idx] = NULL;
 		_slot_occupied[idx] = false;
 	}
 }
@@ -186,7 +186,7 @@ void	Character::printStats()
 		int i = 0;
 		for (std::list<AMateria*>::const_iterator it = this->floor.begin(); it != this->floor.end(); ++it)
 		{
-			if (*it) // Not nullptr
+			if (*it) // Not NULL
 				std::cout << "Materia " << i << " in the floor: " << (*it)->getType() << std::endl;
 			i++;
 		}
