@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:31:12 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/12 00:34:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:42:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main()
 				delete presidential;
 			if (random)
 				delete random;
-			return 1;
+			return 0;
 		}
 
 		std::cout << std::endl << CYAN << "-- DELETING POINTERS --" << RESET << std::endl;
