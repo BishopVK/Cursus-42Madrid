@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/11 00:48:18 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/12 00:40:20 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex02
+NAME	=	Intern
 
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
@@ -20,7 +20,8 @@ SRC		=	main.cpp \
 			AForm.cpp \
 			ShrubberyCreationForm.cpp \
 			RobotomyRequestForm.cpp \
-			PresidentialPardonForm.cpp
+			PresidentialPardonForm.cpp \
+			Intern.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 
