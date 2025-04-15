@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:35:22 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/15 13:12:01 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/15 23:24:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ class Contact
 	std::string	getPhoneNumber() const;
 	std::string	getDarkestSecret() const;
 
-	std::string	setFirstName(const std::string &value);
-	std::string	setLasttName(const std::string &value);
-	std::string	setNicktName(const std::string &value);
-	std::string	setPhoneNumber(const std::string &value);
-	std::string	setDarkestSecret(const std::string &value);
+	void	setFirstName(const std::string &value);
+	void	setLasttName(const std::string &value);
+	void	setNicktName(const std::string &value);
+	void	setPhoneNumber(const std::string &value);
+	void	setDarkestSecret(const std::string &value);
 };
 
 #endif

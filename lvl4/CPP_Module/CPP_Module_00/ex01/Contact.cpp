@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:35:26 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/15 13:13:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/15 23:24:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,27 @@ std::string	Contact::getDarkestSecret() const
 	return (this->_darkestSecret);
 }
 
-std::string	Contact::setFirstName(const std::string &value)
+void	Contact::setFirstName(const std::string &value)
 {
 	this->_firstName = value;
 }
 
-std::string	Contact::setLasttName(const std::string &value)
+void	Contact::setLasttName(const std::string &value)
 {
 	this->_lastName = value;
 }
 
-std::string	Contact::setNicktName(const std::string &value)
+void	Contact::setNicktName(const std::string &value)
 {
 	this->_nickName = value;
 }
 
-std::string	Contact::setPhoneNumber(const std::string &value)
+void	Contact::setPhoneNumber(const std::string &value)
 {
 	this->_phoneNumber = value;
 }
 
-std::string	Contact::setDarkestSecret(const std::string &value)
+void	Contact::setDarkestSecret(const std::string &value)
 {
 	this->_darkestSecret = value;
 }

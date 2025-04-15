@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:59 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:24:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/15 23:28:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,29 +71,14 @@ bool	ContainsSpecialChars(std::string &input)
 
 int	Phonebook::ContactFields(std::string tag, int current)
 {
-	std::string Contact::*fieldPtr = NULL;
+	std::string	field;
 	std::string lavel = TagToLavel(tag);
 
-	if (tag == "firstName")
-		fieldPtr = &Contact::firstName;
-	else if (tag == "lastName")
-		fieldPtr = &Contact::lastName;
-	else if (tag == "nickName")
-		fieldPtr = &Contact::nickName;
-	else if (tag == "phoneNumber")
-		fieldPtr = &Contact::phoneNumber;
-	else if (tag == "darkestSecret")
-		fieldPtr = &Contact::darkestSecret;
-	else
-	{
-		std::cout << YELLOW << tag << ": Invalid tag provided." << RESET << std::endl;
-		return (-1);
-	}
 	while (true)
 	{
 		std::cout << "\t- "  << BOLD CYAN << lavel << RESET;
-		std::getline(std::cin, contact[current].*fieldPtr);
-		if ((contact[current].*fieldPtr).empty())
+		std::getline(std::cin, field);
+		if (field.empty())
 		{
 			if (std::cin.eof())
 			{
@@ -103,15 +88,30 @@ int	Phonebook::ContactFields(std::string tag, int current)
 			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED <<"Cannot be empty. Please try again." << RESET << std::endl;
 			continue ;
 		}
-		if (tag == "phoneNumber" && ContainsNotNumbers(contact[current].*fieldPtr))
+		if (tag == "phoneNumber" && ContainsNotNumbers(field))
 		{
 			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED << "Not a valid number. Please insert only digits" << RESET << std::endl;
 			continue ;
 		}
-		if (ContainsSpecialChars(contact[current].*fieldPtr))
+		if (ContainsSpecialChars(field))
 		{
 			std::cout << " > " << BOLD << "Error: " << BOLD_OFF RED << "Not special characters allowed. Please use only standard ASCII characters." << RESET << std::endl;
 			continue ;
+		}
+		if (tag == "firstName")
+			contact[current].setFirstName(field);
+		else if (tag == "lastName")
+			contact[current].setLasttName(field);
+		else if (tag == "nickName")
+			contact[current].setNicktName(field);
+		else if (tag == "phoneNumber")
+			contact[current].setPhoneNumber(field);
+		else if (tag == "darkestSecret")
+			contact[current].setDarkestSecret(field);
+		else
+		{
+			std::cout << YELLOW << tag << ": Invalid tag provided." << RESET << std::endl;
+			return (-1);
 		}
 		break;
 	}
@@ -150,32 +150,33 @@ void	Phonebook::add(void)
 void	Phonebook::PrintOneContactField(std::string field, int i)
 {
 	std::string	Contact::*fieldPtr = NULL;
+	std::string	fieldName;
 	int			spaceChars = 0;
 
 	if (field == "firstName")
-		fieldPtr = &Contact::firstName;
+		fieldName = contact[i].getFirstName();
 	else if (field == "lastName")
-		fieldPtr = &Contact::lastName;
+		fieldName = contact[i].getLasttName();
 	else if (field == "nickName")
-		fieldPtr = &Contact::nickName;
+		fieldName = contact[i].getNicktName();
 	else
 	{
 		std::cout << YELLOW << field << ": Invalid field provided." << RESET << std::endl;
 		return ;
 	}
-	if ((contact[i].*fieldPtr).length() > 10)
+	if (fieldName.length() > 10)
 	{
 		std::cout << "|";
 		for (int j = 0; j < 9; j++)
-			std::cout << (contact[i].*fieldPtr)[j];
+			std::cout << fieldName[j];
 		std::cout << ".";
 	}
 	else
 	{
 		std::cout << "|";
-		for (size_t j = 0; j < 10 - (contact[i].*fieldPtr).length(); j++)
+		for (size_t j = 0; j < 10 - fieldName.length(); j++)
 			std::cout << " ";
-		std::cout << contact[i].*fieldPtr;
+		std::cout << fieldName;
 	}
 }
 
@@ -197,11 +198,11 @@ void	Phonebook::PrintContatDetails(int contactIndex)
 	int	index = contactIndex - 1;
 
 	std::cout << std::endl << GREEN << "PRINTING DETAILS OF CONTACT:" << RESET << std::endl;
-	std::cout << "\t- " << BOLD CYAN << "First name: " << RESET << contact[index].firstName << RESET << std::endl;
-	std::cout << "\t- " << BOLD CYAN << "Last name: " << RESET << contact[index].lastName << RESET << std::endl;
-	std::cout << "\t- " << BOLD CYAN << "Nick name: " << RESET << contact[index].nickName << RESET << std::endl;
-	std::cout << "\t- " << BOLD CYAN << "Phone Number: " << RESET << contact[index].phoneNumber << RESET << std::endl;
-	std::cout << "\t- " << BOLD CYAN << "Darkest Secret: " << RESET << contact[index].darkestSecret << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "First name: " << RESET << contact[index].getFirstName() << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Last name: " << RESET << contact[index].getLasttName() << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Nick name: " << RESET << contact[index].getNicktName() << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Phone Number: " << RESET << contact[index].getPhoneNumber() << RESET << std::endl;
+	std::cout << "\t- " << BOLD CYAN << "Darkest Secret: " << RESET << contact[index].getDarkestSecret() << RESET << std::endl;
 
 	std::cout << std::endl << YELLOW << "Press Enter to return to Main Menu." << RESET << std::endl;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // DB: Ignore up to the new line
