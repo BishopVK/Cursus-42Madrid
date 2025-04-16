@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 08:58:19 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/16 22:38:18 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/16 23:14:20 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Conversion_of_scalar_types
+NAME	=	convert
 
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
@@ -20,10 +20,10 @@ SRC		=	main.cpp \
 
 OBJ		=	$(SRC:.cpp=.o)
 
-all		=	$(NAME)
-
 $(NAME):	$(OBJ)
 	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
+
+all:	$(NAME)
 
 clean:
 	rm -f $(OBJ)
@@ -35,11 +35,5 @@ re: fclean all
 
 rc: re
 	rm -f $(OBJ)
-
-r:	rc
-	./$(NAME)
-
-valgrind:	rc
-	--leak-check=full ./$(NAME)
 
 .PHONY: all clean fclean re rc r valgrind
