@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 09:06:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/16 23:01:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/17 01:06:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <climits>
+#include <cfloat>
+#include <cerrno>
+#include <cmath>
 
 #define RED	"\033[31m"
 #define GREEN "\033[32m"
