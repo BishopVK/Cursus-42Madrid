@@ -6,12 +6,20 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 08:57:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/14 08:58:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/16 22:48:52 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main()
+#include "ScalarConverter.hpp"
+
+int	main(int argc, char *argv[])
 {
-	/* code */
+	if (argc != 2)
+	{
+		std::cout << RED << "Error: Incorrect use." << std::endl
+		<< RESET << "Correct usage: " << argv[0] << " parameter"<< std::endl;
+		return -1;
+	}
+	std::cout << GREEN << "CORRECT! 😉" << std::endl;
 	return 0;
 }
