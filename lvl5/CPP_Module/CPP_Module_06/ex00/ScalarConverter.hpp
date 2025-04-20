@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 09:06:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/17 01:06:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:23:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,21 @@
 #include <cfloat>
 #include <cerrno>
 #include <cmath>
+#include <sstream> // stringstream
+#include <iomanip>  // std::fixed and std::setprecision
 
 #define RED	"\033[31m"
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
+
+enum type
+{
+	CHAR,
+	INT,
+	DOUBLE,
+	FLOAT,
+	ERROR
+};
 
 class ScalarConverter
 {
@@ -35,6 +46,11 @@ class ScalarConverter
 
 	public:
 		static void	convert(const std::string &input);
+
+		class InvalidInputException : public std::exception
+		{
+			virtual const char *what() const throw();
+		};
 };
 
 #endif
