@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:18:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:41:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ class Form
 
 		const std::string	getName() const;
 		bool				getSigned() const;
-		const int			getGradeSing() const;
-		const int			getGradeExecute() const;
+		int					getGradeSing() const;
+		int					getGradeExecute() const;
 
 		void	beSigned(const Bureaucrat &b);
 	
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const noexcept
+				const char* what() const throw()
 				{
 					return ("Exception: Grade too high");
 				}
@@ -52,7 +52,7 @@ class Form
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const noexcept
+				const char* what() const throw()
 				{
 					return ("Exception: Grade too low");
 				}
