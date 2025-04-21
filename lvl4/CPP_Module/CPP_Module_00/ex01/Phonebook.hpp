@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:36:44 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/28 23:26:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:21:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <climits>
 #include <limits>
+#include <sstream>
 #include "Contact.hpp"
 
 #define BOLD "\033[1m"

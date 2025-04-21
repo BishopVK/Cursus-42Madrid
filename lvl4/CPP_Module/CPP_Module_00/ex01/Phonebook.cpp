@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:59 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/15 23:28:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:22:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ std::string	Phonebook::TagToLavel(std::string tag)
 {
 	std::string	result;
 
-	for (int i = 0; i < tag.length(); i++)
+	for (size_t i = 0; i < tag.length(); i++)
 	{
 		if (i == 0)
 			result.push_back(std::toupper(tag[i]));
@@ -149,9 +149,7 @@ void	Phonebook::add(void)
 
 void	Phonebook::PrintOneContactField(std::string field, int i)
 {
-	std::string	Contact::*fieldPtr = NULL;
 	std::string	fieldName;
-	int			spaceChars = 0;
 
 	if (field == "firstName")
 		fieldName = contact[i].getFirstName();
@@ -182,15 +180,17 @@ void	Phonebook::PrintOneContactField(std::string field, int i)
 
 bool	IsNumber(const std::string& str)
 {
-	for (char c : str)
+	// Verify its not empty
+	if (str.empty())
+		return false;
+
+	for (std::string::size_type i = 0; i < str.size(); ++i) // DB: Validate if there are a char that its not a digit
 	{
-		// DB: Validate if there are a char that its not a digit
-		if (!std::isdigit(c))
+		if (!std::isdigit(str[i]))
 			return false;
 	}
 
-	// Verify its not empty
-	return (!str.empty());
+	return true;
 }
 
 void	Phonebook::PrintContatDetails(int contactIndex)
@@ -248,7 +248,17 @@ void	Phonebook::PrintAllContacts(void)
 		{
 			try
 			{
-				long long temp = std::stoll(contactSelected);
+				 std::stringstream ss(contactSelected);
+				long long temp;
+				ss >> temp;
+
+				if (ss.fail())
+				{
+					std::cout << " > " << BOLD << "Error:" << BOLD_OFF RED << " Invalid number format." << RESET << std::endl;
+					continue ;
+				}
+				
+				//long long temp = std::stoll(contactSelected);
 
 				if (temp >= INT_MIN && temp <= INT_MAX)
 				{

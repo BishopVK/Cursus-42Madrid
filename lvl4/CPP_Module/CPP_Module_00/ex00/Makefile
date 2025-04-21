@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 10:38:00 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/21 11:19:26 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 12:17:49 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SOURCES	=	megaphone.cpp
 OBJECTS	=	$(SOURCES:.cpp=.o)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 

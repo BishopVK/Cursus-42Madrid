@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:15:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/28 23:27:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:24:29 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,13 @@
 std::string	TrimWords(std::string str)
 {
 	std::string	strTrimed;
-	int			i = 0;
 
-	for (i; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (!std::isspace(str[i]))
 			break;
 	}
-	for (i; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (!std::isspace(str[i]))
 			strTrimed.push_back(str[i]);
@@ -72,7 +71,7 @@ std::string	TrimWords(std::string str)
 
 std::string ToUpper(std::string str)
 {
-	for (int i = 0; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 		str[i] = std::toupper(str[i]);
 	return (str);
 }

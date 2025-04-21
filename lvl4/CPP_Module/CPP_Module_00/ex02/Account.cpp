@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:51:20 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:24:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:28:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include <ctime>
 
 #define BLUE "\033[34m"
@@ -26,7 +27,10 @@ int	Account::_totalNbWithdrawals = 0;
 
 std::string	blue(int nbr)
 {
-	std::string blueText = BLUE + std::to_string(nbr) + RESET;
+	std::stringstream ss;
+	ss << nbr;
+	
+	std::string blueText = BLUE + ss.str() + RESET;
 	return (blueText);
 }
 
