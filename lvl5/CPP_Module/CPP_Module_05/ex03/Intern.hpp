@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:53:38 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 23:45:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:50:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Intern
 		class notFormExist : public std::exception
 		{
 			public:
-				virtual const char* what() const noexcept
+				virtual const char* what() const throw()
 				{
 					return ("Exception: Form doesn't exist");
 				}

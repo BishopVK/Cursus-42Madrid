@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/21 23:21:12 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 23:50:16 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC		=	main.cpp \
 OBJ		= $(SRC:.cpp=.o)
 
 %.o: %.cpp
-	$(CPP) $(FLAGS) -c $< -o $@
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 all:	$(NAME)
 

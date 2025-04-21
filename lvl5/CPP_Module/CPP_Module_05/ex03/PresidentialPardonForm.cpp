@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:15:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:51:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 void PresidentialPardonForm::executeAction(Bureaucrat const & executor) const
 {
 	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox 🫱🏽‍🫲🏼" << std::endl;
+	(void)executor;
 }
 
 void PresidentialPardonForm::print(std::ostream &os) const

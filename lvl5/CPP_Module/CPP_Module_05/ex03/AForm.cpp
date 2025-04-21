@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:04:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:49:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ bool	AForm::getSigned() const
 	return (this->_signed);
 }
 
-const int	AForm::getGradeSing() const
+int	AForm::getGradeSing() const
 {
 	return (this->_gradeSign);
 }
 
-const int	AForm::getGradeExecute() const
+int	AForm::getGradeExecute() const
 {
 	return (this->_gradeExecute);
 }
