@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:18:15 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/17 01:42:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:29:06 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ ScalarConverter::~ScalarConverter()
 	std::cout << RED << "Destructor called" << RESET << std::endl;
 }
 
+const char *ScalarConverter::InvalidInputException::what() const throw()
+{
+	return "Invalid input";
+}
+
 bool	itsChar(const std::string &input)
 {
 	return (input.length() == 1 && !isdigit(input[0]));
@@ -51,9 +56,6 @@ bool	itsInt(const std::string &input)
 		if (!isdigit(input[i]))
 			return false;
 	}
-	/* long	val = std::strtol(input.c_str(), NULL, 10);
-	if (val < INT_MIN || val > INT_MAX)
-		return false; */
 	return true;
 }
 
@@ -77,13 +79,6 @@ bool	itsDouble(const std::string &input)
 	}
 	if (counter != 1)
 			return false;
-
-	/* double	val = std::strtod(input.c_str(), NULL);
-	if (std::isnan(val) || std::isinf(val))
-		return false;
-	if (val > DBL_MAX || val < -DBL_MAX)
-		return false; */
-
 	return true;
 }
 
@@ -107,44 +102,36 @@ bool	itsFloat(const std::string &input)
 		if (counter > 1)
 			return false;
 	}
-
-	/* double	val = std::strtof(input.c_str(), NULL);
-	if (std::isnan(val) || std::isinf(val))
-		return false;
-	if (val > FLT_MAX || val < -FLT_MAX)
-		return false; */
-
 	return true;
 }
 
-std::string	parse(const std::string &input)
+type	parse(const std::string &input)
 {
-	std::cout << GREEN << "Valor recibido: " << input << std::endl; // DB
 	if (itsChar(input))
-		return ("char");
+		return (CHAR);
 	if (itsInt(input))
-		return ("int");
+		return (INT);
 	if (itsDouble(input))
-		return ("double");
+		return (DOUBLE);
 	if (itsFloat(input))
-		return ("float");
-	return ("error");
+		return (FLOAT);
+	return (ERROR);
 }
 
-bool	limits(const std::string &input, const std::string &type)
+bool	limits(const std::string &input, type _type)
 {
-	if (type == "int")
+	if (_type == INT)
 	{
 		long	val = std::strtol(input.c_str(), NULL, 10);
 		if (val < INT_MIN || val > INT_MAX)
 			return false;
 	}
-	else if (type == "double" || type == "float")
+	else if (_type == DOUBLE || _type == FLOAT)
 	{
 		double	val = std::strtod(input.c_str(), NULL);
 		if (std::isnan(val) || std::isinf(val))
 			return false;
-		if (type == "float")
+		if (_type == FLOAT)
 			if (val > DBL_MAX || val < -DBL_MAX)
 				return false;
 		else
@@ -154,25 +141,164 @@ bool	limits(const std::string &input, const std::string &type)
 	return true;
 }
 
+void	printChar(const std::string &input)
+{
+	char	c = input[0];
+
+	if (!isprint(c))
+		throw ScalarConverter::InvalidInputException();
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+}
+
+void	printInt(const std::string &input)
+{
+	int	nbr;
+	std::stringstream ss(input);
+
+	ss >> nbr;
+
+	if (nbr >= ' ' && nbr <= '~' && std::isprint(static_cast<unsigned char>(nbr)))
+		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "int: " << nbr << std::endl;
+	std::cout << "float: " << nbr << ".0f" << std::endl;
+	std::cout << "double: " << nbr << ".0" << std::endl;
+}
+
+bool	isPseudoLiteral(const std::string &input, type _type)
+{
+	std::string	specials[6] = {"nan", "-inf", "+inf", "nanf", "-inff", "+inff"};
+
+	if (_type == DOUBLE)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			if (input == specials[i])
+			{
+				std::cout << "char: impossible" << std::endl;
+				std::cout << "int: impossible" << std::endl;
+				std::cout << "float: " << input << "f" << std::endl;
+				std::cout << "double: " << input << std::endl;
+				return true;
+			}
+		}
+	}
+	else if (_type == FLOAT)
+	{
+		for (int i = 3; i < 6; i++)
+		{
+			if (input == specials[i])
+			{
+				std::cout << "char: impossible" << std::endl;
+				std::cout << "int: impossible" << std::endl;
+				std::cout << "float: " << input << std::endl;
+				std::cout << "double: " << input.substr(0, input.length() - 1) << std::endl;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void	printDouble(const std::string &input, type _type)
+{
+	double	nbr;
+	std::stringstream ss(input);
+
+	ss >> nbr;
+
+	if (!isPseudoLiteral(input, _type))
+	{
+		if (nbr >= ' ' && nbr <= '~' && std::isprint(static_cast<unsigned char>(nbr)))
+			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+		std::cout << "float: " << nbr << "f" << std::endl;
+		std::cout << "double: " << nbr << std::endl;
+	}
+}
+
+void	printFloat(const std::string &input, type _type)
+{
+	float	nbr;
+	std::stringstream ss(input);
+
+	ss >> nbr;
+
+	if (!isPseudoLiteral(input, _type))
+	{
+		if (nbr >= ' ' && nbr <= '~' && std::isprint(static_cast<unsigned char>(nbr)))
+			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+		std::cout << "float: " << nbr << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+	}
+}
+
+void	converter(const std::string &input, type _type)
+{
+	std::string	specials[6] = {"nan", "-inf", "+inf", "nanf", "-inff", "+inff"};
+	for (int i = 0; i < 6; i++)
+	{
+		if (input == specials[i])
+		{
+			if (i < 3)
+			{
+				printDouble(input, _type);
+				return ;
+			}
+			else
+			{
+				printFloat(input, _type);
+				return ;
+			}
+		}
+	}
+	switch (_type)
+	{
+		case CHAR:
+			printChar(input);
+			break;
+		case INT:
+			printInt(input);
+			break;
+		case DOUBLE:
+			printDouble(input, _type);
+			break;
+		case FLOAT:
+			printFloat(input, _type);
+			break;
+		default:
+			throw ScalarConverter::InvalidInputException();
+			break;
+	}
+}
 
 void	ScalarConverter::convert(const std::string &input)
 {
-	std::string type;
+	type _type;
+	std::string	specials[6] = {"nan", "-inf", "+inf", "nanf", "-inff", "+inff"};
+
 	if (input.empty())
-	{
-		std::cerr << RED << "Error: Empty string" << RESET << std::endl;
-		return ;
-	}
-	type = parse(input);
-	if (type == "error")
-	{
-		std::cerr << RED << "Error: The type conversion is impossible" << RESET << std::endl;
-		return ;
-	}
-	if (!limits(input, type))
+		throw ScalarConverter::InvalidInputException();
+	_type = parse(input);
+	for (int i = 0; i < 6; i++)
+		if (input == specials[i])
+		{
+			converter(input, _type);
+			return;
+		}
+	if (!limits(input, _type))
 	{
 		std::cerr << RED << "Error: Overflow detected" << RESET << std::endl;
 		return ;
 	}
-	std::cout << "RETURN = " << type << std::endl; // DB
+	converter(input, _type);
 }
