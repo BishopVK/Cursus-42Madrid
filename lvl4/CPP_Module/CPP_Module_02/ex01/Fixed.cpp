@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:58:47 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/20 01:54:37 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:42:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 Fixed::Fixed() : _value(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << GREEN << "Default constructor called" << RESET << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << GREEN << "Copy constructor called" << RESET << std::endl;
 	*this = other; // Calls assignmet operator
 }
 
 Fixed::Fixed(const int number)
 {
-	std::cout << "Int constructor called" << std::endl;
+	std::cout << GREEN << "Int constructor called" << RESET << std::endl;
 	this->_value = number << this->_fractionalBits; // Shifts bits 8 positions to the left (= *256)
 }
 
 Fixed::Fixed(const float number)
 {
-	std::cout << "Float constructor called" << std::endl;
+	std::cout << GREEN << "Float constructor called" << RESET << std::endl;
 	this->_value = static_cast<int>(roundf(number * (1 << this->_fractionalBits))); // Shifts bits 8 positions to the left (= *256) and round the result decimals
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << GREEN << "Copy assignment operator called" << RESET << std::endl;
 	if (this != &other)
 		this->_value = other.getRawBits(); // Copy the value if it is not itself
 	return *this;
@@ -45,7 +45,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << RED << "Destructor called" << RESET << std::endl;
 }
 
 int Fixed::getRawBits(void) const
@@ -72,6 +72,6 @@ int		Fixed::toInt( void ) const
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
 {
-	out << fixed.toFloat(); // Convertimos el fixed-point a float antes de imprimirlo
+	out << fixed.toFloat(); // We convert the fixed-point to float before printing it
 	return out;
 }
