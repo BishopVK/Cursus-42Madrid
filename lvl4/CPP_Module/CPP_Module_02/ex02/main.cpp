@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:44:38 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/21 03:26:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:55:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ int main(void)
 		std::cout << c << std::endl;
 	else
 		std::cout << d << std::endl;
+
+	Fixed f = 8;
+	Fixed g = 16;
+	const Fixed h = 24;
+	const Fixed i = 32;
+	std::cout << Fixed::min(f, g) << std::endl;
+	std::cout << Fixed::max(f, g) << std::endl;
+	std::cout << Fixed::min(h, i) << std::endl;
+	std::cout << Fixed::max(h, i) << std::endl;
 
 	return 0;
 }
