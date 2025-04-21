@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/07 00:30:43 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 23:14:29 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC		=	main.cpp \
 			Bureaucrat.cpp
 
 OBJ		= $(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
