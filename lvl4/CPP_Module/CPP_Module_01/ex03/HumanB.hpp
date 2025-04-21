@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:10:38 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/16 22:30:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:38:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class HumanB
 {
 	private:
 		std::string	_name;
-		Weapon		*_weapon = NULL;
+		Weapon		*_weapon;
 	public:
 		HumanB(const std::string &name);
 		~HumanB();

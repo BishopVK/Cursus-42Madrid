@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 19:47:16 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 08:23:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:36:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ Zombie*	zombieHorde( int N, std::string name )
 	Zombie *zombie = new Zombie[N];
 
 	for (int i = 0; i < N; i++)
-		zombie[i].set_name(name + "_" + std::to_string(i + 1));
+	{
+		std::stringstream ss;
+		ss << i + 1;
+		zombie[i].set_name(name + "_" + ss.str());
+	}
 
 	return (zombie);
 }

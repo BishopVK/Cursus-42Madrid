@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:14:31 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/16 23:02:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:39:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(const std::string &name) : _name(name)
+HumanB::HumanB(const std::string &name) : _name(name), _weapon(NULL)
 {
 	std::cout << GREEN << "Human B '" << this->_name << "' was created." << RESET << std::endl;
 }
