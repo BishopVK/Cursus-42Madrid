@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 09:06:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 00:23:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:19:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 #include <iostream>
 #include <string>
-#include <limits>
-#include <climits>
-#include <cfloat>
-#include <cerrno>
-#include <cmath>
+#include <climits> // INT_MIN, INT_MAX
+#include <cfloat> // FLT_MAX, FLT_MIN, DBL_MAX, DBL_MIN
+#include <cmath> // std::isnan(),  std::isinf()
 #include <sstream> // stringstream
 #include <iomanip>  // std::fixed and std::setprecision
+#include <cstdlib> // strtod, strtol
 
 #define RED	"\033[31m"
 #define GREEN "\033[32m"
