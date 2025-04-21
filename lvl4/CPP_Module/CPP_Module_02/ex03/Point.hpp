@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:40:18 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/21 18:26:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:00:53 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 class Point
 {
 	private:
-		Fixed	_x = 0;
-		Fixed	_y = 0;
+		Fixed	_x;
+		Fixed	_y;
 
 	public:
 		Point();
@@ -43,6 +43,6 @@ class Point
 		Fixed	getY() const;
 	};
 	
-bool	bsp(const Point &a, const Point &b, const Point &c, const Point &target);
+bool	bsp(const Point &a, const Point &b, const Point &c, const Point &point);
 
 #endif

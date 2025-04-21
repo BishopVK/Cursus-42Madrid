@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:51:09 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/21 17:00:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:58:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point()
+Point::Point() : _x(0), _y(0)
 {
 }
 
