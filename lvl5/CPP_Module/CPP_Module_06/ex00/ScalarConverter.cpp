@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:18:15 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 00:29:06 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:15:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ bool	itsChar(const std::string &input)
 
 bool	itsInt(const std::string &input)
 {
-	int	i = 0;
+	size_t	i = 0;
 
 	if (input[0] == '+' || input[0] == '-')
 		i = 1;
-	for (i; i < input.length(); i++)
+	for (size_t j = i; j < input.length(); j++)
 	{
-		if (!isdigit(input[i]))
+		if (!isdigit(input[j]))
 			return false;
 	}
 	return true;
@@ -61,18 +61,18 @@ bool	itsInt(const std::string &input)
 
 bool	itsDouble(const std::string &input)
 {
-	int	i = 0;
-	int	counter = 0;
+	size_t	i = 0;
+	int		counter = 0;
 
 	if (input == "-inf" || input == "+inf" || input == "nan")
 		return true;
 	if (input[0] == '+' || input[0] == '-')
 		i = 1;
-	for (i; i < input.length(); i++)
+	for (size_t j = i; j < input.length(); j++)
 	{
-		if (!isdigit(input[i]) && input[i] != '.')
+		if (!isdigit(input[j]) && input[j] != '.')
 			return false;
-		if (input[i] == '.')
+		if (input[j] == '.')
 			counter++;
 		if (counter > 1)
 			return false;
@@ -84,8 +84,8 @@ bool	itsDouble(const std::string &input)
 
 bool	itsFloat(const std::string &input)
 {
-	int	i = 0;
-	int	counter = 0;
+	size_t	i = 0;
+	int		counter = 0;
 
 	if (input == "-inff" || input == "+inff" || input == "nanf")
 		return true;
@@ -93,11 +93,11 @@ bool	itsFloat(const std::string &input)
 		return (false);
 	if (input[0] == '+' ||input[0] == '-')
 		i = 1;
-	for (i; i < input.length() - 1; i++)
+	for (size_t j = i; j < input.length() - 1; j++)
 	{
-		if (!isdigit(input[i]) && input[i] != '.')
+		if (!isdigit(input[j]) && input[j] != '.')
 			return false;
-		if (input[i] == '.')
+		if (input[j] == '.')
 			counter++;
 		if (counter > 1)
 			return false;
@@ -122,21 +122,25 @@ bool	limits(const std::string &input, type _type)
 {
 	if (_type == INT)
 	{
-		long	val = std::strtol(input.c_str(), NULL, 10);
+		long	val = ::strtol(input.c_str(), NULL, 10);
 		if (val < INT_MIN || val > INT_MAX)
 			return false;
 	}
 	else if (_type == DOUBLE || _type == FLOAT)
 	{
-		double	val = std::strtod(input.c_str(), NULL);
+		double	val = ::strtod(input.c_str(), NULL);
 		if (std::isnan(val) || std::isinf(val))
 			return false;
 		if (_type == FLOAT)
-			if (val > DBL_MAX || val < -DBL_MAX)
-				return false;
-		else
+		{
 			if (val > FLT_MAX || val < -FLT_MAX)
 				return false;
+		}
+		else
+		{
+			if (val > DBL_MAX || val < -DBL_MAX)
+				return false;
+		}
 	}
 	return true;
 }
