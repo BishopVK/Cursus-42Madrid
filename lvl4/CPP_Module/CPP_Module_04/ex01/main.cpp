@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:25:26 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:45:23 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:52:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main()
 
 	{
 		std::cout << std::endl << "-- ARRAY TESTS --" << std::endl;
-		std::cout << std::endl << "-- FILL ARRAY WHIT 50 DOGS AND 50 CATS --" << std::endl;
+		std::cout << std::endl << "-- FILL ARRAY WHIT 50% DOGS AND 50% CATS --" << std::endl;
 		const Animal* array[10];
 		for (int i = 0; i < 10; i++)
 		{

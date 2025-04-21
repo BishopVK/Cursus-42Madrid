@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:45:41 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:26:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:02:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,9 @@ void	Brain::setIdeas(const std::string &idea)
 void	Brain::printIdeas() const
 {
 	for (int i = 0; i < 100; i++)
-		std::cout << "Idea " << std::to_string(i) << ": " << CYAN << this->_ideas[i] << RESET << std::endl;
+	{
+		std::stringstream ss;
+		ss << i;
+		std::cout << "Idea " << ss.str() << ": " << CYAN << this->_ideas[i] << RESET << std::endl;
+	}
 }
