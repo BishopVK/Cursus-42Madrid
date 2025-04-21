@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 08:58:19 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/16 23:14:20 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 23:27:12 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC		=	main.cpp \
 			ScalarConverter.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJ)
 	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
