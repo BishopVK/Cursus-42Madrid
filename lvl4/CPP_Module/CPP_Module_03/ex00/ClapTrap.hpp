@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:18:58 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 01:30:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:11:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ class ClapTrap
 {
 	private:
 		std::string _name;
-		int			_hitPoints = 10;
-		int			_energy = 10;
-		int			_attack = 10;
+		int			_hitPoints;
+		int			_energy;
+		int			_attack;
 
 	public:
 		ClapTrap();

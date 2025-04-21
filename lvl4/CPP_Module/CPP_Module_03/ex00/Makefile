@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/21 21:06:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/22 01:02:27 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 21:08:04 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC		=	main.cpp \
 			ClapTrap.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
