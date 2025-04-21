@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 18:53:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:40:33 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ FragTrap::FragTrap(const std::string &name) : ClapTrap(name)
 	std::cout << GREEN << "FragTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
 	*this = other;
 	std::cout << GREEN << "FragTrap " << this->_name << ": Copy constructor called" << RESET << std::endl;

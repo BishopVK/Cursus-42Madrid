@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 18:51:45 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:39:59 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	*this = other;
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Copy constructor called" << RESET << std::endl;

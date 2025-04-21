@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/21 21:06:22 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/22 18:18:21 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 21:37:59 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRC		=	main.cpp \
 			FragTrap.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
