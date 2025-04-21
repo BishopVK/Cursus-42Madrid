@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 00:25:12 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/11 00:48:18 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 23:20:10 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRC		=	main.cpp \
 			PresidentialPardonForm.cpp
 
 OBJ		= $(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
