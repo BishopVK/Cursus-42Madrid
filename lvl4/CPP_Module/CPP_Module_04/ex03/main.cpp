@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/26 02:29:11 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:09:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int main()
 			me->equip(tmp);
 
 		AMateria* tmp2 = src->createMateria("cure");
-		if (tmp)
+		if (tmp2)
 			me->equip(tmp2);
 		
 		AMateria* clonedCure = cure->clone();

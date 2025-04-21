@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 01:30:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/25 02:16:32 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:06:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
+	std::cout << YELLOW << "Attack " << target.getName() << " with matter" << RESET << std::endl;
 }
 
 bool AMateria::is_dynamic() const

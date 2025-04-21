@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 00:35:13 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/25 23:45:46 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 22:57:05 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRC		=	main.cpp \
 			MateriaSource.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:33:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:06:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 Character::Character(const std::string &name) : _name(name)
 {
 	std::cout << GREEN << "Character Default Constructor called" << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		inventory[i] = NULL;
+		_slot_occupied[i] = false;
+	}
 }
 
 Character::Character(const Character &other)
@@ -109,11 +114,11 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	int i = 0;
+	int	i;
 
 	if (m == NULL)
 		return ;
-	for (i; i < 4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (inventory[i] == NULL)
 		{

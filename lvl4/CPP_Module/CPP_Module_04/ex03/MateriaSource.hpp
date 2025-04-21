@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:33:02 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:33:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:03:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria	*_materiaLearned[4] = {NULL, NULL, NULL, NULL};
+		AMateria	*_materiaLearned[4];
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &other);

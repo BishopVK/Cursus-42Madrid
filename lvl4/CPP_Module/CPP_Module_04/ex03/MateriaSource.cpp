@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:52:04 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:33:56 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:06:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 MateriaSource::MateriaSource()
 {
 	std::cout << GREEN << "MateriaSource Empty Constructor called" << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		_materiaLearned[i] = NULL;
+	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other)
@@ -65,8 +69,8 @@ void	MateriaSource::learnMateria(AMateria *m)
 {
 	if (m == NULL)
 		return ;
-	int i = 0;
-	for (i; i < 4; i++)
+	int	i;
+	for (i = 0; i < 4; i++)
 	{
 		if (_materiaLearned[i] == NULL)
 		{
@@ -81,8 +85,8 @@ void	MateriaSource::learnMateria(AMateria *m)
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	int	i = 0;
-	for (i; i < 4; i++)
+	int	i;
+	for (i = 0; i < 4; i++)
 	{
 		if (this->_materiaLearned[i] != NULL)
 		{
