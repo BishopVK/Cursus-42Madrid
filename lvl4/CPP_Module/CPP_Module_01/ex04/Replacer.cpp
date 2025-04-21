@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 11:27:59 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/18 14:34:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:42:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	Replacer::replace_string(std::string &line)
 void	Replacer::create_Outfile()
 {
 	std::ifstream	infile_stream;  // fstream command to initiate "infile_stream" as a command.
-	infile_stream.open(this->getFileName()); // this in_stream (fstream) the "filename" to open.
+	infile_stream.open(this->getFileName().c_str()); // this in_stream (fstream) the "filename" to open.
 	if (!infile_stream)
 	{
 		std::cerr << RED << "Could not open file to read." << RESET << std::endl; // if the open file fails.
 		exit (-1);
 	}
 
-	std::ofstream	outfile_stream(this->_output_file_name); 
+	std::ofstream	outfile_stream(this->_output_file_name.c_str());
 	std::string		line; // Buffer the save a read line
 
 	while (std::getline(infile_stream, line))

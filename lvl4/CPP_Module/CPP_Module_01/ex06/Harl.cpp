@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:26:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 02:04:10 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:48:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	Harl::wrong(void)
 void	Harl::complain(const std::string &level)
 {
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int			i = 0;
+	int			i;
 	int			size = sizeof(levels) / sizeof(levels[0]); // Total number of bytes in the array divided by the number of bytes in an array element = number of elements
 
-	for (i; i < size; i++)
+	for (i = 0; i < size; i++)
 	{
 		if (levels[i] == level)
 		{
@@ -72,9 +72,9 @@ void harl_filter(const std::string &level)
 {
 	Harl harl;
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int	i = 0;
+	int	i;
 
-	for (i; i < 4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (levels[i] == level)
 			break ;
@@ -83,10 +83,13 @@ void harl_filter(const std::string &level)
 	{
 		case 0:
 			harl.complain(levels[0]);
+			// fall through
 		case 1:
 			harl.complain(levels[1]);
+			// fall through
 		case 2:
 			harl.complain(levels[2]);
+			// fall through
 		case 3:
 			harl.complain(levels[3]);
 			break ;
