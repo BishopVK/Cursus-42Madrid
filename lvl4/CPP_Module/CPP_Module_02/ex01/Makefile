@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 22:25:26 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/20 00:06:03 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 11:14:25 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC		=	main.cpp \
 			Fixed.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
