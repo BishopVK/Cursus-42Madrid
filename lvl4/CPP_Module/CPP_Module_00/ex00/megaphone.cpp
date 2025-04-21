@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:22:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/01/16 14:12:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:20:02 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	for (int i = 1; i < argc; i++)
 	{
 		std::string arg = argv[i];
-		for (int j = 0; j < arg.length(); j++)
+		for (size_t j = 0; j < arg.length(); j++)
 			arg[j] = std::toupper(arg[j]);
 		std::cout << arg;
 	}
