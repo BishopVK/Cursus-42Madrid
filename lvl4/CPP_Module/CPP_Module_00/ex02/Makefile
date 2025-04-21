@@ -3,22 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 10:38:00 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/26 13:51:41 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 11:19:15 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	Account
 
 CPP		=	c++
-FLAGS	=	-Wall -Wextra -Wno-used -Werror -std=c++98
+FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	tests.cpp \
 			Account.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 

@@ -3,23 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 10:38:00 by danjimen          #+#    #+#              #
-#    Updated: 2025/01/26 13:43:21 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 11:19:21 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	phonebook
 
 CPP		=	c++
-FLAGS	=	-Wall -Wextra -Wno-used -Werror -std=c++98
+FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	main.cpp \
 			Contact.cpp \
 			Phonebook.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 
