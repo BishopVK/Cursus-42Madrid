@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:34:47 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 21:54:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:55:48 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int main(void)
 	// ScavTrap Guard Gate Mode
 	std::cout << std::endl << BOLD << "\t-- GUARD GATE MODE --" << RESET << std::endl;
 	robocop.guardGate();
+	wall_e.guardGate();
 
 	// FragTrap high-five
 	std::cout << std::endl << BOLD << "\t-- HIGH FIVE --" << RESET << std::endl;
 	r2d2.highFivesGuys();
+	wall_e.highFivesGuys();
 
 	// DiamondTrap who am i
 	std::cout << std::endl << BOLD << "\t-- WHO AM I --" << RESET << std::endl;
@@ -99,16 +101,18 @@ int main(void)
 	// ScavTrap Guard Gate Mode
 	std::cout << std::endl << BOLD << "\t-- GUARD GATE MODE WHITHOUT HIT POINTS --" << RESET << std::endl;
 	robocop.setHitPoints(0);
+	wall_e.setHitPoints(0);
 	robocop.guardGate();
+	wall_e.guardGate();
 
 	// FragTrap high-five
 	std::cout << std::endl << BOLD << "\t-- HIGH FIVE WHITHOUT HIT POINTS --" << RESET << std::endl;
 	r2d2.setHitPoints(0);
 	r2d2.highFivesGuys();
+	wall_e.highFivesGuys();
 
 	// DiamondTrap who am i
 	std::cout << std::endl << BOLD << "\t-- WHO AM I WHITHOUT HIT POINTS --" << RESET << std::endl;
-	wall_e.setHitPoints(0);
 	wall_e.whoAmI();
 
 	// Destructors autocall

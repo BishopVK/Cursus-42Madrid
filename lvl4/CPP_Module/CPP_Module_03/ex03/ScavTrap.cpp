@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 21:34:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:50:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	*this = other;
 	std::cout << GREEN << "ScavTrap " << this->_name << ": Copy constructor called" << RESET << std::endl;
@@ -84,8 +84,8 @@ void	ScavTrap::attack(const std::string &target)
 void	ScavTrap::guardGate()
 {
 	if (this->_hitPoints > 0)
-		std::cout << YELLOW << "ScavTrap " << this->_name << " it's now in gate keeper mode! 🛡️" << RESET << std::endl;
+		std::cout << YELLOW << this->_name << " it's now in gate keeper mode! 🛡️" << RESET << std::endl;
 	else
-		std::cout << YELLOW << "ScavTrap " << this->_name << " it's dead and couldn't enter in gate keeper mode! 💀" << RESET << std::endl;
+		std::cout << YELLOW << this->_name << " it's dead and couldn't enter in gate keeper mode! 💀" << RESET << std::endl;
 
 }

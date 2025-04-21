@@ -6,18 +6,18 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:47:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 20:17:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:43:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name("no_name")
+ClapTrap::ClapTrap() : _name("no_name"), _hitPoints(10), _energy(10), _attack(10)
 {
 	std::cout << GREEN << "ClapTrap " << this->_name << ": Empty constructor called" << RESET << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : _name(name)
+ClapTrap::ClapTrap(const std::string &name) : _name(name), _hitPoints(10), _energy(10), _attack(10)
 {
 	std::cout << GREEN << "ClapTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }

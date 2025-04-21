@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 21:51:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:54:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap(), ClapTrap()
+DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
 	this->_name = "no_name";
 	ClapTrap::_name = this->_name + "_clap_name";
@@ -22,7 +22,7 @@ DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap(), ClapTrap()
 	std::cout << GREEN << "DiamondTrap " << this->_name << ": Empty constructor called" << RESET << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name) : ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name")
 {
 	this->_name = name;
 	ClapTrap::_name = name + "_clap_name";
@@ -32,7 +32,7 @@ DiamondTrap::DiamondTrap(const std::string &name) : ScavTrap(name + "_clap_name"
 	std::cout << GREEN << "DiamondTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
 	*this = other;
 	std::cout << GREEN << "DiamondTrap " << this->_name << ": Copy constructor called" << RESET << std::endl;

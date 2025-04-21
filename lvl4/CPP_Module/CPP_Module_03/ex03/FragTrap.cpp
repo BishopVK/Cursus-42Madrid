@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:36:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/22 19:03:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:50:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ FragTrap::FragTrap(const std::string &name) : ClapTrap(name)
 	std::cout << GREEN << "FragTrap " << this->_name << ": Default constructor called" << RESET << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
 	*this = other;
 	std::cout << GREEN << "FragTrap " << this->_name << ": Copy constructor called" << RESET << std::endl;
@@ -58,8 +58,8 @@ FragTrap::~FragTrap()
 void	FragTrap::highFivesGuys()
 {
 	if (this->_hitPoints > 0)
-		std::cout << YELLOW << "FragTrap " << this->_name << " high-fives the other Traps because it's a cool 'guy' 🖐️" << RESET << std::endl;
+		std::cout << YELLOW << this->_name << " high-fives the other Traps because it's a cool 'guy' 🖐️" << RESET << std::endl;
 	else
-		std::cout << YELLOW << "FragTrap " << this->_name << " is dead and can never high-five again 💀" << RESET << std::endl;
+		std::cout << YELLOW << this->_name << " is dead and can never high-five again 💀" << RESET << std::endl;
 
 }
