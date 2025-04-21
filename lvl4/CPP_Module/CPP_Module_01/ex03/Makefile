@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/02 12:28:15 by danjimen          #+#    #+#              #
-#    Updated: 2025/03/16 22:21:12 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 11:17:13 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRC		=	main.cpp \
 			HumanB.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 

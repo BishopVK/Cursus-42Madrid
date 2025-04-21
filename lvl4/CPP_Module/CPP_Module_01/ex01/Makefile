@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 17:41:07 by danjimen          #+#    #+#              #
-#    Updated: 2025/02/02 12:15:51 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/21 11:17:01 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRC		=	main.cpp \
 			zombieHorde.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
