@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:23:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/11 01:15:51 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:46:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void RobotomyRequestForm::executeAction(Bureaucrat const & executor) const
 	seed = tv.tv_sec ^ tv.tv_usec;
 	std::srand(seed); // Initialize srand generator whit a seed
 	if (std::rand() % 2 == 0)
-		std::cout << "🪛 Bzzzzzzz bzzzzzzzzzzzz... " << this->_target << " has been robotomized!" << std::endl;
+		std::cout << "🪛 Bzzzzzzz bzzzzzzzzzzzz... " << this->_target << " has been robotomized by " << executor.getName() << std::endl;
 	else
 		std::cout << this->_target << " robotomy failed 🤞🏼" << std::endl;
 }
