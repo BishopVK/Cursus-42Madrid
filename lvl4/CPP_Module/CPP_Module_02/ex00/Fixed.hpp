@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:45:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 22:58:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:00:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <iostream>
 # include <string>
+
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define RESET "\033[0m"
 
 class Fixed
 {

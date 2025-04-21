@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:58:47 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/19 23:25:16 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:01:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 Fixed::Fixed() : _value(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << GREEN << "Default constructor called" << RESET << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << GREEN << "Copy constructor called" << RESET << std::endl;
 	*this = other; // Calls assignmet operator
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << GREEN << "Copy assignment operator called" << RESET << std::endl;
 	if (this != &other)
 		this->_value = other.getRawBits(); // Copy the value if it is not itself
 	return *this;
@@ -33,7 +33,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << RED << "Destructor called" << RESET << std::endl;
 }
 
 int Fixed::getRawBits(void) const
