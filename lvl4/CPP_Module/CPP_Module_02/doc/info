@@ -1,0 +1,33 @@
+🧠 ¿Qué es punto fijo?
+	- Es una forma de representar números con decimales usando solo enteros.
+	- Se define cuántos bits se usan para la parte fraccionaria (en tu caso: 8 bits).
+
+
+🔣 ¿Cómo funciona?
+	- Multiplicas el número real por 2^8 = 256 y lo guardás como entero.
+		Ej: 5.25 * 256 = 1344 → se guarda como 1344
+	- Para obtener el número real otra vez, dividís:
+		1344 / 256 = 5.25
+
+
+📏 ¿Qué representa el valor interno _value?
+	- _value = 1 representa 0.00390625 → (1 / 256)
+	- Por eso, ++a suma la mínima unidad posible → 0.00390625
+
+
+🧮 Métodos clave
+	- toFloat() → devuelve el número real: _value / 256.0f
+	- toInt() → trunca la parte decimal: _value >> 8
+	- setRawBits(int) / getRawBits() → trabaja directamente con _value (interno)
+
+
+⚙️ Operadores importantes
+	- operator++ suma 1 → equivale a sumar 1 / 256 = 0.00390625
+	- operator+, -, *, / → hacen operaciones con enteros, manteniendo la escala fija
+	- Multiplicación necesita corrección: (_value1 * _value2) >> 8
+	- División: (_value1 << 8) / _value2
+
+🛠️ Resumen de cómo explicar esto
+Usamos punto fijo para representar números con decimales de forma más rápida y controlada, especialmente cuando no queremos usar float.
+La clase Fixed guarda el número real multiplicado por 256 (por tener 8 bits fraccionales).
+Por eso, cada incremento (++) suma solo 0.00390625, que es la unidad mínima representable.
