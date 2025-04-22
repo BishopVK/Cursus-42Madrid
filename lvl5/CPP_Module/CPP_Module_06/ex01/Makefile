@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/22 22:38:17 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/22 22:45:59 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/23 00:00:03 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	Serialization
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp
+SRC		=	main.cpp \
+			Serializer.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
