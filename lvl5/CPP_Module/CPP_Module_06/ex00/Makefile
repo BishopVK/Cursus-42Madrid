@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 08:58:19 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/21 23:27:12 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/22 22:33:38 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,4 +39,10 @@ re: fclean all
 rc: re
 	rm -f $(OBJ)
 
-.PHONY: all clean fclean re rc r valgrind
+r:	rc
+	./$(NAME) $(ARG)
+
+valgrind:	rc
+	valgrind --leak-check=full ./$(NAME) $(ARG)
+
+.PHONY: all clean fclean re rc r
