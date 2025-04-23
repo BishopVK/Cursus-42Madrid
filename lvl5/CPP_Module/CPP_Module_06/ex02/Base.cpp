@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:17:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/23 22:30:44 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:40:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,27 @@ void	identify(Base* p)
 
 void	identify(Base& p)
 {
-	(void)p;
+	try
+	{
+		A& a = dynamic_cast<A&>(p);
+		(void)a;
+		std::cout << "Reference type: " << CYAN << "A" << RESET << std::endl;
+		return;
+	} catch (std::exception&) {}
+
+	try
+	{
+		B& b = dynamic_cast<B&>(p);
+		(void)b;
+		std::cout << "Reference type: " << CYAN << "B" << RESET << std::endl;
+		return;
+	} catch (std::exception&) {}
+
+	try
+	{
+		C& c = dynamic_cast<C&>(p);
+		(void)c;
+		std::cout << "Reference type: " << CYAN << "C" << RESET << std::endl;
+		return;
+	} catch (std::exception&) {}
 }
