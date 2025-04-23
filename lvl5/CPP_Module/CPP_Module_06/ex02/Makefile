@@ -6,7 +6,7 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 09:02:49 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/23 09:09:44 by danjimen         ###   ########.fr        #
+#    Updated: 2025/04/23 09:20:24 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	Identify_real_type
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp
+SRC		=	main.cpp \
+			Base.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
