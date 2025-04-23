@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:17:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/23 22:18:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:30:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,20 @@ Base	*generate(void)
 
 void	identify(Base* p)
 {
-	(void)p;
+	if (dynamic_cast<A*>(p))
+	{
+		std::cout << "Pointer type: " << CYAN << "A" << RESET << std::endl;
+	}
+	else if (dynamic_cast<B*>(p))
+	{
+		std::cout << "Pointer type: " << CYAN << "B" << RESET << std::endl;
+	}
+	else if (dynamic_cast<C*>(p))
+	{
+		std::cout << "Pointer type: " << CYAN << "C" << RESET << std::endl;
+	}
+	else
+		std::cout << RED << "Invalid pointer type" << RESET << std::endl;
 }
 
 void	identify(Base& p)
