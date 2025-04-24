@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 23:54:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/25 00:38:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/25 01:21:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
+
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 
 template <typename T>
 void	printElement(const T &element)
