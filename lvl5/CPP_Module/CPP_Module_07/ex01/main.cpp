@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 23:47:43 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/25 01:01:57 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/25 01:22:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ std::ostream &operator<<(std::ostream &os, const Test &t)
 
 void	upperCase(const std::string &str)
 {
-	char	c;
+	std::string	tmp;
 	for (size_t i = 0; i < str.length(); i++)
-	{
-		c = toupper(str[i]);
-		std:: cout << "Element uppercase: " << YELLOW << c << RESET << std::endl;
-	}
+		tmp.push_back(std::toupper(str[i]));
+	std:: cout << "Element uppercase: " << YELLOW << tmp << RESET << std::endl;
 }
 
 int main()
@@ -49,19 +47,19 @@ int main()
 		testArr[i].setI(i + 40);
 
 	std::cout << std::endl << YELLOW << "-- INT ARRAY --" << RESET << std::endl;
-	iter(intArr, 6, printElement);
+	iter(intArr, ARRAY_SIZE(intArr), printElement);
 
 	std::cout << std::endl << YELLOW << "-- CHAR ARRAY --" << RESET << std::endl;
-	iter(charArr, 4, printElement);
+	iter(charArr, ARRAY_SIZE(charArr), printElement);
 
 	std::cout << std::endl << YELLOW << "-- STRING ARRAY --" << RESET << std::endl;
-	iter(strArr, 6, printElement);
+	iter(strArr, ARRAY_SIZE(strArr), printElement);
 
 	std::cout << std::endl << YELLOW << "-- STRING ARRAY UPPERCASE --" << RESET << std::endl;
-	iter(strArr, 6, upperCase);
+	iter(strArr, ARRAY_SIZE(strArr), upperCase);
 
 	std::cout << std::endl << YELLOW << "-- CLASS ARRAY --" << RESET << std::endl;
-	iter(testArr, 3, printElement);
+	iter(testArr, ARRAY_SIZE(testArr), printElement);
 
 	return 0;
 }
