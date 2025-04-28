@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:06:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/29 01:03:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ Character::Character(const std::string &name) : _name(name)
 		inventory[i] = NULL;
 		_slot_occupied[i] = false;
 	}
+	_floor_size = 1;
+	floor = new AMateria*[_floor_size];
+	floor[0] = NULL;
 }
 
 Character::Character(const Character &other)
@@ -38,7 +41,7 @@ Character &Character::operator=(const Character &other)
 		//Delete old materias
 		for (int i = 0; i < 4; i++)
 		{
-			if (this->inventory[i] != NULL && this->inventory[i]->is_dynamic())
+			if (this->inventory[i] != NULL)
 			{
 				delete this->inventory[i];
 				this->inventory[i] = NULL;
@@ -65,18 +68,25 @@ Character &Character::operator=(const Character &other)
 			}
 		}
 
-		// Copy floor list
-		for (std::list<AMateria*>::const_iterator it = other.floor.begin(); it != other.floor.end(); ++it)
+		//Delete old floor
+		for (int i = 0; i < _floor_size; i++)
 		{
-			if (*it) // Not NULL
+			if (this->floor[i] != NULL)
 			{
-				if ((*it)->getType() == "ice")
-					this->floor.push_back(new Ice());
-				else if ((*it)->getType() == "cure")
-					this->floor.push_back(new Cure());
-				else
-					this->floor.push_back(new Ice((*it)->getType()));
+				delete this->floor[i];
+				this->floor[i] = NULL;
 			}
+		}
+		delete[] floor;
+
+		// Copy floor list
+		this->_floor_size = other._floor_size;
+		this->floor = new AMateria*[this->_floor_size];
+		for (int i = 0; i < this->_floor_size; i++)
+		{
+			this->floor[i] = NULL;
+			if (other.floor[i]) // Not NULL
+				this->floor[i] = other.floor[i]->clone();
 		}
 	}
 	return (*this);
@@ -89,7 +99,7 @@ Character::~Character()
 	// Delete Materias from inventory
 	for (int i = 0; i < 4; i++)
 	{
-		if (inventory[i] != NULL && inventory[i]->is_dynamic())
+		if (inventory[i] != NULL)
 		{
 			delete inventory[i];
 			inventory[i] = NULL;
@@ -97,14 +107,15 @@ Character::~Character()
 	}
 
 	// Delete Materias from floor list
-	for (std::list<AMateria*>::iterator it = floor.begin(); it != floor.end(); ++it)
+	for (int i = 0; i < this->_floor_size; i++)
 	{
-		if (*it && (*it)->is_dynamic()) // It's not NULL and it's created dynamicly
+		if (this->floor[i])
 		{
-			delete *it;
-			*it = NULL;
+			delete this->floor[i];
+			this->floor[i] = NULL;
 		}
 	}
+	delete[] this->floor;
 }
 
 std::string const &Character::getName() const
@@ -147,8 +158,14 @@ void Character::unequip(int idx)
 	else
 	{
 		std::cout << CYAN << "Unequiped " << inventory[idx]->getType() << " from inventory" << RESET << std::endl;
-		floor.push_back(inventory[idx]); // Move to floor list
-		//delete inventory[idx];
+		// Creating a new floor array with +1 size and whit the older material
+		AMateria **new_floor = new AMateria*[_floor_size + 1]();
+		for (int i = 0; i < this->_floor_size; i++)
+			new_floor[i] = this->floor[i];
+		new_floor[_floor_size] = inventory[idx];
+		delete[] this->floor;
+		this->floor = new_floor;
+		this->_floor_size++;
 		inventory[idx] = NULL;
 		_slot_occupied[idx] = false;
 	}
@@ -178,22 +195,20 @@ void	Character::printStats()
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_slot_occupied[i])
-			std::cout << "Slot " << i << " have: " << this->inventory[i]->getType() << std::endl;
+			std::cout << "Slot " << i << " has: " << this->inventory[i]->getType() << std::endl;
 		else
-			std::cout << "Slot " << i << " it's Empty" << std::endl;
+			std::cout << "Slot " << i << " is empty" << std::endl;
 	}
 
 	std::cout << YELLOW << std::endl << "-- FLOOR --" << RESET << std::endl;
-	if (floor.empty())
+	if (_floor_size == 0 || (_floor_size == 1 && !floor[0]))
 		std::cout << "There are no objects on the floor" << std::endl;
 	else
 	{
-		int i = 0;
-		for (std::list<AMateria*>::const_iterator it = this->floor.begin(); it != this->floor.end(); ++it)
+		for (int i = 0; i < this->_floor_size; i++)
 		{
-			if (*it) // Not NULL
-				std::cout << "Materia " << i << " in the floor: " << (*it)->getType() << std::endl;
-			i++;
+			if (floor[i])
+				std::cout << "Materia " << i << " in the floor: " << floor[i]->getType() << std::endl;
 		}
 	}
 }

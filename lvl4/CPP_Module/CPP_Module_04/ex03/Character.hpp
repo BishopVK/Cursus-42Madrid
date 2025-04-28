@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:12:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:02:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/29 00:54:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ class Character : public ICharacter
 	private:
 		std::string	_name;
 		AMateria	*inventory[4];
-		std::list<AMateria*> floor; // Lista para Materias desequipadas
+		//std::list<AMateria*> floor; // Lista para Materias desequipadas
+		AMateria 	**floor; // Lista para Materias desequipadas
+		int			_floor_size;
 		bool		_slot_occupied[4];
 	public:
 		Character(const std::string &name);
