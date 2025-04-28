@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:33:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:12:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:20:35 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Dog &Dog::operator=(const Dog &other)
 	if (this != &other)
 	{
 		this->_type = other._type;
+		delete this->_brain;
 		this->_brain = new Brain(*other._brain);
 	}
 	std::cout << GREEN << "Dog Copy Assignment Constructor called" << RESET << std::endl;
