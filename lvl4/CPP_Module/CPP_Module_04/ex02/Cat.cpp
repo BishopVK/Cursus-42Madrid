@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:33:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:13:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:23:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Cat &Cat::operator=(const Cat &other)
 	if (this != &other)
 	{
 		this->_type = other._type;
+		delete this->_brain;
 		this->_brain = new Brain(*other._brain);
 	}
 	std::cout << GREEN << "Cat Copy Assignment Constructor called" << RESET << std::endl;
