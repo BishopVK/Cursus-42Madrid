@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 23:10:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/01 00:12:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/01 01:33:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define CYAN "\033[34m"
 #define RESET "\033[0m"
+
+#define MAX_SIZE 100000
 
 template <typename T>
 class Array

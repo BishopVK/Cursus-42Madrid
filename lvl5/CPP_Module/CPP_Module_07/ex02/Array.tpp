@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 23:20:24 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/01 00:19:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/01 01:34:21 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ Array<T>::Array() : _ptr(NULL), _size(0)
 }
 
 template <typename T>
-Array<T>::Array(const unsigned int &n) : _ptr(new T[n]()), _size(n)
+Array<T>::Array(const unsigned int &n)
 {
 	std::cout << GREEN "Array n defined constructor called" RESET << std::endl;
+	if (n > MAX_SIZE)
+		throw std::length_error("Array size to large");
+	this->_ptr = (new T[n]);
+	this->_size = n;
 }
 
 template <typename T>
