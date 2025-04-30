@@ -6,11 +6,11 @@
 #    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 23:25:27 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/26 21:39:10 by danjimen         ###   ########.fr        #
+#    Updated: 2025/05/01 01:36:51 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex02
+NAME	=	Array
 
 CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
