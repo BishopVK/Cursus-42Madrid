@@ -20,16 +20,16 @@ This module explores ad-hoc polymorphism, operator overloading, and the Orthodox
 
 ### Exercises
 
-* **Exercise 00: My First Class in Orthodox Canonical Form**
+* **[Exercise 00: My First Class in Orthodox Canonical Form](/lvl4/CPP_Module/CPP_Module_02/ex00)**
 
     * This exercise involves creating a simple class (likely `Fixed`) that adheres to the Orthodox Canonical Form.
-* **Exercise 01: Towards a more useful fixed-point number class**
+* **[Exercise 01: Towards a more useful fixed-point number class](/lvl4/CPP_Module/CPP_Module_02/ex01)**
 
     * This exercise builds upon the previous one, adding functionality to the `Fixed` class, such as converting to floating-point or integer types and output stream insertion.
-* **Exercise 02: Now we're talking**
+* **[Exercise 02: Now we're talking](/lvl4/CPP_Module/CPP_Module_02/ex02)**
 
     * This exercise focuses on operator overloading for the `Fixed` class, including comparison and arithmetic operators. It also introduces min/max static member functions.
-* **Extra: Exercise 03: BSP**
+* **[Extra: Exercise 03: BSP](/lvl4/CPP_Module/CPP_Module_02/ex03)**
 
     * This exercise likely involves using the `Fixed` class and potentially a `Point` class to implement a Binary Space Partitioning (BSP) algorithm or a related geometric calculation.
 
