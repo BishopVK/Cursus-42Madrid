@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 23:33:38 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/02 00:45:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/02 00:50:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <deque>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
