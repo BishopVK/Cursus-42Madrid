@@ -10,20 +10,20 @@ This module introduces fundamental C++ concepts, including namespaces, classes, 
 
 ### Exercises
 
-* **Exercise 00: Megaphone**
+* **[Exercise 00: Megaphone](/lvl4/CPP_Module/CPP_Module_00/ex00)**
 
     * This exercise focuses on basic output manipulation.
     * The task is to create a program that takes a string as input and outputs the uppercase version of it.
     * If no arguments are provided, the program should output a default message.
     * This exercise aims to familiarize you with basic C++ syntax and input/output operations.
-* **Exercise 01: My Awesome PhoneBook**
+* **[Exercise 01: My Awesome PhoneBook](/lvl4/CPP_Module/CPP_Module_00/ex01)**
 
     * This project involves creating a simple phonebook application.
     * The phonebook should allow users to add, search, and exit.
     * Adding a contact requires storing information like first name, last name, nickname, phone number, and darkest secret.
     * Searching displays contacts in a formatted list.
     * This exercise introduces basic class design and user input handling.
-* **Extra: Exercise 02: The Job Of Your Dreams**
+* **[Extra: Exercise 02: The Job Of Your Dreams](/lvl4/CPP_Module/CPP_Module_00/ex02)**
 
     * This exercise likely involves a more complex scenario applying the concepts learned.
     * The specifics are not detailed in the general description.
