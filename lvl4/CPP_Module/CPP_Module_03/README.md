@@ -1,3 +1,9 @@
+## Grade
+
+| **Score**           | **Description**     |
+|-----------------------|---------------|
+| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/CPP_Module/CPP_Module_03/img/Score_100.png"></p> | **Mandatory part + Extra exercise** |
+
 ## CPP Module 03: Inheritance
 
 This module introduces inheritance in C++.
@@ -13,7 +19,7 @@ This module introduces inheritance in C++.
 * **Exercise 02: Repetitive work**
 
     * This exercise might involve creating another derived class from `ClapTrap` with its own unique characteristics.
-* **Exercise 03: Now it's weird!**
+* **Extra: Exercise 03: Now it's weird!**
 
     * This exercise could introduce multiple inheritance or more complex inheritance scenarios, possibly involving a `DiamondTrap` class.
 

@@ -1,3 +1,10 @@
+## Grade
+
+| **Score**           | **Description**     |
+|-----------------------|---------------|
+| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/CPP_Module/CPP_Module_02/img/Score_100.png"></p> | **Mandatory part + Extra exercise** |
+
+
 ## CPP Module 02: Ad-hoc Polymorphism, Operator Overloading, and the Orthodox Canonical Class Form
 
 This module explores ad-hoc polymorphism, operator overloading, and the Orthodox Canonical Class Form.
@@ -22,7 +29,7 @@ This module explores ad-hoc polymorphism, operator overloading, and the Orthodox
 * **Exercise 02: Now we're talking**
 
     * This exercise focuses on operator overloading for the `Fixed` class, including comparison and arithmetic operators. It also introduces min/max static member functions.
-* **Exercise 03: BSP**
+* **Extra: Exercise 03: BSP**
 
     * This exercise likely involves using the `Fixed` class and potentially a `Point` class to implement a Binary Space Partitioning (BSP) algorithm or a related geometric calculation.
 

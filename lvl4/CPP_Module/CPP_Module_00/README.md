@@ -1,3 +1,9 @@
+## Grade
+
+| **Score**           | **Description**     |
+|-----------------------|---------------|
+| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/CPP_Module/CPP_Module_00/img/Score_100.png"></p> | **Mandatory part + Extra exercise** |
+
 ## CPP Module 00: Basic C++ Concepts
 
 This module introduces fundamental C++ concepts, including namespaces, classes, member functions, I/O streams, initialization lists, `static`, `const`, and other basic elements of the language.
@@ -17,7 +23,7 @@ This module introduces fundamental C++ concepts, including namespaces, classes, 
     * Adding a contact requires storing information like first name, last name, nickname, phone number, and darkest secret.
     * Searching displays contacts in a formatted list.
     * This exercise introduces basic class design and user input handling.
-* **Exercise 02: The Job Of Your Dreams**
+* **Extra: Exercise 02: The Job Of Your Dreams**
 
     * This exercise likely involves a more complex scenario applying the concepts learned.
     * The specifics are not detailed in the general description.

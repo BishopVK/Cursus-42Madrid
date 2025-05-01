@@ -1,3 +1,9 @@
+## Grade
+
+| **Score**           | **Description**     |
+|-----------------------|---------------|
+| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/CPP_Module/CPP_Module_01/img/Score_100.png"></p> | **Mandatory part + Extra exercise** |
+
 ## CPP Module 01: Memory Management, Pointers, References, and Switch Statements
 
 This module delves into memory allocation, pointers to members, references, and switch statements in C++.
@@ -23,7 +29,7 @@ This module delves into memory allocation, pointers to members, references, and 
 * **Exercise 05: Harl 2.0**
 
     * This exercise seems to involve creating a `Harl` class that outputs specific complaints or messages at different levels (DEBUG, INFO, WARNING, ERROR).
-* **Exercise 06: Harl filter**
+* **Extra: Exercise 06: Harl filter**
 
     * This exercise probably builds upon the previous one, adding a filtering mechanism to control which Harl messages are displayed.
 
