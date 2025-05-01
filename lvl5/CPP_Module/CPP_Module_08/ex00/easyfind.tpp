@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 23:39:06 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/02 00:45:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/02 00:47:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	easyfind(const T &cont, const int &n)
 	else
 		throw NotFoundException();
 }
-
-
 
 const char* EmptyContainerException::what() const throw()
 {
