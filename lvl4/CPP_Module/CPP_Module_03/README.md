@@ -10,16 +10,16 @@ This module introduces inheritance in C++.
 
 ### Exercises
 
-* **Exercise 00: Aaaaand... OPEN!**
+* **[Exercise 00: Aaaaand... OPEN!](/lvl4/CPP_Module/CPP_Module_03/ex00)**
 
     * This exercise involves creating a base class `ClapTrap` with attributes like name, hit points, energy points, and attack damage, and functions to attack, take damage, and be repaired.
-* **Exercise 01: Serena, my love!**
+* **[Exercise 01: Serena, my love!](/lvl4/CPP_Module/CPP_Module_03/ex01)**
 
     * This exercise likely involves creating a derived class from `ClapTrap`, such as `ScavTrap`, which inherits attributes and functions but may have its own specific behavior (e.g., `guardGate()`) and different attribute values.
-* **Exercise 02: Repetitive work**
+* **[Exercise 02: Repetitive work](/lvl4/CPP_Module/CPP_Module_03/ex02)**
 
     * This exercise might involve creating another derived class from `ClapTrap` with its own unique characteristics.
-* **Extra: Exercise 03: Now it's weird!**
+* **[Extra: Exercise 03: Now it's weird!](/lvl4/CPP_Module/CPP_Module_03/ex03)**
 
     * This exercise could introduce multiple inheritance or more complex inheritance scenarios, possibly involving a `DiamondTrap` class.
 
