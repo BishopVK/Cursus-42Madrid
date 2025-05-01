@@ -6,7 +6,7 @@ This repository contains my solutions to the C++ modules. These modules cover fu
 
 The repository is organized into the following modules, each addressing specific aspects of C++:
 
-* **Module 00: Basic C++ Concepts**
+* **[Module 00: Basic C++ Concepts](/CPP_Module_00/)**
     * Introduces namespaces, classes, member functions, I/O streams, initialization lists, `static`, `const`, and other basic C++ features.
     * Key exercises include creating a megaphone program and a simple phonebook application.
 
@@ -39,4 +39,4 @@ The repository is organized into the following modules, each addressing specific
 
 * Each exercise requires comprehensive testing.
 * Constructors and destructors should display specific messages.
-* Follow the guidelines and avoid being lazy to maximize learning.
+* Follow the guidelines and avoid being lazy to maximize learning`
