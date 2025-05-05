@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:16 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/05 22:12:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/05 23:37:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ int	check_args(int argc, char const *argv[])
 		return EXIT_FAILURE;
 	}
 
-	std::ifstream	data;
+	/* std::ifstream	data;
 	data.open("./cpp_09/data.csv");
 	if (!data)
 	{
 		std::cerr << RED "Error: could not open data.csv file." RESET << std::endl;
 		return EXIT_FAILURE;
-	}
+	} */
 
 	return EXIT_SUCCESS;
 }
 
 int main(int argc, char const *argv[])
 {
-	if (check_args(argc, argv))
+	if (check_args(argc, argv) == EXIT_FAILURE)
 		return EXIT_FAILURE;
-	exchange(argv[1]);
+	if (exchange(argv[1]) == EXIT_FAILURE)
+		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
 
