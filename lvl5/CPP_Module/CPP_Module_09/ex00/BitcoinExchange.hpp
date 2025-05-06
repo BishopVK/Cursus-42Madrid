@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 13:10:38 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:06:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdlib.h> // EXIT_FAILURE
 #include <climits>
 #include <map>
+#include <iomanip>
+#include <cmath>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
