@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 12:41:50 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:13:44 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	isdigit_string(const std::string &str)
 	return true;
 }
 
-static int	check_date(std::string line, const std::string &infile)
+static int	check_date(std::string line)
 {
 	if (line.empty())
 		return -2;
@@ -66,12 +66,15 @@ static int	check_date(std::string line, const std::string &infile)
 		error = true;
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 		error = true;
-	if (error = true)
+	if (error == true)
 	{
 		std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
 		return -1;
 	}
-	return 0;
+	std::string date = line.substr(0, 4) + line.substr(5, 2) + line.substr(8, 2);
+	int			date_int = atoi(date.c_str());
+	std::cout << "Fecha = " << date_int << std::endl; // DB
+	return date_int;
 }
 
 static int	check_delimiter(std::string line, const std::string &infile)
@@ -111,7 +114,7 @@ static int	check_value(std::string line, const std::string &infile)
 		std::cerr << RED "Error: not a positive number." RESET << std::endl;
 		return -1;
 	}
-	if ((infile == DATA_CSV && value > INT_MAX) || (infile != DATA_CSV && value > 1000))
+	if ((infile == DATA_CSV && value > static_cast<float>(INT_MAX)) || (infile != DATA_CSV && value > 1000))
 	{
 		std::cerr << RED "Error: too large a number." RESET << std::endl;
 		return -1;
@@ -122,8 +125,6 @@ static int	check_value(std::string line, const std::string &infile)
 
 static int	check_line_format(int *key, int *value, std::string line, const std::string &infile)
 {
-	(void)key; // DB
-	(void)value; // DB
 	if (infile == DATA_CSV && line.length() < 12)
 	{
 		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
@@ -137,25 +138,31 @@ static int	check_line_format(int *key, int *value, std::string line, const std::
  
 	// Check date
 	int date_ret;
-	date_ret = check_date(line, infile);
+	date_ret = check_date(line);
 	if (date_ret == -1)
 		return -1;
 	else if (date_ret == -2)
 		return -2;
+	else
+		*key = date_ret;
 
 	// Check delimiter
 	if (check_delimiter(line, infile) == -1)
 		return -1;
 
 	// Check value
-	if (check_value(line, infile) == -1)
+	float value_ret;
+	value_ret = check_value(line, infile);
+	if (value_ret == -1)
 		return -1;
+	else
+		*value = value_ret;
+	
 	return EXIT_SUCCESS;
 }
 
-static int	create_map(std::map<int, int> *data_map, const std::string &infile)
+static int	create_map(std::map<int, float> *data_map, const std::string &infile)
 {
-	(void)data_map;
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
 	if (!data_file)
@@ -181,6 +188,7 @@ static int	create_map(std::map<int, int> *data_map, const std::string &infile)
 			continue;
 		
 	}
+	(void)data_map;
 
 	return EXIT_SUCCESS;
 }
@@ -188,7 +196,7 @@ static int	create_map(std::map<int, int> *data_map, const std::string &infile)
 int	exchange(const std::string &infile)
 {
 	// Create data_map
-	std::map<int, int> data_map;
+	std::map<int, float> data_map;
 	if (create_map(&data_map, DATA_CSV) == EXIT_FAILURE)
 		return EXIT_FAILURE;
 	(void)infile;
