@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 00:52:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/06 08:51:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ static int	check_line_format(int *key, int *value, std::string line, const std::
 	int	year;
 	int	month;
 	int	day;
-
-	int		dot_counter = 0;
-	bool	wrong_amount = false;
+ 
+	// Check date
 	if (line.empty())
 		return -2;
 	if (line[4] != '-' || line[7] != '-' || !isdigit_string(line.substr(0, 4))
@@ -78,7 +77,9 @@ static int	check_line_format(int *key, int *value, std::string line, const std::
 	}
 
 	// Check value
-	int	value_start_pos;
+	int		value_start_pos;
+	int		dot_counter = 0;
+	bool	wrong_amount = false;
 	if (infile == DATA_CSV)
 		value_start_pos = 11;
 	else
@@ -122,9 +123,10 @@ static int	create_map(std::map<int, int> *data_map, const std::string &infile)
 	{
 		int	key;
 		int	value;
-		if (check_line_format(&key, &value, line, infile) == -1)
+		int line_res = check_line_format(&key, &value, line, infile);
+		if (line_res == -1)
 			return EXIT_FAILURE;
-		if (check_line_format(&key, &value, line, infile) == -2)
+		if (line_res == -2)
 			continue;
 		
 	}
