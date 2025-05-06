@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 08:51:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:41:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int check_first_line(std::ifstream *data_file, std::string line, const st
 
 static bool	isdigit_string(const std::string &str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (size_t i = 0; i < str.length(); ++i)
 	{
 		if (!std::isdigit(str[i]))
 			return false;
@@ -44,24 +44,8 @@ static bool	isdigit_string(const std::string &str)
 	return true;
 }
 
-static int	check_line_format(int *key, int *value, std::string line, const std::string &infile)
+static int	check_date(std::string line, const std::string &infile)
 {
-	if (infile == DATA_CSV && line.length() < 12)
-	{
-		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
-		return -1;
-	}
-	else if (infile != DATA_CSV && line.length() < 14)
-	{
-		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
-		return -1;
-	}
-	
-	int	year;
-	int	month;
-	int	day;
- 
-	// Check date
 	if (line.empty())
 		return -2;
 	if (line[4] != '-' || line[7] != '-' || !isdigit_string(line.substr(0, 4))
@@ -70,22 +54,43 @@ static int	check_line_format(int *key, int *value, std::string line, const std::
 		std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
 		return -1;
 	}
-	else if ((infile == DATA_CSV && line[10] != ',') || (infile != DATA_CSV && line.substr(10, 3) != " | "))
+	
+	long	year = atol(line.substr(0, 4).c_str());
+	long	month = atol(line.substr(5, 2).c_str());
+	long	day = atol(line.substr(8, 2).c_str());
+	bool	leap_year = (year % 4 == 0) ? true : false; // Bisiesto
+	bool	error = false;
+	if (year < 0 || year > 2022 || month < 0 || month > 12 || day < 0 || day > 31)
+		error = true;
+	if ((month == 2 && leap_year == true > 29) || (month == 2 && leap_year == false > 28))
+		error = true;
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		error = true;
+	if (error = true)
+	{
+		std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
+		return -1;
+	}
+	return 0;
+}
+
+static int	check_delimiter(std::string line, const std::string &infile)
+{
+	if ((infile == DATA_CSV && line[10] != ',') || (infile != DATA_CSV && line.substr(10, 3) != " | "))
 	{
 		std::cerr << RED "Error: key | value separator" << RESET << std::endl;
 		return -1;
 	}
+	return 0;
+}
 
-	// Check value
-	int		value_start_pos;
+static int	check_value(std::string line, const std::string &infile)
+{
 	int		dot_counter = 0;
 	bool	wrong_amount = false;
-	if (infile == DATA_CSV)
-		value_start_pos = 11;
-	else
-		value_start_pos = 13;
+	int		value_start_pos = (infile == DATA_CSV) ? 11 : 13;
 
-	int	i;
+	size_t	i;
 	for (i = value_start_pos; i < line.length(); ++i)
 	{
 		if (infile != DATA_CSV && line[value_start_pos] == '-')
@@ -100,11 +105,57 @@ static int	check_line_format(int *key, int *value, std::string line, const std::
 			return -1;
 		}
 	}
+	float	value = atof(line.substr(value_start_pos, line.length() - value_start_pos).c_str());
+	if (value < 0)
+	{
+		std::cerr << RED "Error: not a positive number." RESET << std::endl;
+		return -1;
+	}
+	if ((infile == DATA_CSV && value > INT_MAX) || (infile != DATA_CSV && value > 1000))
+	{
+		std::cerr << RED "Error: too large a number." RESET << std::endl;
+		return -1;
+	}
+	
+	return 0;
+}
+
+static int	check_line_format(int *key, int *value, std::string line, const std::string &infile)
+{
+	(void)key; // DB
+	(void)value; // DB
+	if (infile == DATA_CSV && line.length() < 12)
+	{
+		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
+		return -1;
+	}
+	else if (infile != DATA_CSV && line.length() < 14)
+	{
+		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
+		return -1;
+	}
+ 
+	// Check date
+	int date_ret;
+	date_ret = check_date(line, infile);
+	if (date_ret == -1)
+		return -1;
+	else if (date_ret == -2)
+		return -2;
+
+	// Check delimiter
+	if (check_delimiter(line, infile) == -1)
+		return -1;
+
+	// Check value
+	if (check_value(line, infile) == -1)
+		return -1;
 	return EXIT_SUCCESS;
 }
 
 static int	create_map(std::map<int, int> *data_map, const std::string &infile)
 {
+	(void)data_map;
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
 	if (!data_file)
