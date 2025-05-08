@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 20:06:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/08 22:22:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <climits>
 #include <map>
 #include <iomanip>
-#include <cmath>
+#include <cmath> // std::isnan(), NAN
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"

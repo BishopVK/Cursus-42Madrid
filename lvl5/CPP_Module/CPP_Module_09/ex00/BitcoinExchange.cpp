@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/06 20:22:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/09 00:15:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static int check_first_line(std::ifstream *data_file, std::string line, const st
 	
 	if (infile == DATA_CSV && line != data_head)
 	{
-		std::cerr << RED "Error: " << infile << " must start whit " << data_head << RESET << std::endl;
+		std::cerr << RED "Error: " << infile << " must start with " << data_head << RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 	else if (infile != DATA_CSV && line != infile_head)
 	{
-		std::cerr << RED "Error: " << infile << " must start whit " << infile_head << RESET << std::endl;
+		std::cerr << RED "Error: " << infile << " must start with " << infile_head << RESET << std::endl;
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
@@ -44,134 +44,80 @@ static bool	isdigit_string(const std::string &str)
 	return true;
 }
 
-static int	check_date(std::string line)
-{
-	if (line.empty())
-		return -2;
-	if (line[4] != '-' || line[7] != '-' || !isdigit_string(line.substr(0, 4))
-		|| !isdigit_string(line.substr(5, 2)) || !isdigit_string(line.substr(8, 2)))
-	{
-		std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
-		return -1;
-	}
-	
-	long	year = atol(line.substr(0, 4).c_str());
-	long	month = atol(line.substr(5, 2).c_str());
-	long	day = atol(line.substr(8, 2).c_str());
-	bool	leap_year = (year % 4 == 0) ? true : false; // Bisiesto
-	bool	error = false;
-	if (year < 0 || year > 2022 || month < 0 || month > 12 || day < 0 || day > 31)
-		error = true;
-	if ((month == 2 && leap_year == true && day > 29) || (month == 2 && leap_year == false && day  > 28))
-		error = true;
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-		error = true;
-	if (error == true)
-	{
-		std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
-		return -1;
-	}
-
-	// Convert date into a int
-	std::string date = line.substr(0, 4) + line.substr(5, 2) + line.substr(8, 2);
-	int	date_int = atoi(date.c_str());
-	//std::cout << "Fecha = " << date_int << std::endl; // DB
-	return date_int;
-}
-
-static int	check_delimiter(std::string line, const std::string &infile)
-{
-	if ((infile == DATA_CSV && line[10] != ',') || (infile != DATA_CSV && line.substr(10, 3) != " | "))
-	{
-		std::cerr << RED "Error: key | value separator" << RESET << std::endl;
-		return -1;
-	}
-	return 0;
-}
-
-float round_to_2(float num)
+double round_to_2(double num)
 {
 	return floor(num * 100.0f + 0.5f) / 100.0f;
 }
 
-static float	check_value(std::string line, const std::string &infile)
+static void	check_date(std::string *key, std::string *value, std::string line)
 {
-	int		dot_counter = 0;
-	bool	wrong_amount = false;
-	size_t	value_start_pos = (infile == DATA_CSV) ? 11 : 13;
+	if ((*key).empty() || (*key).length() < 10)
+	{
+		*key = line;
+		value->clear();
+		return ;
+	}
+	if ((*key)[4] != '-' || (*key)[7] != '-' || !isdigit_string((*key).substr(0, 4))
+		|| !isdigit_string((*key).substr(5, 2)) || !isdigit_string((*key).substr(8, 2)))
+	{
+		*key = line;
+		value->clear();
+		return ;
+	}
 
-	size_t	i;
-	for (i = value_start_pos; i < line.length(); ++i)
+	int	year = atoi((*key).substr(0, 4).c_str());
+	int	month = atoi((*key).substr(5, 2).c_str());
+	int	day = atoi((*key).substr(8, 2).c_str());
+	bool	leap_year = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? true : false; // Bisiesto
+	bool	error = false;
+	if (year < 0 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
+		error = true;
+	if ((month == 2 && leap_year == true && day > 29) || (month == 2 && leap_year == false && day > 28))
+		error = true;
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		error = true;
+	if (error)
 	{
-		if (infile != DATA_CSV && line[value_start_pos] == '-' && i == value_start_pos)
-			continue;
-		if (!std::isdigit(line[i]) && line[i] != '.')
-			wrong_amount = true;
-		else if (line[i] == '.')
-			dot_counter++;
-		if (wrong_amount == true || dot_counter > 1)
-		{
-			std::cerr << RED "Error: Wrong price format => " << line.substr(value_start_pos, line.length() - value_start_pos) << RESET << std::endl;
-			return -1;
-		}
+		*key = line;
+		value->clear();
+		// std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
+		// std::cerr << RED "key = " << *key << std::endl << "value = " << *value << RESET << std::endl;
+		return ;
 	}
-	float	value = atof(line.substr(value_start_pos, line.length() - value_start_pos).c_str());
-	value = round_to_2(value);
-	value = round(value * 100.0f) / 100.0f;
-	std::cout << std::fixed << std::setprecision(2) << "value = " << value << std::endl; // DB
-	if (value < 0)
-	{
-		std::cerr << RED "Error: not a positive number." RESET << std::endl;
-		return -1;
-	}
-	if ((infile == DATA_CSV && value > static_cast<float>(INT_MAX)) || (infile != DATA_CSV && value > 1000))
-	{
-		std::cerr << RED "Error: too large a number." RESET << std::endl;
-		return -1;
-	}
-	
-	return value;
 }
 
-static int	check_line_format(int *key, float *value, std::string line, const std::string &infile)
+static int	check_line_format(std::string *key, std::string *value, std::string line, const std::string &infile)
 {
-	if (infile == DATA_CSV && line.length() < 12)
-	{
-		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
-		return -1;
-	}
-	else if (infile != DATA_CSV && line.length() < 14)
-	{
-		std::cerr << RED "Error: Wrong line format" << RESET << std::endl;
-		return -1;
-	}
- 
-	// Check date
-	int date_ret;
-	date_ret = check_date(line);
-	if (date_ret == -1)
-		return -1;
-	else if (date_ret == -2)
-		return -2;
+	std::string delimiter;
+	if (infile == DATA_CSV)
+		delimiter = ",";
 	else
-		*key = date_ret;
+		delimiter = " | ";
 
-	// Check delimiter
-	if (check_delimiter(line, infile) == -1)
-		return -1;
+	// Encontrar la posición del delimitador
+	std::size_t pos = line.find(delimiter);
+	if (pos == std::string::npos) // El delimitador no fue encontrado
+	{
+		std::cout << "Delimitador no encontrado." << std::endl; // DB
+		*key = line;
+		value->clear();
+		std::cout << "Fecha: " << *key << std::endl; // DB
+		std::cout << "Valor: " << *value << std::endl; // DB
+	}
+	else // El delimitador fue encontrado
+	{
+		*key = line.substr(0, pos);
+		*value = line.substr(pos + delimiter.length());
+		check_date(key, value, line);
 
-	// Check value
-	float value_ret;
-	value_ret = check_value(line, infile);
-	if (value_ret == -1)
-		return -1;
-	else
-		*value = value_ret;
-	
+		std::cout << "Fecha: " << *key << std::endl; // DB
+		std::cout << "Valor: " << *value << std::endl; // DB
+	}
+
 	return EXIT_SUCCESS;
 }
 
-static int	create_map(std::map<int, float> *data_map, const std::string &infile)
+static int	create_map(std::multimap<std::string, std::string> *data_map, const std::string &infile)
 {
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
@@ -189,14 +135,14 @@ static int	create_map(std::map<int, float> *data_map, const std::string &infile)
 	// Check the rest of the document
 	while(std::getline(data_file, line))
 	{
-		int		key;
-		float	value;
-		int line_res = check_line_format(&key, &value, line, infile);
-		if (line_res == -1)
-			return EXIT_FAILURE;
-		if (line_res == -2)
-			continue;
-		(*data_map)[key] = value;
+		std::string		key;
+		std::string		value;
+		if (line.empty())
+			continue ;
+		check_line_format(&key, &value, line, infile);
+		//(*data_map)[key] = value;
+		if (!key.empty() && !value.empty())
+			data_map->insert(std::make_pair(key, value));
 	}
 	//(void)data_map;
 
@@ -205,23 +151,21 @@ static int	create_map(std::map<int, float> *data_map, const std::string &infile)
 
 int	exchange(const std::string &infile)
 {
-	/* // Create data_map
-	std::map<int, float> data_map;
-	if (create_map(&data_map, DATA_CSV) == EXIT_FAILURE)
-		return EXIT_FAILURE;
-	for (std::map<int, float>::iterator it = data_map.begin(); it != data_map.end(); ++it)
+	// Create data_map
+	/* std::multimap<std::string, std::string> data_map;
+	create_map(&data_map, DATA_CSV);
+	for (std::multimap<std::string, std::string>::iterator it = data_map.begin(); it != data_map.end(); ++it)
 	{
 		std::cout << it->first << " => " << std::fixed << std::setprecision(2) <<  it->second << std::endl;
-	} */
+	} */ // DB 
+	//(void)infile;
 
 	// Create infile_map
-	std::map<int, float> infile_map;
-	if (create_map(&infile_map, infile) == EXIT_FAILURE)
-		return EXIT_FAILURE;
-	for (std::map<int, float>::iterator it = infile_map.begin(); it != infile_map.end(); ++it)
+	std::multimap<std::string, std::string> infile_map;
+	create_map(&infile_map, infile);
+	for (std::multimap<std::string, std::string>::iterator it = infile_map.begin(); it != infile_map.end(); ++it)
 	{
 		std::cout << it->first << " => " << std::fixed << std::setprecision(2) <<  it->second << std::endl;
-	}
-	//(void)infile;
+	} // DB
 	return EXIT_SUCCESS;
 }
