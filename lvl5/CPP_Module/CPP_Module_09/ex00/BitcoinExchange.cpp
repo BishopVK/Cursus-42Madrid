@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 10:54:46 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:33:27 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static void	check_date(std::string *key, double *value, std::string line)
 		error = true;
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 		error = true;
+	if ((year < 2009 || (year == 2009 && month <= 1 && day <= 2) && !std::isnan(*value)))
+		*key = "2009-01-02";
 	if (error)
 	{
 		*key = line;
@@ -108,13 +110,13 @@ static int	check_line_format(std::string *key, double *value, std::string line)
 
 		// Convert string to double
 		char	*endptr;
-		if (*endptr == '\0')
-			*value = std::strtod(str_value.c_str(), &endptr);
-		else
+		*value = std::strtod(str_value.c_str(), &endptr);
+		if (*endptr != '\0')
 		{
 			*key = line;
 			*value = NAN;
 		}
+
 		if (!std::isnan(*value))
 			check_date(key, value, line);
 
@@ -125,7 +127,14 @@ static int	check_line_format(std::string *key, double *value, std::string line)
 	return EXIT_SUCCESS;
 }
 
-static int	create_infile_map(std::multimap<std::string, double> *data_map, const std::string &infile)
+static void	print_output(std::multimap<std::string, double> *data_map,
+	std::multimap<std::string, double> *infile_map)
+{
+	
+}
+
+static int	create_infile_map(std::multimap<std::string, double> *data_map,
+	std::multimap<std::string, double> *infile_map, const std::string &infile)
 {
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
@@ -148,8 +157,10 @@ static int	create_infile_map(std::multimap<std::string, double> *data_map, const
 		if (line.empty())
 			continue ;
 		check_line_format(&key, &value, line);
-		data_map->insert(std::make_pair(key, value));
+		infile_map->insert(std::make_pair(key, value));
 	}
+
+	print_output(data_map, infile_map);
 
 	return EXIT_SUCCESS;
 }
@@ -223,7 +234,7 @@ int	exchange(const std::string &infile)
 
 	// Create infile_map
 	std::multimap<std::string, double> infile_map;
-	create_infile_map(&infile_map, infile);
+	create_infile_map(&data_map, &infile_map, infile);
 	/* for (std::multimap<std::string, double>::iterator it = infile_map.begin(); it != infile_map.end(); ++it)
 	{
 		std::cout << it->first << " => " << std::fixed << std::setprecision(2) <<  it->second << std::endl;
