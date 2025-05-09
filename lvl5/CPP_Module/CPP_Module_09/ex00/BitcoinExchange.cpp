@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 15:33:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:24:40 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static int check_first_line(std::ifstream *data_file, std::string line, const st
 	std::string	data_head = "date,exchange_rate";
 	std::string	infile_head = "date | value";
 	std::getline(*data_file, line);
-	std::cout << "DEBUG:" << std::endl; // DB
-	std::cout << "Infile: " << infile << std::endl; // DB
-	std::cout << "Line: " << line << std::endl; // DB
 	
 	if (infile == DATA_CSV && line != data_head)
 	{
@@ -44,11 +41,6 @@ static bool	isdigit_string(const std::string &str)
 	return true;
 }
 
-/* double round_to_2(double num)
-{
-	return floor(num * 100.0f + 0.5f) / 100.0f;
-} */
-
 static void	check_date(std::string *key, double *value, std::string line)
 {
 	if ((*key).empty() || (*key).length() < 10)
@@ -59,6 +51,12 @@ static void	check_date(std::string *key, double *value, std::string line)
 	}
 	if ((*key)[4] != '-' || (*key)[7] != '-' || !isdigit_string((*key).substr(0, 4))
 		|| !isdigit_string((*key).substr(5, 2)) || !isdigit_string((*key).substr(8, 2)))
+	{
+		*key = line;
+		*value = NAN;
+		return ;
+	}
+	if ((*key).length() > 10 && (*key)[10] != ' ')
 	{
 		*key = line;
 		*value = NAN;
@@ -76,14 +74,12 @@ static void	check_date(std::string *key, double *value, std::string line)
 		error = true;
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 		error = true;
-	if ((year < 2009 || (year == 2009 && month <= 1 && day <= 2) && !std::isnan(*value)))
+	if (((year < 2009 || (year == 2009 && month <= 1 && day <= 2)) && !std::isnan(*value)))
 		*key = "2009-01-02";
 	if (error)
 	{
 		*key = line;
 		*value = NAN;
-		// std::cerr << RED "Error: Wrong date format => " << line.substr(0, 10) << RESET << std::endl;
-		// std::cerr << RED "key = " << *key << std::endl << "value = " << *value << RESET << std::endl;
 		return ;
 	}
 }
@@ -92,17 +88,14 @@ static int	check_line_format(std::string *key, double *value, std::string line)
 {
 	std::string delimiter = " | ";
 
-	// Encontrar la posición del delimitador
+	// Finding the position of the delimiter
 	std::size_t pos = line.find(delimiter);
-	if (pos == std::string::npos) // El delimitador no fue encontrado
+	if (pos == std::string::npos) // The delimiter was not found
 	{
-		std::cout << "Delimitador no encontrado." << std::endl; // DB
 		*key = line;
 		*value = NAN;
-		std::cout << "Fecha: " << *key << std::endl; // DB
-		std::cout << "Valor: " << *value << std::endl; // DB
 	}
-	else // El delimitador fue encontrado
+	else // The delimiter was found
 	{
 		*key = line.substr(0, pos);
 		std::string str_value;
@@ -119,22 +112,58 @@ static int	check_line_format(std::string *key, double *value, std::string line)
 
 		if (!std::isnan(*value))
 			check_date(key, value, line);
-
-		std::cout << "Fecha: " << *key << std::endl; // DB
-		std::cout << "Valor: " << *value << std::endl; // DB
 	}
 
 	return EXIT_SUCCESS;
 }
 
-static void	print_output(std::multimap<std::string, double> *data_map,
-	std::multimap<std::string, double> *infile_map)
+std::string	formatFloat(double value)
 {
-	
+	std::ostringstream oss;
+	oss << std::fixed << std::setprecision(2) << value;
+	std::string str = oss.str();
+
+	// Remove trailing zeros
+	size_t dot = str.find('.');
+	if (dot != std::string::npos) {
+		size_t end = str.size() - 1;
+		while (end > dot && str[end] == '0') {
+			--end;
+		}
+		if (str[end] == '.') // If the point remains alone, we eliminate it.
+			--end;
+		str = str.substr(0, end + 1);
+	}
+	return str;
 }
 
-static int	create_infile_map(std::multimap<std::string, double> *data_map,
-	std::multimap<std::string, double> *infile_map, const std::string &infile)
+static void	print_output(std::multimap<std::string, double> *data_map, std::string *key,
+	double *value)
+{
+	// Find correct or previous date
+	std::map<std::string, double>::iterator it = data_map->lower_bound(*key);
+
+	if (it != data_map->begin() && (it == data_map->end() || it->first > *key))
+	{
+		--it; // Get the nearest previous date
+	}
+
+	if (std::isnan(*value))
+		std::cerr << "Error: bad input => " << *key << std::endl;
+	else if (*value < 0)
+		std::cerr << "Error: not a positive number => " << *value << std::endl;
+	else if (*value > 1000)
+		std::cerr << "Error: too large a number => " << formatFloat(*value) << std::endl;
+	else
+	{
+		double	result = *value * it->second;
+		std::cout << *key << " => "
+		<< formatFloat(*value) << " = "
+		<< formatFloat(result) << std::endl;
+	}
+}
+
+static int	read_infile(std::multimap<std::string, double> *data_map, const std::string &infile)
 {
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
@@ -157,10 +186,8 @@ static int	create_infile_map(std::multimap<std::string, double> *data_map,
 		if (line.empty())
 			continue ;
 		check_line_format(&key, &value, line);
-		infile_map->insert(std::make_pair(key, value));
+		print_output(data_map, &key, &value);
 	}
-
-	print_output(data_map, infile_map);
 
 	return EXIT_SUCCESS;
 }
@@ -169,25 +196,19 @@ static void	save_csv_map(std::string *key, double *value, std::string line)
 {
 	std::string delimiter = ",";
 
-	// Encontrar la posición del delimitador
+	// Finding the position of the delimiter
 	std::size_t pos = line.find(delimiter);
-	if (pos == std::string::npos) // El delimitador no fue encontrado
+	if (pos == std::string::npos) // The delimiter was not found
 	{
-		std::cout << "Delimitador no encontrado." << std::endl; // DB
 		*key = line;
 		*value = NAN;
-		/* std::cout << "Fecha: " << *key << std::endl; // DB
-		std::cout << "Valor: " << *value << std::endl; // DB */
 	}
-	else // El delimitador fue encontrado
+	else // The delimiter was found
 	{
 		*key = line.substr(0, pos);
 		char*	endptr;
 		*value = std::strtod(line.substr(pos + delimiter.length()).c_str(), &endptr);
 		check_date(key, value, line);
-
-		/* std::cout << "Fecha: " << *key << std::endl; // DB
-		std::cout << "Valor: " << std::fixed << std::setprecision(2) << *value << std::endl; // DB */
 	}
 }
 
@@ -226,18 +247,10 @@ int	exchange(const std::string &infile)
 	std::multimap<std::string, double> data_map;
 	if (create_csv_map(&data_map, DATA_CSV) == EXIT_FAILURE)
 		return EXIT_FAILURE;
-	/* for (std::multimap<std::string, double>::iterator it = data_map.begin(); it != data_map.end(); ++it)
-	{
-		std::cout << it->first << " => " << std::fixed << std::setprecision(2) <<  it->second << std::endl;
-	} */ // DB 
-	// (void)infile;
 
-	// Create infile_map
-	std::multimap<std::string, double> infile_map;
-	create_infile_map(&data_map, &infile_map, infile);
-	/* for (std::multimap<std::string, double>::iterator it = infile_map.begin(); it != infile_map.end(); ++it)
-	{
-		std::cout << it->first << " => " << std::fixed << std::setprecision(2) <<  it->second << std::endl;
-	} */ // DB
+	// Read infile
+	if (read_infile(&data_map, infile) == EXIT_FAILURE)
+		return EXIT_FAILURE;
+
 	return EXIT_SUCCESS;
 }

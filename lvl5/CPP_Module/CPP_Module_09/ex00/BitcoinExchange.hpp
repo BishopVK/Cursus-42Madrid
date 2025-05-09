@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/08 22:22:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:15:58 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 #include <string>
 #include <fstream> // std::ifstream, open()
 #include <stdlib.h> // EXIT_FAILURE
-#include <climits>
+#include <climits> // INT_MAX
 #include <map>
-#include <iomanip>
+#include <iomanip> // std::fixed, std::setprecision()
 #include <cmath> // std::isnan(), NAN
+#include <sstream> // std::ostringstream
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
