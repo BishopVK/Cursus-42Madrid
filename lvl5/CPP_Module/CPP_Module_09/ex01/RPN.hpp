@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 23:17:02 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 23:42:35 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/10 22:43:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h> // EXIT_FAILURE
 #include <stack>
 #include <sstream> // stringstream
+#include <climits>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
