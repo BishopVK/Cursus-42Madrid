@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/11 10:35:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/11 20:00:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
 	}
 	for (int i = 1; i < argc; ++i)
 	{
-		for (int j = 0; j < static_cast<std::string>(argv[i]).length(); ++j)
+		for (long unsigned int j = 0; j < static_cast<std::string>(argv[i]).length(); ++j)
 		{
 			if (!isdigit(argv[i][j]))
 			{
