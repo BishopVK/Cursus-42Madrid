@@ -6,13 +6,13 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/11 20:00:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/11 20:43:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int main(int argc, char const *argv[])
+int	check_args(int argc, char const *argv[])
 {
 	if (argc <= 1)
 	{
@@ -29,7 +29,20 @@ int main(int argc, char const *argv[])
 				return EXIT_FAILURE;
 			}
 		}
+		long int nbr = atol(argv[i]);
+		if (nbr > INT_MAX)
+		{
+			std::cerr << RED "Error: '" << argv[i] << "' int overflow" RESET << std::endl;
+			return EXIT_FAILURE;
+		}
 	}
+	return EXIT_SUCCESS;
+}
+
+int main(int argc, char const *argv[])
+{
+	if (check_args(argc, argv) == EXIT_FAILURE)
+		return EXIT_FAILURE;
 	std::cout << GREEN "allright!!" RESET << std::endl;
 	return 0;
 }

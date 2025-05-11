@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/11 19:59:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/11 20:38:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <vector>
 #include <stdlib.h> // atoi
 #include <sstream>
+#include <climits> // INT_MAX
 
 
 #define RED "\033[31m"
