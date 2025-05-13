@@ -1,0 +1,77 @@
+🔹 Inclusión
+#include <list>
+
+
+🔹 Tipos principales
+std::list<T>             // Lista de elementos de tipo T
+std::list<T>::iterator   // Iterador que permite recorrer la lista
+std::list<T>::const_iterator // Iterador constante
+
+
+🔹 Constructores
+std::list<int> l1;                  // Lista vacía
+std::list<int> l2(5);              // Lista con 5 elementos default (0 para int)
+std::list<int> l3(5, 10);          // Lista con 5 elementos valiendo 10
+std::list<int> l4(l3);             // Copia de l3
+
+
+🔹 Iteradores
+begin()        // Iterador al primer elemento
+end()          // Iterador al "pasado del último"
+
+rbegin()       // Iterador inverso al último elemento
+rend()         // Iterador inverso al "antes del primero"
+
+
+🔹 Capacidad
+empty()        // true si está vacía
+size()         // número de elementos
+max_size()     // tamaño máximo teórico (depende del sistema)
+
+
+🔹 Acceso a elementos
+front()        // referencia al primer elemento
+back()         // referencia al último elemento
+
+
+🔹 Modificadores
+push_front(x)      // inserta x al principio
+pop_front()        // elimina el primer elemento
+
+push_back(x)       // inserta x al final
+pop_back()         // elimina el último elemento
+
+insert(pos, x)     // inserta x antes de 'pos' (iterator)
+erase(pos)         // elimina el elemento en 'pos'
+erase(pos1, pos2)  // elimina el rango [pos1, pos2)
+
+clear()            // elimina todos los elementos
+
+
+🔹 Operaciones específicas de listas
+assign(count, value)             // asigna 'count' veces 'value'
+assign(first, last)              // asigna desde un rango de iteradores
+
+splice(pos, other_list)         // mueve todos los elementos de otra lista a pos
+splice(pos, other_list, it)     // mueve solo el elemento 'it'
+splice(pos, other_list, first, last) // mueve rango [first, last)
+
+remove(value)                   // elimina todos los elementos con ese valor
+remove_if(pred)                 // elimina si cumple con el predicado
+
+unique()                        // elimina elementos duplicados consecutivos
+unique(pred)                    // usando predicado personalizado
+
+merge(other_list)               // mezcla dos listas ordenadas
+merge(other_list, comp)         // con comparador personalizado
+
+sort()                          // ordena usando operator<
+sort(comp)                      // usando comparador personalizado
+
+reverse()                       // invierte el orden
+
+
+📌 Notas importantes
+> No hay acceso aleatorio (operator[] no está definido).
+> Las operaciones como splice, remove, merge, sort, etc., son muy eficientes porque solo reordenan punteros, sin copiar o mover elementos.
+> Requiere C++98 o superior, pero no todas las implementaciones de predicados o funciones lambda (como remove_if) son muy cómodas en C++98 porque aún no existen lambdas (eso aparece en C++11).
