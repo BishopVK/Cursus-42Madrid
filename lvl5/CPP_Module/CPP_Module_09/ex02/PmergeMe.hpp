@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/11 20:38:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/13 08:25:12 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 #include <stdlib.h> // atoi
 #include <sstream>
 #include <climits> // INT_MAX
+#include <time.h> // clock()
 
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
 
-//void	PmergeMe();
+void	PmergeMe(char const *argv[]);
 
 #endif

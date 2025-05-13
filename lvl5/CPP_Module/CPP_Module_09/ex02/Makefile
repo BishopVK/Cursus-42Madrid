@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 23:38:18 by danjimen          #+#    #+#              #
-#    Updated: 2025/05/11 10:42:27 by danjimen         ###   ########.fr        #
+#    Updated: 2025/05/13 08:37:03 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CPP		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC		=	main.cpp \
-			#PmergeMe.cpp
+			PmergeMe.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
