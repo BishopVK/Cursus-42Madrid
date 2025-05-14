@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/13 08:22:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 01:39:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int main(int argc, char const *argv[])
 {
 	if (check_args(argc, argv) == EXIT_FAILURE)
 		return EXIT_FAILURE;
-	std::cout << GREEN "allright!!" RESET << std::endl;
 	PmergeMe(argv);
 	return 0;
 }
