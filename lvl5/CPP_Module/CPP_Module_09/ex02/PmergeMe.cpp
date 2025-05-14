@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/14 10:11:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:20:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,11 @@ void	sort_list(std::list<int> *list)
 	std::list<int>	little;
 	int				hunged_nbr = 0;
 
-	std::cout << "before :" << std::endl;
-	print_list(*list); // DB
-	std::cout << "hunged = " << hunged_nbr << std::endl;
-
 	if (list->size() % 2 != 0)
 	{
 		hunged_nbr = *list->end();
 		list->pop_back();
 	}
-	std::cout << "after :" << std::endl;
-	print_list(*list); // DB
-	std::cout << "hunged = " << hunged_nbr << std::endl;
 
 }
 
