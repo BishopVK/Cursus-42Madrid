@@ -1,0 +1,12 @@
+Dado un contenedor con N elementos:
+
+1. Agrupar los elementos en pares consecutivos.
+2. De cada par, guardar:
+	- El mayor en un contenedor M.
+	- El menor en un contenedor L.
+
+3. Si hay un elemento sin pareja (cuando N es impar), guardarlo aparte (lo llamaremos “suelto”).
+4. Ordenar recursivamente M usando este mismo algoritmo.
+5. Insertar cada elemento de L en la lista ordenada M, en su posición correcta.
+6. Insertar el elemento suelto, si existe, en su posición correcta.
+7. El resultado final es el contenedor M ordenado.
