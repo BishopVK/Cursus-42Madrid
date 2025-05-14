@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/14 10:20:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 00:07:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,41 @@ void	sort_list(std::list<int> *list)
 
 	if (list->size() % 2 != 0)
 	{
-		hunged_nbr = *list->end();
+		std::list<int>::iterator it_last = list->end();
+		--it_last;
+		hunged_nbr = *it_last;
 		list->pop_back();
 	}
 
+	std::list<int>::iterator it = list->begin();
+	while (it != list->end())
+	{
+		std::list<int>::iterator it_first = it++;
+		if (it == list->end())
+			break;
+		std::list<int>::iterator it_second = it++;
+
+		if (*it_first > *it_second)
+		{
+			big.push_back(*it_first);
+			little.push_back(*it_second);
+		}
+		else
+		{
+			big.push_back(*it_second);
+			little.push_back(*it_first);
+		}
+
+		list->erase(it_first);
+		list->erase(it_second);
+	}
+
+	std::cout << std::endl << "-- BIG --" << std::endl;
+	print_list(big);
+	std::cout << std::endl << "-- LITTLE --" << std::endl;
+	print_list(little);
+	std::cout << std::endl << "-- HUNGED NBR --" << std::endl;
+	std::cout  << hunged_nbr << std::endl;
 }
 
 void	PmergeMe(char const *argv[])
