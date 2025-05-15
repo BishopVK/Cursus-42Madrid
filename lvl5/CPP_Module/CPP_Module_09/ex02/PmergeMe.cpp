@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 10:41:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:00:30 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,79 +44,79 @@ std::list<int>	create_list(char const *argv[])
 	return list;
 }
 
-void	move_to_big_and_small(std::list<int> *list, std::list<int> *big, std::list<int> *small)
+/*------------------------------*/
+/*				LIST			*/
+/*------------------------------*/
+void	move_to_big_and_small(std::list<int> &list, std::list<int> &big, std::list<int> &small)
 {
-	std::list<int>::iterator it = list->begin();
-	while (it != list->end())
+	std::list<int>::iterator it = list.begin();
+	while (it != list.end())
 	{
 		std::list<int>::iterator it_first = it++;
-		if (it == list->end())
+		if (it == list.end())
 			break;
 		std::list<int>::iterator it_second = it++;
 
 		if (*it_first > *it_second)
 		{
-			big->push_back(*it_first);
-			small->push_back(*it_second);
+			big.push_back(*it_first);
+			small.push_back(*it_second);
 		}
 		else
 		{
-			big->push_back(*it_second);
-			small->push_back(*it_first);
+			big.push_back(*it_second);
+			small.push_back(*it_first);
 		}
 
-		list->erase(it_second);
-		list->erase(it_first);
+		list.erase(it_second);
+		list.erase(it_first);
 	}
 }
 
-void	insert_from_small_to_big(std::list<int> *big, std::list<int> *small)
+void	insert_from_small_to_big(std::list<int> &big, std::list<int> &small)
 {
 	std::list<int>::iterator it;
-	for (it = small->begin(); it != small->end(); ++it)
+	for (it = small.begin(); it != small.end(); ++it)
 	{
 		int	value = *it;
-		std::list<int>::iterator insert_pos = big->begin();
-		while (insert_pos != big->end() && *insert_pos < value)
+		std::list<int>::iterator insert_pos = big.begin();
+		while (insert_pos != big.end() && *insert_pos < value)
 			++insert_pos;
-		big->insert(insert_pos, value);
+		big.insert(insert_pos, value);
 	}
 }
 
-void	insert_hunged_nbr_to_big(bool has_hunged_nbr, int hunged_nbr, std::list<int> *big)
+void	insert_hunged_nbr_to_big(bool has_hunged_nbr, int hunged_nbr, std::list<int> &big)
 {
 	if (has_hunged_nbr)
 	{
-		std::list<int>::iterator insert_pos = big->begin();
-		while (insert_pos != big->end() && *insert_pos < hunged_nbr)
+		std::list<int>::iterator insert_pos = big.begin();
+		while (insert_pos != big.end() && *insert_pos < hunged_nbr)
 			++insert_pos;
-		big->insert(insert_pos, hunged_nbr);
+		big.insert(insert_pos, hunged_nbr);
 	}
 }
 
-void	sort_list(std::list<int> *list)
+void	sort_list(std::list<int> &list)
 {
 	std::list<int>	big;
 	std::list<int>	small;
 	int				hunged_nbr;
 	bool			has_hunged_nbr = false;
-	// static int		step;
 
-	// std::cout << "STEP = " << step++ << std::endl;
-	if (list->size() <= 1)
+	if (list.size() <= 1)
 		return ;
 
-	if (list->size() % 2 != 0)
+	if (list.size() % 2 != 0)
 	{
-		std::list<int>::iterator it_last = list->end();
+		std::list<int>::iterator it_last = list.end();
 		--it_last;
 		hunged_nbr = *it_last;
-		list->erase(it_last);
+		list.erase(it_last);
 		has_hunged_nbr = true;
 	}
 
-	// Move from list to big and small
-	move_to_big_and_small(list, &big, &small);
+	move_to_big_and_small(list, big, small);
 	// DB
 	// std::cout << std::endl << "-- BIG --" << std::endl;
 	// print_list(big);
@@ -127,13 +127,32 @@ void	sort_list(std::list<int> *list)
 	// 	std::cout << "Hunged number: " << hunged_nbr << std::endl;
 	// else
 	// 	std::cout << "No hunged number" << std::endl;
-	sort_list(&big); // Recursivity
-	insert_from_small_to_big(&big, &small);
-	insert_hunged_nbr_to_big(has_hunged_nbr, hunged_nbr, &big);
+	sort_list(big); // Recursivity
+	insert_from_small_to_big(big, small);
+	insert_hunged_nbr_to_big(has_hunged_nbr, hunged_nbr, big);
 
-	list->clear();
-	list->splice(list->end(), big);
+	list.clear();
+	list.splice(list.end(), big);
 	//list->insert(list->end(), big.begin(), big.end());
+}
+
+void	check_ordered(std::list<int> &list)
+{
+	std::list<int>::iterator it = list.begin();
+	while (it != list.end())
+	{
+		std::list<int>::iterator it_first = it++;
+		if (it == list.end())
+			break;
+		std::list<int>::iterator it_second = it;
+
+		if (*it_first > *it_second)
+		{
+			std::cout << RED "LIST NOT IN ORDER" RESET << std::endl;
+			return ;
+		}
+	}
+	std::cout << GREEN "LIST IN ORDER" RESET << std::endl;
 }
 
 void	PmergeMe(char const *argv[])
@@ -143,7 +162,8 @@ void	PmergeMe(char const *argv[])
 	list	= create_list(argv);
 	print_list(list, "full"); // DB
 	clock_t			start_time_list = clock();
-	sort_list(&list);
+	sort_list(list);
+	check_ordered(list);
 	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
 	std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
 	
