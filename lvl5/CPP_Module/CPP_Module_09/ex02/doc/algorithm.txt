@@ -7,6 +7,6 @@ Dado un contenedor con N elementos:
 
 3. Si hay un elemento sin pareja (cuando N es impar), guardarlo aparte (lo llamaremos “suelto”).
 4. Ordenar recursivamente M usando este mismo algoritmo.
-5. Insertar cada elemento de L en la lista ordenada M, en su posición correcta.
+5. Insertar cada elemento de L en la lista ordenada M, en el orden óptimo, que es donde entra Jacobsthal.
 6. Insertar el elemento suelto, si existe, en su posición correcta.
 7. El resultado final es el contenedor M ordenado.
