@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 17:32:25 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 23:32:42 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_list(std::list<int> list, const std::string &print, const std::string
 	std::list<int>::iterator	it = list.begin();
 	int							counter = 0;
 	
-	std::cout << msg;
+	std::cout << msg << ": ";
 	while (it != list.end())
 	{
 		if (print == "part" && list.size() > 4 && counter >= 4)
@@ -74,12 +74,57 @@ void	move_to_big_and_small_list(std::list<int> &list, std::list<int> &big, std::
 	}
 }
 
+std::list<int>	create_jacobsthal_list(std::list<int> small)
+{
+	std::list<int>	jacobsthal;
+	size_t			j0 = 0;
+	size_t			j1 = 1;
+
+	while (j1 < small.size())
+	{
+		jacobsthal.push_back(j1);
+		size_t	next = j1 + 2 * j0;
+		j0 = j1;
+		j1 = next;
+	}
+	print_list(jacobsthal, "full", "Jacobsthal"); // DB
+	return jacobsthal;
+}
+
+int	get_element_at(const std::list<int> &small, size_t index)
+{
+	std::list<int>::const_iterator it = small.begin();
+	std::advance(it, index);
+	return *it;
+}
+
 void	insert_from_small_to_big_list(std::list<int> &big, std::list<int> &small)
 {
-	std::list<int>::iterator it;
-	for (it = small.begin(); it != small.end(); ++it)
+	std::list<int>	jacobsthal = create_jacobsthal_list(small);
+	std::set<size_t> used_index;
+
+	// Step 1: Insert according to the Jacobsthal sequence
+	for (std::list<int>::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it)
 	{
-		int	value = *it;
+		size_t	index = *it;
+		if (index >= small.size())
+			continue ;
+
+		int	value = get_element_at(small, index);
+		std::list<int>::iterator insert_pos = big.begin();
+		while (insert_pos != big.end() && *insert_pos < value)
+			++insert_pos;
+		big.insert(insert_pos, value);
+		used_index.insert(index);
+	}
+
+	// Step 2: Insert the rest of the elements
+	for (size_t i = 0; i < small.size(); ++i)
+	{
+		if (used_index.find(i) != used_index.end())
+			continue ;
+
+		int	value = get_element_at(small, i);
 		std::list<int>::iterator insert_pos = big.begin();
 		while (insert_pos != big.end() && *insert_pos < value)
 			++insert_pos;
@@ -301,11 +346,11 @@ void	PmergeMe(char const *argv[])
 		std::list<int>	list;
 		
 		list	= create_list(argv);
-		print_list(list, "part", "Before: ");
+		print_list(list, "part", "Before");
 		clock_t			start_time_list = clock();
 		sort_list(list);
 		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
-		print_list(list, "part", "After: ");
+		print_list(list, "part", "After");
 		check_list_ordered(list); // DB
 		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
 	}
@@ -315,11 +360,11 @@ void	PmergeMe(char const *argv[])
 		std::vector<int>	vector;
 		
 		vector	= create_vector(argv);
-		print_vector(vector, "part", "Before: ");
+		print_vector(vector, "part", "Before");
 		clock_t			start_time_list = clock();
 		sort_vector(vector);
 		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
-		print_vector(vector, "part", "After: ");
+		print_vector(vector, "part", "After");
 		check_vector_ordered(vector); // DB
 		std::cout << "Time to process a range of " << vector.size() << " elements with std::list : " << end_list << " us" << std::endl;
 	}

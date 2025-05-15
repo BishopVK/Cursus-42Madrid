@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 16:32:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 23:15:01 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <set>
 #include <stdlib.h> // atoi
 #include <sstream>
 #include <climits> // INT_MAX
