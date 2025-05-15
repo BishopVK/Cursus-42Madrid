@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 01:54:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 02:07:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	PmergeMe(char const *argv[])
 	clock_t			start_time_list = clock();
 	sort_list(&list);
 	//list.sort();
-	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
+	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
 	std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
 	// clock_t			end_time_list = clock();
 	// double duration_microseconds = static_cast<double>((end_time_list - start_time_list) * 1e6 / CLOCKS_PER_SEC);
