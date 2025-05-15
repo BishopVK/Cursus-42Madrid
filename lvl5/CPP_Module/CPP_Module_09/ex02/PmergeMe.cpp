@@ -6,17 +6,21 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 11:00:30 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:32:25 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void	print_list(std::list<int> list, const std::string &print)
+/*------------------------------*/
+/*				LIST			*/
+/*------------------------------*/
+void	print_list(std::list<int> list, const std::string &print, const std::string &msg)
 {
 	std::list<int>::iterator	it = list.begin();
 	int							counter = 0;
 	
+	std::cout << msg;
 	while (it != list.end())
 	{
 		if (print == "part" && list.size() > 4 && counter >= 4)
@@ -44,10 +48,7 @@ std::list<int>	create_list(char const *argv[])
 	return list;
 }
 
-/*------------------------------*/
-/*				LIST			*/
-/*------------------------------*/
-void	move_to_big_and_small(std::list<int> &list, std::list<int> &big, std::list<int> &small)
+void	move_to_big_and_small_list(std::list<int> &list, std::list<int> &big, std::list<int> &small)
 {
 	std::list<int>::iterator it = list.begin();
 	while (it != list.end())
@@ -73,7 +74,7 @@ void	move_to_big_and_small(std::list<int> &list, std::list<int> &big, std::list<
 	}
 }
 
-void	insert_from_small_to_big(std::list<int> &big, std::list<int> &small)
+void	insert_from_small_to_big_list(std::list<int> &big, std::list<int> &small)
 {
 	std::list<int>::iterator it;
 	for (it = small.begin(); it != small.end(); ++it)
@@ -86,7 +87,7 @@ void	insert_from_small_to_big(std::list<int> &big, std::list<int> &small)
 	}
 }
 
-void	insert_hunged_nbr_to_big(bool has_hunged_nbr, int hunged_nbr, std::list<int> &big)
+void	insert_hunged_nbr_to_big_list(bool has_hunged_nbr, int hunged_nbr, std::list<int> &big)
 {
 	if (has_hunged_nbr)
 	{
@@ -116,7 +117,7 @@ void	sort_list(std::list<int> &list)
 		has_hunged_nbr = true;
 	}
 
-	move_to_big_and_small(list, big, small);
+	move_to_big_and_small_list(list, big, small);
 	// DB
 	// std::cout << std::endl << "-- BIG --" << std::endl;
 	// print_list(big);
@@ -128,15 +129,15 @@ void	sort_list(std::list<int> &list)
 	// else
 	// 	std::cout << "No hunged number" << std::endl;
 	sort_list(big); // Recursivity
-	insert_from_small_to_big(big, small);
-	insert_hunged_nbr_to_big(has_hunged_nbr, hunged_nbr, big);
+	insert_from_small_to_big_list(big, small);
+	insert_hunged_nbr_to_big_list(has_hunged_nbr, hunged_nbr, big);
 
 	list.clear();
 	list.splice(list.end(), big);
 	//list->insert(list->end(), big.begin(), big.end());
 }
 
-void	check_ordered(std::list<int> &list)
+void	check_list_ordered(std::list<int> &list)
 {
 	std::list<int>::iterator it = list.begin();
 	while (it != list.end())
@@ -155,23 +156,172 @@ void	check_ordered(std::list<int> &list)
 	std::cout << GREEN "LIST IN ORDER" RESET << std::endl;
 }
 
+/*----------------------------------*/
+/*				VECTOR				*/
+/*----------------------------------*/
+void	print_vector(std::vector<int> vector, const std::string &print, const std::string &msg)
+{
+	std::vector<int>::iterator	it = vector.begin();
+	int							counter = 0;
+	
+	std::cout << msg;
+	while (it != vector.end())
+	{
+		if (print == "part" && vector.size() > 4 && counter >= 4)
+		{
+			std::cout << "[...]";
+			break ;
+		}
+		std::cout << *it << " ";
+		counter++;
+		it++;
+	}
+	std::cout << std::endl;
+}
+
+std::vector<int>	create_vector(char const *argv[])
+{
+	std::vector<int>	vector;
+	
+	int	i = 1;
+	while (argv[i])
+	{
+		vector.push_back(atoi(argv[i]));
+		i++;
+	}
+	return vector;
+}
+
+void	move_to_big_and_small_vector(std::vector<int> &vector, std::vector<int> &big, std::vector<int> &small)
+{
+	std::vector<int>::iterator it = vector.begin();
+	while (it != vector.end())
+	{
+		std::vector<int>::iterator it_first = it++;
+		if (it == vector.end())
+			break;
+		std::vector<int>::iterator it_second = it++;
+
+		if (*it_first > *it_second)
+		{
+			big.push_back(*it_first);
+			small.push_back(*it_second);
+		}
+		else
+		{
+			big.push_back(*it_second);
+			small.push_back(*it_first);
+		}
+
+		vector.erase(it_second);
+		vector.erase(it_first);
+		it = vector.begin();
+	}
+}
+
+void	insert_from_small_to_big_vector(std::vector<int> &big, std::vector<int> &small)
+{
+	std::vector<int>::iterator it;
+	for (it = small.begin(); it != small.end(); ++it)
+	{
+		int	value = *it;
+		std::vector<int>::iterator insert_pos = big.begin();
+		while (insert_pos != big.end() && *insert_pos < value)
+			++insert_pos;
+		big.insert(insert_pos, value);
+	}
+}
+
+void	insert_hunged_nbr_to_big_vector(bool has_hunged_nbr, int hunged_nbr, std::vector<int> &big)
+{
+	if (has_hunged_nbr)
+	{
+		std::vector<int>::iterator insert_pos = big.begin();
+		while (insert_pos != big.end() && *insert_pos < hunged_nbr)
+			++insert_pos;
+		big.insert(insert_pos, hunged_nbr);
+	}
+}
+
+void	sort_vector(std::vector<int> &vector)
+{
+	std::vector<int>	big;
+	std::vector<int>	small;
+	int					hunged_nbr;
+	bool				has_hunged_nbr = false;
+
+	if (vector.size() <= 1)
+	return ;
+	
+	if (vector.size() % 2 != 0)
+	{
+		std::vector<int>::iterator it_last = vector.end();
+		--it_last;
+		hunged_nbr = *it_last;
+		vector.erase(it_last);
+		has_hunged_nbr = true;
+	}
+	
+	move_to_big_and_small_vector(vector, big, small);
+	sort_vector(big); // Recursivity
+	insert_from_small_to_big_vector(big, small);
+	insert_hunged_nbr_to_big_vector(has_hunged_nbr, hunged_nbr, big);
+
+	vector.clear();
+	//vector.splice(list.end(), big);
+	vector.insert(vector.end(), big.begin(), big.end());
+}
+
+void	check_vector_ordered(std::vector<int> &vector)
+{
+	std::vector<int>::iterator it = vector.begin();
+	while (it != vector.end())
+	{
+		std::vector<int>::iterator it_first = it++;
+		if (it == vector.end())
+			break;
+		std::vector<int>::iterator it_second = it;
+
+		if (*it_first > *it_second)
+		{
+			std::cout << RED "VECTOR NOT IN ORDER" RESET << std::endl;
+			return ;
+		}
+	}
+	std::cout << GREEN "VECTOR IN ORDER" RESET << std::endl;
+}
+
+/*----------------------------------*/
+/*				PmergeMe			*/
+/*----------------------------------*/
 void	PmergeMe(char const *argv[])
 {
-	std::list<int>	list;
-	
-	list	= create_list(argv);
-	print_list(list, "full"); // DB
-	clock_t			start_time_list = clock();
-	sort_list(list);
-	check_ordered(list);
-	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
-	std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
-	
-	// clock_t			end_time_list = clock();
-	// double duration_microseconds = static_cast<double>((end_time_list - start_time_list) * 1e6 / CLOCKS_PER_SEC);
-	// double	duration_seconds = double(end_time_list - start_time_list) / CLOCKS_PER_SEC;
-	// double	duration_microseconds = duration_seconds * 1e6;
-	//std::cout << static_cast<double>(time_list) / CLOCKS_PER_SEC * 1000 << std::endl; // DB
+	{
+		std::cout << std::endl << YELLOW "\t-- LIST --" RESET << std::endl;
+		std::list<int>	list;
+		
+		list	= create_list(argv);
+		print_list(list, "part", "Before: ");
+		clock_t			start_time_list = clock();
+		sort_list(list);
+		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
+		print_list(list, "part", "After: ");
+		check_list_ordered(list); // DB
+		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
+	}
 
-	print_list(list, "full"); // DB
+	{
+		std::cout << std::endl << YELLOW "\t-- VECTOR --" RESET << std::endl;
+		std::vector<int>	vector;
+		
+		vector	= create_vector(argv);
+		print_vector(vector, "part", "Before: ");
+		clock_t			start_time_list = clock();
+		sort_vector(vector);
+		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
+		print_vector(vector, "part", "After: ");
+		check_vector_ordered(vector); // DB
+		std::cout << "Time to process a range of " << vector.size() << " elements with std::list : " << end_list << " us" << std::endl;
+	}
+
 }
