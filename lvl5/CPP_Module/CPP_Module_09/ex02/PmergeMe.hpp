@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/13 08:25:12 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:32:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
+#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
 void	PmergeMe(char const *argv[]);
