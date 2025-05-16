@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:41:48 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:00:37 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ Form::~Form()
 
 std::ostream	&operator<<(std::ostream &os, const Form &object)
 {
-	os << object._name << " form:" <<std::endl
-	<< "\t- Grade to sign: " << object._gradeSign << std::endl
-	<< "\t- Grade to Execute: " << object._gradeExecute << std::endl;
-	if (object._signed == true)
+	os << object.getName() << " form:" <<std::endl
+	<< "\t- Grade to sign: " << object.getGradeSing() << std::endl
+	<< "\t- Grade to Execute: " << object.getGradeExecute() << std::endl;
+	if (object.getSigned() == true)
 		os << "\t- Signed" << std::endl;
 	else
 		os << "\t- Not signed" << std::endl;

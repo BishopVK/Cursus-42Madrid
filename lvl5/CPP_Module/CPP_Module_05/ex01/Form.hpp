@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:41:33 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 09:59:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Form
 		Form(const std::string &name, const int gradeSign, const int gradeExecute);
 		Form(const Form &other);
 		Form &operator=(const Form &other);
-		friend std::ostream	&operator<<(std::ostream &os, const Form &object); // Friend function so you can have access to private members
 		~Form();
 
 		const std::string	getName() const;
@@ -58,5 +57,7 @@ class Form
 				}
 		};
 };
+
+std::ostream	&operator<<(std::ostream &os, const Form &object);
 
 #endif
