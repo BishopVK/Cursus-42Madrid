@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:05:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:45:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:13:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ std::ostream	&operator<<(std::ostream &os, const AForm &object)
 
 void	AForm::print(std::ostream &os) const
 {
-	os << this->_name << " form:" <<std::endl
-	<< "\t- Grade to sign: " << this->_gradeSign << std::endl
-	<< "\t- Grade to Execute: " << this->_gradeExecute << std::endl;
-	if (this->_signed == true)
+	os << this->getName() << " form:" <<std::endl
+	<< "\t- Grade to sign: " << this->getGradeSing() << std::endl
+	<< "\t- Grade to Execute: " << this->getGradeExecute() << std::endl;
+	if (this->getSigned() == true)
 		os << "\t- Signed" << std::endl;
 	else
 		os << "\t- Not signed" << std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:49:36 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:45:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:11:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class AForm
 		AForm(const std::string &name, const int gradeSign, const int gradeExecute);
 		AForm(const AForm &other);
 		AForm &operator=(const AForm &other);
-		friend std::ostream	&operator<<(std::ostream &os, const AForm &object); // Friend function so you can have access to private members
 		virtual ~AForm(); // Abstract class must hace virtual destructor
 
 		virtual void	print(std::ostream &os) const;
@@ -72,5 +71,7 @@ class AForm
 				}
 		};
 };
+
+std::ostream	&operator<<(std::ostream &os, const AForm &object);
 
 #endif
