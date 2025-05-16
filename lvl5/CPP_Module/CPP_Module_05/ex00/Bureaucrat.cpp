@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 00:38:34 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/07 02:45:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 09:54:13 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	Bureaucrat::decrementGrade()
 
 std::ostream	&operator<<(std::ostream &os, const Bureaucrat &object)
 {
-	os << object._name << ", bureaucrat grade " << object._grade;
+	os << object.getName() << ", bureaucrat grade " << object.getGrade();
 	return (os); // Return of the outflow (std::cout)
 }
 
