@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/16 00:26:42 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/16 09:19:41 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	sort_list(std::list<int> &list)
 {
 	std::list<int>	big;
 	std::list<int>	small;
-	int				hunged_nbr;
+	int				hunged_nbr = 0;
 	bool			has_hunged_nbr = false;
 
 	if (list.size() <= 1)
@@ -322,7 +322,7 @@ void	sort_vector(std::vector<int> &vector)
 {
 	std::vector<int>	big;
 	std::vector<int>	small;
-	int					hunged_nbr;
+	int					hunged_nbr = 0;
 	bool				has_hunged_nbr = false;
 
 	if (vector.size() <= 1)
@@ -375,11 +375,11 @@ void	PmergeMe(char const *argv[])
 		std::list<int>	list;
 		
 		list	= create_list(argv);
-		print_list(list, "full", "Before");
+		print_list(list, "part", "Before");
 		clock_t			start_time_list = clock();
 		sort_list(list);
-		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
-		print_list(list, "full", "After");
+		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
+		print_list(list, "part", "After");
 		check_list_ordered(list); // DB
 		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
 	}
@@ -389,13 +389,13 @@ void	PmergeMe(char const *argv[])
 		std::vector<int>	vector;
 		
 		vector	= create_vector(argv);
-		print_vector(vector, "full", "Before");
+		print_vector(vector, "part", "Before");
 		clock_t			start_time_list = clock();
 		sort_vector(vector);
-		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 10000;
-		print_vector(vector, "full", "After");
+		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
+		print_vector(vector, "part", "After");
 		check_vector_ordered(vector); // DB
-		std::cout << "Time to process a range of " << vector.size() << " elements with std::list : " << end_list << " us" << std::endl;
+		std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << end_list << " us" << std::endl;
 	}
 
 }
