@@ -47,6 +47,8 @@
 		"cfloat": "cpp",
 		"ctime": "cpp",
 		"iomanip": "cpp",
-		"climits": "cpp"
+		"climits": "cpp",
+		"optional": "cpp",
+		"ranges": "cpp"
 	}
 }
