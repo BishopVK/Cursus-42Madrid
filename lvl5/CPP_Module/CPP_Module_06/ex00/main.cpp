@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 08:57:48 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/20 23:52:53 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/23 08:19:57 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@ int	main(int argc, char *argv[])
 	}
 	try
 	{
-		//std::cout << GREEN << "CORRECT! 😉" << std::endl; // DB
 		ScalarConverter::convert(argv[1]);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << "Exception: " << e.what() << RESET << std::endl;
 	}
-	
-	/* std::cout << GREEN << "CORRECT! 😉" << std::endl; // DB
-	ScalarConverter::convert(argv[1]); */
 	return 0;
 }
