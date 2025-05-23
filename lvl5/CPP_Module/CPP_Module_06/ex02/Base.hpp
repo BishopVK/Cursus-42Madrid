@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:11:55 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/23 22:28:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/23 08:59:50 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <cmath>
 
 #define RED "\033[31m"
+#define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 #define CYAN "\033[36m"
 #define RESET "\033[0m"
