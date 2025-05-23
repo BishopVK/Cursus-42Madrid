@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:09:56 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/23 22:47:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:04:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(void)
 		identify(a);
 		identify(b);
 		identify(c);
+		identify(NULL);
 
 		identify(*a);
 		identify(*b);
