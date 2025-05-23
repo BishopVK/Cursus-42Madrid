@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:17:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/23 22:40:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:05:51 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ Base	*generate(void)
 
 void	identify(Base* p)
 {
+	std::cout << GREEN << "POINTER IDENTIFY() CALL:" << RESET << std::endl;
 	if (dynamic_cast<A*>(p))
 	{
 		std::cout << "Pointer type: " << CYAN << "A" << RESET << std::endl;
@@ -63,6 +64,7 @@ void	identify(Base* p)
 
 void	identify(Base& p)
 {
+	std::cout << GREEN << "REFERENCE IDENTIFY() CALL:" << RESET << std::endl;
 	try
 	{
 		A& a = dynamic_cast<A&>(p);
