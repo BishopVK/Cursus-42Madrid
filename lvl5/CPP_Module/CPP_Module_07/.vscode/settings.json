@@ -43,6 +43,8 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"optional": "cpp",
+		"ranges": "cpp"
 	}
 }
