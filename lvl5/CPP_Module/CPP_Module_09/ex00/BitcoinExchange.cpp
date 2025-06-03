@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 16:24:40 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/03 22:11:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ int	create_csv_map(std::multimap<std::string, double> *data_map, const std::stri
 	return EXIT_SUCCESS;
 }
 
-int	exchange(const std::string &infile)
+int	BitcoinExchange::exchange(const std::string &infile)
 {
 	// Create data_map
 	std::multimap<std::string, double> data_map;

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 16:15:58 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/03 22:12:07 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@
 
 #define DATA_CSV "./cpp_09/data.csv"
 
-int	exchange(const std::string &infile);
+//int	exchange(const std::string &infile);
+
+class BitcoinExchange{
+	private:
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &other);
+		BitcoinExchange &operator=(const BitcoinExchange &other);
+		~BitcoinExchange();
+
+	public:
+		static int	exchange(const std::string &infile);
+};
 
 #endif

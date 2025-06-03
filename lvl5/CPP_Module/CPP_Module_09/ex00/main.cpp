@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:16 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/09 23:14:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/03 22:12:09 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 {
 	if (check_args(argc, argv) == EXIT_FAILURE)
 		return EXIT_FAILURE;
-	if (exchange(argv[1]) == EXIT_FAILURE)
+	if (BitcoinExchange::exchange(argv[1]) == EXIT_FAILURE)
 		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
