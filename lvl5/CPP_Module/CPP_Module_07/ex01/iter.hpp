@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 23:54:30 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/03 08:38:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:40:24 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Test
 
 std::ostream &operator<<(std::ostream &os, const Test &t)
 {
-	os << "Test (" << t.getI() << ")";
+	os << "Class (" << t.getI() << ")";
 	return os;
 }
 
