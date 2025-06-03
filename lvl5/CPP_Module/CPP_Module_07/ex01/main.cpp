@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 23:47:43 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/25 01:22:09 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/03 08:38:22 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-
-class Test
-{
-	private:
-		int	_i;
-
-	public:
-		Test() : _i(0) {}
-		void	setI(int i) {this->_i = i;}
-		int		getI() const {return this->_i;}
-};
-
-std::ostream &operator<<(std::ostream &os, const Test &t)
-{
-	os << "Test (" << t.getI() << ")";
-	return os;
-}
-
-void	upperCase(const std::string &str)
-{
-	std::string	tmp;
-	for (size_t i = 0; i < str.length(); i++)
-		tmp.push_back(std::toupper(str[i]));
-	std:: cout << "Element uppercase: " << YELLOW << tmp << RESET << std::endl;
-}
 
 int main()
 {
