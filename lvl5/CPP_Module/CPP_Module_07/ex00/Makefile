@@ -3,27 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 23:25:27 by danjimen          #+#    #+#              #
-#    Updated: 2025/04/24 23:26:56 by danjimen         ###   ########.fr        #
+#    Updated: 2025/06/04 08:42:00 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ex00
+NAME		=	ex00
 
-CPP		=	c++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp
+SRC			=	main.cpp
 
-OBJ		=	$(SRC:.cpp=.o)
-
-%.o: %.cpp
-	$(CPP) $(CFLAGS) -c $< -o $@
+OBJ			=	$(SRC:.cpp=.o)
 
 $(NAME):	$(OBJ)
-	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 all:	$(NAME)
 
