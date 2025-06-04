@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:44:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/04 13:18:49 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:11:18 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Span::Span(const unsigned int &n) : _maxInts(n)
 	this->_data.reserve(n);
 }
 
-Span::Span(const Span &other) : _maxInts(other._data.capacity())
+Span::Span(const Span &other) : _maxInts(other._maxInts)
 {
 	std::cout << GREEN "Copy constructor called" RESET << std::endl;
 	*this = other;
@@ -44,7 +44,6 @@ Span &Span::operator=(const Span &other)
 Span::~Span()
 {
 	std::cout << RED "Destructor called" RESET << std::endl;
-	this->_data.clear();
 }
 
 void	Span::addNumber(const int &n)
@@ -55,7 +54,7 @@ void	Span::addNumber(const int &n)
 		throw ContainerFilledException();
 }
 
-int	Span::shortestSpan()
+long long	Span::shortestSpan() const
 {
 	if (this->_data.size() <= 1)
 		throw EnoughElementsException();
@@ -63,48 +62,31 @@ int	Span::shortestSpan()
 	std::vector<int> copy = this->_data;
 	std::sort(copy.begin(), copy.end());
 
-	int	span = INT_MAX;
+	long long	span = LLONG_MAX;
 	for (size_t i = 1; i < copy.size(); ++i)
 	{
-		int diff = copy[i] - copy[i - 1];
+		long long diff = static_cast<long long>(copy[i]) - static_cast<long long>(copy[i - 1]);
 		if (diff < span)
 			span = diff;
 	}
 	return span;
 }
 
-int	Span::longestSpan()
+long long	Span::longestSpan() const
 {
 	if (this->_data.size() <= 1)
 		throw EnoughElementsException();
 
-	std::vector<int>::iterator minIt = std::min_element(_data.begin(), _data.end());
-	std::vector<int>::iterator maxIt = std::max_element(_data.begin(), _data.end());
+	std::vector<int>::const_iterator minIt = std::min_element(_data.begin(), _data.end());
+	std::vector<int>::const_iterator maxIt = std::max_element(_data.begin(), _data.end());
 
-	return (*maxIt - *minIt);
+	return (static_cast<long long>(*maxIt) - static_cast<long long>(*minIt));
 }
 
-void	Span::fillSpan()
+// Extra
+void	Span::printSpan() const
 {
-	if (this->_data.size() < this->_maxInts)
-	{
-		this->_data.resize(this->_maxInts);
-		std::srand(time(0));
-		std::vector<int>::iterator it;
-		
-		for (it = this->_data.begin(); it != this->_data.end(); ++it)
-		{
-			if (!*it)
-				*it = std::rand();
-		}
-	}
-	else
-		throw ContainerFilledException();
-}
-
-void	Span::printSpan()
-{
-	std::vector<int>::iterator it;
+	std::vector<int>::const_iterator it;
 	int	i = 0;
 	for (it = this->_data.begin(); it != this->_data.end(); ++it)
 	{
@@ -116,7 +98,7 @@ void	Span::printSpan()
 // Exceptions
 const char* Span::ContainerFilledException::what() const throw()
 {
-	return "The containter is full!";
+	return "The container is full!";
 }
 
 const char* Span::EnoughElementsException::what() const throw()
