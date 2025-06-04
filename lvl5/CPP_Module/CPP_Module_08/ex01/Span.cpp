@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:44:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/04 12:05:20 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/04 13:18:49 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ Span::~Span()
 
 void	Span::addNumber(const int &n)
 {
-	if (this->_data.size() <= this->_maxInts)
+	if (this->_data.size() < this->_maxInts)
 		this->_data.push_back(n);
 	else
 		throw ContainerFilledException();
@@ -82,6 +82,35 @@ int	Span::longestSpan()
 	std::vector<int>::iterator maxIt = std::max_element(_data.begin(), _data.end());
 
 	return (*maxIt - *minIt);
+}
+
+void	Span::fillSpan()
+{
+	if (this->_data.size() < this->_maxInts)
+	{
+		this->_data.resize(this->_maxInts);
+		std::srand(time(0));
+		std::vector<int>::iterator it;
+		
+		for (it = this->_data.begin(); it != this->_data.end(); ++it)
+		{
+			if (!*it)
+				*it = std::rand();
+		}
+	}
+	else
+		throw ContainerFilledException();
+}
+
+void	Span::printSpan()
+{
+	std::vector<int>::iterator it;
+	int	i = 0;
+	for (it = this->_data.begin(); it != this->_data.end(); ++it)
+	{
+		std::cout << "span[" << i << "] = " << *it << std::endl;
+		i++;
+	}
 }
 
 // Exceptions
