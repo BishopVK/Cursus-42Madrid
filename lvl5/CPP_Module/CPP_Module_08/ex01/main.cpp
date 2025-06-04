@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:33:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/04 13:19:24 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:24:45 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,21 @@ int main()
 			std::cout << std::endl << YELLOW "-- TEST 5 --" RESET << std::endl;
 			Span sp = Span(10000);
 
-			sp.fillSpan();
+			std::cout << std::endl << BLUE "CREATE AND FILL values VECTOR WHIT RANDOM INTS" RESET << std::endl;
+			std::vector<int> values(10000);
+			std::srand(time(0));
+			for (size_t i = 0; i < values.capacity(); ++i)
+			{
+				values[i] = std::rand();
+				//std::cout << "values[" << i << "] = " << values[i] << std::endl;
+			}
 
+			std::cout << std::endl << BLUE "ADD VALUES FROM values VECTOR TO sp SPAN USING ITERATORS" RESET << std::endl;
+			sp.addRange(values.begin(), values.end());
+
+			//sp.printSpan();
+
+			std::cout << std::endl << BLUE "SHORTEST AND LONGEST SPAN" RESET << std::endl;
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
 		}
