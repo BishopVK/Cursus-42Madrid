@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:37:39 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/02 14:39:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/04 13:18:38 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ class Span
 		void	addNumber(const int &n);
 		int		shortestSpan();
 		int		longestSpan();
+
+		void	fillSpan();
+
+		void	printSpan();
 
 		class ContainerFilledException : public std::exception
 		{
