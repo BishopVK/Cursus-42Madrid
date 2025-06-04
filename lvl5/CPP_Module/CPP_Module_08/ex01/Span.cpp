@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:44:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/02 14:37:27 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/04 12:05:20 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ Span &Span::operator=(const Span &other)
 	if (this != &other)
 	{
 		this->_maxInts = other._maxInts;
+		this->_data.clear();
 		this->_data = other._data;
 	}
 	return *this;
@@ -43,6 +44,7 @@ Span &Span::operator=(const Span &other)
 Span::~Span()
 {
 	std::cout << RED "Destructor called" RESET << std::endl;
+	this->_data.clear();
 }
 
 void	Span::addNumber(const int &n)
@@ -52,29 +54,6 @@ void	Span::addNumber(const int &n)
 	else
 		throw ContainerFilledException();
 }
-
-/* int	Span::shortestSpan()
-{
-	if (this->_data.size() <= 1)
-		throw EnoughElementsException();
-
-	std::vector<int> copy = this->_data;
-	std::sort(copy.begin(), copy.end());
-
-	int	span = INT_MAX;
-	std::vector<int>::iterator first;
-
-	for (first = copy.begin(); first != copy.end(); first++)
-	{
-		std::vector<int>::iterator second;
-		for (second = first + 1; second != copy.end(); second++)
-		{
-			if (std::abs((*first - *second)) < span)
-				span = std::abs((*first - *second));
-		}
-	}
-	return span;
-} */
 
 int	Span::shortestSpan()
 {
