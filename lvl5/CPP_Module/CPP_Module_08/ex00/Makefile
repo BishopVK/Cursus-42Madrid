@@ -3,27 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 23:25:49 by danjimen          #+#    #+#              #
-#    Updated: 2025/05/02 00:31:06 by danjimen         ###   ########.fr        #
+#    Updated: 2025/06/04 11:38:00 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Easy_find
+NAME		=	Easy_find
 
-CPP		=	c++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp
+SRC			=	main.cpp
 
-OBJ		= $(SRC:.cpp=.o)
-
-%.o: %.cpp
-	$(CPP) $(CFLAGS) -c $< -o $@
+OBJ			= $(SRC:.cpp=.o)
 
 $(NAME):	$(OBJ)
-	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 # Manual dependency
 main.o: main.cpp easyfind.hpp easyfind.tpp

@@ -3,28 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 09:28:30 by danjimen          #+#    #+#              #
-#    Updated: 2025/05/02 14:39:17 by danjimen         ###   ########.fr        #
+#    Updated: 2025/06/04 11:39:08 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Span
+NAME		=	Span
 
-CPP		=	c++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp \
+SRC			=	main.cpp \
 			Span.cpp
 
-OBJ		=	$(SRC:.cpp=.o)
-
-%.o:	%.cpp
-	$(CPP) $(CFLAGS) -c $< -o $@
+OBJ			=	$(SRC:.cpp=.o)
 
 $(NAME):	$(OBJ)
-	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 # Manual dependency
 Span.o: Span.cpp Span.hpp
