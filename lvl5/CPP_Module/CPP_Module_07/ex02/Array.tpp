@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 23:20:24 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/01 01:34:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/04 08:31:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ Array<T>::Array(const unsigned int &n)
 	std::cout << GREEN "Array n defined constructor called" RESET << std::endl;
 	if (n > MAX_SIZE)
 		throw std::length_error("Array size to large");
-	this->_ptr = (new T[n]);
+	this->_ptr = (new T[n]());
 	this->_size = n;
 }
 
 template <typename T>
-Array<T>::Array(const Array &other) : _ptr(new T[other.size()]()), _size(other.size())
+Array<T>::Array(const Array &other) : _ptr(NULL), _size(0)
 {
 	std::cout << GREEN "Array Copy constructor called" RESET << std::endl;
 	*this = other;
@@ -41,7 +41,7 @@ Array<T> &Array<T>::operator=(const Array &other)
 	{
 		delete[] this->_ptr;
 		this->_size = other.size();
-		this->_ptr = new T[this->size()]();
+		this->_ptr = new T[this->_size]();
 		for (unsigned int i = 0; i < this->_size; i++)
 			this->_ptr[i] = other._ptr[i];
 	}
@@ -52,7 +52,8 @@ template <typename T>
 Array<T>::~Array()
 {
 	std::cout << RED "Array Destructor called" RESET << std::endl;
-	delete[] this->_ptr;
+	if (_ptr)
+		delete[] this->_ptr;
 }
 
 template <typename T>
