@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 23:10:05 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/01 01:33:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/04 08:21:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <stdexcept>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
