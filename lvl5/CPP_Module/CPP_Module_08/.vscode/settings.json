@@ -47,6 +47,7 @@
 		"list": "cpp",
 		"sstream": "cpp",
 		"optional": "cpp",
-		"ranges": "cpp"
+		"ranges": "cpp",
+		"ctime": "cpp"
 	}
 }
