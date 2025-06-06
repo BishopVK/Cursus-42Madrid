@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:16 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 01:36:59 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 08:51:34 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
 	{
 		BitcoinExchange btc("cpp_09/data.csv");
 		std::cout << btc << std::endl;
-		//btc.processInputFile(argv[1]);
+		btc.processInputFile(argv[1]);
 	} catch (const std::exception& e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 02:15:39 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:56:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,27 @@ class BitcoinExchange{
 		void	loadDatabase(const std::string& filename);
 
 		// Queries
-		const std::multimap<std::string, double> &getDatabase() const;
+		const	std::multimap<std::string, double> &getDatabase() const;
 
-		// Validations
-		//std::string	formatDouble(double value) const;
+		// Main Process
+		void	processInputFile(const std::string &filename) const;
+
+		// Parse Input File
+		bool	check_first_line(const std::string &header_line) const;
+		bool	check_line_format(std::string line);
 
 		//static int	exchange(const std::string &infile); // OLD
 
-		class FailOpenDatabaseException : public std::exception
+		class FailOpenFileException : public std::exception
+		{
+			private:
+				std::string filename;
+			public:
+				FailOpenFileException(const std::string &file) : filename(file) {}
+				virtual const char* what() const throw();
+		};
+
+		class WrongHeaderFileException : public std::exception
 		{
 			public:
 				virtual const char* what() const throw();

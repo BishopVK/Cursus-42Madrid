@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 02:15:55 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:26:56 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 {
 	std::ifstream file(filename.c_str());
 	if (!file)
-		throw FailOpenDatabaseException();
+		throw FailOpenFileException(filename);
 
 	std::string line;
 	std::getline(file, line); // skip header
@@ -82,24 +82,133 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 	}
 }
 
-/* static int check_first_line(std::ifstream *data_file, std::string line, const std::string &infile)
+void	BitcoinExchange::processInputFile(const std::string &filename) const
 {
-	std::string	data_head = "date,exchange_rate";
+	std::ifstream	input_file;
+	input_file.open(filename.c_str());
+	if (!input_file)
+		throw FailOpenFileException(filename);
+
+	// Check first line
+	std::string	line;
+	std::getline(input_file, line);
+	if (!this->check_first_line(line))
+		throw WrongHeaderFileException();
+
+	// Check the rest of the document
+	while(std::getline(input_file, line))
+	{
+		std::string		key;
+		double			value;
+		if (line.empty())
+			continue ;
+		check_line_format(line);
+		print_output(data_map, &key, &value);
+	}
+}
+
+bool	BitcoinExchange::check_first_line(const std::string &header_line) const
+{
 	std::string	infile_head = "date | value";
-	std::getline(*data_file, line);
 	
-	if (infile == DATA_CSV && line != data_head)
+	if (header_line != infile_head)
 	{
-		std::cerr << RED "Error: " << infile << " must start with " << data_head << RESET << std::endl;
-		return EXIT_FAILURE;
+		std::cerr << RED "Error: " << "Infile must start with " + infile_head << RESET << std::endl;
+		return false;
 	}
-	else if (infile != DATA_CSV && line != infile_head)
+
+	return true;
+}
+
+bool	check_date(const std::string &date)
+{
+	if (date.length() < 10)
 	{
-		std::cerr << RED "Error: " << infile << " must start with " << infile_head << RESET << std::endl;
-		return EXIT_FAILURE;
+		*key = line;
+		*value = NAN;
+		return ;
 	}
-	return EXIT_SUCCESS;
-} */
+	if ((*key)[4] != '-' || (*key)[7] != '-' || !isdigit_string((*key).substr(0, 4))
+		|| !isdigit_string((*key).substr(5, 2)) || !isdigit_string((*key).substr(8, 2)))
+	{
+		*key = line;
+		*value = NAN;
+		return ;
+	}
+	if ((*key).length() > 10 && (*key)[10] != ' ')
+	{
+		*key = line;
+		*value = NAN;
+		return ;
+	}
+
+	int	year = atoi((*key).substr(0, 4).c_str());
+	int	month = atoi((*key).substr(5, 2).c_str());
+	int	day = atoi((*key).substr(8, 2).c_str());
+	bool	leap_year = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? true : false; // Bisiesto
+	bool	error = false;
+	if (year < 0 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
+		error = true;
+	if ((month == 2 && leap_year == true && day > 29) || (month == 2 && leap_year == false && day > 28))
+		error = true;
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		error = true;
+	if (((year < 2009 || (year == 2009 && month <= 1 && day <= 2)) && !std::isnan(*value)))
+		*key = "2009-01-02";
+	if (error)
+	{
+		*key = line;
+		*value = NAN;
+		return ;
+	}
+}
+
+bool	BitcoinExchange::check_line_format(std::string line)
+{
+	// mm.insert(std::make_pair("clave", 1));
+	std::string delimiter = " | ";
+
+	// Finding the position of the delimiter
+	std::size_t pos = line.find(delimiter);
+	if (pos == std::string::npos) // The delimiter was not found
+	{
+		this->_database.insert(std::make_pair(line, NAN));
+	}
+	else // The delimiter was found
+	{
+		std::string	key;
+		int	value;
+		std::string str_value;
+		str_value = line.substr(pos + delimiter.length()); // Save value to string
+		char	*endptr;
+
+		if (!check_date(line.substr(0, pos)))
+		{
+			return false
+		}
+		if (*endptr != '\0')
+		{
+			*key = line;
+			*value = NAN;
+			return false
+		}
+		else if (!std::isnan(*value))
+		{
+			check_date(key, value, line);
+		}
+		else
+		{
+			*key = line.substr(0, pos);
+			// Convert string to double
+			*value = std::strtod(str_value.c_str(), &endptr);
+		}
+
+		if (!std::isnan(*value))
+			check_date(key, value, line);
+	}
+
+	return true;
+}
 
 /* static bool	isdigit_string(const std::string &str)
 {
@@ -156,6 +265,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 
 /* static int	check_line_format(std::string *key, double *value, std::string line)
 {
+	// mm.insert(std::make_pair("clave", 1));
 	std::string delimiter = " | ";
 
 	// Finding the position of the delimiter
@@ -326,7 +436,12 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 } */
 
 // Exceptions
-const char* BitcoinExchange::FailOpenDatabaseException::what() const throw()
+const char* BitcoinExchange::FailOpenFileException::what() const throw()
 {
-	return "Could not open database file";
+	return ("Failed to open file: " + this->filename).c_str();
+}
+
+const char* BitcoinExchange::WrongHeaderFileException::what() const throw()
+{
+	return "Wrong input header line";
 }
