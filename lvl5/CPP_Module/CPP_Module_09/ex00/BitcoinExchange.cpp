@@ -6,13 +6,83 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/03 22:11:28 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 02:00:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-static int check_first_line(std::ifstream *data_file, std::string line, const std::string &infile)
+BitcoinExchange::BitcoinExchange() {}
+
+BitcoinExchange::BitcoinExchange(const std::string& dbFile)
+{
+	loadDatabase(dbFile);
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) : _database(other._database) {}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this != &other)
+		_database = other._database;
+	return *this;
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+
+const std::multimap<std::string, double> &BitcoinExchange::getDatabase() const
+{
+	return this->_database;
+}
+
+std::string	BitcoinExchange::formatDouble(double value) const
+{
+	std::ostringstream oss;
+	oss << std::fixed << std::setprecision(2) << value;
+	std::string str = oss.str();
+
+	// Remove trailing zeros
+	size_t dot = str.find('.');
+	if (dot != std::string::npos) {
+		size_t end = str.size() - 1;
+		while (end > dot && str[end] == '0') {
+			--end;
+		}
+		if (str[end] == '.') // If the point remains alone, we eliminate it.
+			--end;
+		str = str.substr(0, end + 1);
+	}
+	return str;
+}
+
+std::ostream	&operator<<(std::ostream &os, const BitcoinExchange &object)
+{
+	os << "date,exchange_rate" << std::endl;
+	for (std::multimap<std::string, double>::const_iterator it = object.getDatabase().begin(); it != object.getDatabase().end(); ++it)
+		os << it->first << "," << object.formatDouble(it->second) << std::endl;
+	return os;
+}
+
+void BitcoinExchange::loadDatabase(const std::string &filename)
+{
+	std::ifstream file(filename.c_str());
+	if (!file)
+		throw FailOpenDatabaseException();
+
+	std::string line;
+	std::getline(file, line); // skip header
+	while (std::getline(file, line))
+	{
+		std::istringstream iss(line);
+		std::string date, valueStr;
+		if (!std::getline(iss, date, ',') || !std::getline(iss, valueStr))
+			continue;
+		double value = std::atof(valueStr.c_str());
+		this->_database.insert(std::make_pair(date, value));
+	}
+}
+
+/* static int check_first_line(std::ifstream *data_file, std::string line, const std::string &infile)
 {
 	std::string	data_head = "date,exchange_rate";
 	std::string	infile_head = "date | value";
@@ -29,9 +99,9 @@ static int check_first_line(std::ifstream *data_file, std::string line, const st
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
-}
+} */
 
-static bool	isdigit_string(const std::string &str)
+/* static bool	isdigit_string(const std::string &str)
 {
 	for (size_t i = 0; i < str.length(); ++i)
 	{
@@ -39,9 +109,9 @@ static bool	isdigit_string(const std::string &str)
 			return false;
 	}
 	return true;
-}
+} */
 
-static void	check_date(std::string *key, double *value, std::string line)
+/* static void	check_date(std::string *key, double *value, std::string line)
 {
 	if ((*key).empty() || (*key).length() < 10)
 	{
@@ -82,9 +152,9 @@ static void	check_date(std::string *key, double *value, std::string line)
 		*value = NAN;
 		return ;
 	}
-}
+} */
 
-static int	check_line_format(std::string *key, double *value, std::string line)
+/* static int	check_line_format(std::string *key, double *value, std::string line)
 {
 	std::string delimiter = " | ";
 
@@ -115,9 +185,9 @@ static int	check_line_format(std::string *key, double *value, std::string line)
 	}
 
 	return EXIT_SUCCESS;
-}
+} */
 
-std::string	formatFloat(double value)
+/* std::string	formatFloat(double value)
 {
 	std::ostringstream oss;
 	oss << std::fixed << std::setprecision(2) << value;
@@ -135,9 +205,9 @@ std::string	formatFloat(double value)
 		str = str.substr(0, end + 1);
 	}
 	return str;
-}
+} */
 
-static void	print_output(std::multimap<std::string, double> *data_map, std::string *key,
+/* static void	print_output(std::multimap<std::string, double> *data_map, std::string *key,
 	double *value)
 {
 	// Find correct or previous date
@@ -161,9 +231,9 @@ static void	print_output(std::multimap<std::string, double> *data_map, std::stri
 		<< formatFloat(*value) << " = "
 		<< formatFloat(result) << std::endl;
 	}
-}
+} */
 
-static int	read_infile(std::multimap<std::string, double> *data_map, const std::string &infile)
+/* static int	read_infile(std::multimap<std::string, double> *data_map, const std::string &infile)
 {
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
@@ -190,9 +260,9 @@ static int	read_infile(std::multimap<std::string, double> *data_map, const std::
 	}
 
 	return EXIT_SUCCESS;
-}
+} */
 
-static void	save_csv_map(std::string *key, double *value, std::string line)
+/* static void	save_csv_map(std::string *key, double *value, std::string line)
 {
 	std::string delimiter = ",";
 
@@ -210,9 +280,9 @@ static void	save_csv_map(std::string *key, double *value, std::string line)
 		*value = std::strtod(line.substr(pos + delimiter.length()).c_str(), &endptr);
 		check_date(key, value, line);
 	}
-}
+} */
 
-int	create_csv_map(std::multimap<std::string, double> *data_map, const std::string &infile)
+/* int	create_csv_map(std::multimap<std::string, double> *data_map, const std::string &infile)
 {
 	std::ifstream	data_file;
 	data_file.open(infile.c_str());
@@ -239,9 +309,9 @@ int	create_csv_map(std::multimap<std::string, double> *data_map, const std::stri
 	}
 
 	return EXIT_SUCCESS;
-}
+} */
 
-int	BitcoinExchange::exchange(const std::string &infile)
+/* int	BitcoinExchange::exchange(const std::string &infile)
 {
 	// Create data_map
 	std::multimap<std::string, double> data_map;
@@ -253,4 +323,10 @@ int	BitcoinExchange::exchange(const std::string &infile)
 		return EXIT_FAILURE;
 
 	return EXIT_SUCCESS;
+} */
+
+// Exceptions
+const char* BitcoinExchange::FailOpenDatabaseException::what() const throw()
+{
+	return "Could not open database file";
 }

@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/03 22:12:07 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 01:59:43 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,33 @@
 
 class BitcoinExchange{
 	private:
+		std::multimap<std::string, double> _database;
+
+	public:
 		BitcoinExchange();
+		BitcoinExchange(const std::string &csvFile);
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-	public:
-		static int	exchange(const std::string &infile);
+		// Load values
+		void	loadDatabase(const std::string& filename);
+
+		// Queries
+		const std::multimap<std::string, double> &getDatabase() const;
+
+		// Validations
+		std::string	formatDouble(double value) const;
+
+		//static int	exchange(const std::string &infile); // OLD
+
+		class FailOpenDatabaseException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 };
+
+std::ostream	&operator<<(std::ostream &os, const BitcoinExchange &object);
 
 #endif
