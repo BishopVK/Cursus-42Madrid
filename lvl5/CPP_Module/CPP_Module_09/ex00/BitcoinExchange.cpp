@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 02:00:08 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 02:15:55 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ const std::multimap<std::string, double> &BitcoinExchange::getDatabase() const
 	return this->_database;
 }
 
-std::string	BitcoinExchange::formatDouble(double value) const
+std::string	formatDouble(double value)
 {
 	std::ostringstream oss;
 	oss << std::fixed << std::setprecision(2) << value;
@@ -59,7 +59,7 @@ std::ostream	&operator<<(std::ostream &os, const BitcoinExchange &object)
 {
 	os << "date,exchange_rate" << std::endl;
 	for (std::multimap<std::string, double>::const_iterator it = object.getDatabase().begin(); it != object.getDatabase().end(); ++it)
-		os << it->first << "," << object.formatDouble(it->second) << std::endl;
+		os << it->first << "," << formatDouble(it->second) << std::endl;
 	return os;
 }
 

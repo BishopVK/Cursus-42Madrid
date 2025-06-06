@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 01:59:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/06 02:15:39 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class BitcoinExchange{
 		const std::multimap<std::string, double> &getDatabase() const;
 
 		// Validations
-		std::string	formatDouble(double value) const;
+		//std::string	formatDouble(double value) const;
 
 		//static int	exchange(const std::string &infile); // OLD
 
