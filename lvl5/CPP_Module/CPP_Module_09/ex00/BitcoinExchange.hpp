@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 12:56:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/08 01:32:04 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <iomanip> // std::fixed, std::setprecision()
 #include <cmath> // std::isnan(), NAN
 #include <sstream> // std::ostringstream
+#include <stdexcept>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -51,12 +52,7 @@ class BitcoinExchange{
 
 		// Main Process
 		void	processInputFile(const std::string &filename) const;
-
-		// Parse Input File
-		bool	check_first_line(const std::string &header_line) const;
-		bool	check_line_format(std::string line);
-
-		//static int	exchange(const std::string &infile); // OLD
+		void	print_output(std::string *key, double *value) const;
 
 		class FailOpenFileException : public std::exception
 		{
@@ -64,6 +60,7 @@ class BitcoinExchange{
 				std::string filename;
 			public:
 				FailOpenFileException(const std::string &file) : filename(file) {}
+				virtual ~FailOpenFileException() throw() {}
 				virtual const char* what() const throw();
 		};
 
