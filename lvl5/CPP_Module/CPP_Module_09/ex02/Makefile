@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+         #
+#    By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 23:38:18 by danjimen          #+#    #+#              #
-#    Updated: 2025/05/13 08:37:03 by danjimen         ###   ########.fr        #
+#    Updated: 2025/06/09 01:20:10 by danjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,6 @@ re:	fclean all
 
 rc:	re
 	rm -f $(OBJ)
-
-r:	rc
-	./$(NAME) $(ARG)
-
-valgrind:
-	valgrind --leak-check=full ./$(NAME) $(ARG)
 
 .PHONY: all clean fclean re rc r valgrind
 
