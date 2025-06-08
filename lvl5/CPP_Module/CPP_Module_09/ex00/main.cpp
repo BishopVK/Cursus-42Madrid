@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:16 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/06 08:51:34 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 01:25:28 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int main(int argc, char const *argv[])
 		return EXIT_FAILURE;
 	}
 
-	/* if (BitcoinExchange::exchange(argv[1]) == EXIT_FAILURE)
-		return EXIT_FAILURE; */
 	return EXIT_SUCCESS;
 }
 
