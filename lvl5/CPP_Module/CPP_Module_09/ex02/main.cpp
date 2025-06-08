@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/15 01:39:22 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 01:19:14 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,25 @@ int	check_args(int argc, char const *argv[])
 
 int main(int argc, char const *argv[])
 {
-	if (check_args(argc, argv) == EXIT_FAILURE)
+	{
+		std::cout << std::endl << BLUE "-- TEST 1 --" RESET << std::endl;
+		if (check_args(argc, argv) == EXIT_FAILURE)
 		return EXIT_FAILURE;
-	PmergeMe(argv);
+		
+		PmergeMe pmergeMe(argc, argv);
+		pmergeMe.sortWithList();
+		pmergeMe.sortWithVector();
+	}
+
+	{
+		std::cout << std::endl << BLUE "-- TEST 2 --" RESET << std::endl;
+
+		const char *test[] = {"./PmergeMe", "1", "-5", "42", "0", "53"};
+
+		PmergeMe testPmergeMe(sizeof(test) / sizeof(test[0]), test);
+		testPmergeMe.sortWithList();
+		testPmergeMe.sortWithVector();
+	}
+
 	return 0;
 }
