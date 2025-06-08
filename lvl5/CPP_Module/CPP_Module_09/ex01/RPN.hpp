@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 23:17:02 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/08 03:16:13 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 01:28:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ class RPN
 {
 	private:
 		std::string	_input;
+		RPN();
 
 	public:
-		RPN();
 		RPN(const std::string &input);
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
