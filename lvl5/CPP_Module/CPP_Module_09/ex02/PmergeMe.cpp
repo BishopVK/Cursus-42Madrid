@@ -3,14 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/16 09:19:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 01:12:17 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+/*------------------------------*/
+/*	CONSTRUCTORS & DESTRUCTOR	*/
+/*------------------------------*/
+
+PmergeMe::PmergeMe(int argc, const char* argv[])
+{
+	_argc = argc - 1;
+	_argv = new char*[_argc + 1];
+	for (int i = 0; i < _argc; ++i)
+	{
+		_argv[i] = new char[std::strlen(argv[i + 1]) + 1];
+		std::strcpy(_argv[i], argv[i + 1]);
+	}
+	_argv[_argc] = NULL;
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other) : _argc(other._argc)
+{
+	_argv = new char*[_argc + 1];
+	for (int i = 0; i < _argc; ++i)
+	{
+		_argv[i] = new char[std::strlen(other._argv[i]) + 1];
+		std::strcpy(_argv[i], other._argv[i]);
+	}
+	_argv[_argc] = NULL;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+	if (this != &other)
+	{
+		for (int i = 0; i < _argc; ++i)
+			delete[] _argv[i];
+		delete[] _argv;
+
+		_argc = other._argc;
+		_argv = new char*[_argc + 1];
+		for (int i = 0; i < _argc; ++i)
+		{
+			_argv[i] = new char[std::strlen(other._argv[i]) + 1];
+			std::strcpy(_argv[i], other._argv[i]);
+		}
+		_argv[_argc] = NULL;
+	}
+	return *this;
+}
+
+PmergeMe::~PmergeMe()
+{
+	for (int i = 0; i < _argc; ++i)
+	{
+		delete[] _argv[i];
+	}
+	delete[] _argv;
+}
 
 /*------------------------------*/
 /*				LIST			*/
@@ -35,11 +91,11 @@ void	print_list(std::list<int> list, const std::string &option, const std::strin
 	std::cout << std::endl;
 }
 
-std::list<int>	create_list(char const *argv[])
+std::list<int>	create_list(char *argv[])
 {
 	std::list<int>	list;
 	
-	int	i = 1;
+	int	i = 0;
 	while (argv[i])
 	{
 		list.push_back(atoi(argv[i]));
@@ -187,6 +243,21 @@ void	check_list_ordered(std::list<int> &list)
 	std::cout << GREEN "LIST IN ORDER" RESET << std::endl;
 }
 
+void	PmergeMe::sortWithList()
+{
+	std::cout << std::endl << YELLOW "\t-- LIST --" RESET << std::endl;
+	std::list<int>	list;
+	
+	list	= create_list(_argv);
+	print_list(list, "part", "Before");
+	clock_t			start_time_list = clock();
+	sort_list(list);
+	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
+	print_list(list, "part", "After");
+	check_list_ordered(list); // DB
+	std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
+}
+
 /*----------------------------------*/
 /*				VECTOR				*/
 /*----------------------------------*/
@@ -210,11 +281,11 @@ void	print_vector(std::vector<int> vector, const std::string &option, const std:
 	std::cout << std::endl;
 }
 
-std::vector<int>	create_vector(char const *argv[])
+std::vector<int>	create_vector(char *argv[])
 {
 	std::vector<int>	vector;
 	
-	int	i = 1;
+	int	i = 0;
 	while (argv[i])
 	{
 		vector.push_back(atoi(argv[i]));
@@ -365,37 +436,19 @@ void	check_vector_ordered(std::vector<int> &vector)
 	std::cout << GREEN "VECTOR IN ORDER" RESET << std::endl;
 }
 
-/*----------------------------------*/
-/*				PmergeMe			*/
-/*----------------------------------*/
-void	PmergeMe(char const *argv[])
+void	PmergeMe::sortWithVector()
 {
-	{
-		std::cout << std::endl << YELLOW "\t-- LIST --" RESET << std::endl;
-		std::list<int>	list;
-		
-		list	= create_list(argv);
-		print_list(list, "part", "Before");
-		clock_t			start_time_list = clock();
-		sort_list(list);
-		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
-		print_list(list, "part", "After");
-		check_list_ordered(list); // DB
-		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << end_list << " us" << std::endl;
-	}
+	std::cout << std::endl << YELLOW "\t-- VECTOR --" RESET << std::endl;
+	std::vector<int>	vector;
+	
+	vector	= create_vector(_argv);
+	print_vector(vector, "part", "Before");
 
-	{
-		std::cout << std::endl << YELLOW "\t-- VECTOR --" RESET << std::endl;
-		std::vector<int>	vector;
-		
-		vector	= create_vector(argv);
-		print_vector(vector, "part", "Before");
-		clock_t			start_time_list = clock();
-		sort_vector(vector);
-		double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
-		print_vector(vector, "part", "After");
-		check_vector_ordered(vector); // DB
-		std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << end_list << " us" << std::endl;
-	}
+	clock_t	start_time_list = clock();
+	sort_vector(vector);
+	double	end_list = static_cast<double>(clock() - start_time_list) / CLOCKS_PER_SEC * 1000;
 
+	print_vector(vector, "part", "After");
+	check_vector_ordered(vector); // DB
+	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << end_list << " us" << std::endl;
 }
