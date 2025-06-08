@@ -6,11 +6,45 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 23:21:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/05/10 23:15:00 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/08 03:20:08 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+RPN::RPN()
+{
+}
+
+RPN::RPN(const std::string &input) : _input(input)
+{
+	RPNCalculator();
+}
+
+RPN::RPN(const RPN &other) : _input(other._input)
+{
+}
+
+RPN &RPN::operator=(const RPN &other)
+{
+	if (this != &other)
+		this->_input = other._input;
+	return *this;
+}
+
+RPN::~RPN()
+{
+}
+
+std::string	RPN::getInput() const
+{
+	return this->_input;
+}
+
+void	RPN::setInput(const std::string &input)
+{
+	this->_input = input;
+}
 
 static bool	isdigitString(const std::string &str)
 {
@@ -62,18 +96,15 @@ bool	isIntNumber(int a, int b, char op)
 	}
 
 	if (error == true)
-	{
-		std::cerr << RED "Error: Overflow result" RESET << std::endl;
 		return false;
-	}
 
 	return true;
 }
 
-int	RPN(const std::string &input)
+void	RPN::RPNCalculator()
 {
 	std::stack<std::string>	tokens;
-	std::stringstream		ss(input);
+	std::stringstream		ss(this->_input);
 	std::string 			item;
 	int						first;
 	int						second;
@@ -83,19 +114,11 @@ int	RPN(const std::string &input)
 		if (item.empty())
 			continue;
 		if (item.length() != 1 && (!isdigitString(item) || !isoperatorString(item)))
-		{
-			std::cerr << RED "Error" RESET << std::endl;
-			return (EXIT_FAILURE);
-		}
+			throw ErrorException();
 		if (isdigitString(item))
-		{
 			tokens.push(item);
-		}
 		if (isoperatorString(item) && tokens.size() < 2)
-		{
-			std::cerr << RED "Error" RESET << std::endl;
-			return (EXIT_FAILURE);
-		}
+			throw ErrorException();
 		else if (isoperatorString(item))
 		{
 			second = std::atoi(tokens.top().c_str());
@@ -104,7 +127,7 @@ int	RPN(const std::string &input)
 			tokens.pop();
 
 			if (!isIntNumber(first, second, item[0]))
-					return EXIT_FAILURE;
+					throw ErrorException("Overflow result");
 			if (item[0] == '+')
 				tokens.push(intToString(first + second));
 			else if (item[0] == '-')
@@ -114,19 +137,13 @@ int	RPN(const std::string &input)
 			else
 			{
 				if (second == 0)
-				{
-					std::cerr << RED "Error: Division by zero" RESET << std::endl;
-					return (EXIT_FAILURE);
-				}
+					throw ErrorException("Division by zero");
 				tokens.push(intToString(first / second));
 			}
 		}
 	}
 	if (tokens.size() != 1)
-	{
-		std::cerr << RED "Error" RESET << std::endl;
-			return (EXIT_FAILURE);
-	}
+		throw ErrorException();
 
 	while (!tokens.empty())
 	{
@@ -134,5 +151,11 @@ int	RPN(const std::string &input)
 		tokens.pop();
 	}
 
-	return EXIT_SUCCESS;
+	return ;
+}
+
+//Exceptions
+const char* RPN::ErrorException::what() const throw()
+{
+	return (_message).c_str();
 }
