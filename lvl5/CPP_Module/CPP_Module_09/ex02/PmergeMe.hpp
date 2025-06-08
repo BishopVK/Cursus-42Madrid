@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/09 01:19:02 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 01:21:31 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,5 @@ class PmergeMe
 		void	sortWithList();
 		void	sortWithVector();
 };
-
-//void	PmergeMe(char const *argv[]);
 
 #endif
