@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:11 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/08 01:32:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 08:33:46 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ class BitcoinExchange{
 		class FailOpenFileException : public std::exception
 		{
 			private:
-				std::string filename;
+				std::string _filename;
+				std::string	_message;
+
 			public:
-				FailOpenFileException(const std::string &file) : filename(file) {}
+				FailOpenFileException(const std::string &file) : _filename(file) {
+					_message = "Failed to open file: " + this->_filename;
+				}
 				virtual ~FailOpenFileException() throw() {}
 				virtual const char* what() const throw();
 		};
