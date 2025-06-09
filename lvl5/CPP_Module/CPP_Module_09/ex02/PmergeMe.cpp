@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:21:00 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/09 01:12:17 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 09:42:16 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ PmergeMe::PmergeMe(int argc, const char* argv[])
 		std::strcpy(_argv[i], argv[i + 1]);
 	}
 	_argv[_argc] = NULL;
+	validateArgv();
 }
 
 PmergeMe::PmergeMe(const PmergeMe &other) : _argc(other._argc)
@@ -66,6 +67,32 @@ PmergeMe::~PmergeMe()
 		delete[] _argv[i];
 	}
 	delete[] _argv;
+}
+
+/*------------------------------*/
+/*			VALIDATION			*/
+/*------------------------------*/
+void	PmergeMe::validateArgv()
+{
+	for (int i = 0; i < this->_argc; ++i)
+	{
+		for (long unsigned int j = 0; j < static_cast<std::string>(this->_argv[i]).length(); ++j)
+		{
+			if (!isdigit(this->_argv[i][j]))
+			{
+				std::string argv = static_cast<std::string>(_argv[i]);
+				PmergeMe::~PmergeMe();
+				throw WrongInputValueException(argv, " not a positive int");
+			}
+		}
+		long int nbr = atol(_argv[i]);
+		if (nbr > INT_MAX)
+		{
+			std::string argv = static_cast<std::string>(_argv[i]);
+			PmergeMe::~PmergeMe();
+			throw WrongInputValueException(argv, " int overflow");
+		}
+	}
 }
 
 /*------------------------------*/
@@ -247,7 +274,7 @@ void	PmergeMe::sortWithList()
 {
 	std::cout << std::endl << YELLOW "\t-- LIST --" RESET << std::endl;
 	std::list<int>	list;
-	
+
 	list	= create_list(_argv);
 	print_list(list, "part", "Before");
 	clock_t			start_time_list = clock();
@@ -451,4 +478,10 @@ void	PmergeMe::sortWithVector()
 	print_vector(vector, "part", "After");
 	check_vector_ordered(vector); // DB
 	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << end_list << " us" << std::endl;
+}
+
+// Exceptions
+const char* PmergeMe::WrongInputValueException::what() const throw()
+{
+	return _message.c_str();
 }
