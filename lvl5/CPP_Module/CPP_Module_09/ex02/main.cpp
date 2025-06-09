@@ -3,38 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:48:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/09 01:19:14 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 09:33:05 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int	check_args(int argc, char const *argv[])
+int	check_args(int argc)
 {
 	if (argc <= 1)
 	{
 		std::cerr << RED "Error: Wrong usage" RESET << std::endl;
 		return EXIT_FAILURE;
-	}
-	for (int i = 1; i < argc; ++i)
-	{
-		for (long unsigned int j = 0; j < static_cast<std::string>(argv[i]).length(); ++j)
-		{
-			if (!isdigit(argv[i][j]))
-			{
-				std::cerr << RED "Error: '" << argv[i] << "' not a positive int" RESET << std::endl;
-				return EXIT_FAILURE;
-			}
-		}
-		long int nbr = atol(argv[i]);
-		if (nbr > INT_MAX)
-		{
-			std::cerr << RED "Error: '" << argv[i] << "' int overflow" RESET << std::endl;
-			return EXIT_FAILURE;
-		}
 	}
 	return EXIT_SUCCESS;
 }
@@ -43,22 +26,53 @@ int main(int argc, char const *argv[])
 {
 	{
 		std::cout << std::endl << BLUE "-- TEST 1 --" RESET << std::endl;
-		if (check_args(argc, argv) == EXIT_FAILURE)
+		if (check_args(argc) == EXIT_FAILURE)
 		return EXIT_FAILURE;
 		
-		PmergeMe pmergeMe(argc, argv);
-		pmergeMe.sortWithList();
-		pmergeMe.sortWithVector();
+		try
+		{
+			PmergeMe pmergeMe(argc, argv);
+			pmergeMe.sortWithList();
+			pmergeMe.sortWithVector();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
 	}
 
 	{
 		std::cout << std::endl << BLUE "-- TEST 2 --" RESET << std::endl;
 
-		const char *test[] = {"./PmergeMe", "1", "-5", "42", "0", "53"};
+		try
+		{
+			const char *test[] = {"./PmergeMe", "1", "-5", "42", "0", "53"};
 
-		PmergeMe testPmergeMe(sizeof(test) / sizeof(test[0]), test);
-		testPmergeMe.sortWithList();
-		testPmergeMe.sortWithVector();
+			PmergeMe testPmergeMe(sizeof(test) / sizeof(test[0]), test);
+			testPmergeMe.sortWithList();
+			testPmergeMe.sortWithVector();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
+	}
+
+	{
+		std::cout << std::endl << BLUE "-- TEST 3 --" RESET << std::endl;
+
+		try
+		{
+			const char *test[] = {"./PmergeMe", "1", "5", "42", "0", "2147483648"};
+
+			PmergeMe testPmergeMe(sizeof(test) / sizeof(test[0]), test);
+			testPmergeMe.sortWithList();
+			testPmergeMe.sortWithVector();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
 	}
 
 	return 0;
