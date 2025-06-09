@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:38:13 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/08 01:37:21 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 08:34:11 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ void	BitcoinExchange::processInputFile(const std::string &filename) const
 // Exceptions
 const char* BitcoinExchange::FailOpenFileException::what() const throw()
 {
-	return ("Failed to open file: " + this->filename).c_str();
+	return _message.c_str();
 }
 
 const char* BitcoinExchange::WrongHeaderFileException::what() const throw()
