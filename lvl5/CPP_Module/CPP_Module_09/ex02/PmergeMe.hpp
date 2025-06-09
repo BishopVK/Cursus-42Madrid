@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:45:57 by danjimen          #+#    #+#             */
-/*   Updated: 2025/06/09 01:21:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/06/09 09:13:03 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <sstream>
 #include <climits> // INT_MAX
 #include <time.h> // clock()
+#include <stdexcept>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -43,8 +44,24 @@ class PmergeMe
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
 
+		void	validateArgv();
+
 		void	sortWithList();
 		void	sortWithVector();
+
+		class WrongInputValueException : public std::exception
+		{
+			private:
+				std::string _argv;
+				std::string	_message;
+
+			public:
+				WrongInputValueException(const std::string &argv, const std::string &errorMsg) : _argv(argv) {
+					_message = "Error: " + this->_argv + errorMsg;
+				}
+				virtual ~WrongInputValueException() throw() {}
+				virtual const char* what() const throw();
+		};
 };
 
 #endif
