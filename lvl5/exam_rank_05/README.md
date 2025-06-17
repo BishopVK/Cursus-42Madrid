@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl5/exam_rank_05/img/Score_100.png"></p> | **Full complete exam** |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Full complete exam** |
 
 
 ## Exam Rank 05
