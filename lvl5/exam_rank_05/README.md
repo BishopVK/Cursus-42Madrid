@@ -19,9 +19,9 @@ Each exercise builds upon the previous one, forming a progressively more complex
 
 | **#** | **Exercise**                             | **Description** |
 |------:|------------------------------------------|-----------------|
-| `1`  | [**cpp_module_00**](./cpp_module00/README.md) | Basic implementation of a `Warlock` class with private attributes, getters/setters, and copy restrictions, following the Coplien form. |
-| `2`  | [**cpp_module_01**](./cpp_module01/README.md) | Introduction of abstract classes `ASpell` and `ATarget`, including cloning, spell casting, and interaction between the Warlock and targets. |
-| `3`  | [**cpp_module_02**](./cpp_module02/README.md) | New spells and targets are added. `SpellBook` and `TargetGenerator` classes are introduced to manage spells and target types dynamically. |
+| `1`  | [**cpp_module_00**](./cpp_module_00/README.md) | Basic implementation of a `Warlock` class with private attributes, getters/setters, and copy restrictions, following the Coplien form. |
+| `2`  | [**cpp_module_01**](./cpp_module_01/README.md) | Introduction of abstract classes `ASpell` and `ATarget`, including cloning, spell casting, and interaction between the Warlock and targets. |
+| `3`  | [**cpp_module_02**](./cpp_module_02/README.md) | New spells and targets are added. `SpellBook` and `TargetGenerator` classes are introduced to manage spells and target types dynamically. |
 
 ---
 
@@ -47,6 +47,6 @@ Successfully completing the three exercises within the time limit results in a *
 
 You can explore each exercise and its detailed explanation in the following directories:
 
-- [`cpp_module_00`](./cpp_module00/)
-- [`cpp_module_01`](./cpp_module01/)
-- [`cpp_module_02`](./cpp_module02/)
+- [`cpp_module_00`](./cpp_module_00/)
+- [`cpp_module_01`](./cpp_module_01/)
+- [`cpp_module_02`](./cpp_module_02/)
