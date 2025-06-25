@@ -3,7 +3,7 @@
 This is my current progress on the 42Madrid Cursus
 
 <p align="center">
-<img width="1268px" alt="1172px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/img/Holygraph.png">
+<img width="1268px" alt="1172px" src="./img/Holygraph.png">
 </p>
 
 | **Project**                                        | **Score**   |
@@ -24,6 +24,6 @@ This is my current progress on the 42Madrid Cursus
 | [Cub3D](https://github.com/BishopVK/Cub3D)         | **110/125** |
 | [Exam Rank 04](/lvl4/exam_rank_04)                 | **100/100** |
 | [CPP Module (05 to 09)](/lvl5/CPP_Module)          | **500/500** |
-| [Inception](https://github.com/BishopVK/Inception) | **in progress** |
-| [webserv](/lvl5/webserv)                           | **in progress** |
+| [Inception](https://github.com/BishopVK/Inception) | **100/100** |
+| [webserv](https://github.com/BishopVK/Webserv)     | **in progress** |
 | [Exam Rank 05](/lvl5/exam_rank_05)                 | **100/100** |
