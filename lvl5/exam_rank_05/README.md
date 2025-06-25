@@ -2,60 +2,51 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl5/exam_rank_05/img/Score_100.png"></p> | **Full complete exam** |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Full complete exam** |
 
 
 ## Exam Rank 05
 
-The exam rank 05 consists exclusively of completing one exercise: **microshell.** This exercise implements a basic shell-like command executor in C. It parses and executes commands provided as arguments, supporting command pipelines (|) and sequences (;). The built-in cd command is implemented with strict error handling. It focuses on low-level system programming using system calls like fork, pipe, execve, and chdir, with robust error management for invalid inputs or system call failures.
+This exam consists of **three consecutive exercises**, focused on **Object-Oriented Programming in C++**. The student is expected to apply modern C++ design principles such as the *Coplien's form*, use of abstract classes, inheritance, and dynamic object management.
 
+The purpose of the exam is to evaluate the student's ability to design and implement object-oriented systems using proper encapsulation, polymorphism, and safe memory handling.
 
-## Key features and constraints include
+Each exercise builds upon the previous one, forming a progressively more complex project.
 
-* **Command Execution:**
-  * Accepts commands as arguments, with the executable's path provided as absolute or relative.
-  * The program does not build paths using the `PATH` environment variable.
+---
 
-* **Built-in** `cd` **Command:**
-  * Handles directory changes with a single argument (the path).
-  * Prints appropriate error messages to `STDERR` if the arguments are invalid or the directory change fails.
+## Exam exercises
 
-* **Special Symbols:**
-  * Supports `|` for piping commands and `;` for separating commands.
-  * Does not allow invalid symbol usage, such as consecutive or misplaced `|` or `;`.
+| **#** | **Exercise**                             | **Description** |
+|------:|------------------------------------------|-----------------|
+| `1`  | [**cpp_module_00**](./cpp_module_00/README.md) | Basic implementation of a `Warlock` class with private attributes, getters/setters, and copy restrictions, following the Coplien form. |
+| `2`  | [**cpp_module_01**](./cpp_module_01/README.md) | Introduction of abstract classes `ASpell` and `ATarget`, including cloning, spell casting, and interaction between the Warlock and targets. |
+| `3`  | [**cpp_module_02**](./cpp_module_02/README.md) | New spells and targets are added. `SpellBook` and `TargetGenerator` classes are introduced to manage spells and target types dynamically. |
 
-* **Error Handling:**
-  * Prints `error: fatal` to `STDERR` and exits immediately if any system call (other than `execve` and `chdir`) fails.
-  * Prints `error: cannot execute executable` if `execve` fails.
+---
 
-* **Scalability:**
-  * Capable of handling large numbers of pipes (`|`), even with a limited number of open files (e.g., less than 30).
+## Exam procedure
 
+| **#** | **Instruction** |
+|------:|------------------|
+| `1`  | **Duration**: You have a maximum of 3 hours to complete all exercises. |
+| `2`  | **Repository**: You must upload only the required files into the correct directory for each exercise. |
+| `3`  | **Grademe**: After completing an exercise, type `grademe` to trigger the automatic correction system. |
+| `4`  | **Resubmissions**: You can correct mistakes and resubmit as long as time allows. |
+| `5`  | **Completion**: The exam ends once all exercises are completed successfully, or the time runs out. |
 
-## What This Project Does Not Manage
-* Wildcards (e.g., `*`, `~`).
-* Environment variable expansion (e.g., `$BLA`).
+---
 
+## Result
 
-## Instruction set
+Successfully completing the three exercises within the time limit results in a **100/100 score**.
 
-To pass this exam, you must successfully complete the exercise. If done correctly, you will receive a score of 100 out of 100 points. The exam procedure is as follows:
+---
 
-| **#** | **Instruction**                                                                                                                                                         |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  `1`  | **Duration:** You have a maximum of 3 hours to complete the exam. |
-|  `2`  | **Access to the repository:** Upon successfully logging in, you will have access to a repository where you must create a directory and upload exclusively the files for each exercise. |
-|  `3`  | **Access to the subject:** When you start or pass an exercise, you will find the subject available in the "subject" folder, containing the exercise statement and its rules. |
-|  `4`  | **Grademe:** After completing and uploading the exercise to the correct directory in the repository, you must type the keyword "grademe". The exercise will be analyzed, and if correct, you will pass the level and receive 100 points. |
-|  `5`  | **Completion of the exam:** The exam ends when you successfully complete the exercise. Otherwise, you can correct the errors and resubmit it until you pass or the maximum time of 3 hours is exhausted. |
+## Repository
 
+You can explore each exercise and its detailed explanation in the following directories:
 
-
-## My exam
-
-You can see how i solved it below:
-
-| **#** | **Exercise**                                         |
-| ----- | ---------------------------------------------------- |
-|  `1`  | [**microshell.c**](/lvl4/exam_rank_04/microshell.c) |
-|  `2`  | [**microshell.h**](/lvl4/exam_rank_04/microshell.h) |
+- [`cpp_module_00`](./cpp_module_00/)
+- [`cpp_module_01`](./cpp_module_01/)
+- [`cpp_module_02`](./cpp_module_02/)
