@@ -30,7 +30,7 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_printf.c \
 				ft_dprintf.c \
-				ft_converions.c \
+				ft_conversions.c \
 				ft_printf_utils.c \
 
 OBJ			=	$(SRC:.c=.o)
