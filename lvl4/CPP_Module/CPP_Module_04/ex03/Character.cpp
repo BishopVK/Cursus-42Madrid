@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 00:28:17 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/29 01:03:05 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:36:00 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,35 @@ Character::Character(const std::string &name) : _name(name)
 	floor[0] = NULL;
 }
 
-Character::Character(const Character &other)
+Character::Character(const Character &other) : _name(other._name)
 {
 	std::cout << GREEN << "Character Copy Constructor called" << RESET << std::endl;
-	*this = other;
+
+	// Inventory copy
+	for (int i = 0; i < 4; i++) {
+		if (other.inventory[i] != NULL) {
+			if (other.inventory[i]->getType() == "ice")
+				this->inventory[i] = new Ice();
+			else if (other.inventory[i]->getType() == "cure")
+				this->inventory[i] = new Cure();
+			else
+				this->inventory[i] = new Ice(other.inventory[i]->getType());
+			this->_slot_occupied[i] = true;
+		} else {
+			this->inventory[i] = NULL;
+			this->_slot_occupied[i] = false;
+		}
+	}
+
+	// Floor Copy
+	this->_floor_size = other._floor_size;
+	this->floor = new AMateria*[this->_floor_size];
+	for (int i = 0; i < this->_floor_size; i++) {
+		if (other.floor[i] != NULL)
+			this->floor[i] = other.floor[i]->clone();
+		else
+			this->floor[i] = NULL;
+	}
 }
 
 Character &Character::operator=(const Character &other)
