@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:33:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/28 11:23:18 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:23:55 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ Dog::Dog() : Animal()
 	std::cout << GREEN << "Dog Empty Constructor called" << RESET << std::endl;
 }
 
-Dog::Dog(const Dog &other) : Animal()
+Dog::Dog(const Dog &other) : Animal(other)
 {
-	*this = other;
+	this->_brain = new Brain(*other._brain);
+	this->_type = other._type;
 	std::cout << GREEN << "Dog Copy Constructor called" << RESET << std::endl;
 }
 
