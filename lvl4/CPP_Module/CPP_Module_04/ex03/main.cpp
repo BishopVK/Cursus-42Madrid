@@ -6,7 +6,7 @@
 /*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/07/28 12:47:16 by danjimen,is      ###   ########.fr       */
+/*   Updated: 2025/07/28 13:02:15 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int main()
 		me->use(1, *bob);
 		me->unequip(0);
 		me->unequip(1);
+		me->unequip(3);
+		me->unequip(4);
 		me->use(0, *bob);
 		me->use(1, *bob);
 		me->use(2, *bob);
