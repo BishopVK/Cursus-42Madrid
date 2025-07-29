@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:08:45 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:09:31 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:02:15 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 int main()
 {
-	/* {
+	{
+		std::cout << std::endl << YELLOW BOLD "\t>> TEST 1 <<" RESET << std::endl;
 		const AMateria *ice = new Ice();
 		const AMateria *cure = new Cure();
 		Ice		ice2;
@@ -33,9 +34,10 @@ int main()
 
 		delete cure;
 		delete ice;
-	} */
+	}
 
 	{
+		std::cout << std::endl << YELLOW BOLD "\t>> TEST 2 <<" RESET << std::endl;
 		std::cout << MAGENTA << std::endl << "-- CREATING AND LEARNING MATERIAS --" << RESET << std::endl;
 		IMateriaSource* src = new MateriaSource();
 		AMateria *ice = new Ice();
@@ -74,6 +76,8 @@ int main()
 		me->use(1, *bob);
 		me->unequip(0);
 		me->unequip(1);
+		me->unequip(3);
+		me->unequip(4);
 		me->use(0, *bob);
 		me->use(1, *bob);
 		me->use(2, *bob);

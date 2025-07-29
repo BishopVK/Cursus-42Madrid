@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:33:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 01:36:43 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:12:25 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal() : _type("Undefined")
+Animal::Animal() : _type("Generic Animal")
 {
 	std::cout << GREEN << "Animal Empty Constructor called" << RESET << std::endl;
 }

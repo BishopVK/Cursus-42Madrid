@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 22:33:14 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 01:37:03 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 09:16:27 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("WrongUndefined")
+WrongAnimal::WrongAnimal() : _type("Generic Wrong Animal")
 {
 	std::cout << GREEN << "WrongAnimal Empty Constructor called" << RESET << std::endl;
 }

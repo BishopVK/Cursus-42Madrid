@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 22:52:04 by danjimen          #+#    #+#             */
-/*   Updated: 2025/04/21 23:06:41 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:38:24 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,20 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
-	std::cout << GREEN << "MateriaSource Default Constructor called" << RESET << std::endl;
-	*this = other;
+	std::cout << GREEN << "MateriaSource Copy Constructor called" << RESET << std::endl;
+
+	for (int i = 0; i < 4; i++) {
+		if (other._materiaLearned[i] != NULL) {
+			if (other._materiaLearned[i]->getType() == "ice")
+				this->_materiaLearned[i] = new Ice();
+			else if (other._materiaLearned[i]->getType() == "cure")
+				this->_materiaLearned[i] = new Cure();
+			else
+				this->_materiaLearned[i] = new Ice(other._materiaLearned[i]->getType());
+		} else {
+			this->_materiaLearned[i] = NULL;
+		}
+	}
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)

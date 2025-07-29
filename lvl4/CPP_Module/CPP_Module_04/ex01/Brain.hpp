@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:40:29 by danjimen          #+#    #+#             */
-/*   Updated: 2025/03/23 22:07:15 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/07/28 09:17:49 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Brain
 {
 	protected:
 		std::string	_ideas[100];
+
 	public:
 		Brain();
 		Brain(const Brain &other);
