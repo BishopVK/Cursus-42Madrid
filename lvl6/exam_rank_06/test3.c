@@ -6,13 +6,14 @@
 /*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:40:49 by danjimen,is       #+#    #+#             */
-/*   Updated: 2025/07/29 23:56:27 by danjimen,is      ###   ########.fr       */
+/*   Updated: 2025/07/31 10:09:08 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include <sys/socket.h>
 #include <sys/select.h>
 #include <netinet/in.h>
@@ -29,7 +30,7 @@ int next_id = 0;
 char send_buf[120000];
 char recv_buf[120000];
 
-void err(char *msg)
+void write_error(char *msg)
 {
     if (msg)
         write(2, msg, strlen(msg));
@@ -39,32 +40,43 @@ void err(char *msg)
     exit(1);
 }
 
-unsigned short swap_short(unsigned short n)
+/* unsigned int my_htonl(unsigned int n)
+{
+    return ((n & 0xFF) << 24) |
+           ((n & 0xFF00) << 8) |
+           ((n & 0xFF0000) >> 8) |
+           ((n & 0xFF000000) >> 24);
+}
+
+unsigned short my_htons(unsigned short n)
 {
     return (n << 8) | (n >> 8);
-}
+} */
 
 int setup_server(char *port)
 {
     struct sockaddr_in servaddr;
     int server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd < 0)
-        err(NULL);
+        write_error(NULL);
 
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     // //servaddr.sin_addr.s_addr = htonl(2130706433); // 127.0.0.1
     // //servaddr.sin_addr.s_addr = 2130706433; // 127.0.0.1
-    servaddr.sin_addr.s_addr = 0x7F000001; // 127.0.0.1
-    // //servaddr.sin_port = htons(atoi(port));
+    //servaddr.sin_addr.s_addr = 0x7F000001; // 127.0.0.1
+    servaddr.sin_addr.s_addr = 0x0100007F; // 127.0.0.1
+    //servaddr.sin_addr.s_addr = my_htonl(0x7F000001);
+    //servaddr.sin_port = htons(atoi(port));
 	int port_num = atoi(port);
 	//servaddr.sin_port = (port_num >> 8) | ((port_num & 0xFF) << 8);
-	servaddr.sin_port = swap_short((unsigned short)atoi(port));
+    servaddr.sin_port   = (port_num >> 8) | (port_num << 8);
+	//servaddr.sin_port = my_htons((unsigned short)atoi(port));
 
     if (bind(server_fd, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
-        err(NULL);
+        write_error(NULL);
     if (listen(server_fd, 100) < 0)
-        err(NULL);
+        write_error(NULL);
     return server_fd;
 }
 
@@ -74,7 +86,7 @@ void broadcast(int except_fd)
     {
         if (FD_ISSET(fd, &write_set) && fd != except_fd)
             if (send(fd, send_buf, strlen(send_buf), 0) < 0)
-                err(NULL);
+                write_error(NULL);
     }
 }
 
@@ -129,7 +141,7 @@ void handle_message(int fd)
 int main(int ac, char **av)
 {
     if (ac != 2)
-        err("Wrong number of arguments");
+        write_error("Wrong number of arguments");
 
     int server_fd = setup_server(av[1]);
     FD_ZERO(&active_set);
