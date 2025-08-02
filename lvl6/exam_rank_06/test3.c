@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:40:49 by danjimen,is       #+#    #+#             */
-/*   Updated: 2025/07/31 10:09:08 by danjimen,is      ###   ########.fr       */
+/*   Updated: 2025/08/02 23:32:54 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ unsigned short my_htons(unsigned short n)
 
 int setup_server(char *port)
 {
-    struct sockaddr_in servaddr;
     int server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd < 0)
         write_error(NULL);
-
+    
+    struct sockaddr_in servaddr;
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     // //servaddr.sin_addr.s_addr = htonl(2130706433); // 127.0.0.1
