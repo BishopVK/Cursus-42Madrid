@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test6.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 23:17:19 by danjimen          #+#    #+#             */
-/*   Updated: 2025/08/03 23:39:56 by danjimen         ###   ########.fr       */
+/*   Created: 2025/08/04 12:47:56 by danjimen,is       #+#    #+#             */
+/*   Updated: 2025/08/04 13:09:38 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 #include <string.h>
 #include <unistd.h>
 
-typedef struct s_client {
+typedef struct	s_client {
 	int		id;
 	char	msg[100000];
 } t_client;
 
 t_client	clients[2048];
 fd_set		active_set, read_set, write_set;
-int			max_fd;
-int			next_id;
+int			max_fd = 0;
+int			next_id = 0;
 char		send_buf[120000];
 char		recv_buf[120000];
 
@@ -42,8 +42,8 @@ void	write_error(char *msg)
 
 int	setup_server(char *port)
 {
-	int server_fd = socket(AF_INET, SOCK_STREAM, 0);
-	if (server_fd < 0)
+	int socked_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if (socked_fd < 0)
 		write_error(NULL);
 
 	struct sockaddr_in servaddr;
@@ -53,13 +53,13 @@ int	setup_server(char *port)
 	int	port_nbr = atoi(port);
 	servaddr.sin_port = (port_nbr >> 8) | (port_nbr << 8);
 
-	if ((bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) < 0)
+	if ((bind(socked_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) < 0)
 		write_error(NULL);
 
-	if (listen(server_fd, 10) < 0)
+	if (listen(socked_fd, 100) < 0)
 		write_error(NULL);
 
-	return (server_fd);
+	return (socked_fd);
 }
 
 void	broadcast(int except_fd)
@@ -67,18 +67,18 @@ void	broadcast(int except_fd)
 	for (int fd = 0; fd <= max_fd; fd++)
 	{
 		if (FD_ISSET(fd, &write_set) && fd != except_fd)
-			if (send(fd, send_buf, sizeof(send_buf), 0) < 0)
+			if (send(fd, send_buf, strlen(send_buf), 0) < 0)
 				write_error(NULL);
 	}
 }
 
 void	accept_client(int server_fd)
 {
-	struct sockaddr_in	cli;
-	socklen_t	len = sizeof(cli);
-	int	client_fd = accept(server_fd, (struct sockaddr *)&cli, &len);
+	struct sockaddr_in cli;
+	socklen_t len = sizeof(cli);
+	int	client_fd = accept(server_fd, (struct sockaddr *)&cli, len);
 	if (client_fd < 0)
-		return;
+		return ;
 
 	if (client_fd > max_fd)
 		max_fd = client_fd;
@@ -87,4 +87,13 @@ void	accept_client(int server_fd)
 
 	sprintf(send_buf, "server: client %d just arrived\n", clients[client_fd].id);
 	broadcast(client_fd);
+}
+
+void	delete_client(int client_fd)
+{
+	sprintf(send_buf, "server: client %d just left\n", clients[client_fd].id);
+	broadcast(client_fd);
+	FD_CLR(client_fd, &active_set);
+	close(client_fd);
+	bzero(clients[client_fd].msg, strlen(clients[client_fd].msg));
 }

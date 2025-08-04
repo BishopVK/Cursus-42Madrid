@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 20:08:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/08/03 23:17:04 by danjimen         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:10:11 by danjimen,is      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_client {
 
 t_client	clients[2048];
 fd_set		active_set, read_set, write_set;
-int			max_fd;
-int			next_id;
+int			max_fd = 0;
+int			next_id = 0;
 char		send_buf[120000];
 char		recv_buf[120000];
 
@@ -67,7 +67,7 @@ void	broadcast(int except_fd)
 	for (int fd = 0; fd <= max_fd; fd++)
 	{
 		if (FD_ISSET(fd, &write_set) && fd != except_fd)
-			if (send(fd, send_buf, sizeof(send_buf), 0) < 0)
+			if (send(fd, send_buf, strlen(send_buf), 0) < 0)
 				write_error(NULL);
 	}
 }
