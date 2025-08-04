@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjimen,isainz-r,serferna <webserv@stu    +#+  +:+       +#+        */
+/*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 20:08:23 by danjimen          #+#    #+#             */
-/*   Updated: 2025/08/04 13:10:11 by danjimen,is      ###   ########.fr       */
+/*   Updated: 2025/08/04 20:15:15 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	add_client(int server_fd)
 {
 	struct sockaddr_in	cli;
 	socklen_t			len = sizeof(cli);
-	int	client_fd	= accept(server_fd, (struct sockaddr *)&cli, len);
+	int	client_fd	= accept(server_fd, (struct sockaddr *)&cli, &len);
 	if (client_fd < 0)
 		return ;
 

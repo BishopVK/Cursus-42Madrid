@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test6.c                                            :+:      :+:    :+:   */
+/*   test8.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjimen <danjimen@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 12:47:56 by danjimen,is       #+#    #+#             */
-/*   Updated: 2025/08/04 20:15:09 by danjimen         ###   ########.fr       */
+/*   Created: 2025/08/04 22:52:03 by danjimen          #+#    #+#             */
+/*   Updated: 2025/08/04 23:20:00 by danjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string.h>
 #include <unistd.h>
 
-typedef struct	s_client {
+typedef struct s_client {
 	int		id;
 	char	msg[100000];
 } t_client;
@@ -42,24 +42,24 @@ void	write_error(char *msg)
 
 int	setup_server(char *port)
 {
-	int socked_fd = socket(AF_INET, SOCK_STREAM, 0);
-	if (socked_fd < 0)
+	int server_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if (server_fd < 0)
 		write_error(NULL);
 
 	struct sockaddr_in servaddr;
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET; 
 	servaddr.sin_addr.s_addr = 0x0100007F; //127.0.0.1
-	int	port_nbr = atoi(port);
+	int port_nbr = atoi(port);
 	servaddr.sin_port = (port_nbr >> 8) | (port_nbr << 8);
 
-	if ((bind(socked_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) < 0)
+	if ((bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) < 0)
 		write_error(NULL);
 
-	if (listen(socked_fd, 100) < 0)
+	if (listen(server_fd, 100) < 0)
 		write_error(NULL);
 
-	return (socked_fd);
+	return (server_fd);
 }
 
 void	broadcast(int except_fd)
@@ -72,14 +72,14 @@ void	broadcast(int except_fd)
 	}
 }
 
-void	accept_client(int server_fd)
+void	add_client(int server_fd)
 {
 	struct sockaddr_in cli;
 	socklen_t len = sizeof(cli);
-	int	client_fd = accept(server_fd, (struct sockaddr *)&cli, &len);
+	int client_fd = accept(server_fd, (struct sockaddr *)&cli, &len);
 	if (client_fd < 0)
 		return ;
-
+	
 	if (client_fd > max_fd)
 		max_fd = client_fd;
 	clients[client_fd].id = next_id++;
@@ -89,11 +89,64 @@ void	accept_client(int server_fd)
 	broadcast(client_fd);
 }
 
-void	delete_client(int client_fd)
+void	remove_client(int client_fd)
 {
 	sprintf(send_buf, "server: client %d just left\n", clients[client_fd].id);
 	broadcast(client_fd);
 	FD_CLR(client_fd, &active_set);
 	close(client_fd);
 	bzero(clients[client_fd].msg, strlen(clients[client_fd].msg));
+}
+
+void	handle_message(int client_fd)
+{
+	int	bytes = recv(client_fd, recv_buf, sizeof(recv_buf), 0);
+	if (bytes <= 0)
+	{
+		remove_client(client_fd);
+		return ;
+	}
+
+	for (int i = 0, j = strlen(clients[client_fd].msg); i < bytes; i++, j++)
+	{
+		clients[client_fd].msg[j] = recv_buf[i];
+		if (clients[client_fd].msg[j] == '\n')
+		{
+			clients[client_fd].msg[j] = '\0';
+			sprintf(send_buf, "client %d: %s\n", clients[client_fd].id, clients[client_fd].msg);
+			broadcast(client_fd);
+			bzero(clients[client_fd].msg, strlen(clients[client_fd].msg));
+			j = -1;
+		}
+	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+		write_error("Wrong number of arguments");
+	
+	int server_fd = setup_server(argv[1]);
+	FD_ZERO(&active_set);
+	FD_SET(server_fd, &active_set);
+	max_fd = server_fd;
+	bzero(clients, sizeof(clients));
+
+	while (1)
+	{
+		read_set = write_set = active_set;
+		if (select(max_fd + 1, &read_set, &write_set, NULL, NULL) < 0)
+			continue;
+
+		for (int fd = 0; fd <= max_fd; fd++)
+		{
+			if (!FD_ISSET(fd, &read_set))
+				continue;
+			if (fd == server_fd)
+				add_client(server_fd);
+			else
+				handle_message(fd);
+		}
+	}
+	return (0);
 }
