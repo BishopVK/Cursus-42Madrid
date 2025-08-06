@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
+| <p align="center"><img width="222px" alt="170px" src="./img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
 
 
 ## get_next_line
@@ -34,7 +34,7 @@ To meet the objectives of the mandatory part of the project, the following rules
 If a correct file to read from is indicated, the read file will be returned line by line (until a line break or the end of the document is found).
 
 <p align="left">
-	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/mandatory.png">
+	<img src="./img/mandatory.png">
 </p>
   
 
@@ -43,7 +43,7 @@ If a correct file to read from is indicated, the read file will be returned line
 If a file to read from is not indicated, text entry will be allowed through standard keyboard input, and it will also be returned line by line until execution is interrupted (CTRL + D).
 
 <p align="left">
-	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/stdin.png">
+	<img src="./img/stdin.png">
 </p>
   
 
@@ -52,7 +52,7 @@ If a file to read from is not indicated, text entry will be allowed through stan
 If two or more files are entered to read from, an error will be returned with instructions on how to use the function correctly.
 
 <p align="left">
-	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/bad_use.png">
+	<img src="./img/bad_use.png">
 </p>
 
 
@@ -75,5 +75,5 @@ If two or more files are entered to read from, an error will be returned with in
 If two or more files are entered to read from, the title of the file to be read will be returned one by one along with its content read line by line. The same will then be done with the rest of the files.
 
 <p align="left">
-	<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/get_next_line/img/bonus.png">
+	<img src="./img/bonus.png">
 </p>

@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/Born2beRoot/img/Score_125.png"></p> | **Mandatory part + Full bonus part**   |
+| <p align="center"><img width="222px" alt="170px" src="./img/Score_125.png"></p> | **Mandatory part + Full bonus part**   |
 
 
 ## Born2beRoot

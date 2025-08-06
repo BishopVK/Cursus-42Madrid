@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/Score_100.png"></p> | **Mandatory part**   |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Mandatory part**   |
 
 
 ## ft_printf
@@ -32,19 +32,19 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 | Conversion  | Code                         | Result                                                 |
 | ----------- | ----------------------------------- | ------------------------------------------------------ |
-|    `%c`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/char_result.png"></p> |
-|    `%d`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_d_result.png"></p> |
-|    `%i`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/integer_i_result.png"></p> |
-|    `%%`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/percentage_result.png"></p> |
-|    `%u`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/unsigned_int_result.png"></p> |
-|    `%s`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_result.png"></p> |
-|    `%s`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_null_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/string_null_result.png"></p> |
-|`not printable` | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/not_printable_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/not_printable_result.png"></p> |
-|    `%x`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/lowercase_hexadecimal_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/lowercase_hexadecimal_result.png"></p> |
-|    `%X`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/uppercase_hexadecimal_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/uppercase_hexadecimal_result.png"></p> |
-|    `%p`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_result.png"></p> |
-|    `%p`     | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_void_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/pointer_void_result.png"></p> |
-| `Multiple conversions`  | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/multiple_code.png"></p> | <p align="left"><img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl1/printf/img/multiple_result.png"></p> |
+|    `%c`     | <p align="left"><img src="./img/char_code.png"></p> | <p align="left"><img src="./img/char_result.png"></p> |
+|    `%d`     | <p align="left"><img src="./img/integer_d_code.png"></p> | <p align="left"><img src="./img/integer_d_result.png"></p> |
+|    `%i`     | <p align="left"><img src="./img/integer_i_code.png"></p> | <p align="left"><img src="./img/integer_i_result.png"></p> |
+|    `%%`     | <p align="left"><img src="./img/percentage_code.png"></p> | <p align="left"><img src="./img/percentage_result.png"></p> |
+|    `%u`     | <p align="left"><img src="./img/unsigned_int_code.png"></p> | <p align="left"><img src="./img/unsigned_int_result.png"></p> |
+|    `%s`     | <p align="left"><img src="./img/string_code.png"></p> | <p align="left"><img src="./img/string_result.png"></p> |
+|    `%s`     | <p align="left"><img src="./img/string_null_code.png"></p> | <p align="left"><img src="./img/string_null_result.png"></p> |
+|`not printable` | <p align="left"><img src="./img/not_printable_code.png"></p> | <p align="left"><img src="./img/not_printable_result.png"></p> |
+|    `%x`     | <p align="left"><img src="./img/lowercase_hexadecimal_code.png"></p> | <p align="left"><img src="./img/lowercase_hexadecimal_result.png"></p> |
+|    `%X`     | <p align="left"><img src="./img/uppercase_hexadecimal_code.png"></p> | <p align="left"><img src="./img/uppercase_hexadecimal_result.png"></p> |
+|    `%p`     | <p align="left"><img src="./img/pointer_code.png"></p> | <p align="left"><img src="./img/pointer_result.png"></p> |
+|    `%p`     | <p align="left"><img src="./img/pointer_void_code.png"></p> | <p align="left"><img src="./img/pointer_void_result.png"></p> |
+| `Multiple conversions`  | <p align="left"><img src="./img/multiple_code.png"></p> | <p align="left"><img src="./img/multiple_result.png"></p> |
 
 
 ## The Bonus part
