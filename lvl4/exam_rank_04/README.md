@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/exam_rank_04/img/Score_100.png"></p> | **Full complete exam** |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Full complete exam** |
 
 
 ## Exam Rank 04
@@ -57,5 +57,5 @@ You can see how i solved it below:
 
 | **#** | **Exercise**                                         |
 | ----- | ---------------------------------------------------- |
-|  `1`  | [**microshell.c**](/lvl4/exam_rank_04/microshell.c) |
-|  `2`  | [**microshell.h**](/lvl4/exam_rank_04/microshell.h) |
+|  `1`  | [**microshell.c**](microshell.c) |
+|  `2`  | [**microshell.h**](microshell.h) |
