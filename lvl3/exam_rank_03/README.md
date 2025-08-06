@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/exam_rank_03/img/Score_100.png"></p> | **Full complete exam** |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Full complete exam** |
 
 
 ## Exam Rank 03
@@ -31,4 +31,4 @@ In my case, the exercise i was assigned was **ft_printf**. You can see how I sol
 
 | **#** | **Exercise**                                  |
 | ----- | --------------------------------------------- |
-|  `1`  | [**ft_prinf:**](/lvl3/exam_rank_03/ft_printf) |
+|  `1`  | [**ft_prinf:**](./ft_printf) |

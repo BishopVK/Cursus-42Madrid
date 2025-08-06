@@ -2,7 +2,7 @@
 
 | **Score** | **Description** |
 | --------- | ----- |
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/Score_108.png"></p> | **Mandatory part**   |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_108.png"></p> | **Mandatory part**   |
 
 
 ## Philosophers
@@ -34,11 +34,11 @@ Here is a list of instructions required to complete the project:
 In this image, one can observe a scenario where the philosophers have an appropriate amount of time to organize themselves and eat, sleep, and think without dying at any point.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/preview.png">
+<img src="./img/preview.png">
 </p>
 
 In this other case, it is evident that the timing was very tight, resulting in one of the philosophers dying due to not being able to eat. Their death was announced with zero milliseconds of delay from the moment the thread died and was printed.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl3/Philosophers/img/preview_2.png">
+<img src="./img/preview_2.png">
 </p>
