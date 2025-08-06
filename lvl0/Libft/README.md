@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="222px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl0/Libft/img/Score_125.png"></p> | **Mandatory part + Full bonus part**   |
+| <p align="center"><img width="222px" alt="170px" src="./img/Score_125.png"></p> | **Mandatory part + Full bonus part**   |
 
 
 ## Libft
@@ -32,45 +32,45 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 | **Function** | **Description**                                                                                                                                  |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-|   `isalpha`  | Checks if a character is an alphabetic letter.                                                                                                   |
-|   `isdigit`  | Checks if a character is a numeric digit.                                                                                                        |
-|   `isalnum`  | Checks whether a character is alphanumeric, that is, a letter or a digit.                                                                        |
-|   `isascii`  | Checks whether an integer value represents a valid ASCII character (between 0 and 127).                                                          |
-|   `isprint`  | Checks whether a character is printable (visible) and belongs to the ASCII printable character set.                                              |
-|   `strlen`   | Calculates the length of a character string (not including the null character).                                                                  |
-|   `memset`   | Fills a block of memory with a specific value.                                                                                                   |
-|   `bzero`    | Obsolete. It is similar to memset but is used to set a block of memory to zero.                                                                  |
-|   `memcpy`   | Copies a block of memory from a source location to a destination location.                                                                       |
-|   `memmove`  | Copies a block of memory from a source location to a destination location, handling memory overlays.                                             |
-|   `strlcpy`  | Copies a string to a buffer with a maximum limit, avoiding buffer overflows.                                                                     |
-|   `strlcat`  | Concatenates two strings to a buffer with a maximum limit, avoiding buffer overflows.                                                            |
-|   `toupper`  | Converts a lowercase character to uppercase, if applicable.                                                                                      |
-|   `tolower`  | Converts an uppercase character to lowercase, if applicable.                                                                                     |
-|   `strchr`   | Finds the first occurrence of a character in a string.                                                                                           |
-|   `strrchr`  | Finds the last occurrence of a character in a string.                                                                                            |
-|   `strncmp`  | Compares the first n characters of two strings.                                                                                                  |
-|   `memchr`   | Finds the first occurrence of a specific byte in a block of memory.                                                                              |
-|   `memcmp`   | Compares the first n bytes of two blocks of memory.                                                                                              |
-|   `strnstr`  | Finds the first occurrence of a substring in a string, up to a maximum number of characters.                                                     |
-|   `atoi`     | Converts a character string representing a number to an integer (int).                                                                           |
-|   `calloc`   | Dynamically allocates a block of memory for a specified number of elements, initializing each byte to zero.                                      |
-|   `strdup`   | Duplicates a string of characters to a new memory location, dynamically allocating enough space and copying the contents of the original string. |
+| [**isalpha**](ft_isalpha.c) | Checks if a character is an alphabetic letter.                                                                                                   |
+| [**isdigit**](ft_isdigit.c) | Checks if a character is a numeric digit.                                                                                                        |
+| [**isalnum**](ft_isalnum.c) | Checks whether a character is alphanumeric, that is, a letter or a digit.                                                                        |
+| [**isascii**](ft_isascii.c) | Checks whether an integer value represents a valid ASCII character (between 0 and 127).                                                          |
+| [**isprint**](ft_isprint.c) | Checks whether a character is printable (visible) and belongs to the ASCII printable character set.                                              |
+| [**strlen**](ft_strlen.c) | Calculates the length of a character string (not including the null character).                                                                  |
+| [**memset**](ft_memset.c) | Fills a block of memory with a specific value.                                                                                                   |
+| [**bzero**](ft_bzero.c) | Obsolete. It is similar to memset but is used to set a block of memory to zero.                                                                  |
+| [**memcpy**](ft_memcpy.c) | Copies a block of memory from a source location to a destination location.                                                                       |
+| [**memmove**](ft_memmove.c) | Copies a block of memory from a source location to a destination location, handling memory overlays.                                             |
+| [**strlcpy**](ft_strlcpy.c) | Copies a string to a buffer with a maximum limit, avoiding buffer overflows.                                                                     |
+| [**strlcat**](ft_strlcat.c) | Concatenates two strings to a buffer with a maximum limit, avoiding buffer overflows.                                                            |
+| [**toupper**](ft_toupper.c) | Converts a lowercase character to uppercase, if applicable.                                                                                      |
+| [**tolower**](ft_tolower.c) | Converts an uppercase character to lowercase, if applicable.                                                                                     |
+| [**strchr**](ft_strchr.c) | Finds the first occurrence of a character in a string.                                                                                           |
+| [**strrchr**](ft_strrchr.c) | Finds the last occurrence of a character in a string.                                                                                            |
+| [**strncmp**](ft_strncmp.c) | Compares the first n characters of two strings.                                                                                                  |
+| [**memchr**](ft_memchr.c) | Finds the first occurrence of a specific byte in a block of memory.                                                                              |
+| [**memcmp**](ft_memcmp.c) | Compares the first n bytes of two blocks of memory.                                                                                              |
+| [**strnstr**](ft_strnstr.c) | Finds the first occurrence of a substring in a string, up to a maximum number of characters.                                                     |
+| [**atoi**](ft_atoi.c) | Converts a character string representing a number to an integer (int).                                                                           |
+| [**calloc**](ft_calloc.c) | Dynamically allocates a block of memory for a specified number of elements, initializing each byte to zero.                                      |
+| [**strdup**](ft_strdup.c) | Duplicates a string of characters to a new memory location, dynamically allocating enough space and copying the contents of the original string. |
 
 **Additional functions:**
 
 |  **Function**   | **Description**                                                                                                                            |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-|   `ft_substr`   | Reserve (with malloc(3)) and return a substring of the string 's'. The substring starts from index 'start' and has a length of max. 'len'. |
-|   `ft_strjoin`  | Reserve (with malloc(3)) and return a new string, formed by the concatenation of 's1' and 's2'.                                            |
-|   `ft_strtrim`  | Removes all characters from the string 'set' from the beginning and end of 's1', until a character not belonging to 'set' is found. The resulting string is returned with a malloc(3) fallback. |
-|   `ft_split`    | Reserve (using malloc(3)) an array of strings resulting from separating the string 's' into substrings using the character 'c' as a delimiter. The array must be terminated with a NULL pointer. |
-|   `ft_itoa`     | Using malloc(3), generate a string that represents the integer value received as an argument. Negative numbers have to be managed.         |
-|   `ft_strmapi`  | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the character itself. Generates a new string with the result of successive use of 'f' |
-|  `ft_striteri`  | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the address of the character itself, which can be modified if necessary. |
-| `ft_putchar_fd` | Sends the character 'c' to the specified file descriptor.                                                                                  |
-| `ft_putstr_fd`  | Sends the string 's' to the specified file descriptor.                                                                                     |
-| `ft_putendl_fd` | Sends the string 's' to the given file descriptor, followed by a line break.                                                               |
-| `ft_putnbr_fd`  | Sends the number 'n' to the given file descriptor.                                                                                         |
+| [**substr**](ft_substr.c) | Reserve (with malloc(3)) and return a substring of the string 's'. The substring starts from index 'start' and has a length of max. 'len'. |
+| [**strjoin**](ft_strjoin.c) | Reserve (with malloc(3)) and return a new string, formed by the concatenation of 's1' and 's2'.                                            |
+| [**strtrim**](ft_strtrim.c) | Removes all characters from the string 'set' from the beginning and end of 's1', until a character not belonging to 'set' is found. The resulting string is returned with a malloc(3) fallback. |
+| [**split**](ft_split.c) | Reserve (using malloc(3)) an array of strings resulting from separating the string 's' into substrings using the character 'c' as a delimiter. The array must be terminated with a NULL pointer. |
+| [**itoa**](ft_itoa.c) | Using malloc(3), generate a string that represents the integer value received as an argument. Negative numbers have to be managed.         |
+| [**strmapi**](ft_strmapi.c) | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the character itself. Generates a new string with the result of successive use of 'f' |
+| [**striteri**](ft_striteri.c) | To each character of the string 's', apply the function 'f' giving as parameters the index of each character within 's' and the address of the character itself, which can be modified if necessary. |
+| [**putchar_fd**](ft_putchar_fd.c) | Sends the character 'c' to the specified file descriptor.                                                                                  |
+| [**putstr_fd**](ft_putstr_fd.c) | Sends the string 's' to the specified file descriptor.                                                                                     |
+| [**putendl_fd**](ft_putendl_fd.c) | Sends the string 's' to the given file descriptor, followed by a line break.                                                               |
+| [**putnbr_fd**](ft_putnbr_fd.c) | Sends the number 'n' to the given file descriptor.                                                                                         |
 
 ## The Bonus part
 
@@ -87,12 +87,12 @@ To meet the objectives of the mandatory part of the project, the following rules
 
 | **Function**      | **Description**                                                                                                                                              |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ft_lstnew`       | Create a new node using malloc(3). The member variable 'content' is initialized with the content of the parameter 'content'. The 'next' variable, with NULL. |
-| `ft_lstadd_front` | Add the 'new' node to the beginning of the 'lst' list.                                                                                                       |
-| `ft_lstsize`      | Counts the number of nodes in a list.                                                                                                                        |
-| `ft_lstlast`      | Returns the last node in the list.                                                                                                                           |
-| `ft_lstadd_back`  | Add the 'new' node to the end of the 'lst' list.                                                                                                             |
-| `ft_lstdelone`    | It takes as a parameter a node 'lst' and frees the memory of the content using the function 'del' given as a parameter, in addition to freeing the node. The 'next' memory must not be freed. |
-| `ft_lstclear`     | Delete and free the given ’lst’ node and all consecutive nodes of that node, using the ’del’ and free(3) function. In the end, the pointer to the list must be NULL. |
-| `ft_lstiter`      | Iterates the list 'lst' and applies the function 'f' on the content of each node.                                                                            |
-| `ft_lstmap`       | Iterates the list 'lst' and applies the function 'f' to the contents of each node. Creates a list resulting from the correct and successive application of the function 'f' on each node. The 'del' function is used to delete the contents of a node, if necessary. |
+| [**lstnew**](ft_lstnew_bonus.c) | Create a new node using malloc(3). The member variable 'content' is initialized with the content of the parameter 'content'. The 'next' variable, with NULL. |
+| [**lstadd_front**](ft_lstadd_front_bonus.c) | Add the 'new' node to the beginning of the 'lst' list.                                                                                                       |
+| [**lstsize**](ft_lstsize_bonus.c) | Counts the number of nodes in a list.                                                                                                                        |
+| [**lstlast**](ft_lstlast_bonus.c) | Returns the last node in the list.                                                                                                                           |
+| [**lstadd_back**](ft_lstadd_back_bonus.c) | Add the 'new' node to the end of the 'lst' list.                                                                                                             |
+| [**lstdelone**](ft_lstdelone_bonus.c) | It takes as a parameter a node 'lst' and frees the memory of the content using the function 'del' given as a parameter, in addition to freeing the node. The 'next' memory must not be freed. |
+| [**lstclear**](ft_lstclear_bonus.c) | Delete and free the given ’lst’ node and all consecutive nodes of that node, using the ’del’ and free(3) function. In the end, the pointer to the list must be NULL. |
+| [**lstiter**](ft_lstiter_bonus.c) | Iterates the list 'lst' and applies the function 'f' on the content of each node.                                                                            |
+| [**lstmap**](ft_lstmap_bonus.c) | Iterates the list 'lst' and applies the function 'f' to the contents of each node. Creates a list resulting from the correct and successive application of the function 'f' on each node. The 'del' function is used to delete the contents of a node, if necessary. |
