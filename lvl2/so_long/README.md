@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/so_long/img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
 
 
 ## so_long
@@ -31,7 +31,7 @@ To meet the objectives of the mandatory part of the project, I had to follow the
 ## Preview of the mandatory part
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/so_long/img/map_mandatory.gif">
+<img src="./img/map_mandatory.gif">
 </p>
 
 
@@ -44,7 +44,7 @@ To meet the objectives of the mandatory part of the project, I had to follow the
 
 <p>Demonstration of the flood fill function in action:</p>
 <p align="left">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/so_long/img/Flood_fill.gif">
+<img src="./img/Flood_fill.gif">
 </p>
 
 
@@ -63,5 +63,5 @@ To meet the objectives of the mandatory part of the project, I had to follow the
 ## Preview of the bonus part
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/so_long/img/map_bonus.gif">
+<img src="./img/map_bonus.gif">
 </p>

@@ -2,7 +2,7 @@
 
 | **Score**           | **Description**     |
 |-----------------------|---------------|
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_125.png"></p> | **Mandatory part + full bonus part**   |
 
 
 ## pipex
@@ -30,7 +30,7 @@ To fulfill the objectives of the mandatory part of the project Pipex, the follow
 In this case, we read the contents of Martin_Luther_King.txt. The cat command is responsible for reading the received content. Through the pipe we pass the result to the awk command, which in this case is responsible for printing the fourth column of each row of text, and passing the output to the standard output.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/awk.png">
+<img src="./img/awk.png">
 </p>
 
 
@@ -54,7 +54,7 @@ In this case, we read the contents of Martin_Luther_King.txt. The cat command is
 In this case, we read the content of infile.txt. The "cat" command is responsible for reading the received content. "ls -la" will ignore the input received and list directories and files in the current path including hidden files. "awk" will filter out the ninth column from the result, which includes the names of the files and directories. "grep pipex" will exclude from the final result anything that does not contain the word "pipex". Finally and for convenience for this example, we show the result through the output to the standard output.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/bonus.png">
+<img src="./img/bonus.png">
 </p>
 <br>
 
@@ -67,5 +67,5 @@ To do this we use the reserved word "here_doc" followed by the reserved word for
 We will enter the desired text through standard input, which will stop automatically when the escape word is detected. "grep rose" will filter out all received lines that contain the word "rose". "wc -w" will count the number of words in the received line. The result will be stored with an append in the file outfile.txt, adding the result to the end of the document. In this case 4: the number of words contained in the line "A rose by anyone".
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl2/pipex/img/here_doc.png">
+<img src="./img/here_doc.png">
 </p>
