@@ -2,7 +2,7 @@
 
 | **Score** | **Description** |
 | --------- | ----- |
-| <p align="center"><img width="200px" alt="170px" src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/NetPractice/img/Score_100.png"></p> | **Mandatory part** (Bonus part not available) |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Mandatory part** (Bonus part not available) |
 
 # Net Practice
 
@@ -79,7 +79,7 @@ Routing is the process of forwarding data packets between networks. Key componen
 In this case, we can see how we must configure several networks and subnets, where different devices, within the ranges allowed by their subnet masks, must be able to connect to each other, to devices in another network, and to the internet, using a switch and two routers to enable these connections.
 
 <p align="center">
-<img src="https://github.com/BishopVK/Cursus-42Madrid/blob/main/lvl4/NetPractice/img/NetPractice.png">
+<img src="./img/NetPractice.png">
 </p>
 
 [back to contents](#table-of-contents)
