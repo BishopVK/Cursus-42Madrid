@@ -27,3 +27,9 @@ This module extensively uses the Standard Template Library (STL) and mandates th
 * `using namespace <ns_name>` and `friend` keywords are forbidden unless explicitly stated.
 * STL (containers, algorithms) is allowed in this module and Module 08.
 * It is mandatory to use standard containers for each exercise in this module, and once a container is used, it cannot be used for the rest of the module. At least one container must be used per exercise, except for exercise 02 which requires two.
+
+---
+
+| **⬅️ Previous exercise**           |
+| --------------------------------- |
+| [CPP_Module_08](../CPP_Module_08) |

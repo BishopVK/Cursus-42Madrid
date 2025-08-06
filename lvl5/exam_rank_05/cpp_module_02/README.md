@@ -127,7 +127,6 @@ int main()
 
 ---
 
-### 📁 Back to Previous Exercises
-
-⬅️ [cpp_module_01](../cpp_module_01/README.md)
-⬅️ [cpp_module_00](../cpp_module_00/README.md)
+| **⬅️ Previous exercise**           |
+| --------------------------------- |
+| [cpp_module_01](../cpp_module_01) |

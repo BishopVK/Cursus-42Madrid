@@ -26,3 +26,9 @@ This module focuses on templated containers, iterators, and algorithms, allowing
 * The C++ standard library is allowed, but external libraries and certain C functions (`printf()`, `*alloc()`, `free()`) are forbidden.
 * `using namespace <ns_name>` and `friend` keywords are forbidden unless explicitly stated.
 * STL (containers, algorithms) is allowed in this module and Module 09.
+
+---
+
+| **⬅️ Previous exercise**              | **➡️ Next exercise**               |
+| ------------------------------------ | --------------------------------- |
+| [CPP_Module_07](../CPP_Module_07)    | [CPP_Module_09](../CPP_Module_09) |

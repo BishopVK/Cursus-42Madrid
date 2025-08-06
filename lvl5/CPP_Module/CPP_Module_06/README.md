@@ -27,3 +27,9 @@ This module covers different types of C++ casts, allowing explicit type conversi
 * `using namespace <ns_name>` and `friend` keywords are forbidden unless explicitly stated.
 * STL (containers, algorithms) is forbidden in this module.
 * Type conversion must be handled using a specific type of casting for each exercise.
+
+---
+
+| **⬅️ Previous exercise**              | **➡️ Next exercise**               |
+| ------------------------------------ | --------------------------------- |
+| [CPP_Module_05](../CPP_Module_05)    | [CPP_Module_07](../CPP_Module_07) |

@@ -28,3 +28,9 @@ This module focuses on handling repetition and exceptions in C++.
 * The C++ standard library is allowed, but external libraries and certain C functions (`printf()`, `*alloc()`, `free()`) are forbidden.
 * `using namespace <ns_name>` and `friend` keywords are forbidden unless explicitly stated.
 * STL (containers, algorithms) is forbidden in this module.
+
+---
+
+| **➡️ Next exercise**               |
+| --------------------------------- |
+| [CPP_Module_06](../CPP_Module_06) |

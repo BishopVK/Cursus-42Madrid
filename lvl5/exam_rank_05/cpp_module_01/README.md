@@ -121,12 +121,6 @@ int main()
 
 ---
 
-### Return to the previous exercise
-
-⬅️ [cpp_module_00](../cpp_module_00/README.md)
-
----
-
-### 📁 Next Exercise
-
-➡️ [cpp_module_02](../cpp_module_02/README.md)
+| **⬅️ Previous exercise**              | **➡️ Next exercise**               |
+| ------------------------------------ | --------------------------------- |
+| [cpp_module_00](../cpp_module_00)    | [cpp_module_02](../cpp_module_02) |

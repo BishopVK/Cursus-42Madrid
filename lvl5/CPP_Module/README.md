@@ -9,19 +9,19 @@ These next five modules delve deeper into C++, moving beyond core OOP principles
 
 The repository is organized into the following modules, each addressing specific aspects of C++:
 
-* **[Module 05: Repetition and Exceptions](/lvl5/CPP_Module/CPP_Module_05)**
+* **[Module 05: Repetition and Exceptions](./CPP_Module_05)**
     * This module covers the management of errors and unexpected situations at runtime using C++ exception handling mechanisms. Practical experience is gained in designing classes that throw and catch exceptions, ensuring robust and fault-tolerant applications. This includes understanding custom exception types and implementing proper error propagation.
 
-* **[Module 06: C++ casts](/lvl5/CPP_Module/CPP_Module_06)**
+* **[Module 06: C++ casts](./CPP_Module_06)**
     * This module explores the various C++ casting operators (`static_cast`, `dynamic_cast`, `reinterpret_cast`, `const_cast`) and their appropriate use cases. It covers how to perform explicit type conversions safely and effectively, understanding their implications for polymorphism, and identifying scenarios where each cast is necessary or forbidden.
 
-* **[Module 07: C++ templates](/lvl5/CPP_Module/CPP_Module_07)**
+* **[Module 07: C++ templates](./CPP_Module_07)**
     * This module introduces C++ templates, enabling the writing of generic functions and classes that operate independently of the data type. It covers how to create function templates for common utilities (like `swap`, `min`, `max`) and design templated container classes, demonstrating the power of generic programming in C++.
 
-* **[Module 08: Templated containers, iterators, algorithms](/lvl5/CPP_Module/CPP_Module_08)**
+* **[Module 08: Templated containers, iterators, algorithms](./CPP_Module_08)**
     * Building on templates, this module delves into the fundamental components of the Standard Template Library (STL): templated containers, iterators, and algorithms. It covers the use and interaction with various STL containers and the implementation of custom containers that expose iterator interfaces, preparing for efficient data manipulation.
 
-* **[Module 09: STL](/lvl5/CPP_Module/CPP_Module_09)**
+* **[Module 09: STL](./CPP_Module_09)**
     * This module provides extensive hands-on experience with the Standard Template Library (STL). It involves applying knowledge of containers, iterators, and algorithms to solve complex problems, such as parsing data, evaluating expressions, and implementing sorting algorithms, with a focus on performance and efficient use of STL components.
 
 ## General Rules

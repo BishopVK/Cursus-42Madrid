@@ -103,6 +103,6 @@ int main()
 
 ---
 
-### 📁 Next Exercise
-
-➡️ [cpp_module_01](../cpp_module_01/README.md)
+| **➡️ Next exercise**               |
+| --------------------------------- |
+| [cpp_module_01](../cpp_module_01) |
