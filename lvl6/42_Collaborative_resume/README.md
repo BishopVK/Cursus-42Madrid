@@ -1,3 +1,9 @@
+## Grade
+
+| **Score** | **Description** |
+| --------- | ----- |
+| <p align="center"><img width="200px" alt="170px" src="./img/Score_100.png"></p> | **Mandatory part** (Bonus part not available) |
+
 # 📄 collaborative_resume
 
 Proyecto del *Common Core* de 42 Madrid enfocado al desarrollo de **habilidades de comunicación, análisis profesional y trabajo en equipo** mediante la realización de entrevistas mutuas y la creación colaborativa de currículums.
