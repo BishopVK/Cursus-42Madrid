@@ -2,13 +2,14 @@
 
 Collection of projects completed during the 42 Madrid curriculum, focused on systems programming, algorithms, networking, graphics, virtualization and fullstack development.
 
+### Technologies
+C • C++ • TypeScript • Docker • Fastify • SQLite • HTML • CSS • JavaScript • TailwindCSS
+
 <p align="center">
 <img width="1268px" alt="1172px" src="./img/Holygraph.png">
 </p>
 
-### Technologies
-C • C++ • TypeScript • Docker • Fastify • SQLite • HTML • CSS • JavaScript • TailwindCSS
-
+### Projects
 | **Project**                                        | **Description** | **Score**   | **Language** |
 | -------------------------------------------------- | --------------- | ----------- | ------------ |
 | [libft](/lvl0/Libft)                               | Library of C functions                                   | **125/100**     | <img src="https://github.com/devicons/devicon/blob/v2.16.0/icons/c/c-original.svg" width="30" height="30" alt="C">                     |
